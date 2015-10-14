@@ -1,14 +1,26 @@
 #!/usr/bin/python
 
 import MySQLdb
-
+import config
 class DBmanager:
         __cur=''
         __conn=''
+        __host=''
+        __user=''
+        __passwd=''
+        __db=''
+        __port=3306
+        def __init__(self,):
+              self.__host = config.Config.host
+              self.__user=config.Config.username
+              self.__passwd=config.Config.passwd
+              self.__db=config.Config.database
+              self.__port=config.Config.port
         @classmethod
 	def connectdb(cls):
  		try:
-   			cls.__conn=MySQLdb.connect(host='localhost',user='root',passwd='123456',db='datap',port=3306)
+                        #cls.__conn=MySQLdb.connect(cls.__host,cls.__user,cls.__passwd,cls.__db,cls.__port)
+   			cls.__conn=MySQLdb.connect('localhost','root','123456','datap',3306)
     			cls.__cur=cls.__conn.cursor()
 
     		
