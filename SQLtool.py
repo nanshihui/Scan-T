@@ -2,6 +2,7 @@
 
 import MySQLdb
 import config
+import time
 class DBmanager:
         __cur=''
         __conn=''
@@ -10,6 +11,7 @@ class DBmanager:
         __passwd=''
         __db=''
         __port=3306
+        __connection_time=0
         def __init__(self):
               temp=config.Config
               self.__host = temp.host
@@ -30,7 +32,13 @@ class DBmanager:
     			print "success connet "
 		except MySQLdb.Error,e:
      			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
-       
+                        if  cls.__connection_time<3:
+                                  print 'time out ! and reconnect'
+                                  time.sleep(3)
+                                  cls.__connection_time=cls.__connection_time+1
+                                  cls.connectdb()
+                        else:
+                                  print  'connect fail'
 	def inserdata(cls):
 		
       
