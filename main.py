@@ -16,3 +16,6 @@ def getImg(html):
 #print getImg(html)
 people=SQLtool.DBmanager()
 people.connectdb()
+people.showdata()
+people.closedb()
+#people.inserdata()
