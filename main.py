@@ -23,7 +23,8 @@ people.connectdb()
 #people.showdata()
 #people.showtableinfo('book',['bid','title','author','press','price'])
 #people.searchtableinfo('book','bid','1001')
-
-people.inserdata()
+#people.searchtableinfo_byitem(['users','orders'],['oid','user','name','ordertime','orders.state','payment'],['uid','user'],'102')
+people.searchtableinfo_byitem(['users','orders'],['oid','user','name','ordertime','orders.state','payment'],['uid','user'],'102')
+#people.inserdata()
 people.closedb()
 

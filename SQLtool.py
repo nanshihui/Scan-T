@@ -88,10 +88,10 @@ class DBmanager:
                 else:
                           print '''has not connet'''
         def  searchtableinfo(cls,table,params,value):
-
+                paramsValue=(value)
                 if  cls.__isconnect==1:
                         try:
-                                count=cls.__cur.execute('select  * from '+table+'  where  '+params+' = \''+value+'\'')
+                                count=cls.__cur.execute('select  * from  '+table+'  where  '+params+' = %s',paramsValue)
                                 if count>0:
                                         result=cls.__cur.fetchall()
                                         print '相关信息如下：'
@@ -107,4 +107,38 @@ class DBmanager:
                 else:
                           print '''has not connet'''
 
-                          
+        def  searchtableinfo_byitem(cls,table,select_params,params,value):
+                paramsValue=(value)
+                if  cls.__isconnect==1:
+                        try:
+                                sql='select     '
+                                request=len(select_params)
+
+                                for j in range(0,request-1):
+                                        sql=sql+select_params[j]+','
+                                sql=sql+select_params[request-1]
+                                sql=sql+' from '
+                                request=len(table)
+
+                                for j in range(0,request-1):
+                                       sql=sql+table[j]+','
+                                sql=sql+table[request-1]
+                                sql=sql+' where '
+                                sql=sql+table[0]+'.'+params[0]+'='+table[1]+'.'+params[1]
+
+                                print sql
+                                count=cls.__cur.execute(sql+' and '+params[1]+'=%s',paramsValue)
+                                if count>0:
+                                        result=cls.__cur.fetchall()
+                                        print '相关信息如下：'
+                                        for temp in result:
+                                               for i in range(0,len(temp)):
+                                                        print temp[i],
+                                               print ''
+                                else:
+                                       print '没有相关信息'
+
+                        except MySQLdb.Error,e:
+                                print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+                else:
+                          print '''has not connet'''      
