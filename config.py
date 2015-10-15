@@ -1,11 +1,11 @@
 #!/usr/bin/python
-# -*- coding:utf8 -*-
+#coding:utf-8
 class Config(object):
 	#config file #
 	host='localhost'
 	username='root'
 	passwd='123456'
-	database='datap'
+	database='bookstore'
 	port=3306
 	charset='utf8'
 		
