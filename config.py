@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding:utf8 -*-
 class Config(object):
 	#config file #
 	host='localhost'
@@ -6,4 +7,5 @@ class Config(object):
 	passwd='123456'
 	database='datap'
 	port=3306
+	charset='utf8'
 		
