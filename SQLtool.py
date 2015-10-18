@@ -4,17 +4,17 @@ import MySQLdb
 import config
 import time
 class DBmanager:
-        __cur=''
-        __conn=''
-        __host=''
-        __user=''
-        __passwd=''
-        __db=''
-        __port=3306
-        __connection_time=0
-        __isconnect=0
-        __charset=''
-        def __init__(self):
+    __cur=''
+    __conn=''
+    __host=''
+    __user=''
+    __passwd=''
+    __db=''
+    __port=3306
+    __connection_time=0
+    __isconnect=0
+    __charset=''
+    def __init__(self):
               temp=config.Config
               self.__host = temp.host
               self.__user=temp.username
@@ -49,7 +49,7 @@ class DBmanager:
    		         cls.__conn.commit()
                 else:
                         print '''has not connet'''
-        def showdata(cls):
+    def showdata(cls):
                 if  cls.__isconnect==1:
 
                           count=cls.__cur.execute('select * from webdata')
@@ -67,7 +67,7 @@ class DBmanager:
                           print 'database has benn closed'
                 else:
                           print '''has not connet'''
-        def  showtableinfo(cls,table,params):
+    def  showtableinfo(cls,table,params):
                 if  cls.__isconnect==1:
                         request=len(params)
                         request_item=''
@@ -87,7 +87,7 @@ class DBmanager:
                                 print "Mysql Error %d: %s" % (e.args[0], e.args[1])
                 else:
                           print '''has not connet'''
-        def  searchtableinfo(cls,table,params,value):
+    def  searchtableinfo(cls,table,params,value):
                 paramsValue=(value)
                 if  cls.__isconnect==1:
                         try:
@@ -107,7 +107,7 @@ class DBmanager:
                 else:
                           print '''has not connet'''
 
-        def  searchtableinfo_byitem(cls,table,select_params,params,value):
+    def  searchtableinfo_byitem(cls,table,select_params,params,value):
                 paramsValue=(value)
                 if  cls.__isconnect==1:
                         try:
@@ -145,7 +145,7 @@ class DBmanager:
                           #@select_params 为要显示的属性
                           #@table为要查看的信息在哪几个表
                           #
-        def  searchtableinfo_byitemmore(cls,table,select_params,params,value):
+    def  searchtableinfo_byitemmore(cls,table,select_params,params,value):
                 paramsValue=(value)
                 if  cls.__isconnect==1:
                         try:
@@ -181,7 +181,7 @@ class DBmanager:
                                 print "Mysql Error %d: %s" % (e.args[0], e.args[1])
                 else:
                         print '''has not connet'''      
-        def  searchtableinfo_bystate(cls,table,select_params,params,value):
+    def  searchtableinfo_bystate(cls,table,select_params,params,value):
                 paramsValue=value
                 if  cls.__isconnect==1:
                         try:
@@ -225,7 +225,7 @@ class DBmanager:
         #@select_params				要显示的列名，数组
         #@request_params     		条件匹配参数，数组
         #@equal_params				每一个与request_params对应相等的数组
-        def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
+    def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
         	if len(request_params)!=len(equal_params):
         		print 'request_params,equals_params长度不相等'
         		return
