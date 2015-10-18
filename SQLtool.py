@@ -259,7 +259,15 @@ class DBmanager:
 
                                 if count>0:
                                         result=cls.__cur.fetchall()
+                                        content=cls.__cur.description
+
                                         print '相关信息如下：'
+                                        print result
+                                        print content
+                                        for temp in content:
+                                                print temp[0],
+                                        print ''
+
                                         for temp in result:
                                                for i in range(0,len(temp)):
                                                         print temp[i],
