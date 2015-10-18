@@ -220,3 +220,48 @@ class DBmanager:
                                 print "Mysql Error %d: %s" % (e.args[0], e.args[1])
                 else:
                         print '''has not connet'''      
+        def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
+        	if len(request_params)!=len(equal_params):
+        		return
+        	else:
+                if  cls.__isconnect==1:
+                        try:
+                                sql='select     '
+                                length=len(select_params)
+                                if length > 0:
+
+                                	for j in range(0,length-1):
+                                        sql=sql+select_params[j]+','
+                                	sql=sql+select_params[length-1]
+                                else:
+                                	sql=sql+'*'
+                                sql=sql+' from '
+                                length=len(table)
+
+                                for j in range(0,length-1):
+                                    sql=sql+table[j]+','
+                                sql=sql+table[length-1]
+                                request_params_length=len(request_params)
+                                if request_params_length>0:
+
+                                	sql=sql+' where '
+                                	for k in range(0,request_params_length-1):
+                                		sql=sql+request_params[k]+' = '+equal_params[k]+' and '
+                               		sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
+                                print sql
+								count=cls.__cur.execute(sql)
+
+                                if count>0:
+                                        result=cls.__cur.fetchall()
+                                        print '相关信息如下：'
+                                        for temp in result:
+                                               for i in range(0,len(temp)):
+                                                        print temp[i],
+                                               print ''
+                                else:
+                                       print '没有相关信息'
+
+                        except MySQLdb.Error,e:
+                                print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+                else:
+                        print '''has not connet'''      
