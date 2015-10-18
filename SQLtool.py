@@ -227,6 +227,7 @@ class DBmanager:
         #@equal_params				每一个与request_params对应相等的数组
         def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
         	if len(request_params)!=len(equal_params):
+        		print 'request_params,equals_params长度不相等'
         		return
         	else:
                 if  cls.__isconnect==1:
