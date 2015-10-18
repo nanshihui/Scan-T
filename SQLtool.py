@@ -49,7 +49,7 @@ class DBmanager:
    		         cls.__conn.commit()
                 else:
                         print '''has not connet'''
-       def showdata(cls):
+        def showdata(cls):
                 if  cls.__isconnect==1:
 
                           count=cls.__cur.execute('select * from webdata')
@@ -229,16 +229,16 @@ class DBmanager:
         	if len(request_params)!=len(equal_params):
         		print 'request_params,equals_params长度不相等'
         		return
-        	else:
-                if  cls.__isconnect==1:
+        	elif  cls.__isconnect==1:
+                        
                         try:
                                 sql='select     '
                                 length=len(select_params)
                                 if length > 0:
 
                                 	for j in range(0,length-1):
-                                        sql=sql+select_params[j]+','
-                                	sql=sql+select_params[length-1]
+                                                sql=sql+select_params[j]+','
+                                	        sql=sql+select_params[length-1]
                                 else:
                                 	sql=sql+'*'
                                 sql=sql+' from '
@@ -255,7 +255,7 @@ class DBmanager:
                                 		sql=sql+request_params[k]+' = '+equal_params[k]+' and '
                                		sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
                                 print sql
-								count=cls.__cur.execute(sql)
+				count=cls.__cur.execute(sql)
 
                                 if count>0:
                                         result=cls.__cur.fetchall()
@@ -274,19 +274,18 @@ class DBmanager:
                  #cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
    		         #cls.__conn.commit()   
         def inserttableinfo_byparams(cls,table,insert_params,insert_values):
-    	        	if len(request_params)!=len(equal_params):
+    	        if len(request_params)!=len(equal_params):
         		print 'request_params,equals_params长度不相等'
         		return
-        	else:
-                if  cls.__isconnect==1:
+        	elif cls.__isconnect==1:
                         try:
                                 sql='select     '
                                 length=len(select_params)
                                 if length > 0:
 
                                 	for j in range(0,length-1):
-                                        sql=sql+select_params[j]+','
-                                	sql=sql+select_params[length-1]
+                                                sql=sql+select_params[j]+','
+                                	        sql=sql+select_params[length-1]
                                 else:
                                 	sql=sql+'*'
                                 sql=sql+' from '
@@ -303,7 +302,7 @@ class DBmanager:
                                 		sql=sql+request_params[k]+' = '+equal_params[k]+' and '
                                		sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
                                 print sql
-								count=cls.__cur.execute(sql)
+				count=cls.__cur.execute(sql)
 
                                 if count>0:
                                         result=cls.__cur.fetchall()
