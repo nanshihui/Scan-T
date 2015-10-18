@@ -219,7 +219,12 @@ class DBmanager:
                         except MySQLdb.Error,e:
                                 print "Mysql Error %d: %s" % (e.args[0], e.args[1])
                 else:
-                        print '''has not connet'''      
+                        print '''has not connet''' 
+        #searchtableinfo_byparams 输入参数执行对应的查询函数
+        #@table 					包含要查询的表，数组
+        #@select_params				要显示的列名，数组
+        #@request_params     		条件匹配参数，数组
+        #@equal_params				每一个与request_params对应相等的数组
         def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
         	if len(request_params)!=len(equal_params):
         		return
