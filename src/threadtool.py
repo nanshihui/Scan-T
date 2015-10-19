@@ -23,7 +23,7 @@ class Threadtool:
         		self.q_finish.join()
  	def start(self):
  		for i in range(self.threads_num):
-            			t = Thread(target=self.getTask())
+            			t = Thread(target=self.getTask)
             			print '线程'+str(i)+'  正在启动'
             			t.setDaemon(True)
             			t.start()
@@ -38,30 +38,39 @@ class Threadtool:
  
     	def getTask(self):
         		while True:
+
             			req = self.q_request.get()
+            			if req==None:
+            				print '为空'
+            			else :
+         				print req
+         			"""
 			with self.lock:				#要保证该操作的原子性，进入critical area
- #			self.lock.acquire()
-				threadname=threading.currentThread().getName()
-				self.running+= 1
-	 			print '进程'+threadname+'发起请求'
+				print '123'
+				self.running=self.running+1
+#			self.lock.acquire()
+#				threadname=threading.currentThread().getName()
+
+#	 			print '进程'+threadname+'发起请求'
 
 
-
+			print '任务执行中'
 		 	connectTool=connecttool.ConnectTool()
  			ans = connectTool.getHTML(req)
 
 # 			self.lock.release()
 			self.q_finish.put((req,ans))
-  #			self.lock.acquire()
+#			self.lock.acquire()
 			with self.lock:
 				self.running-= 1
-				threadname=threading.currentThread().getName()
+#				threadname=threading.currentThread().getName()
 
-	 			print '进程'+threadname+'完成请求'
+#	 			print '进程'+threadname+'完成请求'
 #			self.lock.release()
+"""
+			self.q_request.task_done()
 
-				self.q_request.task_done()
-				time.sleep(0.1) 
+			time.sleep(0.1) 
 if __name__ == "__main__":
     	links = [ 'http://www.bnuz.edu.com','http://www.baidu.com','http://www.youku.com','http://www.tudou.com']
     	f = Threadtool(threads_num=10)
