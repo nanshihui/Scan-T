@@ -8,4 +8,5 @@ class Config(object):
 	database='bookstore'
 	port=3306
 	charset='utf8'
+	
 		

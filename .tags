@@ -4,37 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-Config	config.py	/^class Config(object):$/;"	c
-DBmanager	SQLtool.py	/^class DBmanager:$/;"	c
-__charset	SQLtool.py	/^    __charset=''$/;"	v	class:DBmanager
-__conn	SQLtool.py	/^    __conn=''$/;"	v	class:DBmanager
-__connection_time	SQLtool.py	/^    __connection_time=0$/;"	v	class:DBmanager
-__cur	SQLtool.py	/^    __cur=''$/;"	v	class:DBmanager
-__db	SQLtool.py	/^    __db=''$/;"	v	class:DBmanager
-__host	SQLtool.py	/^    __host=''$/;"	v	class:DBmanager
-__init__	SQLtool.py	/^    def __init__(self):$/;"	m	class:DBmanager
-__isconnect	SQLtool.py	/^    __isconnect=0$/;"	v	class:DBmanager
-__passwd	SQLtool.py	/^    __passwd=''$/;"	v	class:DBmanager
-__port	SQLtool.py	/^    __port=3306$/;"	v	class:DBmanager
-__user	SQLtool.py	/^    __user=''$/;"	v	class:DBmanager
-charset	config.py	/^	charset='utf8'$/;"	v	class:Config
-closedb	SQLtool.py	/^	def closedb(cls):$/;"	m	class:DBmanager
-connectdb	SQLtool.py	/^	def connectdb(cls):$/;"	m	class:DBmanager
-database	config.py	/^	database='bookstore'$/;"	v	class:Config
-getHtml	main.py	/^def getHtml(url):$/;"	f
-getImg	main.py	/^def getImg(html):$/;"	f
-host	config.py	/^	host='localhost'$/;"	v	class:Config
-inserdata	SQLtool.py	/^	def inserdata(cls):$/;"	m	class:DBmanager
-inserttableinfo_byparams	SQLtool.py	/^    def inserttableinfo_byparams(cls,table,insert_params,insert_values):$/;"	f	function:DBmanager.closedb
-interpert	main.py	/^def interpert():$/;"	f
-passwd	config.py	/^	passwd='123456'$/;"	v	class:Config
-people	main.py	/^people=SQLtool.DBmanager()$/;"	v
-port	config.py	/^	port=3306$/;"	v	class:Config
-searchtableinfo	SQLtool.py	/^    def searchtableinfo(cls,table,params,value):$/;"	f	function:DBmanager.closedb
-searchtableinfo_byitem	SQLtool.py	/^    def  searchtableinfo_byitem(cls,table,select_params,params,value):$/;"	f	function:DBmanager.closedb
-searchtableinfo_byitemmore	SQLtool.py	/^    def  searchtableinfo_byitemmore(cls,table,select_params,params,value):$/;"	f	function:DBmanager.closedb
-searchtableinfo_byparams	SQLtool.py	/^    def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):$/;"	f	function:DBmanager.closedb
-searchtableinfo_bystate	SQLtool.py	/^    def  searchtableinfo_bystate(cls,table,select_params,params,value):$/;"	f	function:DBmanager.closedb
-showdata	SQLtool.py	/^    def showdata(cls):$/;"	f	function:DBmanager.inserdata
-showtableinfo	SQLtool.py	/^    def showtableinfo(cls,table,params):$/;"	f	function:DBmanager.closedb
-username	config.py	/^	username='root'$/;"	v	class:Config
+RedirectHandler	webtool.py	/^class RedirectHandler(urllib2.HTTPRedirectHandler):$/;"	c
+http_error_301	webtool.py	/^	def http_error_301(self,req,fp,code,msg,headers):$/;"	m	class:RedirectHandler
+http_error_302	webtool.py	/^	def http_error_302(self,req,fp,code,msg,headers):$/;"	m	class:RedirectHandler

@@ -5,10 +5,14 @@ import urllib2
 import cookielib
 import re
 import SQLtool
+import webconfig
 import sys 
+import webtool
 reload(sys)
 sys.setdefaultencoding('utf-8')
-values ={}
+WEBCONFIG=webconfig.WebConfig
+RedirectHandler=webtool.RedirectHandler()
+#	values ={}
 #	values['name']='123'
 #	values = {'name' : 'Michael Foord', 'location' : 'Northampton', 'language' : 'Python' }
 
@@ -16,59 +20,82 @@ def gethtml(URL,way,params):
 	"""
 	启用代理模块
 	"""
-	enable_proxy=False
-	proxy_handler= urllib2.ProxyHandler({"http":'http://someproxy.com:80'})
+	enable_proxy=WEBCONFIG.enable_proxy
+	proxy_handler= urllib2.ProxyHandler({WEBCONFIG.proxy_name:WEBCONFIG.proxy_address})
 	null_proxy_handler= urllib2.ProxyHandler({})
-
+#	urllib2.socket.setdefaulttimeout(10)                                    #设置超时时间
 	url = URL
-	user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
+	
 
-	headers = { 'User-Agent' : user_agent,
-	    'Referer':'http://www.cnbeta.com/articles'
+	headers = { 
+		'User-Agent' :	 WEBCONFIG.useragent,
+	    	'Referer':	 WEBCONFIG.Referer
 	 }
 	data = urllib.urlencode(params)
 	req=''
 	if way=='POST':
 		req = urllib2.Request(url, data, headers)
+		temp=req.get_full_url()
+		print temp
 #		req= urllib2.Request(url)
 #		req.add_header('User-Agent','Mozilla/4.0')
 	elif len(params)==0:
 		req= urllib2.Request(url)
+		req.add_header('User-Agent','Mozilla/4.0')
+		req.add_header('Referer','http://www.baidu.com')
 		print '执行无参访问'
 	else :
 		req= urllib2.Request(url+'?'+data)
 		print '执行get访问'
+		print url+'?'+data
+
 
 	"""
 		启动开启调试端口
 	"""
 	cookie=cookielib.CookieJar()
+	cJar=cookielib.LWPCookieJar()
 	httpcookieprocessor=urllib2.HTTPCookieProcessor(cookie)
 	httpHandler= urllib2.HTTPHandler(debuglevel=1)
 	httpsHandler=urllib2.HTTPSHandler(debuglevel=1)
 	opener=''
 	if enable_proxy:
-		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,proxy_handler)
+		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,proxy_handler,RedirectHandler)
 	else:
-		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,null_proxy_handler)
+		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,null_proxy_handler,RedirectHandler)
 	urllib2.install_opener(opener)
+	#opener.handle_open['http'][0].set_http_debuglevel(1) 
+	#获得详细发送请求信息
 	try:
 
-		#response = urllib2.urlopen(req)
-		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
+		response = urllib2.urlopen(req)
+
+
+#		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
+		print 'head is %s' % response.info()
 		print 'cooke信息如下：'
 		for item in cookie:
 			print 'Name = '+item.name
 			print 'Value = '+item.value
+		the_page = response.read()
+		response.close()
+		return the_page
 	except urllib2.HTTPError,e:
 		print e.code
+		print '链接出错'
+		response.close()
+		return
 
-	the_page = response.read()
-	return the_page
-html=gethtml('http://drops.wooyun.org/','GET',{})
+def geteasyconnet():
+	httpHandler =urllib2.HTTPHandler(debuglevel=1)
+	httpsHandler =urllib2.HTTPSHandler(debuglevel=1)
+	opener =urllib2.build_opener(httpHandler, httpsHandler) 
+	urllib2.install_opener(opener)
+	response = urllib2.urlopen('http://www.baidu.com')
+#geteasyconnet()
 
 def dealhtml(html):
-	print ''
+	print html
 	
 
 
@@ -78,6 +105,8 @@ def getImg(html):
     	imglist = re.findall(imgre,html)
     	return imglist  
 
+html=gethtml('http://drops.wooyun.org','GET',{})
+dealhtml(html)
 #html = getHtml("http://www.baidu.com")
 
 #print getImg(html)
