@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/SQLtool.py=utf-8
 encoding//src/config.py=utf-8
+encoding//src/connecttool.py=utf-8
 encoding//src/gzipsupport.py=utf-8
 encoding//src/main.py=utf-8
+encoding//src/threadtool.py=utf-8
+encoding//src/webtool.py=utf-8

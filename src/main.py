@@ -9,8 +9,10 @@ import webconfig
 import sys 
 import webtool
 import gzipsupport
+from threading import stack_size
+import time
 reload(sys)
-
+stack_size(32768*16)
 WEBCONFIG=webconfig.WebConfig
 RedirectHandler=webtool.RedirectHandler()
 encoding_support = gzipsupport.ContentEncodingProcessor()
@@ -18,27 +20,26 @@ encoding_support = gzipsupport.ContentEncodingProcessor()
 #	values['name']='123'
 #	values = {'name' : 'Michael Foord', 'location' : 'Northampton', 'language' : 'Python' }
 
-def gethtml(URL,way,params): 
+def gethtml(URL,way,params={},times=1,timeout=10): 
 	"""
 	启用代理模块
 	"""
 	enable_proxy=WEBCONFIG.enable_proxy
 	proxy_handler= urllib2.ProxyHandler({WEBCONFIG.proxy_name:WEBCONFIG.proxy_address})
 	null_proxy_handler= urllib2.ProxyHandler({})
-#	urllib2.socket.setdefaulttimeout(10)                                    #设置超时时间
+	urllib2.socket.setdefaulttimeout(timeout)                                    #设置超时时间
 	url = URL
 	
 
 	headers = { 
-		'User-Agent' :	 WEBCONFIG.useragent,
-	    	'Referer':	 WEBCONFIG.Referer
+		'User-Agent' :		 WEBCONFIG.useragent,
+	    	'Referer':		 WEBCONFIG.Referer
 	 }
 	data = urllib.urlencode(params)
 	req=''
 	if way=='POST':
 		req = urllib2.Request(url, data, headers)
-		temp=req.get_full_url()
-		print temp
+
 #		req= urllib2.Request(url)
 #		req.add_header('User-Agent','Mozilla/4.0')
 	elif len(params)==0:
@@ -62,11 +63,11 @@ def gethtml(URL,way,params):
 	httpsHandler=urllib2.HTTPSHandler(debuglevel=1)
 	opener=''
 	if enable_proxy:
-		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
+		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,proxy_handler,httpHandler,httpsHandler,RedirectHandler)
 	else:
-		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,null_proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
+		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,null_proxy_handler,httpHandler,httpsHandler,RedirectHandler)
 	urllib2.install_opener(opener)
-	opener.handle_open['http'][0].set_http_debuglevel(1) 
+	#opener.handle_open['http'][0].set_http_debuglevel(1) 
 	#获得详细发送请求信息
 	try:
 
@@ -82,11 +83,18 @@ def gethtml(URL,way,params):
 		the_page = response.read()
 		response.close()
 		return the_page
-	except urllib2.HTTPError,e:
-		print '错误码为: %s' % e.code
+	except Exception,e:
 
+		print '错误码为: %s' % e
+		if times <4:
+			print '尝试第'+str(times)+'次'
+			time.sleep(3)
+			gethtml(URL, way, params, times+1)
+		else :
+			print '失败次数过多，停止链接'
+			return 
 		#response.close()
-		return 
+
 
 def geteasyconnet():
 	httpHandler =urllib2.HTTPHandler(debuglevel=1)
@@ -102,13 +110,16 @@ def dealhtml(html):
 
 
 def getImg(html):
-    	reg = r'src="(.+?\.jpg)" pic_ext'
-    	imgre = re.compile(reg)
-    	imglist = re.findall(imgre,html)
-    	return imglist  
+		reg = r'src="(.+?\.jpg)" pic_ext'
+		imgre = re.compile(reg)
+		imglist = re.findall(imgre,html)
+		return imglist  
 
-html=gethtml('http://drops.wooyun.org','GET',{})
-dealhtml(html)
+html=gethtml('http://drops.wooyun.org','GET')
+#dealhtml(html)
+
+
+
 #html = getHtml("http://www.baidu.com")
 
 #print getImg(html)
