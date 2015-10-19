@@ -72,7 +72,7 @@ def gethtml(URL,way,params):
 
 
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
-		print 'head is %s' % response.info()
+#		print 'head is %s' % response.info()
 		print 'cooke信息如下：'
 		for item in cookie:
 			print 'Name = '+item.name
@@ -95,7 +95,7 @@ def geteasyconnet():
 #geteasyconnet()
 
 def dealhtml(html):
-	print html
+	print 'html'
 	
 
 
