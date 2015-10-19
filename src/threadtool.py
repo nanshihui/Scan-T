@@ -37,40 +37,35 @@ class Threadtool:
         		return self.q_finish.get()
  
     	def getTask(self):
-        		while True:
+            while True:
 
-            			req = self.q_request.get()
-            			if req==None:
-            				print '为空'
-            			else :
-         				print req
-         			"""
-			with self.lock:				#要保证该操作的原子性，进入critical area
-				print '123'
-				self.running=self.running+1
+                 req = self.q_request.get()
+                 print req
+
+                 with self.lock:				#要保证该操作的原子性，进入critical area
+                         print '123'
+                         self.running=self.running+1
 #			self.lock.acquire()
 #				threadname=threading.currentThread().getName()
 
 #	 			print '进程'+threadname+'发起请求'
+                 print '任务执行中'
+                 connectTool=connecttool.ConnectTool()
+                 ans = connectTool.getHTML(req)
 
-
-			print '任务执行中'
-		 	connectTool=connecttool.ConnectTool()
- 			ans = connectTool.getHTML(req)
-
-# 			self.lock.release()
-			self.q_finish.put((req,ans))
+    # 			self.lock.release()
+                 self.q_finish.put((req,ans))
 #			self.lock.acquire()
-			with self.lock:
-				self.running-= 1
+                 with self.lock:
+                    self.running-= 1
 #				threadname=threading.currentThread().getName()
 
 #	 			print '进程'+threadname+'完成请求'
 #			self.lock.release()
-"""
-			self.q_request.task_done()
 
-			time.sleep(0.1) 
+                 self.q_request.task_done()
+
+                 time.sleep(0.1) 
 if __name__ == "__main__":
     	links = [ 'http://www.bnuz.edu.com','http://www.baidu.com','http://www.youku.com','http://www.tudou.com']
     	f = Threadtool(threads_num=10)
