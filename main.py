@@ -8,10 +8,12 @@ import SQLtool
 import webconfig
 import sys 
 import webtool
+import gzipsupport
 reload(sys)
 sys.setdefaultencoding('utf-8')
 WEBCONFIG=webconfig.WebConfig
 RedirectHandler=webtool.RedirectHandler()
+encoding_support = gzipsupport.ContentEncodingProcessor()
 #	values ={}
 #	values['name']='123'
 #	values = {'name' : 'Michael Foord', 'location' : 'Northampton', 'language' : 'Python' }
@@ -60,9 +62,9 @@ def gethtml(URL,way,params):
 	httpsHandler=urllib2.HTTPSHandler(debuglevel=1)
 	opener=''
 	if enable_proxy:
-		opener=urllib2.build_opener(httpcookieprocessor,proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
+		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
 	else:
-		opener=urllib2.build_opener(httpcookieprocessor,null_proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
+		opener=urllib2.build_opener(encoding_support,httpcookieprocessor,null_proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
 	urllib2.install_opener(opener)
 	opener.handle_open['http'][0].set_http_debuglevel(1) 
 	#获得详细发送请求信息
