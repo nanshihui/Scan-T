@@ -10,7 +10,7 @@ import sys
 import webtool
 import gzipsupport
 reload(sys)
-sys.setdefaultencoding('utf-8')
+
 WEBCONFIG=webconfig.WebConfig
 RedirectHandler=webtool.RedirectHandler()
 encoding_support = gzipsupport.ContentEncodingProcessor()
