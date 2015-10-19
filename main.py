@@ -41,8 +41,8 @@ def gethtml(URL,way,params):
 #		req.add_header('User-Agent','Mozilla/4.0')
 	elif len(params)==0:
 		req= urllib2.Request(url)
-		req.add_header('User-Agent','Mozilla/4.0')
-		req.add_header('Referer','http://www.baidu.com')
+		req.add_header('User-Agent',WEBCONFIG.useragent)
+		req.add_header('Referer',WEBCONFIG.Referer)
 		print '执行无参访问'
 	else :
 		req= urllib2.Request(url+'?'+data)
@@ -60,11 +60,11 @@ def gethtml(URL,way,params):
 	httpsHandler=urllib2.HTTPSHandler(debuglevel=1)
 	opener=''
 	if enable_proxy:
-		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,proxy_handler,RedirectHandler)
+		opener=urllib2.build_opener(httpcookieprocessor,proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
 	else:
-		opener=urllib2.build_opener(httpsHandler,httpsHandler,httpcookieprocessor,null_proxy_handler,RedirectHandler)
+		opener=urllib2.build_opener(httpcookieprocessor,null_proxy_handler,httpsHandler,httpsHandler,RedirectHandler)
 	urllib2.install_opener(opener)
-	#opener.handle_open['http'][0].set_http_debuglevel(1) 
+	opener.handle_open['http'][0].set_http_debuglevel(1) 
 	#获得详细发送请求信息
 	try:
 
@@ -81,10 +81,10 @@ def gethtml(URL,way,params):
 		response.close()
 		return the_page
 	except urllib2.HTTPError,e:
-		print e.code
-		print '链接出错'
-		response.close()
-		return
+		print '错误码为: %s' % e.code
+
+		#response.close()
+		return 
 
 def geteasyconnet():
 	httpHandler =urllib2.HTTPHandler(debuglevel=1)

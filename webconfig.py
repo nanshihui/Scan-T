@@ -6,7 +6,7 @@ class WebConfig(object):
 	proxy_address='http://abc.com:80'
 	time_out=10
 	useragent= 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
-	Referer='http://www.cnbeta.com/articles'
+	Referer='http://drops.wooyun.org'
 
 	
 		
