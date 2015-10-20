@@ -8,6 +8,8 @@ import sys
 import webtool
 import gzipsupport
 import time
+import datetime
+import gc
 from Queue import Queue
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
@@ -39,7 +41,9 @@ class ConnectTool:
 		urllib2.install_opener(self.__opener)
 
 	def  getHTML(self,URL,way='GET',params={},times=1):
+		print datetime.datetime.now()
 		data = urllib.urlencode(params)
+
 		url=URL
 		req=''
 		if way=='POST':
@@ -56,29 +60,48 @@ class ConnectTool:
 		else :
 			req= urllib2.Request(url+'?'+data,headers=self.__headers)
 			print '执行get访问'
-			
+		
 		try:
-
+#			gc.enable() 
+#			gc.set_debug(gc.DEBUG_LEAK)
 			response = urllib2.urlopen(req)
 
-
-#		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
-#		print 'head is %s' % response.info()
 			print 'cooke信息如下：'
 			for item in self.__cookie:
 				print 'Name = '+item.name
 				print 'Value = '+item.value
 			the_page = response.read()
+
 			response.close()
+
+			del response
+
+
+#			gc.collect()
+
 			return the_page
+#		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
+#		print 'head is %s' % response.info()
+
 		except Exception,e:
 
 			print '错误码为: %s' % e
 			if times <4:
 				print '尝试第'+str(times)+'次'
 				time.sleep(3)
-				self.getHTML(URL, way, params, times+1)
+				return self.getHTML(URL, way, params, times+1)
 			else :
 				print '失败次数过多，停止链接'
-				return ''
+				the_page= ' 失败的连接'
+				return the_page
 		#response.close()
+
+
+
+
+
+
+if __name__ == "__main__":		
+	p=ConnectTool()
+	w=p.getHTML('http://www.bnuz.edu.com')
+	print '结果是 ：   '+w

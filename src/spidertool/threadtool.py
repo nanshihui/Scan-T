@@ -5,7 +5,7 @@ import threading
 from threading import Thread,Lock
 from Queue import Queue
 import time
-import connecttool
+import connectpool
 from threading import stack_size
 stack_size(32768*16)
 class Threadtool:
@@ -20,7 +20,7 @@ class Threadtool:
 			self.threads_num = threads_num
 
 		self.running = 0
-
+		self.connectpool=connectpool.ConnectPool()
 	def __del__(self): #解构时需等待两个队列完成
 		time.sleep(0.5)
 		self.q_request.join()
@@ -53,8 +53,8 @@ class Threadtool:
 
 			print '进程'+threadname+'发起请求: '+req
 
-			connectTool=connecttool.ConnectTool()
-			ans = connectTool.getHTML(req)
+
+			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
 			self.q_finish.put((req,ans))
@@ -69,9 +69,9 @@ class Threadtool:
 			self.q_request.task_done()
 
 
-			time.sleep(0.1) 
+
 if __name__ == "__main__":
-	links = [ ]
+	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
 	f = Threadtool(threads_num=5)
 	for url in links:
 		f.push(url)
