@@ -104,4 +104,4 @@ class ConnectTool:
 if __name__ == "__main__":		
 	p=ConnectTool()
 	w=p.getHTML('http://www.bnuz.edu.com')
-	print '结果是 ：   '+w
+	print 'result is ：   '+w
