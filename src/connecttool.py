@@ -8,9 +8,10 @@ import sys
 import webtool
 import gzipsupport
 import time
+from Queue import Queue
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
-	def  __init__(self,WEBCONFIG=WEBCONFIG):
+	def  __init__(self,WEBCONFIG=WEBCONFIG,debuglevel=1):
 		self.__RedirectHandler=webtool.RedirectHandler()
 		self.__encoding_support = gzipsupport.ContentEncodingProcessor()
 		"""
@@ -36,6 +37,7 @@ class ConnectTool:
 		else:
 			self.__opener=urllib2.build_opener(self.__encoding_support,self.__httpcookieprocessor,self.__null_proxy_handler,self.__httpHandler,self.__httpsHandler,self.__RedirectHandler)
 		urllib2.install_opener(self.__opener)
+
 	def  getHTML(self,URL,way='GET',params={},times=1):
 		data = urllib.urlencode(params)
 		url=URL

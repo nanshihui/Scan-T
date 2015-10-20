@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 import urllib2
+import threading
 from threading import Thread,Lock
 from Queue import Queue
 import time
@@ -40,14 +41,14 @@ class Threadtool:
 		while True:
 
 			req = self.q_request.get()
-			print req
+
 
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
 #			self.lock.acquire()
-#				threadname=threading.currentThread().getName()
+			threadname=threading.currentThread().getName()
 
-#	 			print '进程'+threadname+'发起请求'
+			print '进程'+threadname+'发起请求: '+req
 
 			connectTool=connecttool.ConnectTool()
 			ans = connectTool.getHTML(req)
@@ -57,20 +58,20 @@ class Threadtool:
 #			self.lock.acquire()
 			with self.lock:
 				self.running-= 1
-#				threadname=threading.currentThread().getName()
+			threadname=threading.currentThread().getName()
 
-#	 			print '进程'+threadname+'完成请求'
+	 		print '进程'+threadname+'完成请求'
 #			self.lock.release()
 
 			self.q_request.task_done()
 
 			time.sleep(0.1) 
 if __name__ == "__main__":
-	links = [ 'http://www.bnuz.edu.com','http://www.baidu.com','http://www.youku.com','http://www.tudou.com']
+	links = [ 'http://www.bnuz.edu.com','http://www.baidu.com','http://www.hao123.com','http://www.vip.com']
 	f = Threadtool(threads_num=10)
 	for url in links:
 		f.push(url)
 	f.start()
 	while f.taskleft():
 		url,content = f.pop()
-		print url,(content)
+		print url
