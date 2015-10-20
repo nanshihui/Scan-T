@@ -9,12 +9,15 @@ import connecttool
 from threading import stack_size
 stack_size(32768*16)
 class Threadtool:
-	def __init__(self,threads_num):
+	def __init__(self,threads_num=10):
 
 		self.lock = Lock() #线程锁
 		self.q_request = Queue() #任务队列
 		self.q_finish = Queue() #完成队列
-		self.threads_num = threads_num
+		if threads_num>10:
+			self.threads_num=10
+		else:
+			self.threads_num = threads_num
 
 		self.running = 0
 
@@ -39,10 +42,10 @@ class Threadtool:
 
 	def getTask(self):
 		while True:
-
-			req = self.q_request.get()
-
-
+			if self.taskleft()>0:
+				req = self.q_request.get()
+			else:
+				break
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
 #			self.lock.acquire()
@@ -65,10 +68,11 @@ class Threadtool:
 
 			self.q_request.task_done()
 
+
 			time.sleep(0.1) 
 if __name__ == "__main__":
-	links = [ 'http://www.bnuz.edu.com','http://www.baidu.com','http://www.hao123.com','http://www.vip.com']
-	f = Threadtool(threads_num=10)
+	links = [ ]
+	f = Threadtool(threads_num=5)
 	for url in links:
 		f.push(url)
 	f.start()
