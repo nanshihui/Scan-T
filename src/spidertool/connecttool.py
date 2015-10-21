@@ -45,7 +45,7 @@ class ConnectTool:
 		data = urllib.urlencode(params)
 
 		url=URL
-		req=''
+	#	req=''
 		if way=='POST':
 			req = urllib2.Request(url, data=data, headers=self.__headers)
 
@@ -86,6 +86,7 @@ class ConnectTool:
 		except Exception,e:
 
 			print '错误码为: %s' % e
+
 			if times <4:
 				print '尝试第'+str(times)+'次'
 				time.sleep(3)

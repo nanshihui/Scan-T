@@ -23,7 +23,6 @@ class ThreadTool:
 		self.q_request.join()
 		self.q_finish.join()
 	def set_Thread_size(self,threads_num=10):
-
 		self.threads_num = threads_num
 	def init_add(self,add_init_object):
 		self.default_object=add_init_object
@@ -31,8 +30,8 @@ class ThreadTool:
 		self.job=job
 	def start(self):
 		for i in range(self.threads_num):
-			t = Thread(target=getTask)
-			print '线程'+str(i)+'  正在启动'
+			t = Thread(target=self.getTask)
+			print '线程'+str(i+1)+'  正在启动'
 			t.setDaemon(True)
 			t.start()
 	def taskleft(self):
@@ -43,14 +42,20 @@ class ThreadTool:
 
 	def pop(self):
 		return self.q_finish.get()
-	def do_job(self,job):
-		return job()
+	def do_job(self,job,threadname):
+		return job(threadname)
+
 
 	def getTask(self):
 		while True:
 			if self.taskleft()>0:
-				req = self.q_request.get()
+				try:
+					req = self.q_request.get(block=True,timeout=5)
+				except:
+					continue
 			else:
+				threadname=threading.currentThread().getName()
+				print threadname+'关闭'
 				break
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
@@ -59,7 +64,7 @@ class ThreadTool:
 
 			print '进程'+threadname+'发起请求: '+req
 
-			ans=self.do_job(self.job)
+			ans=self.do_job(self.job,threadname)
 #			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
@@ -74,17 +79,31 @@ class ThreadTool:
 
 			self.q_request.task_done()
 
-def taskitem():
-	print '1'
+def taskitem(threadname):
+	print threadname+'执行任务中'
 	print datetime.datetime.now()
+	return threadname+'任务结束'+str(datetime.datetime.now())
 
+def dodo(links,f,timess):
+
+	if timess==0:
+		return
+	for url in links:
+		f.push(url)
+	time.sleep(10)
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
 	f = ThreadTool()
 	f.set_Thread_size(10)
 	for url in links:
 		f.push(url)
+	f.add_task(taskitem)
 	f.start()
+	timea=1
 	while f.taskleft():
 		url,content = f.pop()
 		print url
+
+
+	while True:
+		pass

@@ -25,7 +25,7 @@ class Threadtool:
 		time.sleep(0.5)
 		self.q_request.join()
 		self.q_finish.join()
-	def init_deal_thread(self):
+
 
 	def start(self):
 		for i in range(self.threads_num):
@@ -45,8 +45,13 @@ class Threadtool:
 	def getTask(self):
 		while True:
 			if self.taskleft()>0:
-				req = self.q_request.get()
+				try:
+					req = self.q_request.get(block=True,timeout=5)
+				except:
+					continue
 			else:
+				threadname=threading.currentThread().getName()
+				print threadname+'关闭'
 				break
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
