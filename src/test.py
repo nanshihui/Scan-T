@@ -20,5 +20,8 @@ def aa():
 	finally:
 		print '111'
 
-p=aa()
-print p
+def we(s):
+	print '12ss3'+s
+def ss(well,w):
+	well(w)
+ss(we,'1')

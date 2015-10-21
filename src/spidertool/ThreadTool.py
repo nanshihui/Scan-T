@@ -7,29 +7,31 @@ from Queue import Queue
 import time
 import connectpool
 from threading import stack_size
+import datetime
 stack_size(32768*16)
-class Threadtool:
-	def __init__(self,threads_num=10):
+class ThreadTool:
+	def __init__(self):
 
 		self.lock = Lock() #线程锁
 		self.q_request = Queue() #任务队列
 		self.q_finish = Queue() #完成队列
-		if threads_num>10:
-			self.threads_num=10
-		else:
-			self.threads_num = threads_num
 
 		self.running = 0
-		self.connectpool=connectpool.ConnectPool()
+
 	def __del__(self): #解构时需等待两个队列完成
 		time.sleep(0.5)
 		self.q_request.join()
 		self.q_finish.join()
-	def init_deal_thread(self):
+	def set_Thread_size(self,threads_num=10):
 
+		self.threads_num = threads_num
+	def init_add(self,add_init_object):
+		self.default_object=add_init_object
+	def add_task(self,job):
+		self.job=job
 	def start(self):
 		for i in range(self.threads_num):
-			t = Thread(target=self.getTask)
+			t = Thread(target=getTask)
 			print '线程'+str(i)+'  正在启动'
 			t.setDaemon(True)
 			t.start()
@@ -41,6 +43,8 @@ class Threadtool:
 
 	def pop(self):
 		return self.q_finish.get()
+	def do_job(self,job):
+		return job()
 
 	def getTask(self):
 		while True:
@@ -55,8 +59,8 @@ class Threadtool:
 
 			print '进程'+threadname+'发起请求: '+req
 
-
-			ans = self.connectpool.getConnect(req)
+			ans=self.do_job(self.job)
+#			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
 			self.q_finish.put((req,ans))
@@ -70,11 +74,14 @@ class Threadtool:
 
 			self.q_request.task_done()
 
-
+def taskitem():
+	print '1'
+	print datetime.datetime.now()
 
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
-	f = Threadtool(threads_num=5)
+	f = ThreadTool()
+	f.set_Thread_size(10)
 	for url in links:
 		f.push(url)
 	f.start()
