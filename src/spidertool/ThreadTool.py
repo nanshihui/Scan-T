@@ -84,13 +84,7 @@ def taskitem(threadname):
 	print datetime.datetime.now()
 	return threadname+'任务结束'+str(datetime.datetime.now())
 
-def dodo(links,f,timess):
 
-	if timess==0:
-		return
-	for url in links:
-		f.push(url)
-	time.sleep(10)
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
 	f = ThreadTool()
@@ -105,5 +99,3 @@ if __name__ == "__main__":
 		print url
 
 
-	while True:
-		pass
