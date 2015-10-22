@@ -42,8 +42,8 @@ class ThreadTool:
 
 	def pop(self):
 		return self.q_finish.get()
-	def do_job(self,job,threadname):
-		return job(threadname)
+	def do_job(self,job,req,threadname):
+		return job(req,threadname)
 
 
 	def getTask(self):
@@ -64,7 +64,7 @@ class ThreadTool:
 
 			print '进程'+threadname+'发起请求: '+req
 
-			ans=self.do_job(self.job,threadname)
+			ans=self.do_job(self.job,req,threadname)
 #			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
