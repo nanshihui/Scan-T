@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import Queue
+i"""mport Queue
 queue=Queue.Queue(maxsize=1)
 queue.put(1,block=False)
 def aa():
@@ -24,4 +24,8 @@ def we(s):
 	print '12ss3'+s
 def ss(well,w):
 	well(w)
-ss(we,'1')
+ss(we,'1')"""
+
+from spidertool import test
+test.aa()
+test.bb()
