@@ -40,3 +40,11 @@ class DBmanager:
 				cls.connectdb()
 			else:
 				print  'connect fail'
+	def closedb(cls):
+		if  cls.__isconnect==1:
+			cls.__cur.close()
+			cls.__conn.close()
+			cls.__isconnect=0
+			print 'database has benn closed'
+		else:
+			print '''has not connet'''
