@@ -1,3 +1,4 @@
+backen
 #!/usr/bin/python
 #coding:utf-8
 import MySQLdb
@@ -15,14 +16,14 @@ class DBmanager:
         __isconnect=0
         __charset=''
         def __init__(self):
-              temp=config.Config
-              self.__host = temp.host
-              self.__user=temp.username
-              self.__passwd=temp.passwd
-              self.__db=temp.database
-              self.__port=temp.port
-              self.__charset=temp.charset
-              #print self.__host,self.__user,self.__passwd,self.__db,self.__port
+                temp=config.Config
+                self.__host = temp.host
+                self.__user=temp.username
+                self.__passwd=temp.passwd
+                self.__db=temp.database
+                self.__port=temp.port
+                self.__charset=temp.charset
+#print self.__host,self.__user,self.__passwd,self.__db,self.__port
         
 	def connectdb(cls):
  		try:
@@ -281,8 +282,10 @@ class DBmanager:
                         print '''has not connet'''  
                  #cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
    		         #cls.__conn.commit()   
-        def inserttableinfo_byparams(cls,table,insert_params,insert_values):
-    	        if len(request_params)!=len(equal_params):
+        def inserttableinfo_byparams(cls,table,select_params,insert_values):
+                for item in insert_values:
+
+    	        if len(insert_values)<1 or len(select_params)!=len(insert_values[0]):
         		print 'request_params,equals_params长度不相等'
         		return
         	elif cls.__isconnect==1:
@@ -291,7 +294,7 @@ class DBmanager:
                                 length=len(select_params)
                                 if length > 0:
 
-                                	for j in range(0,length-1):
+                                          	for j in range(0,length-1):
                                                 sql=sql+select_params[j]+','
                                 	        sql=sql+select_params[length-1]
                                 else:
@@ -304,7 +307,6 @@ class DBmanager:
                                 sql=sql+table[length-1]
                                 request_params_length=len(request_params)
                                 if request_params_length>0:
-
                                 	sql=sql+' where '
                                 	for k in range(0,request_params_length-1):
                                 		sql=sql+request_params[k]+' = '+equal_params[k]+' and '
