@@ -58,7 +58,7 @@ class DBmanager:
 			print 'request_params,equals_params长度不相等'
 			return
 		elif  cls.__isconnect==1:
-			
+
 			try:
 				sql='select     '
 				length=len(select_params)
@@ -111,26 +111,24 @@ class DBmanager:
 		#cls.__conn.commit()   
 
 	def inserttableinfo_byparams(cls,table,select_params,insert_values):
-
-			if len(insert_values)<1 :
-				print '没有插入参数'
-				return
-		if len(request_params)!=len(equal_params):
-			print 'request_params,equals_params长度不相等'
+		if len(insert_values)<1 :
+			print '没有插入参数'
 			return
 		elif  cls.__isconnect==1:
 			
 			try:
-				sql='select     '
+				sql='insert into     '+table
 				length=len(select_params)
 				if length > 0:
-
+					sql+='('
 					for j in range(0,length-1):
 						sql=sql+select_params[j]+','
-					sql=sql+select_params[length-1]
+					sql=sql+select_params[length-1]+')'
 				else:
-					sql=sql+'*'
-				sql=sql+' from '
+					sql=sql+'    '
+				sql=sql+' values('
+
+					
 				length=len(table)
 
 				for j in range(0,length-1):
