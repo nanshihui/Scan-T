@@ -29,7 +29,7 @@ class DBmanager:
 			#cls.__conn=MySQLdb.connect('localhost','root','123456','datap',3306,charset='utf8')
 			cls.__cur=cls.__conn.cursor()
 			cls.__isconnect=1
-    		
+		
 			print "success connet "
 		except MySQLdb.Error,e:
 			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
@@ -58,7 +58,68 @@ class DBmanager:
 			print 'request_params,equals_params长度不相等'
 			return
 		elif  cls.__isconnect==1:
-                        
+			
+			try:
+				sql='select     '
+				length=len(select_params)
+				if length > 0:
+
+					for j in range(0,length-1):
+						sql=sql+select_params[j]+','
+					sql=sql+select_params[length-1]
+				else:
+					sql=sql+'*'
+				sql=sql+' from '
+				length=len(table)
+
+				for j in range(0,length-1):
+					sql=sql+table[j]+','
+				sql=sql+table[length-1]
+				request_params_length=len(request_params)
+				if request_params_length>0:
+
+					sql=sql+' where '
+					for k in range(0,request_params_length-1):
+						sql=sql+request_params[k]+' = '+equal_params[k]+' and '
+					sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
+				print sql
+				count=cls.__cur.execute(sql)
+
+				if count>0:
+					result=cls.__cur.fetchall()
+					content=cls.__cur.description
+
+					print '相关信息如下：'
+					print result
+					print content
+					for temp in content:
+						print temp[0],
+					print ''
+
+					for temp in result:
+						for i in range(0,len(temp)):
+							print temp[i],
+						print ''
+				else:
+					print '没有相关信息'
+
+			except MySQLdb.Error,e:
+				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+		else:
+			print '''has not connet'''  
+		#cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
+		#cls.__conn.commit()   
+
+	def inserttableinfo_byparams(cls,table,select_params,insert_values):
+
+			if len(insert_values)<1 :
+				print '没有插入参数'
+				return
+		if len(request_params)!=len(equal_params):
+			print 'request_params,equals_params长度不相等'
+			return
+		elif  cls.__isconnect==1:
+			
 			try:
 				sql='select     '
 				length=len(select_params)
