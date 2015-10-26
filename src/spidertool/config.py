@@ -5,7 +5,7 @@ class Config(object):
 	host='localhost'
 	username='root'
 	passwd='123456'
-	database='bookstore'
+	database='datap'
 	port=3306
 	charset='utf8'
 	

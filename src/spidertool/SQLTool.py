@@ -3,6 +3,7 @@
 import MySQLdb
 import config
 import time
+import datetime
 class DBmanager:
 	__cur=''
 	__conn=''
@@ -134,7 +135,7 @@ class DBmanager:
 
 				print sql
 				returnmeg=cls.__cur.executemany(sql,insert_values)
-				print '返回的消息：　'+returnmeg
+				print '返回的消息：　'+str(returnmeg)
 				cls.__conn.commit()
 
 
@@ -144,3 +145,8 @@ class DBmanager:
 			print '''has not connet'''  
 		#cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
 		#cls.__conn.commit()   
+if __name__ == "__main__":
+	SQLtool=DBmanager()
+	SQLtool.connectdb()
+	SQLtool.inserttableinfo_byparams('webdata', ["address","content","meettime"], [('asd','asd',str(datetime.datetime.now())),('asd1','asd1',str(datetime.datetime.now()))])
+	SQLtool.closedb()
