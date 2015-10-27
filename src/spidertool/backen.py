@@ -1,10 +1,9 @@
-backen
 #!/usr/bin/python
 #coding:utf-8
 import MySQLdb
 import config
 import time
-class DBmanager:
+class DBmanager1:
         __cur=''
         __conn=''
         __host=''
