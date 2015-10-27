@@ -14,13 +14,14 @@ if __name__ == "__main__":
 
 	searchResultSQL=SQLTool.DBmanager()
 	searchResultSQL.connectdb()
-	#F_consume=dealTask.dealTask()
-	#F_consume.set_deal_num(10)
+	F_consume=dealTask.dealTask()
+	F_consume.set_deal_num(10)
+	
 	while S_produce.has_work_left():
 		v,b=S_produce.get_finish_work()
 
 		searchResultSQL.inserttableinfo_byparams('webdata', ["address","content","meettime"], [(v,b,str(datetime.datetime.now()))])		
-	#	F_consume.add_work(b)
+		F_consume.add_work(b)
 	while True:
 		pass
 

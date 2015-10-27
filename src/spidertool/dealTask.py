@@ -5,6 +5,7 @@ import datetime
 import time
 import connectpool
 from TaskTool import TaskTool
+import SQLTool
 class dealTask(TaskTool):
 	def __init__(self):
 		TaskTool.__init__(self)
@@ -16,9 +17,10 @@ class dealTask(TaskTool):
 		return ans
 
 if __name__ == "__main__":
-	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.com','http://www.cctv.com','http://www.vip.com']
-	f = searchTask()
+	DealSQL=SQLTool.DBmanager()
+	f = dealTask()
 	f.set_deal_num(10)
+
 	f.add_work(links)
 
 	f.start_task()
