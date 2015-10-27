@@ -18,11 +18,14 @@ class dealTask(TaskTool):
 
 if __name__ == "__main__":
 	DealSQL=SQLTool.DBmanager()
+	DealSQL.connectdb()
+	links=DealSQL.select_params(['webdata'],["address","content","meettime"],[])
 	f = dealTask()
 	f.set_deal_num(10)
 
 	f.add_work(links)
-
+#TODO
+#数据处理后加入
 	f.start_task()
 	while f.has_work_left():
 		v,b=f.get_finish_work()
