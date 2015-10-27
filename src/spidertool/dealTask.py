@@ -20,6 +20,8 @@ if __name__ == "__main__":
 	DealSQL=SQLTool.DBmanager()
 	DealSQL.connectdb()
 	links=DealSQL.select_params(['webdata'],["address","content","meettime"],[])
+	#TODO 添加元组进去
+	#ｕｒｌ也要存进去
 	f = dealTask()
 	f.set_deal_num(10)
 
