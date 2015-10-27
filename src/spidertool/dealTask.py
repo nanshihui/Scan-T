@@ -23,7 +23,7 @@ if __name__ == "__main__":
 	f = dealTask()
 	f.set_deal_num(10)
 
-	f.add_work(links)
+	f.add_work(links.content)
 #TODO
 #数据处理后加入
 	f.start_task()
