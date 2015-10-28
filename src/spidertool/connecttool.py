@@ -25,7 +25,7 @@ class ConnectTool:
 		urllib2.socket.setdefaulttimeout(WEBCONFIG.time_out)                                    #设置超时时间
 		self.__headers = { 
 			'User-Agent' :		 WEBCONFIG.useragent,
-	    		'Referer':		 WEBCONFIG.Referer
+			'Referer':		 WEBCONFIG.Referer
 			 }
 
 		self.__cookie=cookielib.CookieJar()

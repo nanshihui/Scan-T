@@ -11,6 +11,11 @@ class TaskTool:
 
 	def set_deal_num(self,num):
 		self.threadtool.set_Thread_size(num)
+	###
+	#	添加作业的时候，是添加一个数组进去的，避免频繁的添加
+	#
+	#
+	###
 	def add_work(self,work):
 		for url in work:
 			self.threadtool.push(url)

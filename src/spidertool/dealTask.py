@@ -12,14 +12,15 @@ class dealTask(TaskTool):
 		self.connectpool=connectpool.ConnectPool()
 	def task(self,req,threadname):
 		print threadname+'执行任务中'+str(datetime.datetime.now())
-		ans = 
+		ans = req[0];
+
 		print threadname+'任务结束'+str(datetime.datetime.now())
 		return ans
 
 if __name__ == "__main__":
 	DealSQL=SQLTool.DBmanager()
 	DealSQL.connectdb()
-	(result,content,count,col)=DealSQL.searchtableinfo_byparams(['webdata'],['address','content','meettime'])
+	(result,title,count,col)=DealSQL.searchtableinfo_byparams(['webdata'],['address','content','meettime'])
 	DealSQL.closedb()
 	#TODO 添加元组进去
 	#ｕｒｌ也要存进去
@@ -29,13 +30,15 @@ if __name__ == "__main__":
 
 	for data in result:
 		f.add_work([(data[0],data[1])])
+#		print data[1]
+
 	f.start_task()
 	while f.has_work_left():
 		v,b=f.get_finish_work()
-		print v
+		print b
 	while True:
 		pass
-"""
+"""	
 	f = dealTask()
 	f.set_deal_num(10)
 

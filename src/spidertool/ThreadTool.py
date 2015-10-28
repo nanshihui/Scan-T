@@ -62,7 +62,7 @@ class ThreadTool:
 #			self.lock.acquire()
 			threadname=threading.currentThread().getName()
 
-			print '进程'+threadname+'发起请求: '+req
+			print '进程'+threadname+'发起请求: '
 
 			ans=self.do_job(self.job,req,threadname)
 #			ans = self.connectpool.getConnect(req)
