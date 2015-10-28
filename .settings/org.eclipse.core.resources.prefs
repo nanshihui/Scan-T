@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//src/spidertool/connectpool.py=utf-8
 encoding//src/spidertool/connecttool.py=utf-8
 encoding//src/spidertool/dealTask.py=utf-8
+encoding//src/spidertool/searchTask.py=utf-8
+encoding//src/spidertool/webtool.py=utf-8

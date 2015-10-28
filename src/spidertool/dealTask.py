@@ -23,14 +23,14 @@ class dealTask(TaskTool,HTMLParser.HTMLParser):
 
 		print threadname+'任务结束'+str(datetime.datetime.now())
 		return ans
-	#该方法用来处理开始标签的，eg:<div id="main">  
+																									#该方法用来处理开始标签的，eg:<div id="main">  
 	def handle_starttag(self, tag, attrs):  
-		if tag == 'a':  #如果为<a>标签  
-	#name为标签的属性名，如href、name、id、onClick等等  
+		if tag == 'a': 																		 #如果为<a>标签  
+																									#name为标签的属性名，如href、name、id、onClick等等  
 			for name,value in attrs:      
-				if name == 'href': #这时选择href属性  
-					print "name_value: ",value  #href属性的值  
-					print "first tag:",self.get_starttag_text() #<a>标签的开始tag  
+				if name == 'href': 													#这时选择href属性  
+					print "name_value: ",value 							 #href属性的值  
+					print "first tag:",self.get_starttag_text() 	#<a>标签的开始tag  
 					print "\n"
 	def makesqlit(self,content):
 		self.feed(content.decode('UTF-8'))
