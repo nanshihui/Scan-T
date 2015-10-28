@@ -7,7 +7,7 @@ import connectpool
 from TaskTool import TaskTool
 import SQLTool
 import HTMLParser
-import re
+
 
 	
 class dealTask(TaskTool,HTMLParser.HTMLParser):
@@ -33,7 +33,7 @@ class dealTask(TaskTool,HTMLParser.HTMLParser):
 					print "first tag:",self.get_starttag_text() #<a>标签的开始tag  
 					print "\n"
 	def makesqlit(self,content):
-		self.feed(content)
+		self.feed(content.decode('UTF-8'))
 		self.close()
 #		return content
 if __name__ == "__main__":
