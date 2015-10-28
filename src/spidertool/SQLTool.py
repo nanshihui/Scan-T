@@ -54,7 +54,7 @@ class DBmanager:
 	#@select_params				要显示的列名，数组
 	#@request_params     		条件匹配参数，数组
 	#@equal_params				每一个与request_params对应相等的数组
-	def  searchtableinfo_byparams(cls,table,select_params,request_params,equal_params):
+	def  searchtableinfo_byparams(cls,table,select_params=[],request_params=[],equal_params=[]):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
 			return
@@ -89,7 +89,7 @@ class DBmanager:
 				if count>0:
 					result=cls.__cur.fetchall()
 					content=cls.__cur.description
-
+					"""
 					print '相关信息如下：'
 					print result
 					print content
@@ -101,9 +101,15 @@ class DBmanager:
 						for i in range(0,len(temp)):
 							print temp[i],
 						print ''
+					"""
+
+					col= len(content)
+					return result,content,count,col
+
+
 				else:
 					print '没有相关信息'
-
+					return (0,0,0,0)
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 		else:
