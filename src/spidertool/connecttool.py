@@ -79,7 +79,7 @@ class ConnectTool:
 
 #			gc.collect()
 
-			return the_page
+			return the_page.decode('UTF-8')
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
 #		print 'head is %s' % response.info()
 
