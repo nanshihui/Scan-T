@@ -34,24 +34,10 @@ if __name__ == "__main__":
 
 	f.start_task()
 	while f.has_work_left():
-		v,b=f.get_finish_work()
-		print b
+		v,ans=f.get_finish_work()
+		print ans
 	while True:
 		pass
-"""	
-	f = dealTask()
-	f.set_deal_num(10)
-
-	f.add_work(links.content)
-#TODO
-#数据处理后加入
-	f.start_task()
-	while f.has_work_left():
-		v,b=f.get_finish_work()
-		print v
-	while True:
-		pass
-"""
 
 
 
