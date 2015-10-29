@@ -93,7 +93,7 @@ if __name__ == "__main__":
 	"""
 
 	try:
-		file_object = open('test.html')
+		file_object = open('test.dat')
 		content = file_object.read( )
 		file_object.close( )
 	except Exception,e:
