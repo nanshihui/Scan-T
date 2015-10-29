@@ -8,6 +8,28 @@ from TaskTool import TaskTool
 import SQLTool
 from lxml import etree as etree
 from lxml.html import fromstring
+import lxml.html
+import lxml.html.soupparser
+try:
+	from bs4 import UnicodeDammit             # BeautifulSoup 4
+
+	def decode_html(html_string):
+		converted = UnicodeDammit(html_string)
+		if not converted.unicode_markup:
+			raise UnicodeDecodeError("Failed to detect encoding, tried [%s]",', '.join(converted.tried_encodings))
+# print converted.original_encoding
+		return converted.unicode_markup
+
+except ImportError:
+	from BeautifulSoup import UnicodeDammit   # BeautifulSoup 3
+
+	def decode_html(html_string):
+		converted = UnicodeDammit(html_string, isHTML=True)
+		if not converted.unicode:
+			raise UnicodeDecodeError("Failed to detect encoding, tried [%s]",', '.join(converted.triedEncodings))
+# print converted.originalEncoding
+		return converted.unicode
+	
 	
 class dealTask(TaskTool):
 	##处理任务类，通过将爬虫爬回来的网页信息进行进一步的处理
@@ -24,8 +46,12 @@ class dealTask(TaskTool):
 		return ans
 
 	def makesqlit(self,content):
-		dom = fromstring(content)
 		
+		try:
+			dom = lxml.html.fromstring(decode_html(content))
+			ignore = lxml.html.tostring(dom, encoding='unicode')
+		except UnicodeDecodeError:
+			dom = lxml.html.soupparser.fromstring(content)
 	#	page = etree.HTML(content)
 		print dom[1].tag
 		
