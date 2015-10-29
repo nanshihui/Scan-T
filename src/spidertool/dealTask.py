@@ -40,7 +40,7 @@ class dealTask(TaskTool):
 
 	def task(self,req,threadname):
 		print threadname+'执行任务中'+str(datetime.datetime.now())
-		ans = self.makesqlit(req[1])
+		ans = self.makesqlit(req)
 
 		print threadname+'任务结束'+str(datetime.datetime.now())
 		return ans
@@ -53,10 +53,20 @@ class dealTask(TaskTool):
 		except UnicodeDecodeError:
 			dom = lxml.html.soupparser.fromstring(content)
 	#	page = etree.HTML(content)
-		print dom[1].tag
-		
-#		print page[1].tag
-		return content
+	
+#		for item in dom[1]:
+#			print item.tag
+#			print item.getparent().tag
+	#	hrefs = dom.xpath(u"//@href")
+		hrefs = dom.xpath(u"//a")
+		result=[]
+		for href in hrefs:
+	#		print href.attrib['href']
+	#		print href.attrib
+	#		print href.text
+			result.append(href.attrib['href'])
+		return result
+
 if __name__ == "__main__":
 	"""
 	DealSQL=SQLTool.DBmanager()
@@ -89,8 +99,14 @@ if __name__ == "__main__":
 	except Exception,e:
 		print e
 	TOOL=dealTask()
-	TOOL.makesqlit(content)
-
+	TOOL.add_work([content])
+	TOOL.set_deal_num(1)
+	TOOL.start_task()
+	while TOOL.has_work_left():
+		res,ans=TOOL.get_finish_work()
+		print ans
+	#array=TOOL.makesqlit(content)
+	#print array
 
 
 
