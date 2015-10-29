@@ -58,7 +58,7 @@ class dealTask(TaskTool):
 #			print item.tag
 #			print item.getparent().tag
 	#	hrefs = dom.xpath(u"//@href")
-		hrefs = dom.xpath(u"//a")
+		hrefs = dom.xpath(u"//a")#xpath的路径可以采用xpath checker火狐插件自动生成
 		result=[]
 		for href in hrefs:
 	#		print href.attrib['href']
