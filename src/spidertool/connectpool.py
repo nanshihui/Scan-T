@@ -10,7 +10,14 @@ class ConnectPool:
 		self.__connect_pool = Queue.Queue(maxsize=poolsize) 		#连接池
 		self.connectTool=connecttool.ConnectTool()
 #		self.__connect_pool.put(connectTool,block=False)
-
+	def check_network(self):
+		import httplib2 
+		try: 
+			http = httplib2.Http() 
+			resp, content = http.request("http://www.baidu.com") 
+		except: 
+				return 0
+		return 1 
 	def  getConnect(self,URL,way='GET',params={},times=1):
 		self.__connect_pool.put(1)
 		gc.enable() 
