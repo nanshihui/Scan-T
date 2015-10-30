@@ -33,8 +33,8 @@ except ImportError:
 	
 class dealTask(TaskTool):
 	##处理任务类，通过将爬虫爬回来的网页信息进行进一步的处理
-	def __init__(self):
-		TaskTool.__init__(self)
+	def __init__(self,isThread=0):
+		TaskTool.__init__(self,isThread)
 
 		self.connectpool=connectpool.ConnectPool()
 

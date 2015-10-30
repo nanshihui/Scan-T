@@ -6,8 +6,8 @@ import time
 import connectpool
 from TaskTool import TaskTool
 class searchTask(TaskTool):
-	def __init__(self):
-		TaskTool.__init__(self)
+	def __init__(self,isThread=1):
+		TaskTool.__init__(self,isThread)
 		self.connectpool=connectpool.ConnectPool()
 	def task(self,req,threadname):
 		print threadname+'执行任务中'+str(datetime.datetime.now())
