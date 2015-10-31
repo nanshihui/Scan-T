@@ -13,6 +13,7 @@ stack_size(32768*16)
 class ThreadTool:
 	def __init__(self,isThread=1):
 		self.isThread=isThread
+		self.idletask={}
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
@@ -144,5 +145,6 @@ if __name__ == "__main__":
 	while f.taskleft():
 		url,content = f.pop()
 		print url
-
+	while True:
+		pass
 
