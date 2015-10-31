@@ -12,29 +12,29 @@ class WorkManager(object):
 		self.__init_work_queue(work_num)
 		self.__init_thread_pool(thread_num)
 
-    """
-        初始化线程
-    """
+"""
+初始化线程
+"""
 	def __init_thread_pool(self,thread_num):
 		for i in range(thread_num):
 			self.threads.append(Work(self.work_queue))
 
-    """
-        初始化工作队列
-    """
+"""
+初始化工作队列
+"""
 	def __init_work_queue(self, jobs_num):
 		for i in range(jobs_num):
 			self.add_job(do_job, i)
 
-    """
-        添加一项工作入队
-    """
+"""
+添加一项工作入队
+"""
 	def add_job(self, func, *args):
 		self.work_queue.put((func, list(args)))#任务入队，Queue内部实现了同步机制
 
-    """
-        等待所有线程运行完毕
-    """   
+"""
+等待所有线程运行完毕
+"""
 	def wait_allcomplete(self):
 		for item in self.threads:
 			if item.isAlive():item.join()
