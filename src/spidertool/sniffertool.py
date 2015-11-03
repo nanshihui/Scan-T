@@ -89,7 +89,7 @@ def callback_result(host, scan_result):
 def callback_resultl(host, scan_result):
     print scan_result
 nma = nmap.PortScannerAsync()
-nma.scan(hosts='www.baidu.com', arguments='-v -A -sT ', callback=callback_resultl)
+nma.scan(hosts='localhost', arguments='-v -A -sT ', callback=callback_resultl)
 
 
 while nma.still_scanning():
