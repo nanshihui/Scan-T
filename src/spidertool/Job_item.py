@@ -11,13 +11,13 @@ class Job_Item(object):
     '''
 
 
-    def __init__(self,jobname='',jobaddress='',jobport='',priority=1,result=''):
+    def __init__(self,jobname='',jobaddress='',jobport=[],priority=1,result=[]):
         '''
         Constructor
         '''
-        self.jobname=''
-        self.jobaddress=''
-        self.jobport=''
-        self.priority=1
-        self.result=''
+        self.jobname=jobname
+        self.jobaddress=jobaddress
+        self.jobport=jobport
+        self.priority=priority
+        self.result=result
         
