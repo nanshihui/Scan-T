@@ -14,6 +14,7 @@ class ThreadTool:
 	def __init__(self,isThread=1):
 		self.isThread=isThread
 		self.idletask={}
+		self.Threads=[]
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
@@ -38,23 +39,73 @@ class ThreadTool:
 	def add_task(self,job):
 		self.job=job
 	def start(self):
+		sizenumber=min(self.threads_num,self.q_request.qsize())
 		if self.isThread==1:
-			for i in range(self.threads_num):
+			for i in range(sizenumber):
 				t = Thread(target=self.getTask)
 				print '线程'+str(i+1)+'  正在启动'
 				t.setDaemon(True)
 				t.start()
+				self.Threads.append(t)
 		else:
-			for i in range(self.threads_num):
+			for i in range(sizenumber):
 				t = multiprocessing.Process(target=self.getTaskProcess)
 				print '进程'+str(i+1)+'  正在启动'
 				t.Daemon=True
 				t.start()	
+				self.Threads.append(t)
 	def taskleft(self):
 		return self.q_request.qsize()+self.q_finish.qsize()+self.running
 
 	def push(self,req):
-		self.q_request.put(req)
+		sizenum=len(req)
+		for urls in req:
+			self.q_request.put(urls)
+
+		threadnownum=0
+		threaddie=[]
+		dienum=0
+		if self.isThread==1:
+			for item in self.Threads:
+
+				if item.isAlive():
+
+
+					threadnownum=threadnownum+1
+
+
+			with self.lock:	
+				print str(threadnownum)+'活着的线程数'
+				self.Threads = filter(lambda x:x.isAlive() !=False,self.Threads)
+		else:
+			for item in self.Threads:
+
+				if item.is_alive():
+
+					threadnownum=threadnownum+1	
+
+
+			with self.lock:	
+				print str(threadnownum)+'活着的进程数'
+				self.Threads = filter(lambda x:x.is_alive()!=False,self.Threads)
+		print str(len(self.Threads))+'清理后活着的进程数'
+
+
+			
+		sizenumber=min(self.threads_num-threadnownum,sizenum)
+		if self.isThread==1:
+			for i in range(sizenumber):
+				t=Thread(target=self.getTask)
+				t.Daemon=True
+				t.start()
+				self.Threads.append(t)
+
+		else:
+			for i in range(sizenumber):
+				t=multiprocessing.Process(target=self.getTaskProcess)
+				t.Daemon=True
+				t.start()
+				self.Threads.append(t)
 
 	def pop(self):
 		return self.q_finish.get()
