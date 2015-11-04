@@ -21,10 +21,10 @@ if __name__ == "__main__":
 	f.set_deal_num(10)
 	f.add_work(links)
 
-	f.start_task()
+	#f.start_task()
 	while f.has_work_left():
 		v,b=f.get_finish_work()
-		print v,b
+		
 	while True:
 		pass
 

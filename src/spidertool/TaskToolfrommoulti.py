@@ -9,9 +9,10 @@ import connectpool
 import threading
 import multiprocess
 import multiprocessing
+from  ThreadToolfrommoulti import ThreadTool
 class TaskTool:
 	def __init__(self,isThread=1):
-		self.threadtool=ThreadToolfrommoulti(isThread)
+		self.threadtool=ThreadTool(isThread)
 		self.isThread=isThread
 #		self.threadtool.add_task(self.task)
 		if isThread==1:

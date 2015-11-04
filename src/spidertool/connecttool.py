@@ -13,7 +13,7 @@ import gc
 from Queue import Queue
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
-	def  __init__(self,WEBCONFIG=WEBCONFIG,debuglevel=1):
+	def  __init__(self,WEBCONFIG=WEBCONFIG,debuglevel=0):
 		self.__RedirectHandler=webtool.RedirectHandler()
 		self.__encoding_support = gzipsupport.ContentEncodingProcessor()
 		"""
@@ -31,8 +31,8 @@ class ConnectTool:
 		self.__cookie=cookielib.CookieJar()
 		self.__cJar=cookielib.LWPCookieJar()
 		self.__httpcookieprocessor=urllib2.HTTPCookieProcessor(self.__cookie)
-		self.__httpHandler= urllib2.HTTPHandler(debuglevel=1)
-		self.__httpsHandler=urllib2.HTTPSHandler(debuglevel=1)
+		self.__httpHandler= urllib2.HTTPHandler(debuglevel=debuglevel)
+		self.__httpsHandler=urllib2.HTTPSHandler(debuglevel=debuglevel)
 		self.__opener=''
 		if self.__enable_proxy:
 			self.__opener=urllib2.build_opener(self.__encoding_support,self.__httpcookieprocessor,self.__proxy_handler,self.__httpHandler,self.__httpsHandler,self.__RedirectHandler)
