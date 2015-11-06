@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/Portcontrol.py=utf-8
 encoding//src/control.py=utf-8
 encoding//src/nouse_main.py=utf-8
 encoding//src/spidertool/Nmaptool.py=utf-8
@@ -17,5 +18,6 @@ encoding//src/spidertool/dealTask1.py=utf-8
 encoding//src/spidertool/gzipsupport.py=utf-8
 encoding//src/spidertool/nouse_threadtool.py=utf-8
 encoding//src/spidertool/searchTask.py=utf-8
+encoding//src/spidertool/sniffertask.py=utf-8
 encoding//src/spidertool/sniffertool.py=utf-8
 encoding//src/spidertool/webtool.py=utf-8

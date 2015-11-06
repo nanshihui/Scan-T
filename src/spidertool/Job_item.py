@@ -25,6 +25,10 @@ class Job_Item(object):
         self.priority=priority
     def setAddress(self,address):
         self.jobaddress=address
+    def setStatus(self,status):
+        self.status=status
+    def setResult(self,result):
+        self.result=result
     def getResult(self):
         return self.result
     def getAddress(self):
