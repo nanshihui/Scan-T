@@ -1,0 +1,1 @@
+# Nmap 6.47 scan initiated Fri Nov  6 19:33:57 2015 as: nmap -oX - -v -A -sT -R -P0 -sV -O -sU -Pn -sC -sV -oN myscan.nmap 180.97.33.107
