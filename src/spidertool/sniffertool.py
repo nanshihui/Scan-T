@@ -10,7 +10,6 @@ Created on 2015年10月29日
 import sys
 import nmap   
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   
-sys.setdefaultencoding('utf-8')   
 class SniffrtTool(object):
     '''
     classdocs
@@ -94,7 +93,7 @@ nma.scan(hosts='localhost', arguments='-v -A -sT ', callback=callback_resultl)
 
 while nma.still_scanning():
     print('Waiting …')
-    nma.wait(2) 
+
 
 
 

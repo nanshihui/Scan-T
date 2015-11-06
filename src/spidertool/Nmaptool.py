@@ -5,8 +5,7 @@ import re
 import sys
 from multiprocessing import Pool
 from functools import partial
-reload(sys)
-sys.setdefaultencoding('utf-8')   
+reload(sys) 
 def nmScan(host,portrange,whitelist):
 	p = re.compile("^(\d*)\-(\d*)$")
 	# if type(hostlist) != list:
