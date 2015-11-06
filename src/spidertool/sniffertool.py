@@ -25,24 +25,33 @@ class SniffrtTool(object):
             self.nm = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
             self.nma = nmap.PortScannerAsync()
             self.params='-A -P0   -Pn  -sC   '
-            self.port='  '
+
         except nmap.PortScannerError:
             print('Nmap not found', sys.exc_info()[0])
 
         except:
             print('Unexpected error:', sys.exc_info()[0])
-    def scan(self,hosts='localhost', arguments='-A -P0   -Pn  -sC   ', callback=''):
+    def scan(self,hosts='localhost', port='', callback=''):
+        orders=''
+        if port!='':
+            orders+=' -p '+port
         if callback=='':
             
-            self.nma.scan(hosts=hosts, arguments=self.params+self.port, callback=self.callback_result)
+            self.nma.scan(hosts=hosts, arguments=self.params+orders, callback=self.callback_result)
         else:
-            self.nma.scan(hosts=hosts, arguments=self.params+self.port, callback=callback)   
-    def set_port(self,port):
-        self.port+=' -p '+port
+            self.nma.scan(hosts=hosts, arguments=self.params+orders, callback=callback)   
+
     def callback_result(self,host, scan_result):
         print scan_result
         
-        
+    def scanaddress(self,hosts=[], ports=[], call_back=''):
+        for i in range(len(hosts)):
+            if len(ports)<=i:
+                self.scan(hosts=hosts[i], callback=call_back)
+            else:
+                    
+                self.scan(hosts=hosts[i], port=ports[i], callback=call_back)
+            
     def isrunning(self):
         return self.nma.still_scanning()
 def callback_result(host, scan_result):
@@ -76,8 +85,8 @@ orderq='-A -P0   -Pn  -sC  -p '
 
 if __name__ == "__main__":   
     temp=SniffrtTool()
-    hosts='127.0.0.1'
-    temp.scan(hosts)
+    hosts=['127.0.0.1','www.baidu.com']
+    temp.scanaddress(hosts)
     while temp.isrunning():
         temp.nma.wait(2)
 
