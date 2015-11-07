@@ -25,7 +25,7 @@ class SniffrtTool(object):
         try:
             self.nm = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
             self.nma = nmap.PortScannerAsync()
-            self.params='-A -P0   -Pn  -sC  -R  '
+            self.params='-A -P0   -Pn  -sC  -R -v  -O '
 
         except nmap.PortScannerError:
             print('Nmap not found', sys.exc_info()[0])
@@ -64,12 +64,19 @@ def callback_resultl(host, scan_result):
 
     try:
         result =  u"ip地址:%s 主机名:%s  ......  %s\n" %(host,tmp['scan'][host]['hostname'],tmp['scan'][host]['status']['state'])
-        result +=u"系统信息 ： %s %s %s   准确度:%s " % (str(tmp['scan'][host]['osclass']['vendor']),str(tmp['scan'][host]['osclass']['osfamily']),str(tmp['scan'][host]['osclass']['osgen']),str(tmp['scan'][host]['osclass']['accuracy']))
-        ports = tmp['scan'][host]['tcp'].keys()
-        for port in ports:
+        if 'osclass' in tmp['scan'][host].keys():
+            result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass']['vendor']),str(tmp['scan'][host]['osclass']['osfamily']),str(tmp['scan'][host]['osclass']['osgen']),str(tmp['scan'][host]['osclass']['accuracy']))
+        if 'tcp' in  tmp['scan'][host].keys():
+            ports = tmp['scan'][host]['tcp'].keys()
+            for port in ports:
 
-            portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['tcp'][port]['name'],tmp['scan'][host]['tcp'][port]['state'],   tmp['scan'][host]['tcp'][port]['product'],tmp['scan'][host]['tcp'][port]['version'],tmp['scan'][host]['tcp'][port]['script'])
-            result = result + portinfo
+                portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['tcp'][port]['name'],tmp['scan'][host]['tcp'][port]['state'],   tmp['scan'][host]['tcp'][port]['product'],tmp['scan'][host]['tcp'][port]['version'],tmp['scan'][host]['tcp'][port]['script'])
+                result = result + portinfo
+        elif 'udp' in  tmp['scan'][host].keys():
+            ports = tmp['scan'][host]['udp'].keys()
+            for port in ports:
+                portinfo = " port : %s  name:%s  state : %s  product : %s  version :%s  script:%s \n" %(port,tmp['scan'][host]['udp'][port]['name'],tmp['scan'][host]['udp'][port]['state'],   tmp['scan'][host]['udp'][port]['product'],tmp['scan'][host]['udp'][port]['version'],tmp['scan'][host]['udp'][port]['script'])
+                result = result + portinfo
     except Exception,e:
         print e
     except IOError,e:
@@ -77,18 +84,6 @@ def callback_resultl(host, scan_result):
     except KeyError,e:
         print '不存在该信息'+str(e)
     finally:
-
-        try:
-            ports = tmp['scan'][host]['udp'].keys()
-            for port in ports:
-                portinfo = " port : %s  name:%s  state : %s  product : %s  version :%s  script:%s \n" %(port,tmp['scan'][host]['udp'][port]['name'],tmp['scan'][host]['udp'][port]['state'],   tmp['scan'][host]['udp'][port]['product'],tmp['scan'][host]['udp'][port]['version'],tmp['scan'][host]['udp'][port]['script'])
-                result = result + portinfo
-
-        except IOError,e:
-            print '错误IOError-udp'+str(e)
-        except KeyError,e:
-            print '不存在该信息-udp'+str(e)
-        finally:
             print result
     
 """
@@ -107,7 +102,7 @@ orderq='-A -P0   -Pn  -sC  -p '
 
 if __name__ == "__main__":   
     temp=SniffrtTool()
-    hosts=['www.bnuz.edu.cn']
+    hosts=['localhost','www.bnuz.edu.cn','www.baidu.com']
     temp.scanaddress(hosts,arguments='',call_back=callback_resultl)
     while temp.isrunning():
         temp.nma.wait(2)
