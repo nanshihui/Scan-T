@@ -12,10 +12,10 @@ import datetime
 from spidertool import Job_item
 if __name__ == '__main__':
     links = []
-    temp= Job_item(jobaddress='http://www.bunz.edu.cn',jobname='task1')
-    temp1= Job_item(jobaddress='http://www.hao123.com',jobname='task2')
-    temp2= Job_item(jobaddress='http://www.cctv.com',jobname='task3')
-    temp3= Job_item(jobaddress='http://www.vip.com',jobname='task4')
+    temp= Job_item.Job_Item(jobaddress='http://www.bunz.edu.cn',jobname='task1')
+    temp1= Job_item.Job_Item(jobaddress='http://www.hao123.com',jobname='task2')
+    temp2= Job_item.Job_Item(jobaddress='http://www.cctv.com',jobname='task3')
+    temp3= Job_item.Job_Item(jobaddress='http://www.vip.com',jobname='task4')
     links.append(temp)
     links.append(temp1)
     links.append(temp2)

@@ -1,10 +1,11 @@
+# !/usr/bin/env python
+# -*- coding:utf-8 -*-
 '''
 Created on 2015年11月4日
 
 @author: dell
 '''
-# !/usr/bin/env python
-# -*- coding:utf-8 -*-
+
 class Job_Item(object):
     '''
     classdocs
@@ -36,6 +37,8 @@ class Job_Item(object):
         return self.jobaddress
     def getPort(self):
         return self.jobport
+    def getArguments(self):
+        return self.arguments
     
         
         

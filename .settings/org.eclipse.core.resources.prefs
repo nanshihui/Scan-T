@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/control.py=utf-8
 encoding//src/nouse_main.py=utf-8
+encoding//src/spidertool/Job_item.py=utf-8
 encoding//src/spidertool/Nmaptool.py=utf-8
 encoding//src/spidertool/SQLTool.py=utf-8
 encoding//src/spidertool/TaskTool.py=utf-8

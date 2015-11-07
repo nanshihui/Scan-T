@@ -10,6 +10,7 @@ Created on 2015年10月29日
 import sys
 import nmap   
 import os
+import time
 from numpy.numarray.numerictypes import IsType
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   
 class SniffrtTool(object):
@@ -24,7 +25,7 @@ class SniffrtTool(object):
         '''
         try:
             self.nm = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
-            self.nma = nmap.PortScannerAsync()
+
             self.params='-A -P0   -Pn  -sC  -R -v  -O '
 
         except nmap.PortScannerError:
@@ -32,7 +33,7 @@ class SniffrtTool(object):
 
         except:
             print('Unexpected error:', sys.exc_info()[0])
-    def scan(self,hosts='localhost', port='', callback='',arguments=''):
+    def scan(self,hosts='localhost', port='', arguments=''):
         orders=''
         if port!='':
             orders+='   -p '+port
@@ -46,13 +47,13 @@ class SniffrtTool(object):
         print 'test'
         print scan_result
         
-    def scanaddress(self,hosts=[], ports=[], call_back='',arguments=''):
+    def scanaddress(self,hosts=[], ports=[],arguments=''):
         for i in range(len(hosts)):
             if len(ports)<=i:
-                self.scan(hosts=hosts[i], callback=call_back,arguments=arguments)
+                self.scan(hosts=hosts[i],arguments=arguments)
             else:
                     
-                self.scan(hosts=hosts[i], port=ports[i], callback=call_back,arguments=arguments)
+                self.scan(hosts=hosts[i], port=ports[i],arguments=arguments)
             
     def isrunning(self):
         return self.nma.still_scanning()
@@ -84,7 +85,7 @@ def callback_resultl(host, scan_result):
     except KeyError,e:
         print '不存在该信息'+str(e)
     finally:
-            print result
+            return result
     
 """
 def callback_resultl(host, scan_result):
@@ -101,12 +102,14 @@ orderq='-A -P0   -Pn  -sC  -p '
 
 
 if __name__ == "__main__":   
+
     temp=SniffrtTool()
-    hosts=['localhost','www.bnuz.edu.cn','www.baidu.com']
+    hosts=['www.cctv.com','www.hao123.com','www.vip.com']
     temp.scanaddress(hosts,arguments='',call_back=callback_resultl)
     while temp.isrunning():
         temp.nma.wait(2)
 
 
+#     print time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
 
 
