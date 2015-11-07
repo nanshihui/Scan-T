@@ -12,8 +12,10 @@ class snifferTask(TaskTool):
         self.sniffer=SniffrtTool()
     def task(self,req,threadname):
         print threadname+'执行任务中'+str(datetime.datetime.now())
-        
-        ans = self.connectpool.getConnect(req)
+        hosts=req.getAddress();
+        ports=req.getPort()
+        arguments=req.getArguments()
+        ans = self.sniffer.scanaddress(hosts, ports, callback_resultl, arguments)
         
         print threadname+'任务结束'+str(datetime.datetime.now())
         return ans

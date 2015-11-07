@@ -11,7 +11,7 @@ class Job_Item(object):
     '''
 
 
-    def __init__(self,jobname='',jobaddress='',jobport=[],priority=1,result=[],status=0):
+    def __init__(self,jobname='',jobaddress='',jobport=[],priority=1,result=[],status=0,arguments=''):
         '''
         Constructor
         '''
@@ -19,6 +19,7 @@ class Job_Item(object):
         self.jobaddress=jobaddress
         self.jobport=jobport
         self.priority=priority
+        self.arguments=arguments
         self.result=result
         self.status=status
     def setPriority(self,priority):
@@ -33,6 +34,8 @@ class Job_Item(object):
         return self.result
     def getAddress(self):
         return self.jobaddress
+    def getPort(self):
+        return self.jobport
     
         
         
