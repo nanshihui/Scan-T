@@ -83,13 +83,29 @@ class SniffrtTool(object):
                     ports = tmp['scan'][host]['tcp'].keys()
 
                     for port in ports:
-                        portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['tcp'][port].get('name',''),tmp['scan'][host]['tcp'][port].get('state',''),   tmp['scan'][host]['tcp'][port].get('product',''),tmp['scan'][host]['tcp'][port].get('version',''),tmp['scan'][host]['tcp'][port].get('script',''))
-                        result = result + portinfo
+#                     portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['tcp'][port].get('name',''),tmp['scan'][host]['tcp'][port].get('state',''),   tmp['scan'][host]['tcp'][port].get('product',''),tmp['scan'][host]['tcp'][port].get('version',''),tmp['scan'][host]['tcp'][port].get('script',''))
+                        tempport=str(port)
+                        tempportname=str(tmp['scan'][host]['tcp'][port].get('name',''))
+                        tempportstate=str(tmp['scan'][host]['tcp'][port].get('state',''))
+                        tempproduct=str(tmp['scan'][host]['tcp'][port].get('product',''))
+                        tempportversion=str(tmp['scan'][host]['tcp'][port].get('version',''))
+                        tempscript=str(tmp['scan'][host]['tcp'][port].get('script',''))
+                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+
+
                 elif 'udp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['udp'].keys()
                     for port in ports:
-                        portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['udp'][port].get('name',''),tmp['scan'][host]['udp'][port].get('state',''),   tmp['scan'][host]['udp'][port].get('product',''),tmp['scan'][host]['udp'][port].get('version',''),tmp['scan'][host]['udp'][port].get('script',''))
-                        result = result + portinfo
+#                         portinfo = " port : %s  name:%s  state : %s  product : %s version :%s  script:%s \n" %(port,tmp['scan'][host]['udp'][port].get('name',''),tmp['scan'][host]['udp'][port].get('state',''),   tmp['scan'][host]['udp'][port].get('product',''),tmp['scan'][host]['udp'][port].get('version',''),tmp['scan'][host]['udp'][port].get('script',''))
+#                         result = result + portinfo
+                        tempport=str(port)
+                        tempportname=str(tmp['scan'][host]['udp'][port].get('name',''))
+                        tempportstate=str(tmp['scan'][host]['udp'][port].get('state',''))
+                        tempproduct=str(tmp['scan'][host]['udp'][port].get('product',''))
+                        tempportversion=str(tmp['scan'][host]['udp'][port].get('version',''))
+                        tempscript=str(tmp['scan'][host]['udp'][port].get('script',''))
+                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+
             except Exception,e:
                 print e
             except IOError,e:
@@ -97,7 +113,7 @@ class SniffrtTool(object):
             except KeyError,e:
                 print '不存在该信息'+str(e)
             finally:
-                print result
+#                 print result
                 return str(scan_result)
     def scanaddress(self,hosts=[], ports=[],arguments=''):
         temp=''
