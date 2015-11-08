@@ -1,11 +1,11 @@
 #!/usr/bin/python
 #coding:utf-8
-import urllib2
+
 import threading
 from threading import Thread,Lock
 from Queue import Queue
 import time
-import connectpool
+
 from threading import stack_size
 import datetime
 import multiprocessing
@@ -137,10 +137,10 @@ class ThreadTool:
 			self.q_finish.put((req,ans))
 #			self.lock.acquire()
 			with self.lock:
-				self.running-= 1
+				self.running= self.running-1
 			threadname=multiprocessing.current_process().name
 
-	 		print '进程'+threadname+'完成请求'
+			print '进程'+threadname+'完成请求'
 #			self.lock.release()
 
 			#self.q_request.task_done()
@@ -174,7 +174,7 @@ class ThreadTool:
 				self.running-= 1
 			threadname=threading.currentThread().getName()
 
-	 		print '线程'+threadname+'完成请求'
+			print '线程'+threadname+'完成请求'
 #			self.lock.release()
 			self.q_request.task_done()
 			

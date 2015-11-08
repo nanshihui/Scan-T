@@ -17,5 +17,8 @@ class bb:
 		print k
 def asd():
 	return 1,2
-for l in range(0,6):
-	print l
+dict = {'a' : ("apple",), 'bo' : {"b" : "banana", "o" : "orange"}, 'g' : ["grape","grapefruit"]}
+y=dict.keys()
+print y
+
+

@@ -26,20 +26,26 @@ class snifferTask(TaskTool):
     
 if __name__ == "__main__":   
     links = []
-    temp= Job_Item(jobaddress='www.bnuz.edu.cn',jobname='task1')
-    temp1= Job_Item(jobaddress='localhost',jobname='task2')
-    temp2= Job_Item(jobaddress='www.cctv.com',jobname='task3')
-    temp3= Job_Item(jobaddress='www.vip.com',jobname='task4')
+    temp= Job_Item(jobaddress=['www.bnuz.edu.cn'],jobport=['400-800'],jobname='task1')
+    temp1= Job_Item(jobaddress=['localhost'],jobport=['400-800'],jobname='task2')
+    temp2= Job_Item(jobaddress=['www.cctv.com'],jobport=['400-800'],jobname='task3')
+    temp3= Job_Item(jobaddress=['www.vip.com'],jobport=['400-800'],jobname='task4')
     links.append(temp)
     links.append(temp1)
     links.append(temp2)
     links.append(temp3)
-    S_produce= snifferTask()#表示创建的是线程
+    S_produce= snifferTask(1)#表示创建的是线程
     S_produce.set_deal_num(10)
+    starttime = datetime.datetime.now()
+
+
+
     S_produce.add_work(links)
     while S_produce.has_work_left():
-        
         a,b=S_produce.get_finish_work()
+    endtime = datetime.datetime.now()
+    print (endtime - starttime).seconds
+#   print b
 
 
 

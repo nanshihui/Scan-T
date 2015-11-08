@@ -99,9 +99,10 @@ if __name__ == "__main__":
 	except Exception,e:
 		print e
 	TOOL=dealTask()
-	TOOL.add_work([content])
 	TOOL.set_deal_num(1)
-	TOOL.start_task()
+	TOOL.add_work([content])
+
+# 	TOOL.start_task()
 	while TOOL.has_work_left():
 		res,ans=TOOL.get_finish_work()
 		print ans
