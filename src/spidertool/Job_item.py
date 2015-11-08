@@ -12,7 +12,7 @@ class Job_Item(object):
     '''
 
 
-    def __init__(self,jobname='',jobaddress='',jobport=[],priority=1,result=[],status=0,arguments=''):
+    def __init__(self,jobname='',jobaddress=[],jobport=[],priority=1,result=[],status=0,arguments=''):
         '''
         Constructor
         '''

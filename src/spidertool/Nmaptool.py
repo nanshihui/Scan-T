@@ -26,7 +26,9 @@ def nmScan(host,portrange,whitelist):
 		return
 	tmp = nm.scan(host,portrange)
 	print tmp
+	return result
 #	print tmp['scan'][host]
+"""
 	result = result + "ip地址:%s 主机名:[%s]  ......  %s\n" %(host,tmp['scan'][host]['hostname'],tmp['scan'][host]['status']['state'])
 
 	try:
@@ -50,17 +52,18 @@ def nmScan(host,portrange,whitelist):
 			result = result + "未扫到开放端口!请检查%s端口对应的服务状态" %whitestr
 		else:
 			result = result + "扫描结果正常，无暴漏端口"   
-	return result
+"""
+
 def help():
 	print "Usage: nmScan(['127.0.0.1',],'0-65535')"
 	return None
 if __name__ == "__main__":   
 #	hostlist = ['127.0.0.1']
-	hostlist='14.215.177.38'
+	hostlist='www.vip.com'
 #	pool = Pool(5)
 #	nmargu = partial(nmScan,portrange='0-65535',whitelist=[])
 #	results = pool.map(nmargu,hostlist)
-	results=nmScan(hostlist,portrange='0-65535',whitelist=[])
+	results=nmScan(hostlist,portrange='0-67',whitelist=[])
 #	for i in results:
 	print results
 #	nmargu(hostlist)

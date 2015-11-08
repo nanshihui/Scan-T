@@ -159,7 +159,7 @@ class ThreadTool:
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
 #			self.lock.acquire()
-			self.q_request.task_done()
+
 			threadname=threading.currentThread().getName()
 
 			print '线程'+threadname+'发起请求: '
@@ -176,7 +176,7 @@ class ThreadTool:
 
 	 		print '线程'+threadname+'完成请求'
 #			self.lock.release()
-
+			self.q_request.task_done()
 			
 
 def taskitem(req,threadname):
