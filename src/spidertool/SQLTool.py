@@ -23,29 +23,29 @@ class DBmanager:
 		self.__db=temp.database
 		self.__port=temp.port
 		self.__charset=temp.charset
-	def connectdb(cls):
- 		try:
-			cls.__conn=MySQLdb.connect(cls.__host,cls.__user,cls.__passwd,cls.__db,cls.__port,charset=cls.__charset)
+	def connectdb(self):
+		try:
+			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset)
 			#print self.__host,self.__user,self.__passwd,self.__db,self.__port
-			#cls.__conn=MySQLdb.connect('localhost','root','123456','datap',3306,charset='utf8')
-			cls.__cur=cls.__conn.cursor()
-			cls.__isconnect=1
+			#self.__conn=MySQLdb.connect('localhost','root','123456','datap',3306,charset='utf8')
+			self.__cur=self.__conn.cursor()
+			self.__isconnect=1
 		
 			print "success connet "
 		except MySQLdb.Error,e:
 			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
-			if  cls.__connection_time<3:
+			if  self.__connection_time<3:
 				print 'time out ! and reconnect'
 				time.sleep(3)
-				cls.__connection_time=cls.__connection_time+1
-				cls.connectdb()
+				self.__connection_time=self.__connection_time+1
+				self.connectdb()
 			else:
 				print  'connect fail'
-	def closedb(cls):
-		if  cls.__isconnect==1:
-			cls.__cur.close()
-			cls.__conn.close()
-			cls.__isconnect=0
+	def closedb(self):
+		if  self.__isconnect==1:
+			self.__cur.close()
+			self.__conn.close()
+			self.__isconnect=0
 			print 'database has benn closed'
 		else:
 			print '''has not connet'''
@@ -54,11 +54,11 @@ class DBmanager:
 	#@select_params				要显示的列名，数组
 	#@request_params     		条件匹配参数，数组
 	#@equal_params				每一个与request_params对应相等的数组
-	def  searchtableinfo_byparams(cls,table,select_params=[],request_params=[],equal_params=[]):
+	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[]):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
 			return
-		elif  cls.__isconnect==1:
+		elif  self.__isconnect==1:
 
 			try:
 				sql='select     '
@@ -84,11 +84,11 @@ class DBmanager:
 						sql=sql+request_params[k]+' = '+equal_params[k]+' and '
 					sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
 				print sql
-				count=cls.__cur.execute(sql)
+				count=self.__cur.execute(sql)
 
 				if count>0:
-					result=cls.__cur.fetchall()
-					content=cls.__cur.description
+					result=self.__cur.fetchall()
+					content=self.__cur.description
 					"""
 					print '相关信息如下：'
 					print result
@@ -114,14 +114,45 @@ class DBmanager:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 		else:
 			print '''has not connet'''  
-		#cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
-		#cls.__conn.commit()   
-
-	def inserttableinfo_byparams(cls,table,select_params,insert_values):
+		#self.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
+		#self.__conn.commit()   
+	def replaceinserttableinfo_byparams(self,table,select_params,insert_values):
 		if len(insert_values)<1 :
 			print '没有插入参数'
 			return
-		elif  cls.__isconnect==1:
+		elif  self.__isconnect==1:
+			
+			try:
+				sql='replace into     '+table
+				length=len(select_params)
+				if length > 0:
+					sql+='('
+					for j in range(0,length-1):
+						sql=sql+select_params[j]+','
+					sql=sql+select_params[length-1]+')'
+					sql=sql+'    '
+					sql=sql+' values('	
+					for j in range(0,length-1):
+						sql=sql+'%s'+','	
+					sql=sql+'%s'+')'			
+				else:
+					return
+
+				print sql
+				returnmeg=self.__cur.executemany(sql,insert_values)
+				print '返回的消息：　'+str(returnmeg)
+				self.__conn.commit()
+
+
+			except MySQLdb.Error,e:
+				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+		else:
+			print '''has not connet'''  
+	def inserttableinfo_byparams(self,table,select_params,insert_values):
+		if len(insert_values)<1 :
+			print '没有插入参数'
+			return
+		elif  self.__isconnect==1:
 			
 			try:
 				sql='insert into     '+table
@@ -140,17 +171,17 @@ class DBmanager:
 					return
 
 				print sql
-				returnmeg=cls.__cur.executemany(sql,insert_values)
+				returnmeg=self.__cur.executemany(sql,insert_values)
 				print '返回的消息：　'+str(returnmeg)
-				cls.__conn.commit()
+				self.__conn.commit()
 
 
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 		else:
 			print '''has not connet'''  
-		#cls.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
-		#cls.__conn.commit()   
+		#self.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
+		#self.__conn.commit()   
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()

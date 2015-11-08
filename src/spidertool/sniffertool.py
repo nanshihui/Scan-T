@@ -11,6 +11,8 @@ import sys
 import nmap   
 import os
 import time
+import SQLTool
+import config
 from numpy.numarray.numerictypes import IsType
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   
 class SniffrtTool(object):
@@ -33,6 +35,8 @@ class SniffrtTool(object):
 
         except:
             print('Unexpected error:', sys.exc_info()[0])
+        self.config=config.Config
+        self.sqlTool=SQLTool.DBmanager()
     def scaninfo(self,hosts='localhost', port='', arguments=''):
         orders=''
         if port!='':
@@ -61,8 +65,20 @@ class SniffrtTool(object):
             result=''
             try:
                 result =  u"ip地址:%s 主机名:%s  ......  %s\n" %(host,tmp['scan'][host]['hostname'],tmp['scan'][host]['status']['state'])
+                self.sqlTool.connectdb()
+           
                 if 'osclass' in tmp['scan'][host].keys():
                     result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass']['vendor']),str(tmp['scan'][host]['osclass']['osfamily']),str(tmp['scan'][host]['osclass']['osgen']),str(tmp['scan'][host]['osclass']['accuracy']))
+                temphosts=str(host)
+                tempvendor=str(tmp['scan'][host]['osclass'].get('vendor','null'))
+                temposfamily=str(tmp['scan'][host]['osclass'].get('osfamily','null'))
+                temposgen=str(tmp['scan'][host]['osclass'].get('osgen','null'))
+                tempaccuracy=str(tmp['scan'][host]['osclass'].get('accuracy','null'))
+                localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
+                temphostname=str(tmp['scan'][host].get('hostname','null'))
+                tempstate=str(tmp['scan'][host]['status'].get('state','null'))
+#                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime
+                self.sqlTool.replaceinserttableinfo_byparams(self.config.iptable, ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)])         
                 if 'tcp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['tcp'].keys()
 
@@ -146,7 +162,7 @@ if __name__ == "__main__":
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
     hosts=['www.cctv.com']
-    temp.scanaddress(hosts,ports=['112-500','112-500','443-500'],arguments='')
+    temp.scanaddress(hosts,ports=['443-500'],arguments='')
 
 
             

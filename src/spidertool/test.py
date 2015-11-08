@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import Queue
+import time
 def aa():
 	print 'already in port'
 class bb:
@@ -19,6 +20,6 @@ def asd():
 	return 1,2
 dict = {'a' : ("apple",), 'bo' : {"b" : "banana", "o" : "orange"}, 'g' : ["grape","grapefruit"]}
 y=dict.keys()
-print y
-
+tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
+print tmp
 
