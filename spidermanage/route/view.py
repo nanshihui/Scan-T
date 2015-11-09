@@ -1,0 +1,10 @@
+#!/usr/bin/python
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+import datetime
+def hello(request):
+    return HttpResponse("Hello world")
+def indexpage(request):
+    now = datetime.datetime.now()
+
+    return render_to_response('view/index.html', {'current_date': now})
