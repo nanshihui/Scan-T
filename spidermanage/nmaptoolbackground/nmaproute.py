@@ -8,4 +8,4 @@ def index(request):
 def indexpage(request):
     now = datetime.datetime.now()
 
-    return render_to_response('index.html', {'current_date': now})
+    return render_to_response('nmaptoolview/index.html', {'current_date': now})
