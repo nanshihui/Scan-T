@@ -19,8 +19,10 @@ from django.contrib import admin
 from django.conf.urls import include, url
 import route.mainroute as route
 urlpatterns = [
-    url(r'^nmaptool/', include('nmaptoolbackground.urls'),name='nmaptool'),
+
+    url(r'^nmaptool/', include('nmaptoolbackground.urls',namespace='nmaptool')),
     url(r'^admin/', admin.site.urls),
     url(r'^hello',route.hello),
     url('^$', route.indexpage,name='index')
+ 
 ]

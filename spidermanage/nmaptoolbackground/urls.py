@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from . import nmaproute as views
+from . import nmaproute as route
 
 urlpatterns = [
-    url(r'^$', views.indexpage, name='index'),
+    url(r'^$', route.indexpage, name='index'),
 ]
