@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.conf.urls import include, url
-import route.view as route
+import route.mainroute as route
 urlpatterns = [
     url(r'^nmaptool/', include('nmaptoolbackground.urls')),
     url(r'^admin/', admin.site.urls),
