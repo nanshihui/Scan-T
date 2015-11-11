@@ -185,7 +185,6 @@
     </div>
     <!-- end sidebar -->
 
-
 	<!-- main container -->
     <div class="content">
 
@@ -217,7 +216,42 @@
                             </select>
                         </div>
                         <input type="text" class="search">
-                        <a class="btn-flat new-product">+ 新增任务</a>
+                        <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增任务</a>
+
+                        <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h5 class="modal-title">新增任务</h5>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                      
+
+                                <input type="label" style="border:0px;" class="form-control" value="任务名" />
+                                <input type="text" class="form-control"   id="game_namel" />
+                                <input type="label" style="border:0px;" class="form-control" value="扫描地址" />
+                                <input type="text" class="form-control"   id="gameversionl" />
+                                <input type="label" style="border:0px;" class="form-control" value="扫描端口" />
+                                <input type="text" class="form-control"   id="urll" />
+             
+
+
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" onclick="savedata()">创建</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
                     </div>
                 </div>
 
