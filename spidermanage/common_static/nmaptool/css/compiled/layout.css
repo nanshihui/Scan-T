@@ -471,17 +471,12 @@ input.search {
   transition: all .5s;
 }
 .content .skins-nav a.first_nav {
-  background: rgba(95, 175, 228, 0.8);
-}
-.content .skins-nav a.first_nav:hover {
-  background: #5fafe4;
-}
-.content .skins-nav a.second_nav {
   background: rgba(36, 43, 77, 0.8);
 }
-.content .skins-nav a.second_nav:hover {
+.content .skins-nav a.first_nav:hover {
   background: #242b4d;
 }
+
 .content .skins-nav a .icon {
   float: left;
   width: 9px;
