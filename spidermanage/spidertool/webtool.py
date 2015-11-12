@@ -8,3 +8,5 @@ class RedirectHandler(urllib2.HTTPRedirectHandler):
 		print '302问题'
 def formatstring(str):
 	return '\''+str+'\''
+def setCookies(response):
+	response.set_cookie('','',3600)
