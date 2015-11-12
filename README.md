@@ -7,4 +7,5 @@ a new spider with more function
 
 ### 注意事项
 * spidermanage里面已经包含src里面的相关文件,独立保留一份，方便移植
+
 ### 后台主程序在spidermanage文件夹下的manage.py
