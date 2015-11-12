@@ -9,3 +9,5 @@ a new spider with more function
 * spidermanage里面已经包含src里面的相关文件,独立保留一份，方便移植
 
 ### 后台主程序在spidermanage文件夹下的manage.py
+
+* PS:if want to help with me to complete this project ...please fork it ^_^
