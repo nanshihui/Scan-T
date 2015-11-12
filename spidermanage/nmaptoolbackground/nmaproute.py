@@ -18,7 +18,8 @@ def login(request):
         password=request.POST.get('password','')
 
         result,username,role,power= usercontrol.validuser(username,password)
-        return render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功'})  
+        if result:
+            return render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功'})  
         return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
 
 

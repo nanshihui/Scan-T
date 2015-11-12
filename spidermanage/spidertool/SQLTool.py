@@ -89,7 +89,6 @@ class DBmanager:
 				if count>0:
 					result=self.__cur.fetchall()
 					content=self.__cur.description
-					
 					"""
 					print '相关信息如下：'
 					print result
