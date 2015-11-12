@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 class User(object):
-    def __init__(self,username='',password='',role='',power=''):
+    def __init__(self,islogin=False,username='',password='',role='',power=''):
         '''
         Constructor
         '''
@@ -9,6 +9,7 @@ class User(object):
         self.password=password
         self.role=role
         self.power=power
+        self.islogin=islogin
 
     def setUsername(self,username):
         self.username=username

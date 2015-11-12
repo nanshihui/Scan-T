@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>后台管理系统</title>
+             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta name="keywords" content="" />
+                 <meta name="description" content="" />
+	
+    <!-- bootstrap -->
+    <link href="/static/nmaptool/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/static/nmaptool/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/icons.css">
+
+    <!-- libraries -->
+    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+          <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
+
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/static/nmaptool/css/compiled/user-list.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- navbar -->
+<header class="navbar navbar-inverse" role="banner">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
+        </div>
+        <ul class="nav navbar-nav pull-right hidden-xs">
+            <li class="hidden-xs hidden-sm">
+                <input class="search" type="text" />
+            </li>
+            <li class="notification-dropdown hidden-xs hidden-sm">
+                <a href="#" class="trigger">
+                    <i class="icon-warning-sign"></i>
+                    <span class="count">0</span>
+                </a>
+                <div class="pop-dialog">
+                    <div class="pointer right">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <div class="body">
+                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                        <div class="notifications">
+                            <h3>你有没有新信息</h3>
+                        
+                            <div class="footer">
+                                <a href="#" class="logout">查看所有消息</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="notification-dropdown hidden-xs hidden-sm">
+                <a href="#" class="trigger">
+                    <i class="icon-envelope"></i>
+                </a>
+                <div class="pop-dialog">
+                    <div class="pointer right">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <div class="body">
+                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                        <div class="messages">
+                            <h5>没有新消息</h5>
+                    
+                            <div class="footer">
+                                <a href="#" class="logout">查看所有消息</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                    你的账号
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#personal-info.html">个人信息</a></li>
+                    <li><a href="#">账号设置</a></li>
+                    <li><a href="#">账单</a></li>
+                    <li><a href="#">导出数据</a></li>
+                    <li><a href="#">发送反馈</a></li>
+                </ul>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="#" role="button">
+                    <i class="icon-cog"></i>
+                </a>
+            </li>
+            <li class="settings hidden-xs hidden-sm">
+                <a href="/nmaptool/logout" role="button">
+                    <i class="icon-share-alt"></i>
+                </a>
+            </li>
+        </ul>
+    </header>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu">
+            <li class="active">
+                <div class="pointer">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <a href="/nmaptool/mainpage">
+                    <i class="icon-home"></i>
+                    <span>首页</span>
+                </a>
+            </li>            
+
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-group"></i>
+                    <span>用户</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="user-list.html">用户列表</a></li>
+                    <li><a href="new-user.html">新用户</a></li>
+                    <li><a href="user-profile.html">用户资料</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a class="dropdown-toggle" href="tables.html">
+                    <i class="icon-th-large"></i>
+                    <span>表格</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="tables.html">常用表格</a></li>
+                    <li><a href="datatables.html">数据表格</a></li>
+                </ul>
+            </li>
+         
+            <li>
+                <a href="#">
+                    <i class="icon-cog"></i>
+                    <span>我的信息</span>
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#">
+                    <i class="icon-share-alt"></i>
+                    <span>其他</span>
+                    <i class="icon-chevron-down"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="code-editor.html">代码编辑器</a></li>
+                    <li><a href="grids.html">网格</a></li>
+                    <li><a href="signin.html">登录</a></li>
+                    <li><a href="signup.html">注册</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+
+	<!-- main container -->
+    <div class="content">
+        
+        <!-- settings changer -->
+    <div id="pad-wrapper" class="user-profile">
+            <!-- header -->
+            <div class="row header">
+                <div class="col-md-8">
+                    <h3 class="name">IP:132.14.15.23</h3>
+                    <span class="area">已完成</span>
+                </div>
+                <a class="btn-flat icon pull-right delete-user" data-toggle="tooltip" title="Delete user" data-placement="top">
+                    <i class="icon-trash"></i>
+                </a>
+     
+            </div>
+                <h6>主机相关信息</h6>
+                            <p>windows server 2008</p>
+                        </div>
+
+
+
+
+            <div class="col-md-12 bio">
+
+
+         
+        <div id="pad-wrapper" class="users-list">
+
+            
+             
+            <div class="row header">
+
+                <h3>任务明细</h3>
+                <div class="col-md-10 col-sm-12 col-xs-12 pull-right">
+                    <input type="text" class="col-md-5 search" placeholder="输入端口...">
+                    
+                    <!-- custom popup filter -->
+                    <!-- styles are located in css/elements.css -->
+                    <!-- script that enables this dropdown is located in js/theme.js -->
+                    <div class="ui-dropdown">
+                        <div class="head" data-toggle="tooltip" title="点我!">
+                           过滤端口
+                            <i class="arrow-down"></i>
+                        </div>  
+                        <div class="dialog">
+                            <div class="pointer">
+                                <div class="arrow"></div>
+                                <div class="arrow_border"></div>
+                            </div>
+                            <div class="body">
+                                <p class="title">
+                                    只显示:
+                                </p>
+                                <div class="form">
+                                    <select>
+                                        <option>端口号</option>
+                                        <option>端口名</option>
+                                        <option>版本</option>
+     
+                                    </select>
+                                    <select>
+                                        <option>等于</option>
+                                        <option>包含</option>
+                                        <option>不等于</option>
+                          
+                                    </select>
+                                    <input type="text" class="form-control" />
+                                    <a class="btn-flat small">添加过滤项</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="new-user.html" class="btn-flat success pull-right">
+                        <span>&#43;</span>
+                        新增任务
+                    </a>
+                </div>
+            </div>
+
+            <!-- Users table -->
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="col-md-4 sortable">
+                                    端口号
+                                </th>
+                                <th class="col-md-3 sortable">
+                                    <span class="line"></span>端口名
+                                </th>
+                                <th class="col-md-2 sortable">
+                                    <span class="line"></span>端口版本
+                                </th>
+                                <th class="col-md-3 sortable align-right">
+                                    <span class="line"></span>端口其他信息
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <!-- row -->
+                        <tr class="first">
+                            <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                        <tr>
+                              <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                        <tr>
+                               <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                        <tr>
+                                 <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                        <tr>
+                                <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                      
+
+                        <tr>
+                               <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                        <tr>
+                               <td>
+                             
+                                <a href="user-profile.html" class="name">80</a>
+                                <span class="subtext">打开状态</span>
+                            </td>
+                            <td>
+                                http
+                            </td>
+                            <td>
+                               2.0
+                            </td>
+                            <td class="align-right">
+                                <a href="#">没有相关信息</a>
+                            </td>
+                        </tr>
+                        <!-- row -->
+                       
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+            <ul class="pagination pull-right">
+                <li><a href="#">&#8249;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&#8250;</a></li>
+            </ul>
+            <!-- end users table -->
+        </div>
+    </div>
+    <!-- end main container -->
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/nmaptool/js/bootstrap.min.js"></script>
+    <script src="/static/nmaptool/js/theme.js"></script>
+</body>
+</html>

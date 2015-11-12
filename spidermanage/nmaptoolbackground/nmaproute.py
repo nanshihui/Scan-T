@@ -7,17 +7,19 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from control import usercontrol
 from django.views import generic
+from spidertool import webtool
+from model.user import User
 # Create your views here.
+def taskdetail(request):
+    return render_to_response('nmaptoolview/taskdetail.html', {'data':''})
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
-    power= request.COOKIES.get('power','')
-    print 'power:'+power
     if islogin:
         return render_to_response('nmaptoolview/mainpage.html',{})
     return render_to_response('nmaptoolview/login.html', {'data':''})
 def logout(request):
     response= render_to_response('nmaptoolview/login.html', {'data':''})
-    response.delete_cookie('islogin')
+    webtool.delCookies(response)
     return response
 def login(request):
     if request.method=='GET':
@@ -29,11 +31,11 @@ def login(request):
         result,username,role,power= usercontrol.validuser(username,password)
         if result:
             response = render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功'})  
+            loginuser=User(result,username,password,role,power)
 #将username写入浏览器cookie,失效时间为3600
-            response.set_cookie('islogin',True,3600)
-            response.set_cookie('username',username,3600)
-            response.set_cookie('role',role,3600)
-            response.set_cookie('power',power,3600)
+
+            webtool.setCookies(response,loginuser,3600)
+
             return response
         else:
             return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
