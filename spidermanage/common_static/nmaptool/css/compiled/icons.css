@@ -30,7 +30,28 @@ i.shuffle {
   line-height: 14px;
   vertical-align: text-top;
 }
-
+i.table-start {
+  background: url("../../img/play.png") no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  margin-top: 0px;
+  *margin-right: .3em;
+  margin-bottom: 2px;
+  line-height: 14px;
+  vertical-align: text-top;
+}
+i.table-pause {
+  background: url("../../img/pause.png") no-repeat;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+}
 i.setting {
   background: url("../../img/btn-setting.png") no-repeat;
   display: inline-block;
