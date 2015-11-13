@@ -10,5 +10,6 @@ class Config(object):
 	charset='utf8'
 	iptable='ip_maindata'
 	porttable='snifferdata'
+	tasktable='taskdata'
 	
 		

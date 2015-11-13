@@ -7,5 +7,6 @@ urlpatterns = [
     url(r'^login/$', route.login, name='login'),
     url(r'^logout/$', route.logout, name='logout'),
     url(r'^mainpage/$', route.indexpage, name='index'),
-    url(r'^taskdetail/$',route.taskdetail,name='taskdetail')
+    url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
+    url(r'^jobshow/$',route.jobshow,name='jobshow')
 ]

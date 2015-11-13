@@ -11,5 +11,6 @@ class Config(object):
 	iptable='ip_maindata'
 	porttable='snifferdata'
 	usertable='user_table'
+	tasktable='taskdata'
 	
 		

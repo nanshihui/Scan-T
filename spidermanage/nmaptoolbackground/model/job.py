@@ -2,19 +2,29 @@
 #coding:utf-8
 import uuid
 class Job(object):
-    def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1'):
+    def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1',jobid='',result='',endtime=''):
         '''
         Constructor
         '''
+#         jobstatus=1 //未启动
+#         jobstatus=2 //排队中
+#         jobstatus=3 //正在进行
+#         jobstatus=4 //挂起
+#         jobstatus=5 //结束
+#         jobstatus=6 //已删除
         self.jobname=jobname
         self.jobaddress=jobaddress
         self.priority=priority
         self.starttime=starttime
         self.username=username
-        self.jobid=uuid.uuid1()
+        if jobid!='':
+            self.jobid=jobid
+        else:
+            self.jobid=uuid.uuid1()
         self.jobport=jobport
         self.jobstatus=jobstatus
-        self.result=''
+        self.result=result
+        self.endtime=endtime
     def setPriority(self,priority):
         self.priority=priority
     def setResult(self,result):

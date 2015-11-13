@@ -5,10 +5,11 @@ from django.http import HttpResponse,HttpResponseRedirect
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol
+from control import usercontrol,jobcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
+import json
 # Create your views here.
 def taskdetail(request):
     return render_to_response('nmaptoolview/taskdetail.html', {'data':''})
@@ -39,5 +40,25 @@ def login(request):
             return response
         else:
             return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
+
+def jobshow(request):
+    islogin = request.COOKIES.get('islogin',True)
+    username=request.POST.get('username','')
+    response_data = {}  
+    response_data['result'] = '0' 
+    if islogin:
+        response_data['result'] = '1' 
+        jobs,count=jobcontrol.jobshow(username=username)
+        response_data['length']=count
+        response_data['jobs']=jobs
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    else:
+        
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+
+
+
+
 
 

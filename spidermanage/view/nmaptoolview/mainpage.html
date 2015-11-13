@@ -37,7 +37,7 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body>
+<body onload="loadtask(0);">
     <!-- navbar -->
     <header class="navbar navbar-inverse" role="banner">
         <div class="navbar-header">
@@ -210,6 +210,7 @@
                     <div class="col-md-8 col-md-offset-5">
                         <div class="ui-select">
                             <select>
+                                 <option>未启动</option>
                               <option>进行中</option>
                               <option>已完成</option>
                               <option>暂停</option>
@@ -263,6 +264,10 @@
                                     <input type="checkbox">
                                     任务名
                                 </th>
+                                    <th class="col-md-3">
+                                     <span class="line"></span>
+                                    任务编号
+                                </th>
                                 <th class="col-md-3">
                                     <span class="line"></span>信息概要
                                 </th>
@@ -271,8 +276,10 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <!-- row -->
+                        <tbody >
+                            <div id="head">
+                             
+                       <!--
                             <tr class="first">
                                 <td>
                                     <input type="checkbox">
@@ -280,6 +287,9 @@
                                         <img src="/static/nmaptool/img/owl.png">
                                     </div>
                                     <a href="/nmaptool/taskdetail/">爬虫任务一 </a>
+                                </td>
+                                    <td class="description">
+                                    136238392883726.
                                 </td>
                                 <td class="description">
                                     扫描百度站点.
@@ -296,7 +306,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                            <!-- row -->
+                       
                             <tr>
                                 <td>
                                     <input type="checkbox">
@@ -304,6 +314,9 @@
                                         <img src="/static/nmaptool/img/owl.png">
                                     </div>
                                     <a href="/nmaptool/taskdetail/">扫描任务一</a>
+                                </td>
+                                          <td class="description">
+                                    136238392883726.
                                 </td>
                                 <td class="description">
                                     扫描位置站点.
@@ -316,7 +329,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                            <!-- row -->
+                          
                             <tr>
                                 <td>
                                     <input type="checkbox">
@@ -324,6 +337,9 @@
                                         <img src="/static/nmaptool/img/owl.png">
                                     </div>
                                     <a href="/nmaptool/taskdetail/">爬虫小分队二 </a>
+                                </td>
+                                          <td class="description">
+                                    136238392883726.
                                 </td>
                                 <td class="description">
                                     豆瓣信息抓取.
@@ -336,7 +352,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                            <!-- row -->
+                          
                             <tr>
                                 <td>
                                     <input type="checkbox">
@@ -344,6 +360,9 @@
                                         <img src="/static/nmaptool/img/owl.png">
                                     </div>
                                     <a href="/nmaptool/taskdetail/">扫描任务三</a>
+                                </td>
+                                          <td class="description">
+                                    136238392883726.
                                 </td>
                                 <td class="description">
                                     扫描IP：为132.98.23.33
@@ -357,7 +376,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                            <!-- row -->
+                    
                             <tr>
                                 <td>
                                     <input type="checkbox">
@@ -366,6 +385,9 @@
                                     </div>
                                     <a href="/nmaptool/taskdetail/">
                                         SNMAP扫描</a>
+                                </td>
+                                          <td class="description">
+                                    136238392883726.
                                 </td>
                                 <td class="description">
                                    正在初始化.
@@ -377,7 +399,8 @@
                                         <li class="last"><i class="table-delete"></i></li>
                                     </ul>
                                 </td>
-                            </tr>
+                            </tr>!-->
+                            </div>
                         </tbody>
                     </table>
                 </div>
@@ -406,7 +429,138 @@
     <script src="/static/nmaptool/js/jquery.flot.stack.js"></script>
     <script src="/static/nmaptool/js/jquery.flot.resize.js"></script>
     <script src="/static/nmaptool/js/theme.js"></script>
+  <script  language="javascript">
+        var xmlhttp;
+        var message=''
+        var currpage=1;
+        var nextpagehtml;
+        var pagesize=0;
+        //创建XMLHttpRequest对象
+        function GetXmlHttp(xmlhttp){
+            if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+            {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject) //IE浏览器用activexobject对象创建
+            {
 
+                try{
+                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+                }catch(e){
+                    try{
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }catch(e){
+
+
+                    }
+                }
+            }
+            return xmlhttp;
+        }
+
+        function loadtask(currpage) {
+
+
+
+
+            xmlhttp= GetXmlHttp(xmlhttp);
+            var number=currpage;
+            var str='';
+            str='username='+message;
+
+
+           
+      
+
+            xmlhttp.open("POST","/nmaptool/jobshow/",false);
+            xmlhttp.onreadystatechange = callback;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);
+
+
+          
+        }
+        function callback(){
+
+            if(xmlhttp.readyState!=4){
+
+                document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>" ;
+            }
+            else{
+
+                if(xmlhttp.status == 200){
+
+                    var a=xmlhttp.responseText;
+
+                    infoshow(a);
+                }
+            }
+        }
+
+        function infoshow(a)
+        {
+
+
+
+            //var data= JSON.stringify(a);
+
+            var data2=JSON.parse(a);
+          
+            var result=data2.result;
+            pagesize=data2.length;
+              alert(pagesize)
+                return
+            currpage=data2.currentpage1;
+            var html="";
+            if(data!='') {
+                for (var key in data2.result[0]) {
+
+                    html += "<th>" + key + "</th>";
+
+                }
+
+                document.getElementById("head").innerHTML = html;
+
+                var bodyhtml = "";
+
+                for (var i = 0; i < data2.result.length; i++) {
+
+                    bodyhtml += "<tr>";
+                    bodyhtml += "<td>" + data2.result[i].USERNAME + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].PASSWORD + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].TRUENAME + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].SEX + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].MOBILEPHONE + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].E_MAIL + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].DOMICILE + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].USERTYPE + "</td>";
+                    bodyhtml += "<td>" + data2.result[i].merchant_id+ "</td>";
+                    bodyhtml += "</tr>";
+                }
+                document.getElementById("body").innerHTML = bodyhtml;
+                var  prevpagehtml;
+                var htmlpage;
+                if(pagesize>0) {
+                    htmlpage="";
+                    /* if ((currpage - 0) < 1) {
+                     prevpagehtml = "<a>涓婁竴椤�</a>";
+                     } else {
+                     prevpagehtml = "<a onclick='AjaxTest(" + (currpage - 1) + ");' href='javascript:void(0);'>涓婁竴椤�</a>";
+                     }
+                     if ((currpage - 0) < (pagesize - 1 - 0)) {
+                     nextpagehtml = "<a onclick='AjaxTest(" + (currpage - 0 + 1) + ");' href='javascript:void(0);'>涓嬩竴椤�</a>";
+                     } else {
+                     nextpagehtml = "<a>涓嬩竴椤�</a>";
+                     }
+                     var num = currpage + 1;
+                     htmlpage = "<table><tr><td width='200'>" + prevpagehtml + "</td><td width='200'>褰撳墠绗�" + num + "椤�   鍏�" + pagesize + "椤�</td><td width='80'>" + nextpagehtml + "</td><td width='80'></td><td width='80'></td></tr></table>";
+                     */
+                }
+                else htmlpage="无相关信息";
+                document.getElementById("page").innerHTML = htmlpage;
+            }
+        }
+</script>
     <script type="text/javascript">
         $(function () {
 
