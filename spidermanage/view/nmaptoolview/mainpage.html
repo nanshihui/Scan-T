@@ -435,6 +435,7 @@
         var currpage=1;
         var nextpagehtml;
         var pagesize=0;
+        var nowpage=0;
         //创建XMLHttpRequest对象
         function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -466,8 +467,8 @@
             xmlhttp= GetXmlHttp(xmlhttp);
             var number=currpage;
             var str='';
-            str='username='+message;
-
+            str='page='+number+'&username='+message;
+            nowpage=currpage
 
            
       
@@ -507,10 +508,11 @@
             var data2=JSON.parse(a);
           
             var result=data2.result;
-            pagesize=data2.length;
+            var datalength=data2.length;
+            var pagesize=data2.pagecount;
               alert(pagesize)
                 return
-            currpage=data2.currentpage1;
+            currpage=;
             var html="";
             if(data!='') {
                 for (var key in data2.result[0]) {

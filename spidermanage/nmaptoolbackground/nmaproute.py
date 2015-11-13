@@ -44,13 +44,15 @@ def login(request):
 def jobshow(request):
     islogin = request.COOKIES.get('islogin',True)
     username=request.POST.get('username','')
+    page=request.POST.get('page','0')
     response_data = {}  
     response_data['result'] = '0' 
     if islogin:
         response_data['result'] = '1' 
-        jobs,count=jobcontrol.jobshow(username=username)
+        jobs,count,pagecount=jobcontrol.jobshow(username=username,page=page)
         response_data['length']=count
         response_data['jobs']=jobs
+        response_data['pagecount']=pagecount
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     else:
         

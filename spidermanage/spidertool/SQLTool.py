@@ -54,7 +54,7 @@ class DBmanager:
 	#@select_params				要显示的列名，数组
 	#@request_params     		条件匹配参数，数组
 	#@equal_params				每一个与request_params对应相等的数组
-	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[]):
+	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[],limit=''):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
 			return
@@ -83,6 +83,7 @@ class DBmanager:
 					for k in range(0,request_params_length-1):
 						sql=sql+request_params[k]+' = '+equal_params[k]+' and '
 					sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
+				sql+=limit
 				print sql
 				count=self.__cur.execute(sql)
 
