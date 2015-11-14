@@ -257,7 +257,7 @@
                 </div>
 
                 <div class="row">
-                    <table class="table table-hover">
+                    <table class="table table-hover" id="tableId">
                         <thead>
                             <tr>
                                 <th class="col-md-3">
@@ -276,9 +276,8 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody >
-                            <div id="head">
-                             
+                        <tbody id="head">
+                   
                        <!--
                             <tr class="first">
                                 <td>
@@ -400,7 +399,7 @@
                                     </ul>
                                 </td>
                             </tr>!-->
-                            </div>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -460,26 +459,15 @@
         }
 
         function loadtask(currpage) {
-
-
-
-
             xmlhttp= GetXmlHttp(xmlhttp);
             var number=currpage;
             var str='';
             str='page='+number+'&username='+message;
-            nowpage=currpage
-
-           
-      
-
+            nowpage=currpage;
             xmlhttp.open("POST","/nmaptool/jobshow/",false);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);
-
-
-          
+            xmlhttp.send(str);   
         }
         function callback(){
 
@@ -492,59 +480,77 @@
                 if(xmlhttp.status == 200){
 
                     var a=xmlhttp.responseText;
-
                     infoshow(a);
                 }
             }
         }
 
-        function infoshow(a)
+ function infoshow(a)
         {
 
 
 
-            //var data= JSON.stringify(a);
-
             var data2=JSON.parse(a);
-          
             var result=data2.result;
             var datalength=data2.length;
             var pagesize=data2.pagecount;
-              alert(pagesize)
-                return
-            currpage=;
-            var html="";
-            if(data!='') {
-                for (var key in data2.result[0]) {
+            var nowpage=data2.page
+            var jobs=data2.jobs;
+            currpage=Number(nowpage)+1;
+              var bodyhtml = "";
+            
+         
+            if(result!='0') {
 
-                    html += "<th>" + key + "</th>";
+      
+
+
+             
+
+                for (var i = 0; i < datalength; i++) {
+                        var labelstatus=''
+                     var Active='';
+                     statuss=jobs[i].jobstatus;
+
+                     switch(statuss){
+                        case '1':Active='未启动';labelstatus='default';break;
+                        case '2':Active='正在排队';labelstatus='info';break;
+                        case '3':Active='正在执行';labelstatus='primary';break;
+                        case '4':Active='挂起';labelstatus='warning';break;
+                        case '5':Active='结束';labelstatus='success';break;
+                        case '6':Active='已删除';labelstatus='danger';break;
+                        default:Active='未知';labelstatus='danger';break;
+                     }
+
+
+
+                     bodyhtml+="<tr>"+
+                                        "<td><input type=\"checkbox\">"+
+                                            "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
+                                            "<a href=\"/nmaptool/taskdetail/"+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
+                                        "<td class=\"description\">"+jobs[i].jobid+"</td>"+
+                                        "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
+                                        "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
+                                     
+                                            "<li><i class=\"table-start\"></i></span></li>"+
+                                            "<li><i class=\"table-pause\"></i></span></li>"+
+                                            "<li><i class=\"table-edit\"></i></span></li>"+
+                                            "<li><i class=\"table-settings\"></i></li>"+
+                                            "<li class=\"last\"><i class=\"table-delete\"></i></li>"+
+                                            "</ul>"+
+                                         "</td>"+
+                                        "</tr>";
 
                 }
-
-                document.getElementById("head").innerHTML = html;
-
-                var bodyhtml = "";
-
-                for (var i = 0; i < data2.result.length; i++) {
-
-                    bodyhtml += "<tr>";
-                    bodyhtml += "<td>" + data2.result[i].USERNAME + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].PASSWORD + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].TRUENAME + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].SEX + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].MOBILEPHONE + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].E_MAIL + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].DOMICILE + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].USERTYPE + "</td>";
-                    bodyhtml += "<td>" + data2.result[i].merchant_id+ "</td>";
-                    bodyhtml += "</tr>";
-                }
-                document.getElementById("body").innerHTML = bodyhtml;
+                document.getElementById("head").innerHTML = bodyhtml;
+            }
+        }
+                 /*
                 var  prevpagehtml;
                 var htmlpage;
                 if(pagesize>0) {
                     htmlpage="";
-                    /* if ((currpage - 0) < 1) {
+                    if ((currpage - 0) < 1) {
                      prevpagehtml = "<a>涓婁竴椤�</a>";
                      } else {
                      prevpagehtml = "<a onclick='AjaxTest(" + (currpage - 1) + ");' href='javascript:void(0);'>涓婁竴椤�</a>";
@@ -557,11 +563,11 @@
                      var num = currpage + 1;
                      htmlpage = "<table><tr><td width='200'>" + prevpagehtml + "</td><td width='200'>褰撳墠绗�" + num + "椤�   鍏�" + pagesize + "椤�</td><td width='80'>" + nextpagehtml + "</td><td width='80'></td><td width='80'></td></tr></table>";
                      */
-                }
+             /*   }
                 else htmlpage="无相关信息";
                 document.getElementById("page").innerHTML = htmlpage;
             }
-        }
+        }*/
 </script>
     <script type="text/javascript">
         $(function () {

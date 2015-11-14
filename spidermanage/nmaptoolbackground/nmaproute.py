@@ -42,11 +42,13 @@ def login(request):
             return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
 
 def jobshow(request):
+
     islogin = request.COOKIES.get('islogin',True)
     username=request.POST.get('username','')
     page=request.POST.get('page','0')
     response_data = {}  
     response_data['result'] = '0' 
+    response_data['page']=page
     if islogin:
         response_data['result'] = '1' 
         jobs,count,pagecount=jobcontrol.jobshow(username=username,page=page)
