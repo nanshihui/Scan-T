@@ -278,138 +278,12 @@
                         </thead>
                         <tbody id="head">
                    
-                       <!--
-                            <tr class="first">
-                                <td>
-                                    <input type="checkbox">
-                                    <div class="img">
-                                        <img src="/static/nmaptool/img/owl.png">
-                                    </div>
-                                    <a href="/nmaptool/taskdetail/">爬虫任务一 </a>
-                                </td>
-                                    <td class="description">
-                                    136238392883726.
-                                </td>
-                                <td class="description">
-                                    扫描百度站点.
-                                </td>
-                                <td>
-                                    <span class="label label-success">Active</span>
-                                    <ul class="actions">
-                                     
-                                       <li><i class="table-start"></i></span></li>
-                                        <li><i class="table-pause"></i></span></li>
-                                           <li><i class="table-edit"></i></span></li>
-                                        <li><i class="table-settings"></i></li>
-                                        <li class="last"><i class="table-delete"></i></li>
-                                    </ul>
-                                </td>
-                            </tr>
                        
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                    <div class="img">
-                                        <img src="/static/nmaptool/img/owl.png">
-                                    </div>
-                                    <a href="/nmaptool/taskdetail/">扫描任务一</a>
-                                </td>
-                                          <td class="description">
-                                    136238392883726.
-                                </td>
-                                <td class="description">
-                                    扫描位置站点.
-                                </td>
-                                <td>
-                                    <ul class="actions">
-                                        <li><i class="table-edit"></i></span></li>
-                                        <li><i class="table-settings"></i></li>
-                                        <li class="last"><i class="table-delete"></i></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                          
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                    <div class="img">
-                                        <img src="/static/nmaptool/img/owl.png">
-                                    </div>
-                                    <a href="/nmaptool/taskdetail/">爬虫小分队二 </a>
-                                </td>
-                                          <td class="description">
-                                    136238392883726.
-                                </td>
-                                <td class="description">
-                                    豆瓣信息抓取.
-                                </td>
-                                <td>
-                                    <ul class="actions">
-                                        <li><i class="table-edit"></i></span></li>
-                                        <li><i class="table-settings"></i></li>
-                                        <li class="last"><i class="table-delete"></i></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                          
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                    <div class="img">
-                                        <img src="/static/nmaptool/img/owl.png">
-                                    </div>
-                                    <a href="/nmaptool/taskdetail/">扫描任务三</a>
-                                </td>
-                                          <td class="description">
-                                    136238392883726.
-                                </td>
-                                <td class="description">
-                                    扫描IP：为132.98.23.33
-                                </td>
-                                <td>
-                                    <span class="label label-info">Standby</span>
-                                    <ul class="actions">
-                                        <li><i class="table-edit"></i></span></li>
-                                        <li><i class="table-settings"></i></li>
-                                        <li class="last"><i class="table-delete"></i></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                    
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                    <div class="img">
-                                        <img src="/static/nmaptool/img/owl.png">
-                                    </div>
-                                    <a href="/nmaptool/taskdetail/">
-                                        SNMAP扫描</a>
-                                </td>
-                                          <td class="description">
-                                    136238392883726.
-                                </td>
-                                <td class="description">
-                                   正在初始化.
-                                </td>
-                                <td>                                        
-                                    <ul class="actions">
-                                        <li><i class="table-edit"></i></span></li>
-                                        <li><i class="table-settings"></i></li>
-                                        <li class="last"><i class="table-delete"></i></li>
-                                    </ul>
-                                </td>
-                            </tr>!-->
-                            
                         </tbody>
                     </table>
                 </div>
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">&raquo;</a></li>
+                <ul class="pagination" id="page">
+                 
                 </ul>
             </div>
             <!-- end table sample -->
@@ -508,7 +382,7 @@
              
 
                 for (var i = 0; i < datalength; i++) {
-                        var labelstatus=''
+                     var labelstatus=''
                      var Active='';
                      statuss=jobs[i].jobstatus;
 
@@ -544,30 +418,42 @@
                 }
                 document.getElementById("head").innerHTML = bodyhtml;
             }
-        }
-                 /*
-                var  prevpagehtml;
-                var htmlpage;
-                if(pagesize>0) {
-                    htmlpage="";
-                    if ((currpage - 0) < 1) {
-                     prevpagehtml = "<a>涓婁竴椤�</a>";
-                     } else {
-                     prevpagehtml = "<a onclick='AjaxTest(" + (currpage - 1) + ");' href='javascript:void(0);'>涓婁竴椤�</a>";
+            var pagehtml="";
+  
+            if(pagesize>0){
+
+
+                    if (currpage <=1) {
+                
+                    pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+                    
+
+                    
+                     }else {
+              
+                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&laquo;</a></li>";
+                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
+                         pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";
                      }
-                     if ((currpage - 0) < (pagesize - 1 - 0)) {
-                     nextpagehtml = "<a onclick='AjaxTest(" + (currpage - 0 + 1) + ");' href='javascript:void(0);'>涓嬩竴椤�</a>";
-                     } else {
-                     nextpagehtml = "<a>涓嬩竴椤�</a>";
+                    if(pagesize-currpage==1){
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
+                      pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&raquo;</a></li>";
                      }
-                     var num = currpage + 1;
-                     htmlpage = "<table><tr><td width='200'>" + prevpagehtml + "</td><td width='200'>褰撳墠绗�" + num + "椤�   鍏�" + pagesize + "椤�</td><td width='80'>" + nextpagehtml + "</td><td width='80'></td><td width='80'></td></tr></table>";
-                     */
-             /*   }
-                else htmlpage="无相关信息";
-                document.getElementById("page").innerHTML = htmlpage;
+                     else if(pagesize-currpage>=2){
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage+1 ) + ");' href='javascript:void(0);'>"+(currpage+2).toString()+"</a></li>";
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&raquo;</a></li>";
+                     }
+                  
+
+
+                
             }
-        }*/
+
+            document.getElementById("page").innerHTML = pagehtml;
+
+        }
+              
 </script>
     <script type="text/javascript">
         $(function () {
