@@ -52,7 +52,7 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     print pagecount
     if pagecount>0:
     
-        limit='    limit  '+str(page)+','+str(limitpage)
+        limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], request_params, values_params,limit,order='updatetime desc')
     
         DBhelp.closedb()

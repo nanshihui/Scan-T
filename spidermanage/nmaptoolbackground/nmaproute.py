@@ -25,7 +25,7 @@ def taskdetail(request):
         else:
             jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
         if count>0 and jobid!='':
-            return render_to_response('nmaptoolview/taskdetail.html', {'taskid':jobid})
+            return render_to_response('nmaptoolview/taskdetail.html', {'taskid':jobid,'username':username})
         else:
             return HttpResponse("权限不足或者没有此任务")
 
@@ -50,7 +50,7 @@ def ipmain(request):
             ip=jobs[0].getJobaddress()   
             port=jobs[0].getPort()
             statuss=jobs[0].getStatus()
-            print 'statuss is '+statuss
+            
             ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
             response_data['result'] = '1' 
             response_data['ipstate'] = '0' 
@@ -73,8 +73,9 @@ def ipmain(request):
                 
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
     if islogin:
-        return render_to_response('nmaptoolview/mainpage.html',{})
+        return render_to_response('nmaptoolview/mainpage.html',{'username':username})
     return render_to_response('nmaptoolview/login.html', {'data':''})
 def logout(request):
     response= render_to_response('nmaptoolview/login.html', {'data':''})
@@ -89,7 +90,7 @@ def login(request):
 
         result,username,role,power= usercontrol.validuser(username,password)
         if result:
-            response = render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功'})  
+            response = render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功','username':username})  
             loginuser=User(result,username,password,role,power)
 #将username写入浏览器cookie,失效时间为3600
 

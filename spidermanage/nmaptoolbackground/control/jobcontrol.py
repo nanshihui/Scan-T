@@ -46,7 +46,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     print pagecount
     if pagecount>0:
     
-        limit='    limit  '+str(page)+','+str(limitpage)
+        limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime'], request_params, values_params,limit,order='createtime desc')
     
         DBhelp.closedb()
