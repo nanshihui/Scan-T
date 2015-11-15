@@ -169,12 +169,16 @@ class DBmanager:
 						sql=sql+'%s'+','	
 					sql=sql+'%s'+')'			
 				else:
-					return
+					return False
 
 				print sql
 				returnmeg=self.__cur.executemany(sql,insert_values)
 				print '返回的消息：　'+str(returnmeg)
-				self.__conn.commit()
+				if returnmeg>0:
+					self.__conn.commit()
+					return True
+				else:
+					return False
 
 
 			except MySQLdb.Error,e:
@@ -188,5 +192,10 @@ def formatstring(str):
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()
-	SQLtool.inserttableinfo_byparams('webdata', ["address","content","meettime"], [('asd','asd',str(datetime.datetime.now())),('asd1','asd1',str(datetime.datetime.now()))])
+	result=SQLtool.inserttableinfo_byparams('webdata', ["address","content","meettime"], [('asd','asd',str(datetime.datetime.now())),('asd1','asd1',str(datetime.datetime.now()))])
 	SQLtool.closedb()
+	print result
+	
+	
+	
+	

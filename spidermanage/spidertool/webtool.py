@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 import urllib2
+import time
 class RedirectHandler(urllib2.HTTPRedirectHandler):
 	def http_error_301(self,req,fp,code,msg,headers):
 		print '301问题'
@@ -38,6 +39,7 @@ def dict2object(d):
     else:
         inst = d
     return inst
-	
+def getlocaltime():
+	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
 	
 	

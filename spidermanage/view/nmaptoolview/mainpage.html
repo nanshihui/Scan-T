@@ -232,12 +232,15 @@
                       
 
                                 <input type="label" style="border:0px;" class="form-control" value="任务名" />
-                                <input type="text" class="form-control"   id="game_namel" />
+                                <input type="text" class="form-control"   id="jobname" />
                                 <input type="label" style="border:0px;" class="form-control" value="扫描地址" />
-                                <input type="text" class="form-control"   id="gameversionl" />
+                                <input type="text" class="form-control"   id="jobaddress" />
                                 <input type="label" style="border:0px;" class="form-control" value="扫描端口" />
-                                <input type="text" class="form-control"   id="urll" />
-             
+                                <input type="text" class="form-control"   id="jobport" />
+                                <input type="label" style="border:0px;" class="form-control" value="优先级" />
+                                <input type="text" class="form-control"   id="priority" value="1"/>
+                                <input type="label" style="border:0px;" class="form-control" value="扫描概要" />
+                                <input type="text" class="form-control"   id="abstract" value="无"/>
 
 
                             </div>
@@ -248,7 +251,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" onclick="savedata()">创建</button>
+                            <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -401,7 +404,7 @@
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
-                                            "<a href=\"/nmaptool/taskdetail/"+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
+                                            "<a href=\"/nmaptool/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
                                         "<td class=\"description\">"+jobs[i].jobid+"</td>"+
                                         "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
                                         "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
@@ -453,7 +456,54 @@
             document.getElementById("page").innerHTML = pagehtml;
 
         }
-              
+            
+
+
+        function createdata(){
+
+
+            var jobname= document.getElementById("jobname").value;
+            var jobaddress= document.getElementById("jobaddress").value;
+            var jobport= document.getElementById("jobport").value;
+            var priority= document.getElementById("priority").value;
+            var abstract=  document.getElementById("abstract").value;
+
+            xmlhttp= GetXmlHttp(xmlhttp);
+
+            xmlhttp.open("POST","/nmaptool/jobadd/",true);
+            xmlhttp.onreadystatechange = createcallback;
+            var str='jobname='+jobname+'&jobaddress='+jobaddress+'&jobport='+jobport+'&priority='+priority+'&abstract='+abstract;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);
+
+        }
+       function createcallback(){
+
+            if(xmlhttp.readyState!=4){
+
+                // document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>"  ;
+            }
+            else{
+
+                if(xmlhttp.status == 200){
+
+                    var a=xmlhttp.responseText;
+                        var data2=JSON.parse(a);
+
+                     if(data2.result=='1'){
+
+                         window.location.reload();
+                     }
+                    else{
+                        alert('添加失败');
+                    }
+
+                }
+            }
+        }
+
+
+
 </script>
     <script type="text/javascript">
         $(function () {

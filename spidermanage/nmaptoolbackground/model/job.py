@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 import uuid
+from spidertool import webtool
 class Job(object):
     def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1',jobid='',result='',endtime=''):
         '''
@@ -17,6 +18,7 @@ class Job(object):
         self.priority=priority
         self.starttime=starttime
         self.username=username
+        self.createtime=webtool.getlocaltime()
         if jobid!='':
             self.jobid=jobid
         else:
@@ -41,7 +43,14 @@ class Job(object):
         return self.jobid
     def getResult(self):
         return self.result
-    
-    
-    
+    def getPort(self):
+        return self.jobport
+    def getPriority(self):
+        return self.priority 
+    def getStatus(self):
+        return self.jobstatus
+    def getStarttime(self):
+        return self.starttime
+    def getCreatetime(self):
+        return self.createtime
     

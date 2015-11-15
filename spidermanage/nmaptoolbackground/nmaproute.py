@@ -9,9 +9,11 @@ from control import usercontrol,jobcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
+
 import json
 # Create your views here.
 def taskdetail(request):
+    print request.GET.get('jobid','')
     return render_to_response('nmaptoolview/taskdetail.html', {'data':''})
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
@@ -43,7 +45,7 @@ def login(request):
 
 def jobshow(request):
 
-    islogin = request.COOKIES.get('islogin',True)
+    islogin = request.COOKIES.get('islogin',False)
     username=request.POST.get('username','')
     page=request.POST.get('page','0')
     response_data = {}  
@@ -59,9 +61,29 @@ def jobshow(request):
     else:
         
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def jobadd(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    response_data = {}  
+    response_data['result'] = '0' 
+    if islogin ==False:
+        print '未登录'
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+    job,result=jobcontrol.loadjob(request,username=username)
+    if result==False:
+        print '作业不完善'
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+ 
+    result=jobcontrol.jobadd(job)
+    print result
+    if result:
+        print '操作成功'
+        response_data['result'] = '1' 
+    return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
 
 
 
+    
 
 
 
