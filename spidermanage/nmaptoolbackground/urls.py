@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^logout/$', route.logout, name='logout'),
     url(r'^mainpage/$', route.indexpage, name='index'),
     url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
+    url(r'^taskdetail/eachtask/$',route.ipmain,name='ipmain'),
+    
     url(r'^jobshow/$',route.jobshow,name='jobshow'),
     url(r'^jobadd/$',route.jobadd,name='jobadd')
     

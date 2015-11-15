@@ -31,7 +31,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
         values_params.append(SQLTool.formatstring(result))
     DBhelp.connectdb()
     table=localconfig.tasktable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
@@ -47,14 +47,14 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     if pagecount>0:
     
         limit='    limit  '+str(page)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime'], request_params, values_params,limit,order='createtime desc')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime'], request_params, values_params,limit,order='createtime desc')
     
         DBhelp.closedb()
         jobs=[]
         if count>0:
             validresult=True
             for temp in result :
-                ajob=job.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9])
+                ajob=job.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9],createtime=temp[10])
                 jobs.append(ajob)
         return jobs,count,pagecount
     return [],0,pagecount
@@ -121,6 +121,6 @@ def jobadd(job):
     DBhelp.closedb()
 
     return tempresult
-    
+
     
     

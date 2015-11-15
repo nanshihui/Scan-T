@@ -1,11 +1,11 @@
 #!/usr/bin/python
 #coding:utf-8
 from django.shortcuts import render
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,jobcontrol
+from control import usercontrol,jobcontrol,ipcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
@@ -13,8 +13,64 @@ from model.user import User
 import json
 # Create your views here.
 def taskdetail(request):
-    print request.GET.get('jobid','')
-    return render_to_response('nmaptoolview/taskdetail.html', {'data':''})
+    if request.method=='GET':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.GET.get('jobid','')
+        username = request.COOKIES.get('username','')
+        role = request.COOKIES.get('role','1')
+        if islogin==False:
+            return render_to_response('nmaptoolview/login.html', {'data':''})
+        if role=='1':
+            jobs,count,pagecount=jobcontrol.jobshow(username=username,taskid=jobid)
+        else:
+            jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
+        if count>0 and jobid!='':
+            return render_to_response('nmaptoolview/taskdetail.html', {'taskid':jobid})
+        else:
+            return HttpResponse("权限不足或者没有此任务")
+
+            
+
+#     jobcontrol.getIP(jobs)
+def ipmain(request):   
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.POST.get('taskid','')
+        username = request.COOKIES.get('username','') 
+        role = request.COOKIES.get('role','1')
+        response_data = {}  
+        response_data['result'] = '0' 
+        if role=='1':
+            jobs,count,pagecount=jobcontrol.jobshow(username=username,taskid=jobid)
+            print 'this is user'
+        else:
+            jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
+            print 'this is administor'
+        if count>0 and jobid!='':
+            ip=jobs[0].getJobaddress()   
+            port=jobs[0].getPort()
+            statuss=jobs[0].getStatus()
+            print 'statuss is '+statuss
+            ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
+            response_data['result'] = '1' 
+            response_data['ipstate'] = '0' 
+            response_data['ip']=ip
+            response_data['jobstate']=statuss
+            print 'it has this task'
+            if counts>0:
+                print 'it has this ip'
+                response_data['ipstate'] = '1' 
+                response_data['length']=counts
+                response_data['ips']=ips[0]
+                response_data['pagecount']=pagecounts
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+            else:
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+        else:
+            return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+                
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
     if islogin:
