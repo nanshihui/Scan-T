@@ -37,16 +37,19 @@ class SniffrtTool(object):
             print('Unexpected error:', sys.exc_info()[0])
         self.config=config.Config
         self.sqlTool=SQLTool.DBmanager()
-    def scaninfo(self,hosts='localhost', port='', arguments=''):
+    def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
         orders=''
         if port!='':
             orders+=port
         else :
-            orders='0'
+            orders='1'
         try:
             print hosts,orders,arguments
-            return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments) ) 
-
+            if hignpersmission=='0':
+                
+                return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments) ) 
+            else:
+                 return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments) ) 
 
         except nmap.PortScannerError,e:
             print e

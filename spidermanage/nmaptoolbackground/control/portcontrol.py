@@ -92,31 +92,30 @@ def portadd(port):
     
     request_params=[]
     values_params=[]
-    if nowip!='':
+    if ip!='':
         request_params.append('ip')
-        values_params.append(nowip)
-    if vendor!='':
-        request_params.append('vendor')
-        values_params.append(vendor)
-    if osfamily!='':
-        request_params.append('osfamily')
-        values_params.append(osfamily)
+        values_params.append(SQLTool.formatstring(ip))
+    if port!='':
+        request_params.append('port')
+        values_params.append(SQLTool.formatstring(port))
+    if timesearch!='':
+        request_params.append('timesearch')
+        values_params.append(SQLTool.formatstring(timesearch))
     if state!='':
         request_params.append('state')
-        values_params.append(state)
-    if osgen!='':
-        request_params.append('osgen')
-        values_params.append(osgen)
-    if updatetime!='':
-        request_params.append('updatetime')
-        values_params.append(updatetime)
-    if accurate!='':
-        request_params.append('accurate')
-        values_params.append(accurate)
-    if hostname!='':
-        request_params.append('hostname')
-        values_params.append(hostname)
-   
+        values_params.append(SQLTool.formatstring(state))
+    if name!='':
+        request_params.append('name')
+        values_params.append(SQLTool.formatstring(name))
+    if product!='':
+        request_params.append('product')
+        values_params.append(SQLTool.formatstring(product))
+    if version!='':
+        request_params.append('version')
+        values_params.append(SQLTool.formatstring(version))
+    if script!='':
+        request_params.append('script')
+        values_params.append(SQLTool.formatstring(script))
     table=localconfig.porttable
     DBhelp.connectdb()
 
@@ -124,6 +123,8 @@ def portadd(port):
     DBhelp.closedb()
 
     return tempresult
+def divided(ports):
+    pass
 
     
     
