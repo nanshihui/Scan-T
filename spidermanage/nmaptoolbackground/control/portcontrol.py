@@ -1,8 +1,8 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import SQLTool ,config
-from ..model import port
-
+#from ..model import port
+import re
 
 limitpage=15
 DBhelp=SQLTool.DBmanager()
@@ -124,7 +124,21 @@ def portadd(port):
 
     return tempresult
 def divided(ports):
-    pass
+    array=ports.split(',')
+    print array
+    for i in array:
+      
+        resulto=re.match(r"^(\d*)\-(\d*)$",i) 
+        if resulto:
+                
+             print resulto.group()
+        else:
+            p = re.compile(r'\d+$')
+            list= p.findall(i)
+
+#             print 'there is no any thing match'
+if __name__ == "__main__":   
+    divided('765,t4')
 
     
     
