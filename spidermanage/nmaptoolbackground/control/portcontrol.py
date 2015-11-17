@@ -7,7 +7,7 @@ import re
 limitpage=15
 DBhelp=SQLTool.DBmanager()
 localconfig=config.Config()
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',page='0'):
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',page='0',extra=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -37,7 +37,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         values_params.append(SQLTool.formatstring(script))
     DBhelp.connectdb()
     table=localconfig.porttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,extra=extra)
 
     if count == 0:
         pagecount = 0;
@@ -53,7 +53,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,limit,order='port')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,limit,order='port',extra=extra)
     
         DBhelp.closedb()
         ports=[]
@@ -123,22 +123,38 @@ def portadd(port):
     DBhelp.closedb()
 
     return tempresult
-def divided(ports):
+def divided(ports,params='port'):
+    sql='   and  ( '
     array=ports.split(',')
-    print array
-    for i in array:
-      
-        resulto=re.match(r"^(\d*)\-(\d*)$",i) 
-        if resulto:
+    
+    for i in range(len(array)-1):
+        resulto=re.match(r"^(\d*)\-(\d*)$",array[i]) 
+        if resulto:  
+            p = re.compile(r'\d+')
+            list= p.findall(array[i])
+            sql+=params+'  between '+SQLTool.formatstring(list[0])+' and  '+ SQLTool.formatstring(list[1])+' or '
                 
-             print resulto.group()
         else:
             p = re.compile(r'\d+$')
-            list= p.findall(i)
-
+            list= p.findall(array[i])
+            sql+=params+'  ='+SQLTool.formatstring(list[0])+' or '
+    temp=array[len(array)-1]
+    resulto=re.match(r"^(\d*)\-(\d*)$",temp) 
+    if resulto:  
+        p = re.compile(r'\d+')
+        list= p.findall(temp)
+        sql+=params+'  between '+SQLTool.formatstring(list[0])+' and  '+ SQLTool.formatstring(list[1])+')   '
+                
+    else:
+        p = re.compile(r'\d+$')
+        list= p.findall(temp)
+        sql+=params+'  ='+SQLTool.formatstring(list[0])+' )    '
+    return sql
+    
 #             print 'there is no any thing match'
 if __name__ == "__main__":   
-    divided('765,t4')
+    sql=divided('120-234,t765,t4')
+    print sql
 
     
     
