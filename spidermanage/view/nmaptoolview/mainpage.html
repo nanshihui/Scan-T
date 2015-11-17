@@ -269,7 +269,7 @@
                                 </th>
                                     <th class="col-md-3">
                                      <span class="line"></span>
-                                    任务编号
+                                    目标地址
                                 </th>
                                 <th class="col-md-3">
                                     <span class="line"></span>信息概要
@@ -312,6 +312,7 @@
         var nextpagehtml;
         var pagesize=0;
         var nowpage=0;
+        var jobs=null;
         //创建XMLHttpRequest对象
         function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -361,7 +362,61 @@
                 }
             }
         }
+function startjob(taskid){
+            localjobid=jobs[taskid].jobid;
+            xmlhttp= GetXmlHttp(xmlhttp);
+            var str='';
+            str='taskid='+localjobid;
+            xmlhttp.open("POST","/nmaptool/jobstart/",false);
+            xmlhttp.onreadystatechange = jobcallback;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);   
+}
+function pausejob(taskid){
+            localjobid=jobs[taskid].jobid;
+            xmlhttp= GetXmlHttp(xmlhttp);
+            var str='';
+            str='taskid='+localjobid;
+            xmlhttp.open("POST","/nmaptool/jobpause/",false);
+            xmlhttp.onreadystatechange = jobcallback;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);   
+}
 
+function destroyjob(taskid){
+            localjobid=jobs[taskid].jobid;
+            xmlhttp= GetXmlHttp(xmlhttp);
+            var str='';
+            str='taskid='+localjobid;
+            xmlhttp.open("POST","/nmaptool/jobdestroy/",false);
+            xmlhttp.onreadystatechange = jobcallback;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);   
+}
+    function jobcallback(){
+
+            if(xmlhttp.readyState!=4){
+
+               
+            }
+            else{
+
+                if(xmlhttp.status == 200){
+
+                    var a=xmlhttp.responseText;
+                          var data2=JSON.parse(a);
+
+                     if(data2.result=='1'){
+
+                         window.location.reload();
+                     }
+                    else{
+                        alert('操作失败');
+                    }
+
+                }
+            }
+        }
  function infoshow(a)
         {
 
@@ -372,7 +427,7 @@
             var datalength=data2.length;
             var pagesize=data2.pagecount;
             var nowpage=data2.page
-            var jobs=data2.jobs;
+             jobs=data2.jobs;
             currpage=Number(nowpage)+1;
               var bodyhtml = "";
             
@@ -394,26 +449,26 @@
                         case '2':Active='正在排队';labelstatus='info';break;
                         case '3':Active='正在执行';labelstatus='primary';break;
                         case '4':Active='挂起';labelstatus='warning';break;
-                        case '5':Active='结束';labelstatus='success';break;
-                        case '6':Active='已删除';labelstatus='danger';break;
+                        case '5':Active='已完成';labelstatus='success';break;
+                        case '6':Active='已终止';labelstatus='danger';break;
                         default:Active='未知';labelstatus='danger';break;
                      }
 
-
+             
 
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
                                             "<a href=\"/nmaptool/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
-                                        "<td class=\"description\">"+jobs[i].jobid+"</td>"+
                                         "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
+                                        "<td class=\"description\">"+jobs[i].jobport+"</td>"+
                                         "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
                                      
-                                            "<li><i class=\"table-start\"></i></span></li>"+
-                                            "<li><i class=\"table-pause\"></i></span></li>"+
-                                            "<li><i class=\"table-edit\"></i></span></li>"+
+                                            "<li onclick='startjob("+i+");'><i class=\"table-start\" ></i></li>"+
+                                            "<li onclick='pausejob("+i+");'><i class=\"table-pause\"></i></li>"+
+                                            "<li><i class=\"table-edit\"></i></li>"+
                                             "<li><i class=\"table-settings\"></i></li>"+
-                                            "<li class=\"last\"><i class=\"table-delete\"></i></li>"+
+                                            "<li class=\"last\" onclick='destroyjob("+i+");'><i class=\"table-delete\"></i></li>"+
                                             "</ul>"+
                                          "</td>"+
                                         "</tr>";

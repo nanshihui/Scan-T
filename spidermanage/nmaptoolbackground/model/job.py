@@ -11,8 +11,8 @@ class Job(object):
 #         jobstatus=2 //排队中
 #         jobstatus=3 //正在进行
 #         jobstatus=4 //挂起
-#         jobstatus=5 //结束
-#         jobstatus=6 //已删除
+#         jobstatus=5 //已完成
+#         jobstatus=6 //已终止
         self.jobname=jobname
         self.jobaddress=jobaddress
         self.priority=priority

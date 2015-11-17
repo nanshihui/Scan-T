@@ -10,6 +10,10 @@ urlpatterns = [
     url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
     url(r'^taskdetail/eachtask/$',route.ipmain,name='ipmain'),
     url(r'^jobshow/$',route.jobshow,name='jobshow'),
-    url(r'^jobadd/$',route.jobadd,name='jobadd')
+    url(r'^jobadd/$',route.jobadd,name='jobadd'),
+    url(r'^jobstart/$',route.startjob,name='startjob'),
+    url(r'^jobpause/$',route.pausejob,name='pausejob'),
+    url(r'^jobdestroy/$',route.destroyjob,name='destroyjob'),    
+    
     
 ]

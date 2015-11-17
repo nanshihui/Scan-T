@@ -122,5 +122,48 @@ def jobadd(job):
 
     return tempresult
 
+def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username=''):
+
+
+    request_params=[]
+    values_params=[]
+    wset_params=[]
+    wand_params=[]
+    if starttime!='':
+        request_params.append('starttime')
+        values_params.append(starttime)
+    if jobaddress!='':
+        request_params.append('taskaddress')
+        values_params.append(jobaddress)
+    if priority!='':
+        request_params.append('taskprior')
+        values_params.append(priority)
+    if jobname!='':
+        request_params.append('taskname')
+        values_params.append(jobname)
+    if jobstatus!='':
+        request_params.append('taskstatus')
+        values_params.append(jobstatus)
+    if jobport!='':
+        request_params.append('taskport')
+        values_params.append(jobport)
+    if result!='':
+        request_params.append('result')
+        values_params.append(result)
+    if username!='':
+        wset_params.append('username')
+        wand_params.append(SQLTool.formatstring(username))
+    if taskid!='':
+        wset_params.append('taskid')
+        wand_params.append(SQLTool.formatstring(taskid))
+    table=localconfig.tasktable
+    DBhelp.connectdb()
+
+    tempresult=DBhelp.updatetableinfo_byparams([table],request_params,values_params,wset_params,wand_params)
+    DBhelp.closedb()
+
+    return tempresult
+
+    
     
     

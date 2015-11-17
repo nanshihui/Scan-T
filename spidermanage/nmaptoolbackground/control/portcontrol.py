@@ -65,27 +65,16 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         return portarray,count,pagecount
     return [],0,pagecount
 ##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
-def loadport(request,username=''):
-    jobname=request.POST.get('jobname','')
-    jobaddress=request.POST.get('jobaddress','')
-    jobport=request.POST.get('jobport','')
-    priority=request.POST.get('priority','')
-    abstract=request.POST.get('abstract','')
-    tempjob=None
-    if jobaddress=='' or jobname=='':
-        return tempjob,False
-    tempjob=job.Job(jobname=jobname,jobaddress=jobaddress,priority=priority,username=username,jobport=jobport)
-    
-    return tempjob,True
+
 def portadd(port):
-    nowip=port.getIP()
-    vendor=port.getVendor()
-    osfamily=port.getOsfamily()
+    ip=port.getIP()
+    port=port.getVendor()
+    timesearch=port.getOsfamily()
     state=port.getState()
-    osgen=port.getOsgen()
-    updatetime=port.getUpdatetime()
-    accurate=port.getAccurate()
-    hostname=port.getHostname()
+    name=port.getOsgen()
+    product=port.getUpdatetime()
+    version=port.getAccurate()
+    script=port.getHostname()
 
     
     

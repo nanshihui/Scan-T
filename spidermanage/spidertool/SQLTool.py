@@ -153,6 +153,55 @@ class DBmanager:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
 		else:
 			print '''has not connet'''  
+	def updatetableinfo_byparams(self,table,select_params=[],set_params=[],request_params=[],equal_params=[],extra=''):
+		if len(request_params)!=len(equal_params):
+			print 'request_params,equals_params长度不相等'
+			return False
+		elif  self.__isconnect==1:
+
+			try:
+				sql='update     '
+
+				length=len(table)
+
+				for j in range(0,length-1):
+					sql=sql+table[j]+','
+				sql=sql+table[length-1]
+
+
+				select_params_length=len(select_params)
+				if select_params_length>0:
+
+					sql=sql+' set  '
+					for k in range(0,select_params_length-1):
+						sql=sql+select_params[k]+' = '+set_params[k]+'  , '
+					sql=sql+select_params[select_params_length-1]+' = '+set_params[select_params_length-1]+'  '
+			
+				
+				
+				request_params_length=len(request_params)
+				if request_params_length>0:
+
+					sql=sql+' where '
+					for k in range(0,request_params_length-1):
+						sql=sql+request_params[k]+' = '+equal_params[k]+' and '
+					sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
+				
+				sql+=extra
+
+				print sql
+				count=self.__cur.execute(sql)
+
+				self.__conn.commit()
+				if count>0:
+					return True
+				else:
+					return False
+
+			except MySQLdb.Error,e:
+				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+		else:
+			print '''has not connet'''  	
 	def inserttableinfo_byparams(self,table,select_params,insert_values):
 		if len(insert_values)<1 :
 			print '没有插入参数'

@@ -12,6 +12,54 @@ from model.user import User
 
 import json
 # Create your views here.
+def destroyjob(request):
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.POST.get('taskid','')
+        username = request.COOKIES.get('username','') 
+        role = request.COOKIES.get('role','1')
+        response_data = {}  
+        response_data['result'] = '0' 
+        if role=='1':
+            tempresult=jobcontrol.jobupdate(jobstatus='6',username=username,taskid=jobid)
+            print 'this is user'
+        else:
+            tempresult=jobcontrol.jobupdate(jobstatus='6',taskid=jobid)
+        if tempresult==True:
+            response_data['result'] = '1'
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def pausejob(request):
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.POST.get('taskid','')
+        username = request.COOKIES.get('username','') 
+        role = request.COOKIES.get('role','1')
+        response_data = {}  
+        response_data['result'] = '0' 
+        if role=='1':
+            tempresult=jobcontrol.jobupdate(jobstatus='4',username=username,taskid=jobid)
+            print 'this is user'
+        else:
+            tempresult=jobcontrol.jobupdate(jobstatus='4',taskid=jobid)
+        if tempresult==True:
+            response_data['result'] = '1'
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+def startjob(request):
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.POST.get('taskid','')
+        username = request.COOKIES.get('username','') 
+        role = request.COOKIES.get('role','1')
+        response_data = {}  
+        response_data['result'] = '0' 
+        if role=='1':
+            tempresult=jobcontrol.jobupdate(jobstatus='2',username=username,taskid=jobid)
+            print 'this is user'
+        else:
+            tempresult=jobcontrol.jobupdate(jobstatus='2',taskid=jobid)
+        if tempresult==True:
+            response_data['result'] = '1'
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
 def taskdetail(request):
     if request.method=='GET':
         islogin = request.COOKIES.get('islogin',False)
