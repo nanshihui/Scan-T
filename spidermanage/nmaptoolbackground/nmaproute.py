@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,jobcontrol,ipcontrol
+from control import usercontrol,jobcontrol,ipcontrol,portcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
@@ -36,6 +36,7 @@ def ipmain(request):
     if request.method=='POST':
         islogin = request.COOKIES.get('islogin',False)
         jobid= request.POST.get('taskid','')
+        page= request.POST.get('page','0')
         username = request.COOKIES.get('username','') 
         role = request.COOKIES.get('role','1')
         response_data = {}  
@@ -63,10 +64,12 @@ def ipmain(request):
                 response_data['length']=counts
                 response_data['ips']=ips[0]
                 response_data['pagecount']=pagecounts
-
-                
-                
-                
+                portinfo=portcontrol.divided(port,'port')
+                ports,portcount,portpagecount=portcontrol.portshow(ip=ip,page=page,extra=portinfo)
+                response_data['ports']=ports
+                response_data['portslength']=portcount
+                response_data['portspagecount']=portpagecount
+                response_data['portspage']=page
                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
             else:
                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  

@@ -281,153 +281,31 @@
                                     <span class="line"></span>端口版本
                                 </th>
                                 <th class="col-md-3 sortable align-right">
-                                    <span class="line"></span>端口其他信息
+                                    <span class="line"></span>端口产品
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyport">
                         <!-- row -->
-                        <tr class="first">
-                            <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                              <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                               <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                                 <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                                <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                      
-
-                        <tr>
-                               <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
-                        <tr>
-                               <td>
-                             
-                                <a href="user-profile.html" class="name">80</a>
-                                <span class="subtext">打开状态</span>
-                            </td>
-                            <td>
-                                http
-                            </td>
-                            <td>
-                               2.0
-                            </td>
-                            <td class="align-right">
-                                <a href="#">没有相关信息</a>
-                            </td>
-                        </tr>
-                        <!-- row -->
+                       
+              
                        
                         </tbody>
                     </table>
                 </div>                
             </div>
-            <ul class="pagination pull-right">
-                <li><a href="#">&#8249;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&#8250;</a></li>
+            <ul class="pagination pull-right" id="page">
+
             </ul>
             <!-- end users table -->
         </div>
     </div>
     <!-- end main container -->
 <script type="text/javascript">
-
+var currpage=1;
+var pagesize=0;
+var nowpage=0;
+var taskid=''
 var xmlhttp;
   function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -452,7 +330,7 @@ var xmlhttp;
         }
  function loadiptask() {
             xmlhttp= GetXmlHttp(xmlhttp);
-            var taskid="{{taskid}}";
+             taskid="{{taskid}}";
 
             var str='';
             str='taskid='+taskid;
@@ -513,9 +391,96 @@ var xmlhttp;
                                                                                                                     "<p >连接状态:"+data2.ips.state+"</p>"+
                                                                                                                     "<p >上次更新时间:"+data2.ips.updatetime+"</p>";
                                      }
+                            if(data2.jobstate>'3'){
+       
+                             var datalength=data2.portslength;
+                             var pagesize=data2.portspagecount;
+                             var nowpage=data2.portspage;
+                             var ports=data2.ports;
+                             currpage=Number(nowpage)+1;
+                             var bodyhtml = "";
+                             for (var i =0 ;i<datalength;i++){
+
+                                                 bodyhtml+="<tr class=\"first\">"+
+                                                "<td><a href=\"user-profile.html\" class=\"name\">"+ports[i].port+"</a>"+
+                                                "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
+                                                "<td>"+ports[i].name+"</td>"+
+                                                "<td>"+ports[i].version+"</td>"+
+                                                "<td class=\"align-right\"><a href=\"#\">"+ports[i].product+"</a></td>"+
+                                                "</tr>";
+                                            }
+
+                                                document.getElementById("bodyport").innerHTML=bodyhtml;
+var pagehtml="";
+  
+            if(pagesize>0){
+
+
+                    if (currpage <=1) {
+                
+                    pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+                    
+
+                    
+                     }else {
+              
+                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
+                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
+                         pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";
+                     }
+                    if(pagesize-currpage==1){
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
+                      pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                     }
+                     else if(pagesize-currpage>=2){
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage+1 ) + ");' href='javascript:void(0);'>"+(currpage+2).toString()+"</a></li>";
+                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                     }
+                  
+
+
+                
+            }
+
+ document.getElementById("page").innerHTML = pagehtml;
+
+
+
+
+                            }else{
+                                 document.getElementById("bodyport").innerHTML="没有相关信息";
+                            }
   
                     }
         }
+           function loadtask(currpage) {
+            xmlhttp= GetXmlHttp(xmlhttp);
+            var number=currpage;
+            var str='';
+            str='page='+number+'&taskid='+taskid;
+            nowpage=currpage;
+            xmlhttp.open("POST","/nmaptool/taskdetail/eachtask/",false);
+            xmlhttp.onreadystatechange = portcallback;
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);   
+        }
+        function portcallback(){
+
+            if(xmlhttp.readyState!=4){
+
+
+            }
+            else{
+
+                if(xmlhttp.status == 200){
+
+                    var a=xmlhttp.responseText;
+                    ipshow(a);
+                }
+            }
+        }
+        
 </script>
 
 	<!-- scripts -->

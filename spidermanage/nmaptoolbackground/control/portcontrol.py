@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import SQLTool ,config
-#from ..model import port
+from ..model import ports
 import re
 
 limitpage=15
@@ -56,13 +56,13 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,limit,order='port',extra=extra)
     
         DBhelp.closedb()
-        ports=[]
+        portarray=[]
         if count>0:
             validresult=True
             for temp in result :
-                aport=port.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
-                ports.append(aport)
-        return ports,count,pagecount
+                aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
+                portarray.append(aport)
+        return portarray,count,pagecount
     return [],0,pagecount
 ##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
 def loadport(request,username=''):
