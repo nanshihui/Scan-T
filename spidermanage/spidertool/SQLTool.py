@@ -205,7 +205,7 @@ class DBmanager:
 	def inserttableinfo_byparams(self,table,select_params,insert_values):
 		if len(insert_values)<1 :
 			print '没有插入参数'
-			return
+			return False
 		elif  self.__isconnect==1:
 			
 			try:
