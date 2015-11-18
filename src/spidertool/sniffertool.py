@@ -42,24 +42,29 @@ class SniffrtTool(object):
         if port!='':
             orders+=port
         else :
-            orders='0'
+            orders='1'
         try:
-            print hosts,orders,arguments
-            return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments) ) 
+
+            print '我在这里49'
+            scan_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
+            print '我在这里50'
+            return self.callback_result( scan_result) 
 
 
         except nmap.PortScannerError,e:
             print e
+            print '我在这里55'
             return ''
 
         except:
             print('Unexpected error:', sys.exc_info()[0])
+            print '我在这里59'
             return ''
     def callback_result(self,scan_result):
-        
+        print '我在这里61'
         print '——————'
         tmp=scan_result
-
+        print scan_result
         for i in tmp['scan'].keys():
             host=i
             result=''
@@ -118,12 +123,12 @@ class SniffrtTool(object):
     def scanaddress(self,hosts=[], ports=[],arguments=''):
         temp=''
         for i in range(len(hosts)):
-
+            print '我在这里asd'
             if len(ports)<=i:
-
+                print '我在这里123'
                 temp+=self.scaninfo(hosts=hosts[i],arguments=arguments)
             else:
-
+                print '我在这里126'
                 temp+=self.scaninfo(hosts=hosts[i], port=ports[i],arguments=arguments)
         return temp
     def isrunning(self):

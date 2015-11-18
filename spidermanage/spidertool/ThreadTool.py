@@ -31,7 +31,7 @@ class ThreadTool:
 		if self.isThread==1:
 
 			self.q_request.join()
-			self.q_finish.join()
+# 			self.q_finish.join()
 	def set_Thread_size(self,threads_num=10):
 		self.threads_num = threads_num
 	def init_add(self,add_init_object):
@@ -55,8 +55,8 @@ class ThreadTool:
 				t.start()	
 				self.Threads.append(t)
 	def taskleft(self):
-		return self.q_request.qsize()+self.q_finish.qsize()+self.running
-
+# 		return self.q_request.qsize()+self.q_finish.qsize()+self.running
+		return self.q_request.qsize()+self.running
 	def push(self,req):
 		sizenum=len(req)
 		for urls in req:

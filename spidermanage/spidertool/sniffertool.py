@@ -44,19 +44,26 @@ class SniffrtTool(object):
         else :
             orders='1'
         try:
-            print hosts,orders,arguments
+           
             if hignpersmission=='0':
-                
-                return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments) ) 
+                print '我在这里49'
+                print hosts,orders,self.params+arguments
+                acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
+                #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)
+                print '我在这里51'
+                return self.callback_result(acsn_result) 
             else:
-                 return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments) ) 
+                print '我在这里52'
+                return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments) ) 
 
         except nmap.PortScannerError,e:
             print e
+            print '我在这里57'
             return ''
 
         except:
             print('Unexpected error:', sys.exc_info()[0])
+            print '我在这里62'
             return ''
     def callback_result(self,scan_result):
         

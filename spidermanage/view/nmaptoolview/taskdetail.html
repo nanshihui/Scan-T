@@ -381,9 +381,10 @@ var xmlhttp;
                                 document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
 
             }else{
+                     document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
                            if (data2.jobstate=='5'){
                          
-                                document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
+                           
                                 document.getElementById("hostinfo").innerHTML="<p >供应商:"+data2.ips.vendor+"</p>"+
                                                                                                                     "<p >操作系统:"+data2.ips.osfamily+"</p>"+
                                                                                                                     "<p >内核:"+data2.ips.osgen+"</p>"+
@@ -391,7 +392,7 @@ var xmlhttp;
                                                                                                                     "<p >连接状态:"+data2.ips.state+"</p>"+
                                                                                                                     "<p >上次更新时间:"+data2.ips.updatetime+"</p>";
                                      }
-                            if(data2.jobstate>'3'){
+                            if(data2.jobstate!='1'){
        
                              var datalength=data2.portslength;
                              var pagesize=data2.portspagecount;
