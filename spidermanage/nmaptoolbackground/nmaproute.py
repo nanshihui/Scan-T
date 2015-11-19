@@ -172,7 +172,11 @@ def updatejob(request,state=''):
             if state=='2':
                 jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
                 if count>0:
-                    tasktotally.taskadd(jobs)
+                    if jobs[0].getForcesearch==1:
+                        tasktotally.taskadd(jobs)
+                    else:
+                        tasktotally.taskadd(jobs)
+                        
             response_data['result'] = '1'
         return response_data
        

@@ -197,7 +197,7 @@
                 </a>
      <h6>任务编号:{{taskid}}</h6>
             </div>
-                <h6>主机相关信息:</h6>
+                <h6>主机近期相关信息:</h6>
                 <div id ="hostinfo">
                     <p  >无</p>
                 </div>
@@ -382,7 +382,7 @@ var xmlhttp;
 
             }else{
                      document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
-                           if (data2.jobstate=='5'){
+                         
                          
                            
                                 document.getElementById("hostinfo").innerHTML="<p >供应商:"+data2.ips.vendor+"</p>"+
@@ -391,8 +391,8 @@ var xmlhttp;
                                                                                                                     "<p >准确度:"+data2.ips.accurate+"</p>"+
                                                                                                                     "<p >连接状态:"+data2.ips.state+"</p>"+
                                                                                                                     "<p >上次更新时间:"+data2.ips.updatetime+"</p>";
-                                     }
-                            if(data2.jobstate!='1'){
+                                
+                    //        if(data2.jobstate!='1'){
        
                              var datalength=data2.portslength;
                              var pagesize=data2.portspagecount;
@@ -449,9 +449,10 @@ var pagehtml="";
 
 
 
-                            }else{
+                            /*}
+                            else{
                                  document.getElementById("bodyport").innerHTML="没有相关信息";
-                            }
+                            }*/
   
                     }
         }

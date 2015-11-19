@@ -57,7 +57,7 @@ class DBmanager:
 	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[],limit='',order='',extra=''):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
-			return
+			return (0,0,0,0)
 		elif  self.__isconnect==1:
 
 			try:
@@ -117,8 +117,10 @@ class DBmanager:
 					return (0,0,0,0)
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				return (0,0,0,0)
 		else:
 			print '''has not connet'''  
+			return (0,0,0,0)
 		#self.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
 		#self.__conn.commit()   
 	def replaceinserttableinfo_byparams(self,table,select_params,insert_values):
@@ -151,8 +153,10 @@ class DBmanager:
 
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				return
 		else:
 			print '''has not connet'''  
+			return
 	def updatetableinfo_byparams(self,table,select_params=[],set_params=[],request_params=[],equal_params=[],extra=''):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
@@ -200,8 +204,10 @@ class DBmanager:
 
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				return False
 		else:
-			print '''has not connet'''  	
+			print '''has not connet'''  
+			return False	
 	def inserttableinfo_byparams(self,table,select_params,insert_values):
 		if len(insert_values)<1 :
 			print '没有插入参数'

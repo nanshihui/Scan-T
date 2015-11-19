@@ -6,6 +6,7 @@ import time
 import connectpool
 from TaskTool import TaskTool
 import  sniffertool
+import webtool
 from nmaptoolbackground.control import jobcontrol  
 from nmaptoolbackground.model import job  
 class snifferTask(TaskTool):
@@ -18,14 +19,10 @@ class snifferTask(TaskTool):
         hosts=req.getJobaddress();
         ports=req.getPort()
         arguments=req.getArgument()
-        tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid)
-        print '我在这里'
+        tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
         ans = self.sniffer.scanaddress([hosts], [str(ports)], arguments)
-        print '我在这里23'
         print threadname+'任务结束'+str(datetime.datetime.now())
-        tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid)
-        print '搜索结果'
-        print ans
+        tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
         return ans
     
 if __name__ == "__main__":   
