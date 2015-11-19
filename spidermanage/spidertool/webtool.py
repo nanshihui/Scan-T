@@ -2,6 +2,7 @@
 #coding:utf-8
 import urllib2
 import time
+import re
 class RedirectHandler(urllib2.HTTPRedirectHandler):
 	def http_error_301(self,req,fp,code,msg,headers):
 		print '301问题'
@@ -41,5 +42,12 @@ def dict2object(d):
     return inst
 def getlocaltime():
 	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
+def isip(ip):
+ 	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
+  		print 'IP!'
+  		return True
+  	else:
+  		print 'web'
+  		return False
 	
 	

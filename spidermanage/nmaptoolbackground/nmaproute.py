@@ -62,8 +62,16 @@ def ipmain(request):
             ip=jobs[0].getJobaddress()   
             port=jobs[0].getPort()
             statuss=jobs[0].getStatus()
-            
-            ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
+            isip=webtool.isip(ip)
+            if isip:
+                
+                ips,counts,pagecounts=ipcontrol.ipshow(ip=ip)
+            else:
+                ips,counts,pagecounts=ipcontrol.ipshow(hostname=ip)
+                if counts>0:
+                    ip=ips[0].getIP()
+                else:
+                    ip='未知'
             response_data['result'] = '1' 
             response_data['ipstate'] = '0' 
             response_data['ip']=ip

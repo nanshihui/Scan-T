@@ -455,13 +455,18 @@ function destroyjob(taskid){
                      }
 
              
-
+                     var temport=''
+                     if (jobs[i].jobport==''){
+                        temport='全部可用端口';
+                     }
+                     else
+                        temport=jobs[i].jobport;
                      bodyhtml+="<tr>"+
                                         "<td><input type=\"checkbox\">"+
                                             "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
                                             "<a href=\"/nmaptool/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
                                         "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
-                                        "<td class=\"description\">"+jobs[i].jobport+"</td>"+
+                                        "<td class=\"description\">"+temport+"</td>"+
                                         "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
                                      
                                             "<li onclick='startjob("+i+");'><i class=\"table-start\" ></i></li>"+

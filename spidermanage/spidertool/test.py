@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import Queue
 import time
+import re
 def aa():
 	print 'already in port'
 class bb:
@@ -21,5 +22,9 @@ def asd():
 dict = {'a' : ("apple",), 'bo' : {"b" : "banana", "o" : "orange"}, 'g' : ["grape","grapefruit"]}
 y=dict.keys()
 tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
-print tmp
-
+strs=['www.baidu.com']
+for st in strs:
+ 	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', st) != None:
+  		print 'IP!'
+  	else:
+  		print 'web'
