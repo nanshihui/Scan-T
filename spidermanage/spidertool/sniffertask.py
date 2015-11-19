@@ -24,7 +24,8 @@ class snifferTask(TaskTool):
         print '我在这里23'
         print threadname+'任务结束'+str(datetime.datetime.now())
         tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid)
-        print '我在这里24'
+        print '搜索结果'
+        print ans
         return ans
     
 if __name__ == "__main__":   

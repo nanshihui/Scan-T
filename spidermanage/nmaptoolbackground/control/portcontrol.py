@@ -113,6 +113,8 @@ def portadd(port):
 
     return tempresult
 def divided(ports,params='port'):
+    if ports=='':
+        return ''
     sql='   and  ( '
     array=ports.split(',')
     

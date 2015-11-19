@@ -29,7 +29,8 @@ class SniffrtTool(object):
             self.nma = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
 
             self.params='-A -P0   -Pn  -sC  -R -v  -O '
-
+#             self.params='-sV -T4 -O '                    #快捷扫描加强版
+#             self.params='-sS -sU -T4 -A -v'                                            #深入扫描
         except nmap.PortScannerError:
             print('Nmap not found', sys.exc_info()[0])
 
@@ -42,7 +43,7 @@ class SniffrtTool(object):
         if port!='':
             orders+=port
         else :
-            orders='1'
+            orders=None
         try:
            
             if hignpersmission=='0':
@@ -130,11 +131,17 @@ class SniffrtTool(object):
         for i in range(len(hosts)):
 
             if len(ports)<=i:
-
-                temp+=self.scaninfo(hosts=hosts[i],arguments=arguments)
+                result=self.scaninfo(hosts=hosts[i],arguments=arguments)
+                if result is   None:
+                    pass
+                else:
+                    temp+=result
             else:
-
-                temp+=self.scaninfo(hosts=hosts[i], port=ports[i],arguments=arguments)
+                result=self.scaninfo(hosts=hosts[i], port=ports[i],arguments=arguments)
+                if result is   None:
+                    pass
+                else:
+                    temp+=result
         return temp
     def isrunning(self):
         return self.nma.has_host(self.host)
@@ -188,7 +195,7 @@ if __name__ == "__main__":
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
     hosts=['www.cctv.com']
-    temp.scanaddress(hosts,ports=['443-500'],arguments='')
+    temp.scanaddress(hosts,ports=['0-65535'],arguments='')
 
 
             
