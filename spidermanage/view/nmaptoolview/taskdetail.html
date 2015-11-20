@@ -390,7 +390,7 @@ var xmlhttp;
                                                                                                                     "<p >内核:"+data2.ips.osgen+"</p>"+
                                                                                                                     "<p >准确度:"+data2.ips.accurate+"</p>"+
                                                                                                                     "<p >连接状态:"+data2.ips.state+"</p>"+
-                                                                                                                     "<p >域名:"+data2.ips.hostname+"</p>"+
+                                                                                                                     "<p >域名:<a href=\"http://"+data2.ips.hostname+"\">"+data2.ips.hostname+"</a></p>"+
                                                                                                                     "<p >上次更新时间:"+data2.ips.updatetime+"</p>";
                                 
                     //        if(data2.jobstate!='1'){
@@ -404,11 +404,11 @@ var xmlhttp;
                              for (var i =0 ;i<datalength;i++){
 
                                                  bodyhtml+="<tr class=\"first\">"+
-                                                "<td><a href=\"user-profile.html\" class=\"name\">"+ports[i].port+"</a>"+
+                                                "<td><a href=\"https://www.baidu.com/s?wd=端口 "+ports[i].port+"\" class=\"name\">"+ports[i].port+"</a>"+
                                                 "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
                                                 "<td>"+ports[i].name+"</td>"+
                                                 "<td>"+ports[i].version+"</td>"+
-                                                "<td class=\"align-right\"><a href=\"#\">"+ports[i].product+"</a></td>"+
+                                                "<td class=\"align-right\"><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
                                                 "</tr>";
                                             }
 

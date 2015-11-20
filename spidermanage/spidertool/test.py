@@ -2,7 +2,7 @@
 import Queue
 import time
 import re
-from subprocess import call 
+from subprocess import Popen, PIPE
 def aa():
 	print 'already in port'
 class bb:
@@ -23,4 +23,22 @@ def asd():
 dict = {'a' : ("apple",), 'bo' : {"b" : "banana", "o" : "orange"}, 'g' : ["grape","grapefruit"]}
 y=dict.keys()
 tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
-call(["ls", "-lt"]) 
+# returnmsg =subprocess.call(["ls", "-l"],shell=True)
+
+p= Popen("ls -l", stdout=PIPE, shell=True)
+p.wait()
+returnmsg=p.stdout.read() 
+print returnmsg
+
+
+
+
+
+
+
+
+
+
+
+
+ 
