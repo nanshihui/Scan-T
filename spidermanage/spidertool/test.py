@@ -25,8 +25,9 @@ y=dict.keys()
 tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
 
-p= Popen("ls -l", stdout=PIPE, shell=True)
+p= Popen(" zmap -B 10M -p 80 -n 10000  -q -S 10.0.0.1-126.0.0.1 -O extended_file", stdout=PIPE, shell=True)
 p.wait()
+
 returnmsg=p.stdout.read() 
 print returnmsg
 
