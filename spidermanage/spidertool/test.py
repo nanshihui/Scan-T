@@ -4,6 +4,7 @@ import Queue
 import time
 import re
 from subprocess import Popen, PIPE
+import os
 def aa():
 	print 'already in port'
 class bb:
@@ -25,12 +26,14 @@ dict = {'a' : ("apple",), 'bo' : {"b" : "banana", "o" : "orange"}, 'g' : ["grape
 y=dict.keys()
 tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
+path=os.getcwd()
+# p= Popen(" ./zmap -B 10M -p 80 -n 10000  -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
+p= Popen(" ./zmap -B 10M -p 80 -n 100000 -o results.txt", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
 
-p= Popen(" ./zmap -B 10M -p 80 -n 10000  -q -O json", stdout=PIPE, shell=True,cwd='/home/dell/github/toolforspider/spidermanage/spidertool/zmap-2.1.0/src')
 p.wait()
 
 returnmsg=p.stdout.read() 
-# print returnmsg
+print returnmsg
 
 
 

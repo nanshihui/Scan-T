@@ -1,0 +1,720 @@
+Redis 3.0 release notes
+=======================
+
+--------------------------------------------------------------------------------
+Upgrade urgency levels:
+
+LOW:      No need to upgrade unless there are new features you want to use.
+MODERATE: Program an upgrade of the server, but it's not urgent.
+HIGH:     There is a critical bug that may affect a subset of users. Upgrade!
+CRITICAL: There is a critical bug affecting MOST USERS. Upgrade ASAP.
+--------------------------------------------------------------------------------
+
+--[ Redis 3.0.5 ] Release date: 15 Oct 2015
+
+Upgrade urgency: MODERATE, the most important thing is a fix in the replication
+                 code that may make the slave hanging forever if the master
+                 remains with an open socket even if it is no longer able to
+                 reply.
+
+* [FIX] MOVE now moves the TTL as well. A bug lasting forever... finally
+        fixed thanks to Andy Grunwald that reported it.
+        (reported by Andy Grunwald, fixed by Salvatore Sanfilippo)
+* [FIX] Fix a false positive in HSTRLEN test.
+* [FIX] Fix a bug in redis-cli --pipe mode that was not able to read back
+        replies from the server incrementally. Now a mass import will use
+        a lot less memory, and you can use --pipe to do incremental streaming.
+        (reported by Twitter user @fsaintjacques, fixed by Salvatore
+        Sanfilippo)
+* [FIX] Slave detection of master timeout. (fixed by Kevin McGehee, refactoring
+        and regression test by Salvatore Sanfilippo)
+
+* [NEW] Cluster: redis-trib fix can fix an additional case for opens lots.
+        (Salvatore Sanfilippo)
+* [NEW] Cluster: redis-trib import support for --copy and --replace options
+        (David Thomson)
+
+--[ Redis 3.0.4 ] Release date: 8 Sep 2015
+
+Upgrade urgency: HIGH for Redis and Sentinel. However note that in order to
+                 fix certain replication bugs, the replication internals were
+                 modified in a very heavy way. So while this release is
+                 conceptually saner, it may contain regressions. For this
+                 reason, before the release, QA activities were performed by
+                 me (antirez) and Redis Labs and no evident bug was found.
+
+* [FIX] A number of bugs related to replication PSYNC and the (yet experimental)
+        diskless replication feature were fixed. The bugs could lead to
+        inconsistency between masters and slaves. (Salvatore Sanfilippo, Oran
+        Agra fixed the issue found by Yuval Inbar)
+* [FIX] A replication bug in the context of PSYNC partial resynchonization was
+        found and fixed. This bug happens even when diskless replication is off
+        in the case different slaves connect at different times while the master
+        is creating an RDB file, and later a partial resynchronization is
+        attempted by a slave that connected not as the first one. (Salvatore
+        Sanfilippo, Oran Agra)
+* [FIX] Chained replication and PSYNC interactions leading to potential stale
+        chained slaves data set, see issue #2694. (Salvatore Sanfilippo fixed
+        an issue reported by "GeorgeBJ" user at Github)
+* [FIX] redis-cli --scan iteration fixed when returned cursor overflows
+        32 bit signed integer. (Ofir Luzon, Yuval Inbar)
+* [FIX] Sentinel: fixed a bug during the master switch process, where for a
+        failed conditional check, the new configuration is rewritten, during
+        a small window of time, in a corrupted way where the master is
+        also reported to be one of the slaves. This bug is rare to trigger
+        but apparently it happens in the wild, and the effect is to see
+        a replication loop where the master will try to replicate with itself.
+        A detailed explanation of the bug and its effects can be found in
+        the commit message here: https://github.com/antirez/redis/commit/c20218eb5770b2cafb12bc7092313b8358fedc0a.
+        The bug was found by Jan-Erik Rediger using a static analyzer and
+        fixed by Salvatore Sanfilippo.
+* [FIX] Sentinel lack of arity checks for certain commands.
+        (Rogerio Goncalves, Salvatore Sanfilippo)
+
+* [NEW] Replication internals rewritten in order to be more resistant to bugs.
+        The replication handshake in the slave side was rewritten as a non
+        blocking state machine. (Salvatore Sanfilippo, Oran Agra)
+* [NEW] New "replication capabilities" feature introduced in order to signal
+        from the master to the slave what are the features supported, so that
+        the master can choose the kind of replication to start (diskless or
+        not) when master and slave are of different versions. (Oran Agra,
+        Salvatore Sanfilippo)
+* [NEW] Log clients details when SLAVEOF command is received. (Salvatore
+        Sanfilippo with inputs from Nick Craver and Marc Gravell).
+
+--[ Redis 3.0.3 ] Release date: 17 Jul 2015
+
+Upgrade urgency: LOW for Redis and Sentinel.
+
+* [FIX] Fix blocking operations timeout precision when HZ is at its default
+        value (not increased) and there are thousands of clients connected
+        at the same time. This bug affected Sidekiq users that experienced
+        a very long delay for BLPOP and similar commands to return for
+        timeout. Check commit b029ff1 for more info. (Salvatore Sanfilippo)
+* [FIX] MIGRATE "creating socket: Invalid argument" error fix. Check
+        issues #2609 and #2612 for more info. (Salvatore Sanfilippo)
+* [FIX] Be able to connect to the master even when the slave is bound to
+        just the loopback interface and has no valid public address in the
+        network the master is reacahble. (Salvatore Sanfilippo)
+* [FIX] ZADD with options encoding promotion fixed. (linfangrong)
+* [FIX] Reset aof_delayed_fsync on CONFIG RESETSTATS. (Tom Kiemes)
+* [FIX] PFCOUNT key parsing in cluster fixed. (MOON_CLJ)
+* [FIX] Fix Solaris compilation of Redis 3.0. (Jan-Erik Rediger)
+
+* [NEW] Variadic EXISTS command. Now the command accepts multiple arguments
+        and returns the total count of existing keys.
+
+--[ Redis 3.0.2 ] Release date: 4 Jun 2015
+
+Upgrade urgency: HIGH for Redis because of a security issue.
+                 LOW for Sentinel.
+
+* [FIX] Critical security issue fix by Ben Murphy: http://t.co/LpGTyZmfS7
+* [FIX] SMOVE reply fixed when src and dst keys are the same. (Glenn Nethercutt)
+* [FIX] Lua cmsgpack lib updated to support str8 type. (Sebastian Waisbrot)
+
+* [NEW] ZADD support for options: NX, XX, CH. See new doc at redis.io.
+        (Salvatore Sanfilippo)
+* [NEW] Senitnel: CKQUORUM and FLUSHCONFIG commands back ported.
+        (Salvatore Sanfilippo and Bill Anderson)
+
+--[ Redis 3.0.1 ] Release date: 5 May 2015
+
+Upgrade urgency: LOW for Redis and Cluster, MODERATE for Sentinel.
+
+* [FIX] Sentinel memory leak due to hiredis fixed. (Salvatore Sanfilippo)
+* [FIX] Sentinel memory leak on duplicated instance. (Charsyam)
+* [FIX] Redis crash on Lua reaching output buffer limits. (Yossi Gottlieb)
+* [FIX] Sentinel flushes config on +slave events. (Bill Anderson)
+
+--[ Redis 3.0.0 ] Release date: 1 Apr 2015
+
+>> What's new in Redis 3.0 compared to Redis 2.8?
+
+* Redis Cluster: a distributed implementation of a subset of Redis.
+* New "embedded string" object encoding resulting in less cache
+  misses. Big speed gain under certain work loads.
+* AOF child -> parent final data transmission to minimize latency due
+  to "last write" during AOF rewrites.
+* Much improved LRU approximation algorithm for keys eviction.
+* WAIT command to block waiting for a write to be transmitted to
+  the specified number of slaves.
+* MIGRATE connection caching. Much faster keys migraitons.
+* MIGRATE new options COPY and REPLACE.
+* CLIENT PAUSE command: stop processing client requests for a
+  specified amount of time.
+* BITCOUNT performance improvements.
+* CONFIG SET accepts memory values in different units (for example
+  you can use "CONFIG SET maxmemory 1gb").
+* Redis log format slightly changed reporting in each line the role of the
+  instance (master/slave) or if it's a saving child log.
+* INCR performance improvements.
+
+>> Refactoring changes (no new features nor bug fixes)
+
+* Blocking operations full refactoring (blocked.c)
+* Client output buffer memory tracking refactored.
+
+Changes between RC6 and 3.0.0 stable:
+
+>> General changes
+
+* Fixes to diskless replication. (Oran Agra)
+* Test for BLPOP replication on role change. (Salvatore Sanfilippo)
+* prepareClientToWrite() error handling improvements. (Salvatore Sanfilippo)
+* Remove dict.c no longer used function. (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+None
+
+>> Sentinel changes
+
+None
+
+--[ Redis 3.0.0 RC6 (version 2.9.106) ] Release date: 24 mar 2015
+
+Upgrade urgency: HIGH because of bugs related to Redis Custer and replication.
+
+This is the 6th release candidate of Redis 3.0.0. This release fixes important
+issues discovered during stress testing, and implements safest behavior
+for blocking operations during clients reshardings, and a new much needed
+functionality of Redis Cluster manual failovers.
+
+In order to fix certain bugs quite a bit of refactoring was needed which
+is usually non advisabble in a Release Candidate, but needed in order to
+end with a clean fix.
+
+>> General changes
+
+* [FIX] Redis (non clustered & clustered) replication bug involving blocking
+        operations: see issue #2473. (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+* [FIX] clientsArePaused() fix crashing the old master during manual failover.
+        (Salvatore Sanfilippo)
+* [FIX] Lua scripts replication in Redis Cluster was totally broken.
+        (Salvatore Sanfilippo)
+* [FIX] Redirect clients blocked into list operations when the hash slot
+        they are blocked into is migrated to another instance or the cluster
+        state turns into "fail". (Salvatore Sanfilippo)
+
+* [NEW] TAKEOVER option for CLUSTER FAILOVER implemented. It is now possible
+        to fix a cluster manually in the minority side of the partition, for
+        example in order to allow for multi DC setups & recovery.
+        (Salvatore Sanfilippo)
+
+>> Sentinel changes
+
+No changes in Sentinel.
+
+--[ Redis 3.0.0 RC5 (version 2.9.105) ] Release date: 20 mar 2015
+
+Upgrade urgency: Moderate for Redis Cluster users, low otherwise.
+
+This is the 5th release candidate of Redis 3.0.0, released in order to fix
+a moderate bug in Redis Cluster. This RC does not shift in the future the
+Redis 3.0.0 final release which is scheduled in a few days (we are in the
+process of finishing the documentation for Redis Cluster).
+
+>> General changes
+
+* [FIX] Fix LATENCY command crash. (Salvatore Sanfilippo, thx to Ingmar)
+* [FIX] Config: missing activerehashing option support in CONFIG SET added.
+        (Salvatore Sanfilippo, thx to Bill Anderson)
+* [FIX] Fix for backtrace generation issue. (Mariano Pérez Rodríguez, Matt Stancliff, Salvatore Sanfilippo)
+
+* [NEW] Redis-cli --latency-dist backported from unstable.
+        (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+* [FIX] Avoid redundant SELECT in MIGRATE. (Tommy Wang, Salvatore Sanfilippo)
+* [FIX] More robust slave check in CLUSTER REPLICATE. (Salvatore Sanfilippo)
+* [FIX] Fixed possible Redis Cluster node crash due to wrong separation of
+        concerns between getNodeByQuery() and Cluster global state update
+        fnuction. (Salvatore Sanfilippo, thx to Ingmar)
+
+* [NEW] Add command CLUSTER MYID to easily featch instance ID. (Michel Martens)
+
+>> Sentinel changes
+
+* [NEW] Support for CLIENT command added. It was missing in the command table.
+        (Leandro López)
+
+--[ Redis 3.0.0 RC4 (version 2.9.104) ] Release date: 13 feb 2015
+
+Upgrade urgency: High for Redis if you use LRU eviction, low otherwise.
+
+This is the 4th release candidate of Redis 3.0.0, it fixes problems with
+LRU eviction that are not present in older release (2.8.x is not affected)
+and adds new tools to inspect latency and load-test LRU.
+
+>> General changes
+
+* [FIX] redis-cli CSV output NIL spurious newline removed. (Matt Collier)
+* [FIX] Memory efficiency test in unit test is now much faster: it affacted
+        the total "make test" execution time in a bad way.  (Salvatore
+        Sanfilippo)
+* [FIX] Fixes and improvements to dict.c and LRU eviction. Redis 3.0.0 new
+        LRU eviction had bugs creating high latency spikes when LRU was
+        happening during the keys dictionary rehashing. This bug is not
+        present into 2.8, was 3.0 specific. As a side effect of this issue
+        dict.c is now improved, and LRU algorithm is more precise (better
+        approximates true LRU). This was a joint effort, see issue
+        #2306 for details. (Oran Agra, Sun He, Salvatore Sanfilippo).
+        Thanks to Charsyam for spotting an integer overflow.
+
+* [NEW] New latency tool: redis-cli --latency-dist is able to show an
+        xterm-256 based spectrum of latencies over time. (Salvatore Sanfilippo)
+* [NEW] redis-cli --lru-test implemented (cache workload simulator). (Salvatore
+        Sanfilippo)
+* [NEW] redis-cli --stat now shows LOAD when Redis is loading data.
+* [NEW] Support "1G" etc. units in CONFIG SET. (Chris Lamb, Salvatore
+        Sanfilippo)
+
+>> Cluster changes
+
+* None.
+
+>> Sentinel changes
+
+* None.
+
+--[ Redis 3.0.0 RC3 (version 2.9.103) ] Release date: 30 jan 2015
+
+Upgrade urgency: High for Redis Cluster users, low otherwise.
+
+This is the third release candidate for Redis 3.0.0, the new RC fixes
+several critical issues with Redis Cluster.
+
+>> General changes
+
+* [FIX] AOF bug unlikely to happen in practice and mostly harmless: child
+        process segfaults when parent is not reachable via pipe. (Sun He)
+* [FIX] Scripting engine now reports an error when misused with Lua debug
+        hooks, instead of crashing. (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+* [FIX] Several issues with Redis Cluster internal nodes objects handling.
+        (Matt Stancliff & Salvatore Sanfilippo)
+* [FIX] Improvements in the Cluster test.
+        (Matt Stancliff & Salvatore Sanfilippo).
+* [FIX] Cluster memory leaks / double frees (Matt Stancliff).
+* [FIX] /dev/urandom surrogate for generation of unique IDs in a more
+        cheap way. (Salvatore Sanfilippo)
+* [FIX] Fixes and improvements to PING / PONG packets gossip sections
+        in order to improve (and fix) failure detection and speedup
+        cluster info propagation. (Salvatore Sanfilippo)
+
+* [NEW] CLUSTER count-failure-reports command added. (Salvatore Sanfilippo)
+
+>> Sentinel changes
+
+No changes for Sentinel.
+
+--[ Redis 3.0.0 RC2 (version 2.9.102) ] Release date: 13 jan 2015
+
+Upgrade urgency: LOW.
+
+This is the second release candidate of Redis 3.0.0. The major changes
+are back porting of things implemented into the unstable branch while
+this was still possible (with the new development model adopted only
+bug fixes will be merged in the future).
+
+RC2 also fixes a few Redis Cluster non critical bugs.
+
+>> General changes
+
+* [FIX] A number of minor bug fixes.
+
+* [NEW] Diskless replication backportede.
+* [NEW] Lua bitops and updated cmsgpack backported.
+* [NEW] Transparent Huge Pages warnings and reporting backported.
+
+>> Cluster changes
+
+* [FIX] Fix PUBLISH cluster bus message count field.
+* [FIX] It is no longer possible to write outside node hash slots using Lua.
+* [FIX] Valgrind warnings (no actual bugs).
+* [FIX] Less strict in acceptiong myself->ip if it's not populated.
+
+* [NEW] Better testing of Lua scripts.
+
+>> Sentinel changes
+
+No changes to Sentinel.
+
+--[ Redis 3.0.0 RC1 (version 2.9.101) ] Release date: 9 oct 2014
+
+This is the first release candidate of Redis 3.0.0.
+
+>> General changes
+
+* [FIX] An very large number of small fixes, old and new, merged in the
+        context of a the issue #1906. Please see the issue page here
+        for exact credits: https://github.com/antirez/redis/pull/1906
+        of each commit. (Matt Stancliff and many others).
+* [FIX] SAVE is no longer propagated to AOF / slaves.
+* [FIX] GETRANGE test no longer fails for 32 bit builds (Matt Stancliff).
+* [FIX] Limit SCAN latency when the hash table is in an odd state (very few
+        populted buckets because rehashing is in progress). (Xiaost and
+        Salvatore Sanfilippo)
+
+* [NEW] Redis is now able to load truncated AOF files without requiring a
+        redis-check-aof utility run. The default now is to load truncated
+        (but apparently not corrupted) AOFs, you can change this in redis.conf.
+        (Salvatore Sanfilippo).
+* [NEW] DEBUG POPULATE two args form implemented. It is now possible to
+        call it with DEBUG POPULATE <count> <prefix>. Default prefix
+        is "key:" as usually.
+* [NEW] INCR: Modify incremented object in-place when possible. This results
+        in speed improvements + possibly better memory locality.
+
+>> Cluster changes
+
+* [FIX] Cluster: claim ping_sent time even if we can't connect.
+* [FIX] redis-trib should not abort easily on connection issues.
+* [FIX] Cluster test: less console-spammy resharding test.
+* [FIX] Fix logic to detect we are among a minority.
+* [FIX] Process gossip section only for known nodes.
+
+* [NEW] Redis Cluster is stable and tested enough, there is a clear MVP,
+        so it was promoted from beta to stable.
+* [NEW] New unit 09, Pub/Sub across the cluster.
+* [NEW] New unit 08, update messages.
+* [NEW] New cluster option to work with partial slots coverage.
+* [NEW] More chatty cluster slaves when failover is stalled. They log reason
+        with rate limiting, only when reason changes or a given time
+        has elapsed.
+
+>> Sentinel changes
+
+* [FIX] Sentinel critical bug fixed: the absolute majority was computed in a
+        wrong way because of a programming error. Now the implementation does
+        what the specification says and the majority to authorize a failover
+        (that should not be confused with the ODOWN quorum) is the majority of
+        *all* the Sentinels ever seen for a given master, regardless of their
+        current state.
+* [FIX] Resolved a memory leak in the hiredis library causing a memory leak
+        in Redis Sentinel when a monitored instance or another Sentinel is
+        unavailable. Every reconnection attempt will leak a small amount of
+        memory, but in the long run the process can reach a considerable size.
+
+* [NEW] Sentinel: ability to announce itself with an arbitrary IP/port to work
+        in the context of natted networks. However this is probably still
+        not enough since there is no equivalent mechanism for slaves listed
+        in the master INFO output. (Dara Kong and Salvatore Sanfilippo)
+
+--[ Redis 3.0.0 Beta 8 (version 2.9.57) ] Release date: 29 jul 2014
+
+This is the 8th beta of Redis 3.0.0.
+
+>> General changes
+
+* [FIX] Solaris compilation issues. (Matt Stancliff, Salvatore Sanfilippo)
+* [FIX] Allow shared integer objects if maxmemory policy is not LRU based.
+        (Salvatore Sanfilippo)
+* [FIX] PFSELFTEST: less false positives. (Salvatore Sanfilippo)
+* [FIX] Fail SYNC if background save child aborted due to a signal. (Yossi
+        Gottlieb)
+
+* [NEW] Latency framework backported from unstable branch. (Salvatore
+        Sanfilippo)
+* [NEW] AOF rewrite improved for latency. (Salvatore Sanfilippo)
+* [NEW] Pub/Sub PING. (Salvatore Sanfilippo)
+* [NEW] Much faster ZUNIONSTORE. (Kyle Hubert, Salvatore Sanfilippo)
+* [NEW] Faster ll2string() implementation. (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+* [FIX] CLUSTER RESET: Flush slave dataset on reset. (Salvatore Sanfilippo)
+* [FIX] Replica migration: don't migrate to masters that never had slaves
+        in the past, but only to masters that remained orphaned after
+        failure events. (Salvatore Sanfilippo)
+
+* [NEW] redis-trib: allow to reshard in non-interactive way. (Salvatore
+        Sanfilippo)
+* [NEW] Cluster test: unit 04, check consistency during resharding. (Salvatore
+        Sanfilippo)
+* [NEW] Cluster test: unit 05, slave selection. (Salvatore Sanfilippo)
+* [NEW] Cluster test: unit 06, slaves with stale data can't failover. (Salvatore
+        Sanfilippo)
+* [NEW] Cluster test: unit 07, replicas migration. (Salvatore Sanfilippo)
+
+>> Sentinel changes
+
+* No Sentinel changes in this release.
+
+--[ Redis 3.0.0 Beta 7 (version 2.9.56) ] Release date: 30 jun 2014
+
+This is the 7th beta of Redis 3.0.0.
+
+>> General changes
+
+* [FIX] Scripting fixes backported from unstable, see Redis 2.8.12 changelog
+        for more info. (Salvatore Sanfilippo)
+* [FIX] Cancel SHUTDOWN if initial AOF is being written. (Matt Stancliff)
+
+* [NEW] New command: COMMAND, for commands introspection (Matt Stancliff &
+        Salvatore Sanfilippo)
+* [NEW] hiredis: Update to latest version. (Matt Stancliff)
+* [NEW] Jemalloc updated to 3.6.0. (Salvatore Sanfilippo)
+
+>> Cluster changes
+
+* [FIX] Cluster: clear NOADDR flag when updating node address.
+        (Salvatore Sanfilippo)
+
+* [NEW] New CLUSTER SLOTS command to simplify Cluster clients operations.
+        (Matt Stancliff)
+* [NEW] More Cluster tests. (Salvatore Sanfilippo)
+* [NEW] Log when failover authorization are granted / denied.
+        (Salvatore Sanfilippo)
+
+>> Sentinel changes
+
+* [FIX] A few Sentinel bugs fixed and improvements, see Redis 2.8.12
+        changelog for more info.  (Salvatore Sanfilippo & Matt Stancliff)
+* [NEW] New Sentinel-Client handshake protocol, ROLE command, CLIENT KILL,
+        all backported to 3.0 branch. (Salvatore Sanfilippo)
+
+--[ Redis 3.0.0 Beta 6 (version 2.9.55) ] Release date: 9 jun 2014
+
+This is the 6th beta of Redis 3.0.0.
+
+>> General changes
+
+* [FIX] Fix software watchdog signal handler crash due to re-entering.
+* [FIX] Better Lua number -> string conversion for Lua scripts.
+* [FIX] Serious replication bug when min-slaves-* feature is used in slaves
+        configuration fixed.
+* [FIX] Blocking pop on lists now works when the list is created by commands
+        other than *PUSH* (for example SORT STORE).
+
+>> Cluster changes
+
+* [FIX] CRITICAL: For a bug in the implementation of CLUSTER SET-CONFIG-EPOCH
+        introduced with beta-3 (especially beta-4 where the command
+        is actually used by redis-trib), a configEpoch for a node could
+        jump backward, breaking the eventual consistency property of the
+        slots -> nodes mapping in the cluster.
+
+>> Sentinel changes
+
+* No changes for Sentinel in this release.
+
+--[ Redis 3.0.0 Beta 5 (version 2.9.54) ] Release date: 26 may 2014
+
+This is the 5th beta of Redis 3.0.0. It does not include any real
+worthwhile change (just three days passed since the previous beta), but
+fixes two stupid bugs preventing cluster tests to pass.
+
+--[ Redis 3.0.0 Beta 4 (version 2.9.53) ] Release date: 23 may 2014
+
+This is the fourth beta of Redis 3.0.0.
+
+>> General changes
+
+* [NEW] Scripting engine performances improvements.
+* [NEW] Log format slightly changed to report current node role.
+
+* [FIX] Correct the HyperLogLog stale cache flag to prevent unnecessary
+        computation.
+
+>> Cluster changes
+
+* [NEW] redis-trib: ability to import data from standalone Redis instances.
+* [NEW] redis-trib: "fix" subcommand much better at fixing errors.
+* [NEW] CLUSTER FAILOVER FORCE implemented.
+* [NEW] CLUSTER RESET implemented, it is now possible to completely reset
+        nodes and create a new cluster without restarting anything.
+* [NEW] Slave validity factor (max estimated data age to still failover)
+        is now under the control of the user, and can be configured via
+        redis.conf or CONFIG SET. Option name cluster-slave-validity-factor.
+* [NEW] Cluster test: failure detection and failover initial tests.
+* [NEW] CLUSTER MEET: better error messages when address is invalid.
+* [NEW] Bulk-accept new Cluster nodes in the Cluster bus instead of
+        performing just a single accept() per event fired.
+
+* [FIX] Bypass data_age check for manual failovers.
+* [FIX] Fixed data_age computation / check integer overflow.
+* [FIX] Various fixes to Tcl client.tcl Redis Cluster client used in tests.
+* [FIX] Better handling of stolen slots.
+* [FIX] Don't accept cluster bus connections during startup.
+
+>> Sentinel changes
+
+* [NEW] Generate +config-update-from event when a new config is received.
+* [NEW] Log when a failover will be re-attempted again.
+
+* [FIX] Sentinel: Add "dir /tmp" directive in example sentinel.conf.
+
+--[ Redis 3.0.0 Beta 3 (version 2.9.52) ] Release date: 5 may 2014
+
+This is the third beta of Redis 3.0.0.
+
+>> General changes
+
+* [NEW] New data structure: the HyperLogLog (see 2.8 release notes).
+* [NEW] Lexicograhical range queries in sorted sets (see 2.8 release notes).
+* [NEW] LRU algorithm precision greatly improved.
+
+* [FIX] Redis is now much more responsive to reply with LOADING / BUSY errors.
+
+>> Cluster changes
+
+* [NEW] Cluster testing framework and initial tests.
+* [NEW] Cluster epochs collision resolution (make Redis Cluster more resilient
+        to admin and programming errors).
+* [NEW] Persist / fsync some global state to ensure correct crash-recovery
+        semantics.
+* [NEW] New command introduced: CLUSTER SET-CONFIG-EPOCH, still not used
+        by redis-trib. Will be used to speedup the assignment of unique
+        epochs to different nodes at cluster creation time. For now this is
+        handled as a side effect of the cluster epochs collision resolution.
+
+* [FIX] Different fixes to redis-trib cluster creation.
+* [FIX] Fix an error in the CLUSTER NODES output for nodes slots.
+
+>> Sentinel changes
+
+* [NEW] Sentinels are now able to send update messages in a peer-to-peer
+        fashion even if no Redis instances are available. Now the Sentinel
+        liveness property that the most updated configuration in a given
+        partition is propagated to all the Sentinels is extended to partitions
+        without reachable instances.
+* [NEW] Sentinel safety properties are now ensured in a crash-recovery system
+        model since some state is persisted on disk before replying to other
+        nodes, and reloaded at startup.
+* [NEW] Sentinel now uses CLIENT SETNAME so that it is easy to identify
+        Sentinels using CLIENT LIST among other clients.
+* [NEW] Sentinel failure detection and reconnection code improved.
+
+--[ Redis 3.0.0 Beta 2 (version 2.9.51) ] Release date: 11 mar 2014
+
+This is the second beta of Redis 3.0.0.
+
+>> General changes
+
+* [FIX] Sometimes the absolute config file path was obtained in a wrong way.
+        This happened when there was a "dir" directive inside the config file
+        and at the same time the configuration file was given as a relative
+        path to redis-server or redis-sentinel executables.
+* [FIX] redis-cli: Automatically enter --slave mode when SYNC or PSYNC are
+        called during an interactive session.
+* [FIX] BITCOUNT: fixed unaligned access causing issues in sparc and other
+        archs not capable of dealing with unaligned accesses. This also makes
+        the code faster in archs where unaligned accesses are allowed.
+* [FIX] Force INFO used_memory_peak to match peak memory. This generated some
+        confusion among users even if it was not an actual bug.
+* [FIX] Fixed an critical EVALSHA script cache bug: scripts executed may not
+        propagate to AOF / Slaves correctly under certain conditions.
+        See issue #1549 at Github for more information.
+* [FIX] Fixed multiple bugs resulting into closing the link with master or slave
+        during replication without good reasons. This will result in useless
+        resynchronizations, or infinite loops where the replication link can't
+        be established.
+* [FIX] Don't count the time needed to populate the buffers of clients waiting
+        in MONITOR mode when populating the Slow Log entries.
+
+* [NEW] Redis-cli updated to use SCAN instead of random sampling via
+        RANDOMKEY in order to implement --bigkeys feature. Moreover the
+        implementation now supports pipelining and reports more information
+        at the end of the scan. Much faster, much better. A special thank
+        you to Michael Grunder for this improvement.
+* [NEW] redis-cli now supports a new --intrinsic-latency mode that is able
+        to meter the latency of a system due to kernel / hypervisor.
+        How to use it is explained at http://redis.io/topics/latency.
+* [NEW] New command BITPOS: find first bit set or clear in a bitmap.
+* [NEW] CONFIG REWRITE calls are now logged.
+* [NEW] AOF write errors (like no space on device) no longer abort Redis if the
+        fsync policy is none or every second. The database enters a read-only
+        mode where every write is refused with an error. Normal operations are
+        restored as soon as Redis is able to append again data to the AOF file.
+* [NEW] Sentinel now accepts SHUTDOWN command.
+
+
+>> Cluster changes
+
+* [FIX] Bind the first interface listed in the "bind" configuration directive
+        if any, in order to perform outgoing connections. This fixes Cluster
+        usage when an address is bound but there are multiple interfaces that
+        may be used to connect with other nodes.
+* [FIX] When an "Importing" slot is closed via CLUSTER SETSLOT NODE ...
+        increment the configEpoch in the special case it is zero.
+* [FIX] Current transaction is invalidated on redirection errors.
+* [FIX] Abort if port does not allow for a valid cluster bus port that is
+        always at fixed +10000 offset.
+* [FIX] Keys extraction algorithm fixed for ZUNIONSTORE/ZINTERSTORE and SORT.
+* [FIX] Better failover timeout and retry times: failover should now work
+        reliabily when node-timeout is very small (a few milliseconds).
+* [FIX] Don't allow SORT GET/BY options in Cluster mode.
+* [FIX] Clear importing/migrating state when turning from master to slave role.
+* [FIX] Set slot error if we receive an update for a busy slot.
+* [FIX] Update node configEpoch on UPDATE messages.
+
+* [NEW] Support multi-key operations as long as keys resolve to the same
+        hash slot, and the slot is not migrating, or it is migrating but all
+        the mentioned keys are available.
+* [NEW] New DEBUG command CMDKEYS available to debug / test keys identification
+        in Redis commands.
+* [NEW] redis-trib: create subcommand is now able to assign spare slaves.
+* [NEW] redis-trib: new subcommand 'call'. Exec command in all nodes.
+
+
+>> Sentinel changes
+
+* [FIX] Sentinel "IDONTKNOW" error removed as it does not made sense with the
+        new Sentinel design. This error was actually a fix for a design error
+        in the first implementation of Sentinel.
+* [FIX] Sentinel: added a missing exit() call to abort after config file
+        checks at startup. This error was introduced with an improvement in
+        a previous 2.8 release.
+* [FIX] Sentinel: better nodes fail over start time desynchronization to avoid
+        split-brain during the voting process needed to get authorization to
+        fail over. This means the system is less likely to need to retry
+        and will fail over faster. No changes in behavior / correctness.
+
+* [NEW] Sentinel unit tests and framework. More tests needed and units must
+        be improved in order to have less false positives, but it is a start
+        and features a debugging console that is useful to fix tests or to
+        inspect bugs causing tests failures.
+* [NEW] New Sentinel events: +/-monitor and +set used to monitor when an
+        instance to monitor is added or removed, or when a configuration
+        is modified via SENTINEL SET.
+
+--[ Redis 3.0.0 Beta 1 (version 2.9.50) ] Release date: 11 Feb 2014
+
+This is the first beta of Redis 3.0.0.
+
+Migrating from 2.8 to 3.0
+=========================
+
+Redis 2.8 is mostly a strict subset of 3.0, you should not have any problem
+upgrading your application from 2.8 to 3.0. However this is a list of small
+non-backward compatible changes introduced in the 3.0 release:
+
+* The log format was modified. The prefix of each line included the pid
+  in the following format [1234]. Now instead it is 1234:? Where
+  '?' is actually the role of the instance. M for master, S for slave, C
+  if this process is a saving child (for RDB/AOF), and X for Sentinel.
+
+* The default maxmemory policy in Redis 3.0 is no longer "volatile-lru" as
+  it used to be in 2.8, but "noeviction". The policies behavior is the same
+  (but LRU eviction is much more precise in 3.0), so only the default value
+  changed. Just make sure to specify in your redis.conf what you mean.
+
+--------------------------------------------------------------------------------
+
+Credits: Where not specified the implementation and design is done by
+Salvatore Sanfilippo. Thanks to Pivotal for making all this possible.
+Also many thanks to all the other contributors and the amazing community
+we have.
+
+See commit messages for more credits.
+
+Cheers,
+Salvatore
