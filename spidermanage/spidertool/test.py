@@ -1,4 +1,5 @@
 #!/usr/bin/python
+#coding:utf-8
 import Queue
 import time
 import re
@@ -25,11 +26,11 @@ y=dict.keys()
 tmp= str(time.strftime("%Y-%m-%d %X", time.localtime()))
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
 
-p= Popen(" zmap -B 10M -p 80 -n 10000  -q -S 10.0.0.1-126.0.0.1 -O extended_file", stdout=PIPE, shell=True)
+p= Popen(" ./zmap -B 10M -p 80 -n 10000  -q -O json", stdout=PIPE, shell=True,cwd='/home/dell/github/toolforspider/spidermanage/spidertool/zmap-2.1.0/src')
 p.wait()
 
 returnmsg=p.stdout.read() 
-print returnmsg
+# print returnmsg
 
 
 
