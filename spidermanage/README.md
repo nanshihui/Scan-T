@@ -6,3 +6,4 @@ a new spider with more function
 * view                            				资源文件夹存放前端文件(a place for html and grapic )
 * spidermanage         					web端配置文件模块(config of django)
 * nmaptoolbackground 			/nmaptool子路径下的具体细分处理(the specific ways to deal with the path)
+* zmap 为开源工具
