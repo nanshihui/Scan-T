@@ -15,6 +15,7 @@ class ThreadTool:
 		self.isThread=isThread
 		self.idletask={}
 		self.Threads=[]
+		self.alivenum=0
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
@@ -47,6 +48,8 @@ class ThreadTool:
 				t.setDaemon(True)
 				t.start()
 				self.Threads.append(t)
+				with self.lock:	
+					self.alivenum+=1
 		else:
 			for i in range(sizenumber):
 				t = multiprocessing.Process(target=self.getTaskProcess)
@@ -54,6 +57,8 @@ class ThreadTool:
 				t.Daemon=True
 				t.start()	
 				self.Threads.append(t)
+				with self.lock:	
+					self.alivenum+=1
 	def taskleft(self):
 # 		return self.q_request.qsize()+self.q_finish.qsize()+self.running
 		return self.q_request.qsize()+self.running
@@ -66,31 +71,44 @@ class ThreadTool:
 		threaddie=[]
 		dienum=0
 		if self.isThread==1:
-			for item in self.Threads:
+			tempnumb=0
+			with self.lock:
+				tempnumb=self.alivenum
+			if tempnumb<self.threads_num:
+					
+				for item in self.Threads:
 
-				if item.isAlive():
+					if item.isAlive():
 
 
-					threadnownum=threadnownum+1
+						threadnownum=threadnownum+1
 
 
-			with self.lock:	
-				print str(threadnownum)+'活着的线程数'
-				self.Threads = filter(lambda x:x.isAlive() !=False,self.Threads)
+				with self.lock:	
+					print str(threadnownum)+'活着的线程数'
+					self.Threads = filter(lambda x:x.isAlive() !=False,self.Threads)
+				print str(len(self.Threads))+'清理后活着的进程数'
+			else:
+				threadnownum=self.threads_num
 		else:
-			for item in self.Threads:
+			tempnumb=0
+			with self.lock:
+				tempnumb=self.alivenum
+			if tempnumb<self.threads_num:
+				for item in self.Threads:
 
-				if item.is_alive():
+					if item.is_alive():
 
-					threadnownum=threadnownum+1	
-
-
-			with self.lock:	
-				print str(threadnownum)+'活着的进程数'
-				self.Threads = filter(lambda x:x.is_alive()!=False,self.Threads)
-		print str(len(self.Threads))+'清理后活着的进程数'
+						threadnownum=threadnownum+1	
 
 
+				with self.lock:	
+					print str(threadnownum)+'活着的进程数'
+					self.Threads = filter(lambda x:x.is_alive()!=False,self.Threads)
+
+				print str(len(self.Threads))+'清理后活着的进程数'
+			else:
+				threadnownum=self.threads_num
 			
 		sizenumber=min(self.threads_num-threadnownum,sizenum)
 		if self.isThread==1:
@@ -99,6 +117,8 @@ class ThreadTool:
 				t.Daemon=True
 				t.start()
 				self.Threads.append(t)
+				with self.lock:	
+					self.alivenum+=1
 
 		else:
 			for i in range(sizenumber):
@@ -106,6 +126,8 @@ class ThreadTool:
 				t.Daemon=True
 				t.start()
 				self.Threads.append(t)
+				with self.lock:	
+					self.alivenum+=1
 
 	def pop(self):
 		return self.q_finish.get()
@@ -122,6 +144,8 @@ class ThreadTool:
 			else:
 				threadname=multiprocessing.current_process().name
 				print threadname+'关闭'
+				with self.lock:	
+					self.alivenum-=1
 				break
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
@@ -154,6 +178,8 @@ class ThreadTool:
 					continue
 			else:
 				threadname=threading.currentThread().getName()
+				with self.lock:	
+					self.alivenum-=1
 				print threadname+'关闭'
 				break
 			with self.lock:				#要保证该操作的原子性，进入critical area
@@ -181,18 +207,19 @@ class ThreadTool:
 
 def taskitem(req,threadname):
 	print threadname+'执行任务中'
-	print datetime.datetime.now()
+	print req
 	return threadname+'任务结束'+str(datetime.datetime.now())
 
-
+#TODO 启用一个变量直接判断当前线程数量，而不是每次手动的去判断，减少时间
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
 	f = ThreadTool(1)
-	f.set_Thread_size(5)
+	f.set_Thread_size(3)
 	f.add_task(taskitem)
-
+# 	for url in links:
+#      	
+# 		f.push(url)
 	f.push(links)
-
 # 	f.start()
 	timea=1
 	while f.taskleft():
