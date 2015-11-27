@@ -187,12 +187,13 @@ def taskitem(req,threadname):
 
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
-	f = ThreadTool(0)
-	f.set_Thread_size(10)
-	for url in links:
-		f.push(url)
+	f = ThreadTool(1)
+	f.set_Thread_size(5)
 	f.add_task(taskitem)
-	f.start()
+
+	f.push(links)
+
+# 	f.start()
 	timea=1
 	while f.taskleft():
 		url,content = f.pop()
