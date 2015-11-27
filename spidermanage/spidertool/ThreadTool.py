@@ -210,7 +210,7 @@ def taskitem(req,threadname):
 	print req
 	return threadname+'任务结束'+str(datetime.datetime.now())
 
-#TODO 启用一个变量直接判断当前线程数量，而不是每次手动的去判断，减少时间
+#TODO 启用一个变量直接判断当前线程数量，而不是每次手动的去判断，减少时间,判断活着的数量在第一次时不要清除线程相关操作
 if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
 	f = ThreadTool(1)

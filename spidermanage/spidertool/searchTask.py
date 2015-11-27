@@ -19,7 +19,7 @@ if __name__ == "__main__":
 	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.com','http://www.cctv.com','http://www.vip.com']
 	
 	f = searchTask()
-	f.set_deal_num(10)
+	f.set_deal_num(2)
 	f.add_work(links)
 
 	#f.start_task()
