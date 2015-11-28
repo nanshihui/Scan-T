@@ -17,10 +17,16 @@ class Zmaptool:
         retcode= p.returncode
         if retcode==0:
             returnmsg=p.stdout.read() 
+            print '---------------------------------------------'
+            print returnmsg
+            print '---------------------------------------------'
             p = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
             list= p.findall(returnmsg)
             for i in list:
                 print i
+if __name__ == "__main__":
+    temp=Zmaptool()
+    temp.do_scan()
     
 
 
