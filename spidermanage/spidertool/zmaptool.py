@@ -11,6 +11,9 @@ class Zmaptool:
     def do_scan(self,port='80',num='10000',):
         path=os.getcwd()
         p= Popen(" ./zmap -B 10M -p "+port+" -n "+num+"  -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
+#        'sudo zmap -p 80 -B 10M -N 50 -q --output-fields=classification,saddr,daddr,sport,dport,seqnum,acknum,cooldown,repeat  -o - '+
+#        '| sudo ./forge-socket -c 50 -d http-req > http-banners.out'
+
 #p= Popen(" ./zmap -B 10M -p 80 -n 100000 ", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
 
         p.wait()

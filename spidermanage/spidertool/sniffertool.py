@@ -67,7 +67,7 @@ class SniffrtTool(object):
             print '我在这里62'
             return ''
     def callback_result(self,scan_result):
-        
+        print scan_result
         print '——————'
         tmp=scan_result
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
     hosts=['www.cctv.com']
-    temp.scanaddress(hosts,ports=['0-65535'],arguments='')
+    temp.scanaddress(hosts,ports=[''],arguments='')
 
 
             

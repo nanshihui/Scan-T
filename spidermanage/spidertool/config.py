@@ -8,6 +8,8 @@ class Config(object):
 	database='datap'
 	port=3306
 	charset='utf8'
+	cachemax=30
+	cachemin=1
 	iptable='ip_maindata'
 	porttable='snifferdata'
 	usertable='user_table'

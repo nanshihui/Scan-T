@@ -55,6 +55,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
         if count>0:
             validresult=True
             for temp in result :
+                print temp[0],temp[1],temp[2],temp[3],temp[4],temp[5],temp[6],temp[7],temp[8],temp[9],temp[10],temp[11]
                 ajob=job.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9],createtime=temp[10],forcesearch=temp[11])
                 jobs.append(ajob)
         return jobs,count,pagecount

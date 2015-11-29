@@ -4,6 +4,8 @@ import MySQLdb
 import config
 import time
 import datetime
+from MySQLdb.cursors import DictCursor
+from DBUtils.PooledDB import PooledDB
 class DBmanager:
 	__cur=''
 	__conn=''
@@ -15,6 +17,9 @@ class DBmanager:
 	__connection_time=0
 	__isconnect=0
 	__charset=''
+	__cachemin=1
+	__cachemax=30
+	__pool = None
 	def __init__(self):
 		temp=config.Config
 		self.__host = temp.host
@@ -23,11 +28,20 @@ class DBmanager:
 		self.__db=temp.database
 		self.__port=temp.port
 		self.__charset=temp.charset
+		self.__cachemax=temp.cachemax
+		self.__cachemin=temp.cachemin
+	def getConnect(self):
+		if self.__pool is None:
+			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=self.__cachemax ,
+									host=self.__host , port=self.__port , user=self.__user , passwd=self.__passwd,
+									db=self.__db,use_unicode=False,charset=self.__charset
+# 									,cursorclass=DictCursor
+									)
+		return self.__pool.connection()
 	def connectdb(self):
 		try:
-			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset)
-			#print self.__host,self.__user,self.__passwd,self.__db,self.__port
-			#self.__conn=MySQLdb.connect('localhost','root','123456','datap',3306,charset='utf8')
+			self.__conn=self.getConnect()
+#  			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset)
 			self.__cur=self.__conn.cursor()
 			self.__isconnect=1
 		

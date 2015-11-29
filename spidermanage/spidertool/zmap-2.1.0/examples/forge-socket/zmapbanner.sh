@@ -1,4 +1,4 @@
-sudo zmap -p 80 -B 10M -N 1000 -q --output-fields=classification,saddr,daddr,sport,dport,seqnum,acknum,cooldown,repeat  -o - | sudo ./forge-socket -c 1000 -d http-req > http-banners.out
+sudo zmap -p 80 -B 10M -N 1000 -q --output-fields=classification,saddr,daddr,sport,dport,seqnum,acknum,cooldown,repeat  -o - | ./forge-socket -c 1000 -d http-req > http-banners.out
 
 
 
