@@ -67,7 +67,7 @@ class SniffrtTool(object):
             print '我在这里62'
             return ''
     def callback_result(self,scan_result):
-        print scan_result
+
         print '——————'
         tmp=scan_result
 
@@ -146,7 +146,7 @@ class SniffrtTool(object):
     def isrunning(self):
         return self.nma.has_host(self.host)
 def callback_resultl(host, scan_result):
-    print scan_result
+
     print '——————'
     tmp=scan_result
     result=''

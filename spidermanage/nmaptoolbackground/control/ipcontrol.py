@@ -60,7 +60,8 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
         if count>0:
             validresult=True
             for temp in result :
-                aip=ipmain.Ip(ip=temp[0],vendor=temp[1],osfamily=temp[2],osgen=temp[3],accurate=temp[4],updatetime=temp[5],hostname=temp[6],state=temp[7])
+                aip=ipmain.Ip(ip=temp['ip'],vendor=temp['vendor'],osfamily=temp['osfamily'],osgen=temp['osgen'],accurate=temp['accurate'],updatetime=temp['updatetime'],hostname=temp['hostname'],state=temp['state'])
+#                 aip=ipmain.Ip(ip=temp[0],vendor=temp[1],osfamily=temp[2],osgen=temp[3],accurate=temp[4],updatetime=temp[5],hostname=temp[6],state=temp[7])
                 ips.append(aip)
         return ips,count,pagecount
     return [],0,pagecount

@@ -35,13 +35,13 @@ class DBmanager:
 			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=self.__cachemax ,
 									host=self.__host , port=self.__port , user=self.__user , passwd=self.__passwd,
 									db=self.__db,use_unicode=False,charset=self.__charset
-# 									,cursorclass=DictCursor
+ 									,cursorclass=DictCursor
 									)
 		return self.__pool.connection()
 	def connectdb(self):
 		try:
 			self.__conn=self.getConnect()
-#  			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset)
+# 			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset,cursorclass=DictCursor)
 			self.__cur=self.__conn.cursor()
 			self.__isconnect=1
 		

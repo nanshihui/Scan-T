@@ -11,11 +11,12 @@ def validuser(username,password):
     DBhelp.closedb()
     role=''
     userpower=''
-    print result,content,count,col
     if col>0:
         
         validresult=True
-        role=result[0][1]
-        userpower=result[0][2]
+        role=result[0]['role']
+        userpower=result[0]['userpower']
+#         role=result[0][1]
+#         userpower=result[0][2]
     return validresult,username,role,userpower
     
