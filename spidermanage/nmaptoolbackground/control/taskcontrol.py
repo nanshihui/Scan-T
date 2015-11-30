@@ -3,14 +3,19 @@ import schedule
 from datetime import datetime
 import time
 import logging
+import random
 logging.basicConfig()
 nmaptask=None
 mainschedule=None
+operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  
 def tick():
+    num=random.randint(1, 5)
 
     temp=zmaptool.Zmaptool()
-    temp.do_scan()
+    
+    temp.do_scan(port=operator.get(str(num)),num='100')
     print('Tick! The time is: %s' % datetime.now())
+
 def taskinit():
     nmaptask =sniffertask.snifferTask(1)
     nmaptask.set_deal_num(5)
