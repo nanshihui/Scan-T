@@ -13,7 +13,9 @@ class Zmaptool:
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
     def do_scan(self,port='80',num='100',):
         path=os.getcwd()
-        p= Popen(" ./zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
+#         p= Popen(" ./zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
+        
+        p= Popen(" zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True)
 #        'sudo zmap -p 80 -B 10M -N 50 -q --output-fields=classification,saddr,daddr,sport,dport,seqnum,acknum,cooldown,repeat  -o - '+
 #        '| sudo ./forge-socket -c 50 -d http-req > http-banners.out'
 
@@ -23,9 +25,6 @@ class Zmaptool:
         retcode= p.returncode
         if retcode==0:
             returnmsg=p.stdout.read() 
-            print '---------------------------------------------'
-            print returnmsg
-            print '---------------------------------------------'
             p = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
             list= p.findall(returnmsg)
             self.sqlTool.connectdb()
