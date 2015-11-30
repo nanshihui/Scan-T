@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//spidermanage/nmaptoolbackground/control/ipcontrol.py=utf-8
 encoding//spidermanage/nmaptoolbackground/control/jobcontrol.py=utf-8
 encoding//spidermanage/nmaptoolbackground/control/portcontrol.py=utf-8
+encoding//spidermanage/nmaptoolbackground/control/schedule.py=utf-8
 encoding//spidermanage/nmaptoolbackground/control/usercontrol.py=utf-8
 encoding//spidermanage/nmaptoolbackground/model/ipmain.py=utf-8
 encoding//spidermanage/nmaptoolbackground/model/job.py=utf-8

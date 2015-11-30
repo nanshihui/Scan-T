@@ -222,7 +222,7 @@ class DBmanager:
 		else:
 			print '''has not connet'''  
 			return False	
-	def inserttableinfo_byparams(self,table,select_params,insert_values):
+	def inserttableinfo_byparams(self,table,select_params,insert_values,extra=''):
 		if len(insert_values)<1 :
 			print '没有插入参数'
 			return False
@@ -243,7 +243,7 @@ class DBmanager:
 					sql=sql+'%s'+')'			
 				else:
 					return False
-
+				sql+=extra
 				print sql
 				returnmeg=self.__cur.executemany(sql,insert_values)
 				print '返回的消息：　'+str(returnmeg)

@@ -147,7 +147,7 @@ class SniffrtTool(object):
         return self.nma.has_host(self.host)
 def callback_resultl(host, scan_result):
 
-    print '——————'
+    print '———不触发这个函数———'
     tmp=scan_result
     result=''
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
     hosts=['www.cctv.com']
-    temp.scanaddress(hosts,ports=[''],arguments='')
+    temp.scanaddress(hosts,ports=['80'],arguments='')
 
 
             

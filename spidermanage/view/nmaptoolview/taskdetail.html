@@ -299,7 +299,7 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="col-md-4 sortable">
+                                <th class="col-md-3 sortable">
                                     端口号
                                 </th>
                                 <th class="col-md-3 sortable">
@@ -311,7 +311,8 @@
                                 <th class="col-md-3 sortable ">
                                     <span class="line"></span>端口产品
                                 </th>
-                                    <th class="col-md-3 sortable align-right">
+                                <!--align-right-->
+                                    <th class="col-md-3 sortable ">
                                     <span class="line"></span>脚本信息
                                 </th>
                             </tr>
@@ -333,33 +334,85 @@
     </div>
     <!-- end main container -->
 <script type="text/javascript">
-this.encodeHtml = function(s){
-      return (typeof s != "string") ? s :
-          s.replace(this.REGX_HTML_ENCODE,
-                    function($0){
-                        var c = $0.charCodeAt(0), r = ["&#"];
-                        c = (c == 0x20) ? 0xA0 : c;
-                        r.push(c); r.push(";");
-                        return r.join("");
-                    });
-  };
-this.decodeHtml = function(s){
-      return (typeof s != "string") ? s :
-          s.replace(this.REGX_HTML_DECODE,
-                    function($0,$1){
-                        var c = this.HTML_ENCODE[$0]; // 尝试查表
-                        if(c === undefined){
-                            // Maybe is Entity Number
-                            if(!isNaN($1)){
-                                c = String.fromCharCode(($1 == 160) ? 32 : $1);
-                            }else{
-                                // Not Entity Number
-                                c = $0;
-                            }
-                        }
-                        return c;
-                    });
-  };
+
+
+    var REGX_HTML_ENCODE = /"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g;
+
+    var REGX_HTML_DECODE = /&\w+;|&#(\d+);/g;
+
+    var REGX_TRIM = /(^\s*)|(\s*$)/g;
+
+    var HTML_DECODE = {
+        "&lt;" : "<", 
+        "&gt;" : ">", 
+        "&amp;" : "&", 
+        "&nbsp;": " ", 
+        "&quot;": "\"", 
+        "©": ""
+
+        // Add more
+    };
+
+    var encodeHtml = function(s){
+        s = (s != undefined) ? s : this.toString();
+        return (typeof s != "string") ? s :
+            s.replace(REGX_HTML_ENCODE, 
+                      function($0){
+                          var c = $0.charCodeAt(0), r = ["&#"];
+                          c = (c == 0x20) ? 0xA0 : c;
+                          r.push(c); r.push(";");
+                          return r.join("");
+                      });
+    };
+
+  var decodeHtml = function(s){
+        var HTML_DECODE = HTML_DECODE;
+
+        s = (s != undefined) ? s : s.toString();
+        return (typeof s != "string") ? s :
+            s.replace(REGX_HTML_DECODE,
+                      function($0, $1){
+                          var c = HTML_DECODE[$0];
+                          if(c == undefined){
+                              // Maybe is Entity Number
+                              if(!isNaN($1)){
+                                  c = String.fromCharCode(($1 == 160) ? 32:$1);
+                              }else{
+                                  c = $0;
+                              }
+                          }
+                          return c;
+                      });
+            return s;
+    };
+
+    var trim = function(s){
+        s = (s != undefined) ? s : this.toString();
+        return (typeof s != "string") ? s :
+            s.replace(REGX_TRIM, "");
+    };
+
+
+    var hashCode = function(){
+        var hash = this.__hash__, _char;
+        if(hash == undefined || hash == 0){
+            hash = 0;
+            for (var i = 0, len=this.length; i < len; i++) {
+                _char = this.charCodeAt(i);
+                hash = 31*hash + _char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            hash = hash & 0x7fffffff;
+        }
+        this.__hash__ = hash;
+
+        return this.__hash__; 
+    };
+
+
+
+
+
 var currpage=1;
 var pagesize=0;
 var nowpage=0;
@@ -369,8 +422,10 @@ var xmlhttp;
 var clinckdata='';
 function changtext(i){
     clinckitem=i;
-
-       document.getElementById("scriptdetail").innerText=encodeHtml(clinckdata.ports[clinckitem].script) ;
+      //var json = eval('(' + clinckdata.ports[clinckitem].script + ')'); 
+      //alert((json['http-title']));
+      var tempstr=clinckdata.ports[clinckitem].script.replace("\\\\","");
+       document.getElementById("scriptdetail").innerText=decodeHtml(tempstr);
 }
   function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
