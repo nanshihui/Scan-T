@@ -11,7 +11,7 @@ class ContentEncodingProcessor(urllib2.BaseHandler):
 	# add headers to requests
  	def http_request(self, req):
 		req.add_header("Accept-Encoding", "gzip, deflate")
-		print '添加gzip,deflate支持'
+# 		print '添加gzip,deflate支持'
 		return req
  
 	# decode
@@ -19,13 +19,13 @@ class ContentEncodingProcessor(urllib2.BaseHandler):
 		old_resp = resp
 	# gzip
 		if resp.headers.get("content-encoding") == "gzip":
-			print '解码gzip'
+# 			print '解码gzip'
 			gz = GzipFile(fileobj=StringIO(resp.read()),mode="r")
 			resp = urllib2.addinfourl(gz, old_resp.headers, old_resp.url, old_resp.code)
 			resp.msg = old_resp.msg
 	 # deflate
 		if resp.headers.get("content-encoding") == "deflate":
-			print '解码deflate'
+# 			print '解码deflate'
 			gz = StringIO( deflate(resp.read()) )
 			resp = urllib2.addinfourl(gz, old_resp.headers, old_resp.url, old_resp.code)# 'class to add info() and
 			resp.msg = old_resp.msg

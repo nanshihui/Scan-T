@@ -29,6 +29,6 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
 def scheduleinit():
     mainschedule=schedule.schedulecontrol()
-    mainschedule.addschedule(tick,'0-7','0-23','0','0',id='zmap')
+    mainschedule.addschedule(tick,'0-7','0-23','14','0',id='zmap')
 
     print 'init schedule'

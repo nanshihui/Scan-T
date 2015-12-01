@@ -45,18 +45,15 @@ class ConnectTool:
 		data = urllib.urlencode(params)
 
 		url=URL
-	#	req=''
+
 		if way=='POST':
 			req = urllib2.Request(url, data=data, headers=self.__headers)
 
-#			req= urllib2.Request(url)
-#			req.add_header('User-Agent','Mozilla/4.0')
+
 		elif len(params)==0:
 			req= urllib2.Request(url,headers=self.__headers)
 			print '执行get访问'
-#			req.add_header('User-Agent',WEBCONFIG.useragent)
-#			req.add_header('Referer',WEBCONFIG.Referer)
-#			print '执行无参访问'
+
 		else :
 			req= urllib2.Request(url+'?'+data,headers=self.__headers)
 			print '执行get访问'
@@ -65,11 +62,11 @@ class ConnectTool:
 #			gc.enable() 
 #			gc.set_debug(gc.DEBUG_LEAK)
 			response = urllib2.urlopen(req)
-
-			print 'cooke信息如下：'
-			for item in self.__cookie:
-				print 'Name = '+item.name
-				print 'Value = '+item.value
+			print 'head is \n%s' % response.info()
+# 			print 'cooke信息如下：'
+# 			for item in self.__cookie:
+# 				print 'Name = '+item.name
+# 				print 'Value = '+item.value
 			the_page = response.read()
 
 			response.close()
@@ -77,9 +74,9 @@ class ConnectTool:
 			del response
 
 
-#			gc.collect()
 
-			return the_page.decode('UTF-8')
+
+			return the_page
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
 #		print 'head is %s' % response.info()
 
@@ -104,5 +101,9 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w=p.getHTML('http://www.bnuz.edu.com')
+	w=p.getHTML('http://www.bnuz.edu.cn')
 	print 'result is ：   '+w
+	
+	
+	
+	
