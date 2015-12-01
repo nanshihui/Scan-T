@@ -7,6 +7,7 @@ import random
 logging.basicConfig()
 nmaptask=None
 mainschedule=None
+
 operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  
 def tick():
     num=random.randint(1, 5)
@@ -17,18 +18,23 @@ def tick():
     print('Tick! The time is: %s' % datetime.now())
 
 def taskinit():
-    nmaptask =sniffertask.snifferTask(1)
+    global  nmaptask 
+    nmaptask= sniffertask.snifferTask(1)
     nmaptask.set_deal_num(5)
 def taskadd(array):
+    global  nmaptask 
     if nmaptask is None:
         nmaptask =sniffertask.snifferTask(1)
     nmaptask.add_work(array)
 def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id=''):
+    global mainschedule
     if mainschedule is None:
         mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
 def scheduleinit():
+    global mainschedule
     mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(tick,'0-7','0-23','14','0',id='zmap')
 
     print 'init schedule'
+

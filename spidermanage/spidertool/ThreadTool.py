@@ -11,20 +11,23 @@ import datetime
 import multiprocessing
 stack_size(32768*16)
 class ThreadTool:
-	def __init__(self,isThread=1):
+	def __init__(self,isThread=1,needfinishqueue=0):
 		self.isThread=isThread
 		self.idletask={}
 		self.Threads=[]
 		self.alivenum=0
+		self.needfinishqueue=needfinishqueue
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
 			self.q_request = Queue() #任务队列
-			self.q_finish = Queue() #完成队列
+			if needfinishqueue>0:
+				self.q_finish = Queue() #完成队列
 		else :
 			self.lock = multiprocessing.Lock()  
 			self.q_request=multiprocessing.Queue()
-			self.q_finish=multiprocessing.Queue()
+			if self.needfinishqueue>0:
+				self.q_finish=multiprocessing.Queue()
 		self.running = 0
 
 	def __del__(self): #解构时需等待两个队列完成
@@ -32,7 +35,8 @@ class ThreadTool:
 		if self.isThread==1:
 
 			self.q_request.join()
-# 			self.q_finish.join()
+			if self.needfinishqueue>0:
+				self.q_finish.join()
 	def set_Thread_size(self,threads_num=10):
 		self.threads_num = threads_num
 	def init_add(self,add_init_object):
@@ -60,8 +64,10 @@ class ThreadTool:
 				with self.lock:	
 					self.alivenum+=1
 	def taskleft(self):
-# 		return self.q_request.qsize()+self.q_finish.qsize()+self.running
-		return self.q_request.qsize()+self.running
+		if self.needfinishqueue>0:
+			return self.q_request.qsize()+self.q_finish.qsize()+self.running
+		else:
+			return self.q_request.qsize()+self.running
 	def push(self,req):
 		sizenum=len(req)
 		for urls in req:
@@ -158,7 +164,8 @@ class ThreadTool:
 #			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
-			self.q_finish.put((req,ans))
+			if self.needfinishqueue>0:
+				self.q_finish.put((req,ans))
 #			self.lock.acquire()
 			with self.lock:
 				self.running= self.running-1
@@ -194,7 +201,8 @@ class ThreadTool:
 #			ans = self.connectpool.getConnect(req)
 
 # 			self.lock.release()
-			self.q_finish.put((req,ans))
+			if self.needfinishqueue>0:
+				self.q_finish.put((req,ans))
 #			self.lock.acquire()
 			with self.lock:
 				self.running-= 1

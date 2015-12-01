@@ -10,6 +10,7 @@ import gzipsupport
 import time
 import datetime
 import gc
+import ssl
 from Queue import Queue
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
@@ -61,7 +62,8 @@ class ConnectTool:
 		try:
 #			gc.enable() 
 #			gc.set_debug(gc.DEBUG_LEAK)
-			response = urllib2.urlopen(req)
+			context = ssl._create_unverified_context()
+			response = urllib2.urlopen(req,context=context)
 			print 'head is \n%s' % response.info()
 # 			print 'cooke信息如下：'
 # 			for item in self.__cookie:
@@ -74,15 +76,17 @@ class ConnectTool:
 			del response
 
 
+			try:
+				return the_page.encode('utf-8')
 
-
-			return the_page
+			except Exception,e:
+				 return the_page
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
 #		print 'head is %s' % response.info()
 
 		except Exception,e:
 
-			print '错误码为: %s' % e
+			print '错误码为: %s' % str(e).encode('utf-8')
 
 			if times <4:
 				print '尝试第'+str(times)+'次'
@@ -101,8 +105,8 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w=p.getHTML('http://www.bnuz.edu.cn')
-	print 'result is ：   '+w
+	w=p.getHTML('http://www.cntv.cn')
+# 	print 'result is ：   '+w
 	
 	
 	

@@ -181,8 +181,12 @@ def updatejob(request,state=''):
                 jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
                 if count>0:
                     if jobs[0].getForcesearch==1:
+                        if tasktotally.nmaptask is None:
+                            tasktotally.taskinit()
                         tasktotally.taskadd(jobs)
                     else:
+                        if tasktotally.nmaptask is None:
+                            tasktotally.taskinit()
                         tasktotally.taskadd(jobs)
                         
             response_data['result'] = '1'

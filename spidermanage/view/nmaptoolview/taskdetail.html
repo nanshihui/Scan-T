@@ -420,11 +420,14 @@ var taskid=''
 var clinckitem=0;
 var xmlhttp;
 var clinckdata='';
-function changtext(i){
+function changtext(k,i){
+
     clinckitem=i;
       //var json = eval('(' + clinckdata.ports[clinckitem].script + ')'); 
       //alert((json['http-title']));
+      if(k==1)
       var tempstr=clinckdata.ports[clinckitem].script.replace("\\\\","");
+  
        document.getElementById("scriptdetail").innerText=decodeHtml(tempstr);
 }
   function GetXmlHttp(xmlhttp){
@@ -530,7 +533,7 @@ function changtext(i){
                                                 "<td>"+ports[i].name+"</td>"+
                                                 "<td>"+ports[i].version+"</td>"+
                                                 "<td ><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
-                                                "<td ><a id=\"modal-19990\" class=\"\" data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext("+i+")\">"+ports[i].script.substring(0,30)+"</a></td>"+
+                                                "<td ><a id=\"modal-19990\" class=\"\" data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+ports[i].script.substring(0,30)+"</a></td>"+
                                                 "</tr>";
                                             }
 
