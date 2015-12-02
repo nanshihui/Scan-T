@@ -25,7 +25,9 @@ def asd():
 f = open(r'iparea.json')
 temp=f.readlines()
 f.close()
-print temp[0]
+for i in range(0,5):
+	print i
+# print temp[0]
 
 
 

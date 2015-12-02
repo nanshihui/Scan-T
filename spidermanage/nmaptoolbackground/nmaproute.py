@@ -11,8 +11,7 @@ from spidertool import webtool
 from model.user import User
 
 import json
-tasktotally=taskcontrol
-tasktotally.taskinit()
+
 # Create your views here.
 def destroyjob(request):
     data=updatejob(request,state='6')
@@ -180,14 +179,14 @@ def updatejob(request,state=''):
             if state=='2':
                 jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
                 if count>0:
+                    tasktotally=taskcontrol.getObject()
                     if jobs[0].getForcesearch==1:
-                        if tasktotally.nmaptask is None:
-                            tasktotally.taskinit()
-                        tasktotally.taskadd(jobs)
+
+
+                        tasktotally.add_work(jobs)
                     else:
-                        if tasktotally.nmaptask is None:
-                            tasktotally.taskinit()
-                        tasktotally.taskadd(jobs)
+
+                        tasktotally.add_work(jobs)
                         
             response_data['result'] = '1'
         return response_data

@@ -11,12 +11,15 @@ import datetime
 import multiprocessing
 stack_size(32768*16)
 class ThreadTool:
-	def __init__(self,isThread=1,needfinishqueue=0):
+	def __init__(self,isThread=1,needfinishqueue=0,deamon=True):
 		self.isThread=isThread
 		self.idletask={}
 		self.Threads=[]
 		self.alivenum=0
 		self.needfinishqueue=needfinishqueue
+		self.running = 0
+		self.threads_num = 10
+		self.deamon=deamon
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
@@ -28,7 +31,7 @@ class ThreadTool:
 			self.q_request=multiprocessing.Queue()
 			if self.needfinishqueue>0:
 				self.q_finish=multiprocessing.Queue()
-		self.running = 0
+
 
 	def __del__(self): #解构时需等待两个队列完成
 		time.sleep(0.5)
@@ -49,7 +52,7 @@ class ThreadTool:
 			for i in range(sizenumber):
 				t = Thread(target=self.getTask)
 				print '线程'+str(i+1)+'  正在启动'
-				t.setDaemon(True)
+				t.setDaemon(self.deamon)
 				t.start()
 				self.Threads.append(t)
 				with self.lock:	
@@ -58,7 +61,7 @@ class ThreadTool:
 			for i in range(sizenumber):
 				t = multiprocessing.Process(target=self.getTaskProcess)
 				print '进程'+str(i+1)+'  正在启动'
-				t.Daemon=True
+				t.Daemon=self.deamon
 				t.start()	
 				self.Threads.append(t)
 				with self.lock:	
@@ -120,7 +123,7 @@ class ThreadTool:
 		if self.isThread==1:
 			for i in range(sizenumber):
 				t=Thread(target=self.getTask)
-				t.Daemon=True
+				t.Daemon=self.deamon
 				t.start()
 				self.Threads.append(t)
 				with self.lock:	
@@ -129,7 +132,7 @@ class ThreadTool:
 		else:
 			for i in range(sizenumber):
 				t=multiprocessing.Process(target=self.getTaskProcess)
-				t.Daemon=True
+				t.Daemon=self.deamon
 				t.start()
 				self.Threads.append(t)
 				with self.lock:	

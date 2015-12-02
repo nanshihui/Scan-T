@@ -11,6 +11,7 @@ import time
 import datetime
 import gc
 import ssl
+import chardet
 from Queue import Queue
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
@@ -64,20 +65,22 @@ class ConnectTool:
 #			gc.set_debug(gc.DEBUG_LEAK)
 			context = ssl._create_unverified_context()
 			response = urllib2.urlopen(req,context=context)
-			print 'head is \n%s' % response.info()
+
+			temp=str(response.info())
 # 			print 'cooke信息如下：'
 # 			for item in self.__cookie:
 # 				print 'Name = '+item.name
 # 				print 'Value = '+item.value
-			the_page = response.read()
+			msg=response.read()
+			
+			chardit1 = chardet.detect(msg)
+			the_page = temp+str(msg)
 
 			response.close()
 
 			del response
-
-
 			try:
-				return the_page.encode('utf-8')
+				return the_page.decode(chardit1['encoding']).encode('utf-8')
 
 			except Exception,e:
 				 return the_page
@@ -105,8 +108,8 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w=p.getHTML('http://www.cntv.cn')
-# 	print 'result is ：   '+w
+	w=p.getHTML('http://218.104.245.70:8080')
+ 	print 'result is ：   '+w
 	
 	
 	

@@ -32,7 +32,7 @@ class Zmaptool:
             insertdata=[]
             for i in list:
                 insertdata.append((str(i),port,localtime,'on'))
-            extra=' on duplicate key update  state=\'on\' , timesearch=\''+localtime+'\'';
+            extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
             self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)
             self.sqlTool.closedb()
 if __name__ == "__main__":

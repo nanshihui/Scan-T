@@ -4,6 +4,12 @@
 import connecttool
 import Queue
 import gc
+connectpoolinstance=None
+def getObject():
+	global connectpoolinstance
+	if connectpoolinstance is None:
+		connectpoolinstance=ConnectPool()
+	return connectpoolinstance
 class ConnectPool:
 
 	def __init__(self,poolsize=10):
@@ -20,11 +26,11 @@ class ConnectPool:
 		return 1 
 	def  getConnect(self,URL,way='GET',params={},times=1):
 		self.__connect_pool.put(1)
-		gc.enable() 
-		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
+# 		gc.enable() 
+# 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
 		page=self.connectTool.getHTML(URL,way,params,times)
-		po=gc.collect()
-		print po
+# 		po=gc.collect()
+# 		print po
 		self.__connect_pool.get()
 		self.__connect_pool.task_done()
 		return page

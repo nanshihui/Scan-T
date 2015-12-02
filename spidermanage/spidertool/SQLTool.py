@@ -222,7 +222,7 @@ class DBmanager:
 		else:
 			print '''has not connet'''  
 			return False	
-	def inserttableinfo_byparams(self,table,select_params,insert_values,extra=''):
+	def inserttableinfo_byparams(self,table,select_params,insert_values,extra=' ',updatevalue=[]):
 		if len(insert_values)<1 :
 			print '没有插入参数'
 			return False
@@ -243,6 +243,12 @@ class DBmanager:
 					sql=sql+'%s'+')'			
 				else:
 					return False
+				ulen=len(updatevalue)
+				if ulen>0:
+					sql+=' on duplicate key  update '
+					for o in range(0, ulen-1):
+						sql=sql+updatevalue[o]+' =  %s '+'  ,'	
+					sql=sql+updatevalue[ulen-1]+'  %s ' 
 				sql+=extra
 				print sql
 				returnmeg=self.__cur.executemany(sql,insert_values)
@@ -254,10 +260,11 @@ class DBmanager:
 					return False
 
 
-			except MySQLdb.Error,e:
-				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+			except Exception,e:
+				print "Mysql Error: %s" % e
 		else:
 			print '''has not connet'''  
+	
 		#self.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
 		#self.__conn.commit()   
 def formatstring(str):
@@ -265,5 +272,15 @@ def formatstring(str):
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()
-	SQLtool.inserttableinfo_byparams('webdata', ["address","content","meettime"], [('asd','asd',str(datetime.datetime.now())),('asd1','asd1',str(datetime.datetime.now()))])
+	localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
+	insertdata=[]
+#		 insertdata.append((str(ip),port,localtime,str(ans),str(ans),localtime))
+	insertdata.append(('1','2','3','4','5','5'))
+#		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
+	extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
+		
+	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','state'],insertdata,extra=extra)
 	SQLtool.closedb()
+	
+	
+	

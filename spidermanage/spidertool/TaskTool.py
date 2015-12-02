@@ -5,8 +5,8 @@ import datetime
 import time
 import connectpool
 class TaskTool:
-	def __init__(self,isThread=1):
-		self.threadtool=ThreadTool(isThread)
+	def __init__(self,isThread=1,deamon=True):
+		self.threadtool=ThreadTool(isThread,deamon=deamon)
 		self.threadtool.add_task(self.task)
 
 	def set_deal_num(self,num):

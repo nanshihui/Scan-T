@@ -14,6 +14,8 @@ import time
 import SQLTool
 import config
 from numpy.numarray.numerictypes import IsType
+import connectpool
+import portscantask
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   
 class SniffrtTool(object):
     '''
@@ -38,6 +40,8 @@ class SniffrtTool(object):
             print('Unexpected error:', sys.exc_info()[0])
         self.config=config.Config
         self.sqlTool=SQLTool.DBmanager()
+        self.portscan=portscantask.getObject()
+        
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
         orders=''
         if port!='':
@@ -101,8 +105,10 @@ class SniffrtTool(object):
                         tempproduct=str(tmp['scan'][host]['tcp'][port].get('product',''))
                         tempportversion=str(tmp['scan'][host]['tcp'][port].get('version',''))
                         tempscript=str(tmp['scan'][host]['tcp'][port].get('script',''))
-                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
 
+                        
+                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+                        self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate)])
 
                 elif 'udp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['udp'].keys()
