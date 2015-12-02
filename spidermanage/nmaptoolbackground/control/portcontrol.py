@@ -7,7 +7,7 @@ import re
 limitpage=15
 DBhelp=SQLTool.DBmanager()
 localconfig=config.Config()
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',page='0',extra=''):
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -35,9 +35,12 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if script!='':
         request_params.append('script')
         values_params.append(SQLTool.formatstring(script))
+    if detail!='':
+        request_params.append('detail')
+        values_params.append(SQLTool.formatstring(detail))
     DBhelp.connectdb()
     table=localconfig.porttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,extra=extra)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra)
 
     if count == 0:
         pagecount = 0;
@@ -53,14 +56,14 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script'], request_params, values_params,limit,order='port',extra=extra)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra)
     
         DBhelp.closedb()
         portarray=[]
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'])
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'])
  
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)
@@ -107,6 +110,9 @@ def portadd(port):
     if script!='':
         request_params.append('script')
         values_params.append(SQLTool.formatstring(script))
+    if detail!='':
+        request_params.append('detail')
+        values_params.append(SQLTool.formatstring(detail))        
     table=localconfig.porttable
     DBhelp.connectdb()
 

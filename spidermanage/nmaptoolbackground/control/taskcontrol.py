@@ -15,7 +15,7 @@ def getObject():
     return nmaptask
 operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  
 def tick():
-    num=random.randint(1, 5)
+    num=random.randint(1, 1)
 
     temp=zmaptool.Zmaptool()
     
@@ -39,7 +39,7 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
 def scheduleinit():
     global mainschedule
     mainschedule=schedule.schedulecontrol()
-    mainschedule.addschedule(tick,'0-7','0','14','0',id='zmap')
+    mainschedule.addschedule(tick,'0-7','0-23','0','0',id='zmap')
 
     print 'init schedule'
 

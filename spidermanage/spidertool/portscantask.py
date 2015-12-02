@@ -7,6 +7,7 @@ import connectpool
 import portscantool
 import SQLTool,config
 from TaskTool import TaskTool
+import MySQLdb
 portscantskinstance=None
 def getObject():
     global portscantskinstance
@@ -24,12 +25,11 @@ class PortscanTask(TaskTool):
     def task(self,req,threadname):
         print threadname+'执行任务中'+str(datetime.datetime.now())
 
-        print req[0],req[1],req[2],req[3]
+#         print req[0],req[1],req[2],req[3]
         if req[3]!='open':
             return ''
         ip=req[1]
         port=req[2]
-        print '尝试连接'
         if req[0]=='http' or req[0]=='https':
             if ip[0]=='h':
                 address=ip+':'+port
@@ -38,18 +38,20 @@ class PortscanTask(TaskTool):
             print address
             ans = self.connectpool.getConnect(address)
         else:
-            ans=self.portscan.do_scan(ip,port)
-        print ans
+            ans=self.portscan.do_scan(ip,port,req[0])
+#         print ans
         self.sqlTool.connectdb()
-        print '尝试插入'
         localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
         insertdata=[]
-#         insertdata.append((str(ip),port,localtime,str(ans),str(ans),localtime))
-        insertdata.append(('str(ip)','port','localtime','str(ans)','str(ans)','str(ans)'))
+        temp=str(ans)
+#         insertdata.append((ip,port,localtime,temp,temp,localtime))
+        insertdata.append((ip,port,localtime,str(temp)))
 #         self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
                                               
-        
-        self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
+        extra=' on duplicate key update  detail=\''+str(temp).replace("'","\\'")+'\' , timesearch=\''+localtime+'\''
+#         self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
+        self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail'],insertdata,extra=extra)
+
         print '插入成功'
         self.sqlTool.closedb()
         print threadname+'任务结束'+str(datetime.datetime.now())

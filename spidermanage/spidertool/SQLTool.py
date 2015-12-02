@@ -245,10 +245,10 @@ class DBmanager:
 					return False
 				ulen=len(updatevalue)
 				if ulen>0:
-					sql+=' on duplicate key  update '
+					sql+='  on duplicate key update  '
 					for o in range(0, ulen-1):
 						sql=sql+updatevalue[o]+' =  %s '+'  ,'	
-					sql=sql+updatevalue[ulen-1]+'  %s ' 
+					sql=sql+updatevalue[ulen-1]+'  =%s ' 
 				sql+=extra
 				print sql
 				returnmeg=self.__cur.executemany(sql,insert_values)
@@ -275,11 +275,15 @@ if __name__ == "__main__":
 	localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
 	insertdata=[]
 #		 insertdata.append((str(ip),port,localtime,str(ans),str(ans),localtime))
-	insertdata.append(('1','2','3','4','5','5'))
+
 #		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
-	extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
-		
-	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','state'],insertdata,extra=extra)
+# 	extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
+# 	insertdata.append(('111.111.111.1','1','2014-08-08 11:11:11','str(ans)','str(ans)','2014-08-08 11:11:11'))
+#		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
+# 	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
+	insertdata.append(('110.110.110.110','1',localtime,'open'))
+	extra=' on duplicate key update  detail=\'open\' , timesearch=\''+localtime+'\''
+	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,extra)
 	SQLtool.closedb()
 	
 	

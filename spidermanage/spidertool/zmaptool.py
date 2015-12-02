@@ -11,7 +11,7 @@ class Zmaptool:
         self.sqlTool=SQLTool.DBmanager()
         self.config=config.Config
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
-    def do_scan(self,port='80',num='100',):
+    def do_scan(self,port='80',num='10',):
         path=os.getcwd()
 #         p= Popen(" ./zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
         
@@ -31,7 +31,7 @@ class Zmaptool:
             localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
             insertdata=[]
             for i in list:
-                insertdata.append((str(i),port,localtime,'on'))
+                insertdata.append((str(i),port,localtime,'open'))
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
             self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)
             self.sqlTool.closedb()

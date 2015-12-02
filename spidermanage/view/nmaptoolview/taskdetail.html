@@ -299,21 +299,24 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="col-md-3 sortable">
+                                <th class="col-md-2 sortable">
                                     端口号
                                 </th>
-                                <th class="col-md-3 sortable">
+                                <th class="col-md-2 sortable">
                                     <span class="line"></span>端口名
                                 </th>
                                 <th class="col-md-2 sortable">
                                     <span class="line"></span>端口版本
                                 </th>
-                                <th class="col-md-3 sortable ">
+                                <th class="col-md-2 sortable ">
                                     <span class="line"></span>端口产品
                                 </th>
                                 <!--align-right-->
                                     <th class="col-md-3 sortable ">
                                     <span class="line"></span>脚本信息
+                                </th>
+                                        <th class="col-md-3 sortable ">
+                                    <span class="line"></span>具体内容
                                 </th>
                             </tr>
                         </thead>
@@ -423,12 +426,17 @@ var clinckdata='';
 function changtext(k,i){
 
     clinckitem=i;
+    var tempstr='';
       //var json = eval('(' + clinckdata.ports[clinckitem].script + ')'); 
       //alert((json['http-title']));
-      if(k==1)
-      var tempstr=clinckdata.ports[clinckitem].script.replace("\\\\","");
-  
-       document.getElementById("scriptdetail").innerText=decodeHtml(tempstr);
+      if(k==1){
+       tempstr=clinckdata.ports[clinckitem].script.replace("\\\\","");
+          document.getElementById("scriptdetail").innerText=decodeHtml(tempstr);
+      }
+        else{
+             tempstr=clinckdata.ports[clinckitem].detail;
+              document.getElementById("scriptdetail").innerText=tempstr;
+            }
 }
   function GetXmlHttp(xmlhttp){
             if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
@@ -526,16 +534,23 @@ function changtext(k,i){
                              currpage=Number(nowpage)+1;
                              var bodyhtml = "";
                              for (var i =0 ;i<datalength;i++){
-
+                                                var msgshow='';
+                                                if (ports[i].detail==null)
+                                                      msgshow='';
+                                                 else
+                                                        msgshow=ports[i].detail.substring(0,30)
                                                  bodyhtml+="<tr class=\"first\">"+
                                                 "<td><a href=\"https://www.baidu.com/s?wd=端口 "+ports[i].port+"\" class=\"name\">"+ports[i].port+"</a>"+
                                                 "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
                                                 "<td>"+ports[i].name+"</td>"+
                                                 "<td>"+ports[i].version+"</td>"+
                                                 "<td ><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
-                                                "<td ><a id=\"modal-19990\" class=\"\" data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+ports[i].script.substring(0,30)+"</a></td>"+
+                                                "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+ports[i].script.substring(0,30)+"</a></td>"+
+                                                "<td ><a id=\"modal-19991\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(2,"+i+")\">"+msgshow+"</a></td>"+
                                                 "</tr>";
+                                           
                                             }
+
 
                                                 document.getElementById("bodyport").innerHTML=bodyhtml;
 var pagehtml="";
