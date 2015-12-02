@@ -5,11 +5,12 @@ import re
 from subprocess import Popen, PIPE
 import os
 import SQLTool
-import config
+import config,portscantask
 class Zmaptool:
     def __init__(self):
         self.sqlTool=SQLTool.DBmanager()
         self.config=config.Config
+        self.portscan=portscantask.getObject()
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
     def do_scan(self,port='80',num='10',):
         path=os.getcwd()
@@ -32,6 +33,7 @@ class Zmaptool:
             insertdata=[]
             for i in list:
                 insertdata.append((str(i),port,localtime,'open'))
+                self.portscan.add_work([('http',str(i),port,'open')])
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
             self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)
             self.sqlTool.closedb()
