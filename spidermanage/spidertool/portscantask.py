@@ -12,7 +12,7 @@ portscantskinstance=None
 def getObject():
     global portscantskinstance
     if portscantskinstance is None:
-        portscantskinstance=PortscanTask(0)
+        portscantskinstance=PortscanTask(1)
     return portscantskinstance
 class PortscanTask(TaskTool):
     def __init__(self,isThread=1,deamon=True):

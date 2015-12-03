@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^nmaptool/', include('nmaptoolbackground.urls',namespace='nmaptool')),
     url(r'^admin/', admin.site.urls),
     url(r'^status',route.indexpage,name='status'),
-    url('^$',route.hello)
+    url('^search/', include('fontsearch.urls',namespace='fontsearch')),
+    url('^$', include('fontsearch.urls',namespace='fontsearch'))
  
 ]

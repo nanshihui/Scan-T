@@ -10,7 +10,7 @@ mainschedule=None
 def getObject():
     global nmaptask
     if nmaptask is None:
-        nmaptask=sniffertask.snifferTask(0)
+        nmaptask=sniffertask.snifferTask(1)
         nmaptask.set_deal_num(5)
     return nmaptask
 operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  
@@ -39,7 +39,7 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
 def scheduleinit():
     global mainschedule
     mainschedule=schedule.schedulecontrol()
-    mainschedule.addschedule(tick,'0-7','0-23','*/10','0',id='zmap')
+    mainschedule.addschedule(tick,'0-7','0','*/10','0',id='zmap')
 
     print 'init schedule'
 

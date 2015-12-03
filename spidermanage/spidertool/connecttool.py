@@ -109,7 +109,7 @@ class ConnectTool:
 if __name__ == "__main__":		
 	p=ConnectTool()
 	w=p.getHTML('http://218.104.245.70:8080')
- 	print 'result is ：   '+w
+ 	print w
 	
 	
 	

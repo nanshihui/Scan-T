@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html class="login-bg">
+<head>
+	<title>搜索页</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap -->
+    <link href="/static/fontsearch/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/static/fontsearch/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/layout.css">
+    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/elements.css">
+    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/icons.css">
+
+    <!-- libraries -->
+    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/lib/font-awesome.css">
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="/static/fontsearch/css/compiled/signin.css" type="text/css" media="screen" />
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+
+   <div class="container">
+            <div class="content-wrap">
+
+    <div class="login-wrapper" >
+
+   <img class="logo" src="/static/fontsearch/img/logo-white.png">
+   <div class="container">
+    <div class="row">
+        <div class="col-xs-7">
+    
+    <form class="" role="search" lpformnum="1" _lpchecked="1">
+      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜你想要的">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+ <!--
+<div class="row head">
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜你想要的">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+-->
+</div>
+</div>
+
+
+	<!-- scripts -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/fontsearch/js/bootstrap.min.js"></script>
+        <script src="/static/fontsearch/js/bootstrap.js"></script>
+
+    <script src="/static/fontsearch/js/theme.js"></script>
+
+    <!-- pre load bg imgs -->
+    <script type="text/javascript">
+        $(function () {
+            // bg switcher
+            var $btns = $(".bg-switch .bg");
+            $btns.click(function (e) {
+                e.preventDefault();
+                $btns.removeClass("active");
+                $(this).addClass("active");
+                var bg = $(this).data("img");
+
+                $("html").css("background-image", "url('img/bgs/" + bg + "')");
+            });
+
+        });
+    </script>
+</body>
+</html>

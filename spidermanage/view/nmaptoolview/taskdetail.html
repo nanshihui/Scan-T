@@ -430,12 +430,12 @@ function changtext(k,i){
       //var json = eval('(' + clinckdata.ports[clinckitem].script + ')'); 
       //alert((json['http-title']));
       if(k==1){
-       tempstr=clinckdata.ports[clinckitem].script.replace("\\\\","");
-          document.getElementById("scriptdetail").innerText=decodeHtml(tempstr);
+       tempstr=clinckdata.ports[clinckitem].script;
+          document.getElementById("scriptdetail").innerHTML=tempstr;
       }
         else{
              tempstr=clinckdata.ports[clinckitem].detail;
-              document.getElementById("scriptdetail").innerText=tempstr;
+              document.getElementById("scriptdetail").innerHTML=tempstr;
             }
 }
   function GetXmlHttp(xmlhttp){
