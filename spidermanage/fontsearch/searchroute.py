@@ -18,6 +18,7 @@ def indexpage(request):
 
     return render_to_response('fontsearchview/search.html', {'data':''})
 def detailpage(request):
-
-    return render_to_response('fontsearchview/searchdetail.html', {'data':''})
+    content=request.GET.get('searchcontent','')
+    
+    return render_to_response('fontsearchview/searchdetail.html', {'data':content})
   

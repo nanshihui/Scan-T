@@ -15,26 +15,31 @@
     <link href="/static/fontsearch/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
 
     <!-- global styles -->
-    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/layout.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/layout.css"> -->
     <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/elements.css">
     <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/compiled/icons.css">
 
     <!-- libraries -->
-    <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/lib/font-awesome.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/static/fontsearch/css/lib/font-awesome.css"> -->
     
     <!-- this page specific styles -->
     <link rel="stylesheet" href="/static/fontsearch/css/compiled/signin.css" type="text/css" media="screen" />
 
     <!-- open sans font -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link href="/static/fontsearch/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
+<!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body>
 
-
+<div class="site-nav"><a href="/nmaptool/login" target="_blank" >登陆</a> <span>/</span> <a href="#">关于</a>
+            </div>
 
    <div class="container">
             <div class="content-wrap">
@@ -42,60 +47,65 @@
     <div class="login-wrapper" >
 
    <img class="logo" src="/static/fontsearch/img/logo-white.png">
-   <div class="container">
-    <div class="row">
-        <div class="col-xs-7">
-    
-    <form class="" role="search" lpformnum="1" _lpchecked="1">
-      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜你想要的">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
+
+    <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-8 col-md-offset-2">
+                       <div class="site-header1 " style="">
+<!--          
+            <div class="container"> -->
+                <div class="row">
+                    <div class="col-xs-11">
+                     
+                                                            <form action="/search/searchdetail/" method="GET" role="search" lpformnum="1" _lpchecked="1">
+                                                                <div class="form-group">
+                                                                    <input type="text"  id="searchcontent" name="searchcontent" class="form-control search clearable" onkeydown="if(event.keyCode==13){sendsearch(1,1);}" placeholder="搜索组件，例如：MySQL"> 
+                                                                    <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
+                                                              
+                                                                </div>
+                                                            </form>
                     </div>
-    </form>
-</div>
-</div>
-</div>
-</div>
- <!--
-<div class="row head">
-                <div class="col-lg-10">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜你想要的">
-                        <span class="input-group-btn">
-                            <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                        </span>
+                </div>
+            <!-- </div> -->
+        </div>
                     </div>
                 </div>
             </div>
--->
+
+</div>
 </div>
 </div>
 
+    <script src="/static/fontsearch/js/jquery.min.js"></script>
+        <script src="/static/fontsearch/js/bootstrap.min.js"></script>
+         <script src="/static/fontsearch/js/geopattern.min.js"></script>
+         <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
+        <script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
+        <script src="/static/fontsearch/js/site.min.js"></script>
+             <script src="/static/fontsearch/js/h.js" type="text/javascript"></script>
 
-	<!-- scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/fontsearch/js/bootstrap.min.js"></script>
+
         <script src="/static/fontsearch/js/bootstrap.js"></script>
 
     <script src="/static/fontsearch/js/theme.js"></script>
 
     <!-- pre load bg imgs -->
-    <script type="text/javascript">
-        $(function () {
-            // bg switcher
-            var $btns = $(".bg-switch .bg");
-            $btns.click(function (e) {
-                e.preventDefault();
-                $btns.removeClass("active");
-                $(this).addClass("active");
-                var bg = $(this).data("img");
+<script type="text/javascript">
+function sendsearch(issearch,num){
 
-                $("html").css("background-image", "url('img/bgs/" + bg + "')");
-            });
+    content=document.getElementById('searchcontent').value;
+    if (issearch=='2'||content==""){
+        document.getElementById('searchcontent').value="";
+    }
+    // else
+    // alert(content);
+}
 
-        });
-    </script>
+
+
+</script>
 </body>
 </html>

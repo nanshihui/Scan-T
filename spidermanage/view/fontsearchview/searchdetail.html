@@ -30,7 +30,7 @@
                                                             </p>
                                                             <form class role="search" lpformnum="1" _lpchecked="1">
                                                                 <div class="form-group">
-                                                                    <input type="text"  id="searchcontent" class="form-control search clearable" onkeydown="if(event.keyCode==13){sendsearch(1,1);}" placeholder="搜索组件，例如：MySQL"> 
+                                                                    <input type="text"  id="searchcontent" class="form-control search clearable" onkeydown="if(event.keyCode==13){sendsearch(1,1);}" placeholder="搜索组件，例如：MySQL" value={{data}}> 
                                                                     <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
                                                                     
                                                                 </div>
@@ -83,7 +83,18 @@
                                     </div>
 
                                 </main>
-
+<footer id="footer" class="footer hidden-print">
+    <div class="container">
+        <div class="row">
+        <div class="about footer-col col-md-5 col-sm-12" id="about">
+            <h4>关于 Scan-T</h4>
+            <p> Scan-T 是 <a href="https://github.com/nanshihui/toolforspider" target="_blank" >独立开发者</a>支持并维护的开源项目免费 主机扫描服务，致力于成为 Bootstrap、jQuery、Angular 一样优秀的开源项目提供稳定、快速的免费主机扫描服务。Scan-T所收录的主机资源主要来源于
+             <a href="https://github.com/nanshihui/toolforspider" target="_blank" >实时扫描</a> 仓库。</p>
+             <p></p>
+             <p>反馈或建议请发送邮件至：nanshihui@gmail.com</p>
+         </div>
+     </div>
+ </footer>
 <script type="text/javascript">
 function sendsearch(issearch,num){
 
