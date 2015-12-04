@@ -10,8 +10,11 @@
 <meta name="keywords" content="">
 <meta name="author" content="sherwel">
 <link href="/static/fontsearch/css/bootstrap.min.css" rel="stylesheet">
-<link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet">
+
 <link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
+<!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+
     </head>
     <body class="home-template" ryt11928="1">
     
@@ -25,11 +28,11 @@
                                                             <p>稳定、快速、免费的主机搜索服务<br>
                                                                 <span class="package-amount">共收录了 <strong>大量</strong> 主机指纹</span>
                                                             </p>
-                                                            <form class="" role="search" lpformnum="1" _lpchecked="1">
+                                                            <form class role="search" lpformnum="1" _lpchecked="1">
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control search clearable" placeholder="搜索组件，例如：MySQL"> 
-                                                                    <i class="fa fa-search"></i>
-
+                                                                    <input type="text"  id="searchcontent" class="form-control search clearable" onkeydown="if(event.keyCode==13){sendsearch(1,1);}" placeholder="搜索组件，例如：MySQL"> 
+                                                                    <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
+                                                                    
                                                                 </div>
                                                             </form>
     				</div>
@@ -81,10 +84,24 @@
 
                                 </main>
 
+<script type="text/javascript">
+function sendsearch(issearch,num){
+
+    content=document.getElementById('searchcontent').value;
+    if (issearch=='2'||content==""){
+        document.getElementById('searchcontent').value="";
+    }
+    else
+    alert(content);
+}
+
+
+
+</script>
                     
     	<script src="/static/fontsearch/js/jquery.min.js"></script>
     	<script src="/static/fontsearch/js/bootstrap.min.js"></script>
-    	<script src="/static/fontsearch/js/geopattern.min.js"></script>
+    	 <script src="/static/fontsearch/js/geopattern.min.js"></script>
     	 <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
     	<script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
     	<script src="/static/fontsearch/js/site.min.js"></script>
