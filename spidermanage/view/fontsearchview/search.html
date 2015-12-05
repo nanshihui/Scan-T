@@ -59,7 +59,7 @@
                 <div class="row">
                     <div class="col-xs-11">
                      
-                                                            <form action="/search/searchdetail/" method="GET" role="search" lpformnum="1" _lpchecked="1">
+                                                            <form action="/search/searchmain/" method="GET" role="search" lpformnum="1" _lpchecked="1">
                                                                 <div class="form-group">
                                                                     <input type="text"  id="searchcontent" name="searchcontent" class="form-control search clearable" onkeydown="if(event.keyCode==13){sendsearch(1,1);}" placeholder="搜索组件，例如：MySQL"> 
                                                                     <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
@@ -94,6 +94,37 @@
 
     <!-- pre load bg imgs -->
 <script type="text/javascript">
+
+        var xmlhttp;
+        var message=''
+        var currpage=1;
+        var nextpagehtml;
+        var pagesize=0;
+        var nowpage=0;
+        var jobs=null;
+        //创建XMLHttpRequest对象
+        function GetXmlHttp(xmlhttp){
+            if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+            {
+                xmlhttp=new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject) //IE浏览器用activexobject对象创建
+            {
+
+                try{
+                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+                }catch(e){
+                    try{
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }catch(e){
+
+
+                    }
+                }
+            }
+            return xmlhttp;
+        }
+
 function sendsearch(issearch,num){
 
     content=document.getElementById('searchcontent').value;

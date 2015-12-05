@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^status',route.indexpage,name='status'),
     url('^search/', include('fontsearch.urls',namespace='fontsearch')),
-    url('^$', include('fontsearch.urls',namespace='fontsearch'))
+    url('^', include('fontsearch.urls',namespace='fontsearch'))
  
 ]

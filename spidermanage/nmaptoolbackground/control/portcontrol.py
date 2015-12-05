@@ -7,7 +7,7 @@ import re
 limitpage=15
 DBhelp=SQLTool.DBmanager()
 localconfig=config.Config()
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra=''):
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and'):
     validresult=False
     request_params=[]
     values_params=[]
@@ -40,7 +40,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         values_params.append(SQLTool.formatstring(detail))
     DBhelp.connectdb()
     table=localconfig.porttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)
 
     if count == 0:
         pagecount = 0;
@@ -56,7 +56,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra,command=command)
     
         DBhelp.closedb()
         portarray=[]
