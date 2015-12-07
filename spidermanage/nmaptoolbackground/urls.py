@@ -15,7 +15,8 @@ urlpatterns = [
     url(r'^jobadd/$',route.jobadd,name='jobadd'),
     url(r'^jobstart/$',route.startjob,name='startjob'),
     url(r'^jobpause/$',route.pausejob,name='pausejob'),
-    url(r'^jobdestroy/$',route.destroyjob,name='destroyjob'),    
+    url(r'^jobdestroy/$',route.destroyjob,name='destroyjob'),  
+     url(r'^chartshow/$',route.chartshow,name='chartshow'),      
     
     
 ]

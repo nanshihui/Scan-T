@@ -102,6 +102,9 @@ def indexpage(request):
     if islogin:
         return render_to_response('nmaptoolview/mainpage.html',{'username':username})
     return render_to_response('nmaptoolview/login.html', {'data':''})
+def chartshow(request):
+    response= render_to_response('nmaptoolview/chartshow.html', {'data':''})
+    return response
 def logout(request):
     response= render_to_response('nmaptoolview/login.html', {'data':''})
     webtool.delCookies(response)
