@@ -59,7 +59,7 @@ class ConnectTool:
 		else :
 			req= urllib2.Request(url+'?'+data,headers=self.__headers)
 			print '执行get访问'
-		
+		response=None
 		try:
 #			gc.enable() 
 #			gc.set_debug(gc.DEBUG_LEAK)
@@ -76,19 +76,20 @@ class ConnectTool:
 			chardit1 = chardet.detect(msg)
 			the_page = temp+str(msg)
 
-			response.close()
+			
 
-			del response
+			
 			try:
 				return the_page.decode(chardit1['encoding']).encode('utf-8')
 
 			except Exception,e:
-				 return the_page
+				return the_page
+			
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
 #		print 'head is %s' % response.info()
 
 		except Exception,e:
-
+			
 			msgg= '错误码为: %s' % str(e).encode('utf-8')
 			print msgg
 			if times <4:
@@ -99,6 +100,10 @@ class ConnectTool:
 				print '失败次数过多，停止链接'
 				the_page= msgg
 				return the_page
+		finally:
+				if response:
+					response.close()
+					del response
 		#response.close()
 
 

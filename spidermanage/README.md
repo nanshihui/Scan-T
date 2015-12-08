@@ -7,3 +7,9 @@ a new spider with more function
 * spidermanage         					web端配置文件模块(config of django)
 * nmaptoolbackground 			/nmaptool子路径下的具体细分处理(the specific ways to deal with the path)
 * zmap 为开源工具
+
+##TODO
+* 添加nmap扫描跟随zmap
+* 查看是否存在内存泄露
+* 优化任务调度
+* 添加漏洞库
