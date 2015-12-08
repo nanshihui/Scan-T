@@ -9,7 +9,7 @@ from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
-
+import httplib
 import json
 
 # Create your views here.
@@ -105,6 +105,26 @@ def indexpage(request):
 def chartshow(request):
     response= render_to_response('nmaptoolview/chartshow.html', {'data':''})
     return response
+def chartdata(request):
+    httpClient = None
+    response_data={}
+    try:
+        httpClient = httplib.HTTPConnection('echarts.baidu.com', 80, timeout=30)
+        httpClient.request('GET', '/doc/example/data/migration.json')
+ 
+    #response是HTTPResponse对象
+        response = httpClient.getresponse()
+        print response.status
+        print response.reason
+        response_data= response.read()
+        
+    except Exception, e:
+        print e
+    finally:
+        if httpClient:
+            httpClient.close()
+        print response_data
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict),  content_type="application/json")      
 def logout(request):
     response= render_to_response('nmaptoolview/login.html', {'data':''})
     webtool.delCookies(response)

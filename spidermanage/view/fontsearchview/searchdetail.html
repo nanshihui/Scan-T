@@ -216,11 +216,11 @@ function changtext(k,i){
                                                                     "<p><span class=\"subtext\">端口名:"+(ports[i].name==null?'':ports[i].name)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口产品:"+(ports[i].product==null?'':ports[i].product)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口版本:"+(ports[i].version==null?'':ports[i].version)+"</span></p>"+
-                                                                    "</div><div class=\"col-md-9 hidden-xs\">"+
+                                                                    "</div><div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':ports[i].script)+"</p></div>"+
-                                                                    "<div class=\"col-md-9 hidden-xs\">"+
+                                                                    "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
-                                                                    "<div class=\"box\">"+(ports[i].detail==null?'无':ports[i].detail)+"</div></div></div></a> ";
+                                                                    "<div class=\"box\"><pre><code> "+(ports[i].detail==null?'无':ports[i].detail).toString()+"</code></pre></div></div></div></a> ";
 
                                            
                                             }
