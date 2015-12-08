@@ -28,7 +28,8 @@ def detailpage(request):
     response_data['result'] = '0'
     print content
     if  content!='':
-        ports,portcount,portpagecount=portcontrol.portshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,script=content,detail=content,page=page,command='or')
+        extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\''
+        ports,portcount,portpagecount=portcontrol.portshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
 
         response_data['result'] = '1' 
     

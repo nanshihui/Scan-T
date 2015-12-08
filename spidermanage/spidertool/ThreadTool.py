@@ -147,7 +147,7 @@ class ThreadTool:
 		while True:
 			if self.taskleft()>0:
 				try:
-					req = self.q_request.get(block=True,timeout=5)
+					req = self.q_request.get(block=True,timeout=10000)
 				except:
 					continue
 			else:
@@ -183,7 +183,7 @@ class ThreadTool:
 		while True:
 			if self.taskleft()>0:
 				try:
-					req = self.q_request.get(block=True,timeout=5)
+					req = self.q_request.get(block=True,timeout=10000)
 				except:
 					continue
 			else:
