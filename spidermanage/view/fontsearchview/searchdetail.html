@@ -14,7 +14,23 @@
 <link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
 <!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+<style type="text/css">
+.highlight {
+    background-color: #fff34d;
+    -moz-border-radius: 5px; /* FF1+ */
+    -webkit-border-radius: 5px; /* Saf3-4 */
+    border-radius: 5px; /* Opera 10.5, IE 9, Saf5, Chrome */
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* FF3.5+ */
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Saf3.0+, Chrome */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Opera 10.5+, IE 9.0 */
+}
 
+.highlight {
+    padding:1px 4px;
+    margin:0 -4px;
+}
+
+    </style>
     </head>
     <body class="home-template" ryt11928="1" onload="searchdetail(0);">
     
@@ -28,7 +44,7 @@
                                                             <p>稳定、快速、免费的主机搜索服务<br>
                                                                 <span class="package-amount">共收录了 <strong>大量</strong> 主机指纹</span>
                                                             </p>
-                                                            <div   role="search" lpformnum="1" _lpchecked="1" >
+                                                            <div   role="search"  >
                                                                 <div class="form-group">
                                                                     <input type="text"  id="searchcontent" class="form-control search clearable" placeholder="搜索组件，例如：MySQL" value={{data}}> 
                                                                     <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
@@ -49,7 +65,8 @@
     	</div>
             </div>
         </div>
-    <main class="packages-list-container" id="all-packages">
+    <main >
+<!--   <  main    class="packages-list-container" id="all-packages"> -->
     	<div class="container">
     		<div class="list-group packages" id ="resultinfo">
                                       
@@ -220,13 +237,21 @@ function changtext(k,i){
                                                                     "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':ports[i].script)+"</p></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
-                                                                    "<div class=\"box\"><pre><code> "+(ports[i].detail==null?'无':ports[i].detail).toString()+"</code></pre></div></div></div></a> ";
+                                                                    "<div class=\"box\"><xmp> "+(ports[i].detail==null?'无':ports[i].detail).toString()+"</xmp></div></div></div></a> ";
 
-                                           
+                                           // xmp
                                             }
 
 
                                                 document.getElementById("resultinfo").innerHTML=bodyhtml;
+
+                                                  var ccontent=document.getElementById("searchcontent").value;
+
+                                                  $('body').highlight( ccontent );
+
+
+                                                // var hl = new Highlighter();  
+                                                //                hl.highlight(document.body,ccontent);  
                                                     var divs = document.getElementsByTagName('div');
                                                      for (var i = 0; i < divs.length; i++) {
                                                                        if (divs[i].className == 'box') show(divs[i]);
@@ -278,9 +303,14 @@ document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
   searchdetail(0);
  }
 }
+
+
+
 </script>
-                    
-    	 <!-- // <script src="/static/fontsearch/js/jquery.min.js"></script> -->
+       
+    	<script src="/static/fontsearch/js/jquery.min.js"></script>
+        <script src="/static/fontsearch/js/highlight.js"></script>
+        
     	<script src="/static/fontsearch/js/bootstrap.min.js"></script>
     	 <script src="/static/fontsearch/js/geopattern.min.js"></script>
     	 <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
