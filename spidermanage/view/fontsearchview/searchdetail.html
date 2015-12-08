@@ -227,8 +227,8 @@ function changtext(k,i){
                              var bodyhtml = "";
                              for (var i =0 ;i<datalength;i++){
                                               
-                                                 bodyhtml+="<a href=\"http://"+ports[i].ip+':'+ports[i].port+"\" class=\"package list-group-item\" data-library-name=\"bootstrap\" target=\"_blank\" ><div class=\"row\"><div class=\"col-md-3\">"+
-                                                                    "<h4 class=\"package-name\">"+(ports[i].ip==null?'':ports[i].ip)+"</h4><p></p>"+
+                                                 bodyhtml+="<div class=\"package list-group-item\" data-library-name=\"bootstrap\" target=\"_blank\" ><div class=\"row\"><div class=\"col-md-3\">"+
+                                                                    "<a href=\"http://"+ports[i].ip+':'+ports[i].port+"\"<h4 class=\"package-name\">"+(ports[i].ip==null?'':ports[i].ip)+"</h4><p></p></a>"+
                                                                     "<p><span class=\"subtext\">端口:"+(ports[i].port==null?'':ports[i].port)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口名:"+(ports[i].name==null?'':ports[i].name)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口产品:"+(ports[i].product==null?'':ports[i].product)+"</span></p>"+
@@ -237,14 +237,14 @@ function changtext(k,i){
                                                                     "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':ports[i].script)+"</p></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
-                                                                    "<div class=\"box\"><xmp> "+(ports[i].detail==null?'无':ports[i].detail).toString()+"</xmp></div></div></div></a> ";
+                                                                    "<div class=\"box\"><pre> "+(ports[i].detail==null?'无':encodeHtml(ports[i].detail).toString())+"</pre></div></div></div></div> ";
 
                                            // xmp
                                             }
 
 
                                                 document.getElementById("resultinfo").innerHTML=bodyhtml;
-
+                                  
                                                   var ccontent=document.getElementById("searchcontent").value;
 
                                                   $('body').highlight( ccontent );
@@ -305,7 +305,16 @@ document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
 }
 
 
-
+ encodeHtml = function(s){
+      return (typeof s != "string") ? s :
+          s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
+                    function($0){
+                        var c = $0.charCodeAt(0), r = ["&#"];
+                        c = (c == 0x20) ? 0xA0 : c;
+                        r.push(c); r.push(";");
+                        return r.join("");
+                    });
+  };
 </script>
        
     	<script src="/static/fontsearch/js/jquery.min.js"></script>

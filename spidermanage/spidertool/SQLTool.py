@@ -18,7 +18,7 @@ class DBmanager:
 	__isconnect=0
 	__charset=''
 	__cachemin=1
-	__cachemax=30
+	__cachemax=100
 	__pool = None
 	def __init__(self):
 		temp=config.Config
