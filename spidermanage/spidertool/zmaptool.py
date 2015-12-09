@@ -6,6 +6,7 @@ from subprocess import Popen, PIPE
 import os
 import SQLTool
 import config,portscantask
+from nmaptoolbackground.model import job
 class Zmaptool:
     def __init__(self):
         self.sqlTool=SQLTool.DBmanager()
@@ -31,8 +32,12 @@ class Zmaptool:
             self.sqlTool.connectdb()
             localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
             insertdata=[]
+            jobs=[]
             for i in list:
                 insertdata.append((str(i),port,localtime,'open'))
+                
+#                 ajob=job.Job(jobaddress=temp['taskaddress'],jobport=temp['taskport'],forcesearch=temp['forcesearch'])
+#                 jobs.append(ajob)
                 self.portscan.add_work([('http',str(i),port,'open')])
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
             self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)

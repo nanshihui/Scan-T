@@ -3,7 +3,7 @@
 import uuid
 from spidertool import webtool
 class Job(object):
-    def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1',jobid='',result='',endtime='',createtime='',argument='',forcesearch=''):
+    def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1',jobid='',result='',endtime='',createtime='',argument='',forcesearch='',isjob='1'):
         '''
         Constructor
         '''
@@ -18,6 +18,7 @@ class Job(object):
         self.priority=priority
         self.starttime=starttime
         self.username=username
+        self.isjob=isjob
         if forcesearch!='':
             self.forcesearch=forcesearch
             
@@ -61,6 +62,8 @@ class Job(object):
         return self.jobport
     def getPriority(self):
         return self.priority 
+    def getisJob(self):
+        return self.isjob 
     def getStatus(self):
         return self.jobstatus
     def getStarttime(self):

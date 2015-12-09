@@ -19,10 +19,13 @@ class snifferTask(TaskTool):
         hosts=req.getJobaddress();
         ports=req.getPort()
         arguments=req.getArgument()
-        tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
+        isjob=req.getisJob()
+        if isjob=='1':
+            tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
         ans = self.sniffer.scanaddress([hosts], [str(ports)], arguments)
         print threadname+'任务结束'+str(datetime.datetime.now())
-        tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
+        if isjob=='1':
+            tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
         return ans
     
 if __name__ == "__main__":   
