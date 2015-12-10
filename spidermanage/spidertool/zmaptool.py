@@ -55,7 +55,8 @@ class Zmaptool:
 
                 tasktotally.add_work(jobs)
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
-            self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)
+            self.sqlTool.inserttableinfo_byparams(table=self.config.porttable,select_params=['ip','port','timesearch','state'],insert_values=insertdata,extra=extra)
+
             self.sqlTool.closedb()
 
 

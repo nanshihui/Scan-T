@@ -126,7 +126,8 @@ def jobadd(job):
     table=localconfig.tasktable
     DBhelp.connectdb()
 
-    tempresult=DBhelp.inserttableinfo_byparams(table, request_params, [tuple(values_params)])
+    tempresult=DBhelp.inserttableinfo_byparams(table=table, select_params=request_params,insert_values= [tuple(values_params)])
+
     DBhelp.closedb()
 
     return tempresult

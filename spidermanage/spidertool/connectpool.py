@@ -26,7 +26,7 @@ class ConnectPool:
 		return 1 
 	def  getConnect(self,URL,way='GET',params={},times=1):
 		self.__connect_pool.put(1)
-		print URL
+		print '当前访问的位置为： '+URL
 # 		gc.enable() 
 # 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
 		page=self.connectTool.getHTML(URL,way,params,times)

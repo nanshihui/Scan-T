@@ -6,6 +6,7 @@ import time
 import datetime
 from MySQLdb.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
+import debugdetail as Debug
 DBhelp=None
 def getObject():
 	global DBhelp
@@ -21,7 +22,7 @@ class DBmanager:
 	__db='' 
 	__port=3306
 	__connection_time=0
-	__isconnect=1
+	__isconnect=0
 	__charset=''
 	__cachemin=1
 	__cachemax=100
@@ -50,7 +51,7 @@ class DBmanager:
 # 			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset,cursorclass=DictCursor)
 			self.__cur=self.__conn.cursor()
 # 			self.__isconnect=1
-		
+			self.__isconnect=1
 			print "success connet "
 		except MySQLdb.Error,e:
 			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
@@ -63,7 +64,8 @@ class DBmanager:
 				print  'connect fail'
 	def closedb(self):
 # 		if  self.__isconnect==1:
-		if  True:
+
+		if  self.__cur and self.__conn:
 			self.__cur.close()
 			self.__conn.close()
 # 			self.__isconnect=0
@@ -75,6 +77,11 @@ class DBmanager:
 	#@select_params				要显示的列名，数组
 	#@request_params     		条件匹配参数，数组
 	#@equal_params				每一个与request_params对应相等的数组
+	def isdisconnect(self,e):
+		if 'MySQL server has gone away' in str(e) or 'cursor closed' in  str(e) or 'Lost connection to MySQL server during query' in str(e):
+			return True
+		else:
+			return False
 	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[],limit='',order='',extra='',command='and'):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
@@ -110,7 +117,16 @@ class DBmanager:
 					sql+=' order by '+order
 				sql+=limit
 				print sql
-				count=self.__cur.execute(sql)
+				count=None
+				try:
+					count=self.__cur.execute(sql)
+				except MySQLdb.Error,e:
+					if self.isdisconnect(e):
+						self.connectdb()
+						count=self.__cur.execute(sql)
+					else:
+						debug=Debug.getObject()
+						debug.error(str(e))
 
 				if count>0:
 					result=self.__cur.fetchall()
@@ -167,10 +183,25 @@ class DBmanager:
 					return
 
 				print sql
-				returnmeg=self.__cur.executemany(sql,insert_values)
-				print '返回的消息：　'+str(returnmeg)
-				self.__conn.commit()
+				returnmeg=None
+				try:
+					returnmeg=self.__cur.executemany(sql,insert_values)
+					print '返回的消息：　'+str(returnmeg)
+				
+					self.__conn.commit()
+				except MySQLdb.Error,e:
+					if self.isdisconnect(e):
+						
+						print '进行重连'
+						self.connectdb()
+						returnmeg=self.__cur.executemany(sql,insert_values)
+						print '返回的消息：　'+str(returnmeg)
+				
+						self.__conn.commit()
 
+					else:
+						debug=Debug.getObject()
+						debug.error(str(e))
 
 			except MySQLdb.Error,e:
 				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
@@ -215,9 +246,20 @@ class DBmanager:
 				sql+=extra
 
 				print sql
-				count=self.__cur.execute(sql)
-
-				self.__conn.commit()
+				count=None
+				try:
+					count=self.__cur.execute(sql)
+				
+					self.__conn.commit()
+				except MySQLdb.Error,e:
+					if self.isdisconnect(e):
+						self.connectdb()
+						count=self.__cur.execute(sql)
+				
+						self.__conn.commit()
+					else:
+						debug=Debug.getObject()
+						debug.error(str(e))
 				if count>0:
 					return True
 				else:
@@ -258,7 +300,20 @@ class DBmanager:
 					sql=sql+updatevalue[ulen-1]+'  =%s ' 
 				sql+=extra
 				print sql
-				returnmeg=self.__cur.executemany(sql,insert_values)
+				
+				
+				returnmeg=None
+				try:
+					returnmeg=self.__cur.executemany(sql,insert_values)
+				except MySQLdb.Error,e:
+					print str(e)
+					if self.isdisconnect(e):
+						self.connectdb()
+						returnmeg=self.__cur.executemany(sql,insert_values)
+					else:
+						debug=Debug.getObject()
+						debug.error(str(e))	
+				
 				print '返回的消息：　'+str(returnmeg)
 				if returnmeg>0:
 					self.__conn.commit()
