@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nmaptoolbackground',
-    'fontsearch'
+    'fontsearch',
+
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,7 +55,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+
 ]
 
 ROOT_URLCONF = 'spidermanage.urls'
@@ -138,6 +140,8 @@ STATICFILES_FINDERS= (
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder"
 )
+
+
 
 
 

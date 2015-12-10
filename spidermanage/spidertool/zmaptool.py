@@ -10,7 +10,7 @@ from nmaptoolbackground.control import taskcontrol
 from nmaptoolbackground.model import job
 import Sqldatatask
 import Sqldata
-
+import   trace 
 portname = {'80':'http','8080':'http','443':'https','22':'telnet'} 
 class Zmaptool:
     def __init__(self):

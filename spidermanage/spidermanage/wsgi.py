@@ -14,7 +14,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from nmaptoolbackground.control import taskcontrol
 
-# from dozer import Dozer
+from dozer import Dozer,Logview
 
 
 
@@ -22,6 +22,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "spidermanage.settings")
 
 application = get_wsgi_application()
 # application = Dozer(application)
+# 
+# application = Logview(application)
 taskcontrol.scheduleinit()
 
 

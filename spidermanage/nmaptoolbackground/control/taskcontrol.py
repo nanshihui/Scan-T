@@ -36,6 +36,6 @@ def scheduleinit():
     mainschedule=schedule.schedulecontrol()
 
     mainschedule.addschedule(taskitem.tick,'0-7','0-23','33','0',id='nmap')   
-#     mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','29','0',id='zmap')   
+    mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','29','0',id='zmap')   
     print 'init schedule'
 

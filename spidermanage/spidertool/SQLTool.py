@@ -189,6 +189,12 @@ class DBmanager:
 					print '返回的消息：　'+str(returnmeg)
 				
 					self.__conn.commit()
+					if str(returnmeg)=='0':
+						print '进行重试'
+						self.connectdb()
+						returnmeg=self.__cur.executemany(sql,insert_values)
+						print '返回的消息：　'+str(returnmeg)		
+						self.__conn.commit()				
 				except MySQLdb.Error,e:
 					if self.isdisconnect(e):
 						
