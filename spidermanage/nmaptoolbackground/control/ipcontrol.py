@@ -5,7 +5,7 @@ from ..model import ipmain
 
 
 limitpage=15
-DBhelp=SQLTool.DBmanager()
+DBhelp=SQLTool.getObject()
 localconfig=config.Config()
 def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostname='',state='',page='0'):
     validresult=False

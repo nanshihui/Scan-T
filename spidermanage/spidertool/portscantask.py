@@ -17,7 +17,7 @@ def getObject():
 class PortscanTask(TaskTool):
     def __init__(self,isThread=1,deamon=True):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        self.sqlTool=SQLTool.DBmanager()
+        self.sqlTool=SQLTool.getObject()
         self.connectpool=connectpool.getObject()
         self.portscan=portscantool.Portscantool()
         self.config=config.Config
@@ -31,10 +31,14 @@ class PortscanTask(TaskTool):
         ip=req[1]
         port=req[2]
         if req[0]=='http' or req[0]=='https':
-            if ip[0]=='h':
+            if ip[0:4]=='http':
                 address=ip+':'+port
             else:
-                address=req[0]+'://'+ip+':'+port
+                if  port=='443':
+                    address='https'+'://'+ip+':'+port
+                else:
+                    
+                    address=req[0]+'://'+ip+':'+port
             print address
             ans = self.connectpool.getConnect(address)
         else:
@@ -48,7 +52,7 @@ class PortscanTask(TaskTool):
         insertdata.append((ip,port,localtime,str(temp)))
 #         self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
                                               
-        extra=' on duplicate key update  detail=\''+str(temp).replace("'","\\'")+'\' , timesearch=\''+localtime+'\''
+        extra=' on duplicate key update  detail=\''+str(temp).replace("'","&ocirc;")+'\' , timesearch=\''+localtime+'\''
 #         self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
         self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail'],insertdata,extra=extra)
 

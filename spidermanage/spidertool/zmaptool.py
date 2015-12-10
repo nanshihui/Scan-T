@@ -6,14 +6,19 @@ from subprocess import Popen, PIPE
 import os
 import SQLTool
 import config,portscantask
+from nmaptoolbackground.control import taskcontrol
 from nmaptoolbackground.model import job
+
+
+
+portname = {'80':'http','8080':'http','443':'https','22':'telnet'} 
 class Zmaptool:
     def __init__(self):
-        self.sqlTool=SQLTool.DBmanager()
+        self.sqlTool=SQLTool.getObject()
         self.config=config.Config
         self.portscan=portscantask.getObject()
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
-    def do_scan(self,port='80',num='10',):
+    def do_scan(self,port='80',num='10',needdetail='0'):
         path=os.getcwd()
 #         p= Popen(" ./zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
         
@@ -36,12 +41,24 @@ class Zmaptool:
             for i in list:
                 insertdata.append((str(i),port,localtime,'open'))
                 
-#                 ajob=job.Job(jobaddress=temp['taskaddress'],jobport=temp['taskport'],forcesearch=temp['forcesearch'])
-#                 jobs.append(ajob)
-                self.portscan.add_work([('http',str(i),port,'open')])
+
+                if needdetail=='0':
+                    global portname
+                    nowportname=portname.get(port,'http')
+                    self.portscan.add_work([(nowportname,str(i),port,'open')])
+                else:
+                    
+                    ajob=job.Job(jobaddress=str(i),jobport='',forcesearch='0',isjob='0')
+                    jobs.append(ajob)
+            if needdetail!='0':
+                tasktotally=taskcontrol.getObject()
+
+                tasktotally.add_work(jobs)
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
             self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','state'],insertdata,extra)
             self.sqlTool.closedb()
+
+
 if __name__ == "__main__":
     temp=Zmaptool()
     temp.do_scan()

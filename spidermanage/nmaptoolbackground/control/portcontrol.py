@@ -5,7 +5,7 @@ from ..model import ports
 import re
 
 limitpage=15
-DBhelp=SQLTool.DBmanager()
+DBhelp=SQLTool.getObject()
 localconfig=config.Config()
 def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and'):
     validresult=False
@@ -38,6 +38,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if detail!='':
         request_params.append('detail')
         values_params.append(SQLTool.formatstring(detail))
+    global DBhelp
     DBhelp.connectdb()
     table=localconfig.porttable
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)

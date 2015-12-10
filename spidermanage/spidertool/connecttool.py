@@ -103,7 +103,7 @@ class ConnectTool:
 		finally:
 				if response:
 					response.close()
-					del response
+# 					del response
 		#response.close()
 
 
@@ -113,7 +113,7 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w=p.getHTML('http://218.104.245.70:8080')
+	w=p.getHTML('http://www.ijinshan.com')
  	print w
 	
 	

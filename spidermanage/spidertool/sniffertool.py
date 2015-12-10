@@ -39,7 +39,7 @@ class SniffrtTool(object):
         except:
             print('Unexpected error:', sys.exc_info()[0])
         self.config=config.Config
-        self.sqlTool=SQLTool.DBmanager()
+        self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
         
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
@@ -108,6 +108,7 @@ class SniffrtTool(object):
 
                         
                         self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+                        
                         self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate)])
 
                 elif 'udp' in  tmp['scan'][host].keys():

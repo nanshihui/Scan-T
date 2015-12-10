@@ -5,7 +5,7 @@ from ..model import job
 
 
 limitpage=15
-DBhelp=SQLTool.DBmanager()
+DBhelp=SQLTool.getObject()
 
 localconfig=config.Config()
 def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0'):

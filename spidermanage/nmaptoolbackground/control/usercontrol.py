@@ -1,9 +1,10 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import SQLTool ,config
-DBhelp=SQLTool.DBmanager()
+DBhelp=SQLTool.getObject()
 localconfig=config.Config()
 def validuser(username,password):
+    global DBhelp
     validresult=False
     DBhelp.connectdb()
     print localconfig.usertable

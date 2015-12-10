@@ -6,6 +6,12 @@ import time
 import datetime
 from MySQLdb.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
+DBhelp=None
+def getObject():
+	global DBhelp
+	if DBhelp is None:
+		DBhelp=DBmanager()
+	return DBhelp
 class DBmanager:
 	__cur=''
 	__conn=''
@@ -15,7 +21,7 @@ class DBmanager:
 	__db='' 
 	__port=3306
 	__connection_time=0
-	__isconnect=0
+	__isconnect=1
 	__charset=''
 	__cachemin=1
 	__cachemax=100
@@ -32,7 +38,7 @@ class DBmanager:
 		self.__cachemin=temp.cachemin
 	def getConnect(self):
 		if self.__pool is None:
-			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=self.__cachemax ,
+			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=0 ,maxshared=0,maxconnections=0,blocking=True,maxusage=0,
 									host=self.__host , port=self.__port , user=self.__user , passwd=self.__passwd,
 									db=self.__db,use_unicode=False,charset=self.__charset
  									,cursorclass=DictCursor
@@ -43,7 +49,7 @@ class DBmanager:
 			self.__conn=self.getConnect()
 # 			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset,cursorclass=DictCursor)
 			self.__cur=self.__conn.cursor()
-			self.__isconnect=1
+# 			self.__isconnect=1
 		
 			print "success connet "
 		except MySQLdb.Error,e:
@@ -56,10 +62,11 @@ class DBmanager:
 			else:
 				print  'connect fail'
 	def closedb(self):
-		if  self.__isconnect==1:
+# 		if  self.__isconnect==1:
+		if  True:
 			self.__cur.close()
 			self.__conn.close()
-			self.__isconnect=0
+# 			self.__isconnect=0
 			print 'database has benn closed'
 		else:
 			print '''has not connet'''

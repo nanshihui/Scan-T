@@ -1,9 +1,10 @@
-from spidertool import sniffertask,zmaptool
+from spidertool import sniffertask
 import schedule
 from datetime import datetime
 import time
 import logging
 import random
+
 logging.basicConfig()
 nmaptask=None
 mainschedule=None
@@ -13,14 +14,7 @@ def getObject():
         nmaptask=sniffertask.snifferTask(1)
         nmaptask.set_deal_num(5)
     return nmaptask
-operator = {'1':'80','2':'8080','3':'443','4':'22','5':'23'}  
-def tick():
-    num=random.randint(1, 1)
 
-    temp=zmaptool.Zmaptool()
-    
-    temp.do_scan(port=operator.get(str(num)),num='100')
-    print('Tick! The time is: %s' % datetime.now())
 
 def taskinit():
     global  nmaptask 
@@ -37,9 +31,11 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
         mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
 def scheduleinit():
+    import taskitem
     global mainschedule
     mainschedule=schedule.schedulecontrol()
-    mainschedule.addschedule(tick,'0-7','0-23','*/20','0',id='zmap')
-
+#     mainschedule.addschedule(taskitem.tick,'0-7','0-23','33','0',id='zmap')
+    mainschedule.addschedule(taskitem.tick,'0-7','0-23','51','0',id='nmap')   
+    mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','35','0',id='zmap')   
     print 'init schedule'
 

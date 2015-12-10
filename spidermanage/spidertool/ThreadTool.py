@@ -145,20 +145,21 @@ class ThreadTool:
 
 	def getTaskProcess(self):
 		while True:
-			if self.taskleft()>0:
-				try:
-					req = self.q_request.get(block=True,timeout=10000)
-				except:
-					continue
-			else:
-				threadname=multiprocessing.current_process().name
-				print threadname+'关闭'
-				with self.lock:	
-					self.alivenum-=1
-				break
+# 			if self.taskleft()>0:
+# 				try:
+# 					req = self.q_request.get(block=True,timeout=10000)
+# 				except:
+# 					continue
+# 			else:
+# 				threadname=multiprocessing.current_process().name
+# 				print threadname+'关闭'
+# 				with self.lock:	
+# 					self.alivenum-=1
+# 				break
+			req = self.q_request.get()
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
-#			self.lock.acquire()
+
 			threadname=multiprocessing.current_process().name
 
 			print '进程'+threadname+'发起请求: '
@@ -181,20 +182,22 @@ class ThreadTool:
 
 	def getTask(self):
 		while True:
-			if self.taskleft()>0:
-				try:
-					req = self.q_request.get(block=True,timeout=10000)
-				except:
-					continue
-			else:
-				threadname=threading.currentThread().getName()
-				with self.lock:	
-					self.alivenum-=1
-				print threadname+'关闭'
-				break
+# 			if self.taskleft()>0:
+# 				try:
+# 					req = self.q_request.get(block=True,timeout=10000)
+# 				except:
+# 					continue
+# 			else:
+# 				threadname=threading.currentThread().getName()
+# 				with self.lock:	
+# 					self.alivenum-=1
+# 				print threadname+'关闭'
+# 				break
+			req = self.q_request.get()
+			
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
-#			self.lock.acquire()
+
 
 			threadname=threading.currentThread().getName()
 
