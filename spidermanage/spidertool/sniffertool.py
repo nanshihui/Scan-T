@@ -12,7 +12,9 @@ import nmap
 import os
 import time
 import SQLTool
+import Sqldatatask
 import config
+import Sqldata
 from numpy.numarray.numerictypes import IsType
 import connectpool
 import portscantask
@@ -39,7 +41,8 @@ class SniffrtTool(object):
         except:
             print('Unexpected error:', sys.exc_info()[0])
         self.config=config.Config
-        self.sqlTool=SQLTool.getObject()
+        self.sqlTool=Sqldatatask.getObject()
+#         self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
         
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
@@ -80,7 +83,7 @@ class SniffrtTool(object):
             result=''
             try:
                 result =  u"ip地址:%s 主机名:%s  ......  %s\n" %(host,tmp['scan'][host]['hostname'],tmp['scan'][host]['status']['state'])
-                self.sqlTool.connectdb()
+#                 self.sqlTool.connectdb()
            
                 if 'osclass' in tmp['scan'][host].keys():
                     result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass']['vendor']),str(tmp['scan'][host]['osclass']['osfamily']),str(tmp['scan'][host]['osclass']['osgen']),str(tmp['scan'][host]['osclass']['accuracy']))
@@ -93,7 +96,15 @@ class SniffrtTool(object):
                 temphostname=str(tmp['scan'][host].get('hostname','null'))
                 tempstate=str(tmp['scan'][host]['status'].get('state','null'))
 #                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime
-                self.sqlTool.replaceinserttableinfo_byparams(self.config.iptable, ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)])         
+
+#                 self.sqlTool.replaceinserttableinfo_byparams(table=self.config.iptable,select_params= ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],insert_values= [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)])         
+                sqldatawprk=[]
+                dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
+                tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+                sqldatawprk.append(tempwprk)
+                self.sqlTool.add_work(sqldatawprk)               
+                
+                
                 if 'tcp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['tcp'].keys()
 
@@ -107,8 +118,12 @@ class SniffrtTool(object):
                         tempscript=str(tmp['scan'][host]['tcp'][port].get('script',''))
 
                         
-                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
-                        
+#                         self.sqlTool.replaceinserttableinfo_byparams(table=self.config.porttable,select_params= ['ip','port','timesearch','state','name','product','version','script'],insert_values= [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+                        sqldatawprk=[]
+                        dic={"table":self.config.porttable,"select_params": ['ip','port','timesearch','state','name','product','version','script'],"insert_values": [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)]}
+                        tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+                        sqldatawprk.append(tempwprk)
+                        self.sqlTool.add_work(sqldatawprk)
                         self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate)])
 
                 elif 'udp' in  tmp['scan'][host].keys():
@@ -122,8 +137,13 @@ class SniffrtTool(object):
                         tempproduct=str(tmp['scan'][host]['udp'][port].get('product',''))
                         tempportversion=str(tmp['scan'][host]['udp'][port].get('version',''))
                         tempscript=str(tmp['scan'][host]['udp'][port].get('script',''))
-                        self.sqlTool.replaceinserttableinfo_byparams(self.config.porttable, ['ip','port','timesearch','state','name','product','version','script'], [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
-
+                        
+#                         self.sqlTool.replaceinserttableinfo_byparams(table=self.config.porttable,select_params= ['ip','port','timesearch','state','name','product','version','script'],insert_values= [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
+                        sqldatawprk=[]
+                        dic={"table":self.config.porttable,"select_params": ['ip','port','timesearch','state','name','product','version','script'],"insert_values": [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)]}
+                        tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+                        sqldatawprk.append(tempwprk)
+                        self.sqlTool.add_work(sqldatawprk)
             except Exception,e:
                 print e
             except IOError,e:

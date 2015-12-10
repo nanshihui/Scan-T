@@ -8,13 +8,14 @@ import SQLTool
 import config,portscantask
 from nmaptoolbackground.control import taskcontrol
 from nmaptoolbackground.model import job
-
-
+import Sqldatatask
+import Sqldata
 
 portname = {'80':'http','8080':'http','443':'https','22':'telnet'} 
 class Zmaptool:
     def __init__(self):
-        self.sqlTool=SQLTool.getObject()
+#         self.sqlTool=SQLTool.getObject()
+        self.sqlTool=Sqldatatask.getObject()
         self.config=config.Config
         self.portscan=portscantask.getObject()
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
@@ -34,7 +35,7 @@ class Zmaptool:
             returnmsg=p.stdout.read() 
             p = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}')
             list= p.findall(returnmsg)
-            self.sqlTool.connectdb()
+#             self.sqlTool.connectdb()
             localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
             insertdata=[]
             jobs=[]
@@ -55,9 +56,15 @@ class Zmaptool:
 
                 tasktotally.add_work(jobs)
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
-            self.sqlTool.inserttableinfo_byparams(table=self.config.porttable,select_params=['ip','port','timesearch','state'],insert_values=insertdata,extra=extra)
-
-            self.sqlTool.closedb()
+            
+            
+#             self.sqlTool.inserttableinfo_byparams(table=self.config.porttable,select_params=['ip','port','timesearch','state'],insert_values=insertdata,extra=extra)
+            sqldatawprk=[]
+            dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
+            tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
+            sqldatawprk.append(tempwprk)
+            self.sqlTool.add_work(sqldatawprk)       
+#             self.sqlTool.closedb()
 
 
 if __name__ == "__main__":

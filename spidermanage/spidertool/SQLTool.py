@@ -55,7 +55,7 @@ class DBmanager:
 			print "success connet "
 		except MySQLdb.Error,e:
 			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
-			if  self.__connection_time<3:
+			if  self.__connection_time<3 :
 				print 'time out ! and reconnect'
 				time.sleep(3)
 				self.__connection_time=self.__connection_time+1
