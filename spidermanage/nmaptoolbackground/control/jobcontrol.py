@@ -44,7 +44,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     else:
         pagecount = count / limitpage
 
-    print pagecount
+#     print pagecount
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)

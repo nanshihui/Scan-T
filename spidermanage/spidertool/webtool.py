@@ -44,10 +44,10 @@ def getlocaltime():
 	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
 def isip(ip):
  	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
-  		print 'IP!'
+#   		print 'IP!'
   		return True
   	else:
-  		print 'web'
+#   		print 'web'
   		return False
 	
 	

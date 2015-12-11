@@ -49,7 +49,7 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     else:
         pagecount = count / limitpage
 
-    print pagecount
+#     print pagecount
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)

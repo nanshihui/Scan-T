@@ -7,7 +7,6 @@ def validuser(username,password):
     global DBhelp
     validresult=False
     DBhelp.connectdb()
-    print localconfig.usertable
     result,content,count,col=DBhelp.searchtableinfo_byparams([localconfig.usertable], ['username','role','userpower'], ['username','password'], [SQLTool.formatstring(username),SQLTool.formatstring(password)])
     DBhelp.closedb()
     role=''

@@ -54,7 +54,7 @@ class DBmanager:
 			self.__isconnect=1
 			print "success connet "
 		except MySQLdb.Error,e:
-			print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+			print  '创建连接失败，准备重连  :' +str(e)
 			if  self.__connection_time<3 :
 				print 'time out ! and reconnect'
 				time.sleep(3)
@@ -116,7 +116,7 @@ class DBmanager:
 				if order!='':
 					sql+=' order by '+order
 				sql+=limit
-				print sql
+# 				print sql
 				count=None
 				try:
 					count=self.__cur.execute(sql)
@@ -153,7 +153,7 @@ class DBmanager:
 					print '没有相关信息'
 					return (0,0,0,0)
 			except MySQLdb.Error,e:
-				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				print '操作的过程中出现异常 :' +str(e)
 				return (0,0,0,0)
 		else:
 			print '''has not connet'''  
@@ -182,7 +182,7 @@ class DBmanager:
 				else:
 					return
 
-				print sql
+# 				print sql
 				returnmeg=None
 				try:
 					returnmeg=self.__cur.executemany(sql,insert_values)
@@ -210,7 +210,7 @@ class DBmanager:
 						debug.error(str(e))
 
 			except MySQLdb.Error,e:
-				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				print  '操作的过程中出现异常:' +str(e)
 				return
 		else:
 			print '''has not connet'''  
@@ -251,7 +251,7 @@ class DBmanager:
 				
 				sql+=extra
 
-				print sql
+# 				print sql
 				count=None
 				try:
 					count=self.__cur.execute(sql)
@@ -272,7 +272,7 @@ class DBmanager:
 					return False
 
 			except MySQLdb.Error,e:
-				print "Mysql Error %d: %s" % (e.args[0], e.args[1])
+				print  '操作的过程中出现异常 :' +str(e)
 				return False
 		else:
 			print '''has not connet'''  
@@ -305,7 +305,7 @@ class DBmanager:
 						sql=sql+updatevalue[o]+' =  %s '+'  ,'	
 					sql=sql+updatevalue[ulen-1]+'  =%s ' 
 				sql+=extra
-				print sql
+# 				print sql
 				
 				
 				returnmeg=None
@@ -329,7 +329,7 @@ class DBmanager:
 
 
 			except Exception,e:
-				print "Mysql Error: %s" % e
+				print  '操作的过程中出现异常 :' +str(e)
 		else:
 			print '''has not connet'''  
 	

@@ -10,7 +10,7 @@ def getObject():
 	global sqltaskdata
 	if sqltaskdata is None:
 		sqltaskdata=SqlDataTask()
-		sqltaskdata.set_deal_num(2)
+		sqltaskdata.set_deal_num(1)
 	return sqltaskdata
 class SqlDataTask(TaskTool):
 	def __init__(self,isThread=1):

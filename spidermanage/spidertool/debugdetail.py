@@ -22,7 +22,7 @@ def getObject():
 # 给logger添加handler
         logger.addHandler(fh)
         logger.addHandler(ch)
-        return logger
+    return logger
 
 
 # 记录一条日志
