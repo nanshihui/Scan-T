@@ -62,7 +62,7 @@ class PortscanTask(TaskTool):
         self.sqlTool.add_work(sqldatawprk)
 #         inserttableinfo_byparams(table=self.config.porttable,select_params=['ip','port','timesearch','detail'],insert_values=insertdata,extra=extra)
 
-        print '插入成功'
+
 #         self.sqlTool.closedb()
         print threadname+'任务结束'+str(datetime.datetime.now())
         

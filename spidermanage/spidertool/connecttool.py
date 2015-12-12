@@ -54,11 +54,11 @@ class ConnectTool:
 
 		elif len(params)==0:
 			req= urllib2.Request(url,headers=self.__headers)
-			print '执行get访问'
+
 
 		else :
 			req= urllib2.Request(url+'?'+data,headers=self.__headers)
-			print '执行get访问'
+
 		response=None
 		try:
 #			gc.enable() 
@@ -89,8 +89,11 @@ class ConnectTool:
 #		print 'head is %s' % response.info()
 
 		except Exception,e:
-			
-			msgg= '错误码为: %s' % str(e).encode('utf-8')
+			msgg=None
+			try:
+				msgg= '错误码为: %s' % str(e).encode('utf-8')
+			except Exception,e:
+				msgg= '错误码为: %s' % str(e)
 			print msgg
 			if times <4:
 				print '尝试第'+str(times)+'次'

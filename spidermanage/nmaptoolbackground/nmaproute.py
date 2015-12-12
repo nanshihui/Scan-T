@@ -53,10 +53,10 @@ def ipmain(request):
         response_data['result'] = '0' 
         if role=='1':
             jobs,count,pagecount=jobcontrol.jobshow(username=username,taskid=jobid)
-            print 'this is user'
+#             print 'this is user'
         else:
             jobs,count,pagecount=jobcontrol.jobshow(taskid=jobid)
-            print 'this is administor'
+#             print 'this is administor'
         if count>0 and jobid!='':
             ip=jobs[0].getJobaddress()   
             port=jobs[0].getPort()
@@ -75,9 +75,9 @@ def ipmain(request):
             response_data['ipstate'] = '0' 
             response_data['ip']=ip
             response_data['jobstate']=statuss
-            print 'it has this task'
+#             print 'it has this task'
             if counts>0:
-                print 'it has this ip'
+#                 print 'it has this ip'
                 response_data['ipstate'] = '1' 
                 response_data['length']=counts
                 response_data['ips']=ips[0]
@@ -114,16 +114,16 @@ def chartdata(request):
  
     #response是HTTPResponse对象
         response = httpClient.getresponse()
-        print response.status
-        print response.reason
+#         print response.status
+#         print response.reason
         response_data= response.read()
         
     except Exception, e:
-        print e
+        print '接受的数据出现异常'+str(e)
     finally:
         if httpClient:
             httpClient.close()
-        print response_data
+#         print response_data
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict),  content_type="application/json")      
 def logout(request):
     response= render_to_response('nmaptoolview/login.html', {'data':''})
@@ -180,7 +180,7 @@ def jobadd(request):
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
  
     result=jobcontrol.jobadd(job)
-    print result
+#     print result
     if result:
         print '操作成功'
         response_data['result'] = '1' 
@@ -195,7 +195,7 @@ def updatejob(request,state=''):
         response_data['result'] = '0' 
         if role=='1':
             tempresult=jobcontrol.jobupdate(jobstatus=state,username=username,taskid=jobid)
-            print 'this is user'
+#             print 'this is user'
         else:
             tempresult=jobcontrol.jobupdate(jobstatus=state,taskid=jobid)
         if tempresult==True:

@@ -14,15 +14,15 @@ def getObject():
 		DBhelp=DBmanager()
 	return DBhelp
 class DBmanager:
-	__cur=''
-	__conn=''
+	__cur=None
+	__conn=None
 	__host=''
 	__user=''
 	__passwd=''
 	__db='' 
 	__port=3306
 	__connection_time=0
-	__isconnect=0
+	__isconnect=1
 	__charset=''
 	__cachemin=1
 	__cachemax=100
@@ -37,6 +37,8 @@ class DBmanager:
 		self.__charset=temp.charset
 		self.__cachemax=temp.cachemax
 		self.__cachemin=temp.cachemin
+		self.__conn=None
+		self.__cur=None
 	def getConnect(self):
 		if self.__pool is None:
 			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=0 ,maxshared=0,maxconnections=0,blocking=True,maxusage=0,
@@ -65,8 +67,9 @@ class DBmanager:
 	def closedb(self):
 # 		if  self.__isconnect==1:
 
-		if  self.__cur and self.__conn:
+		if  self.__cur :
 			self.__cur.close()
+		if  self.__conn:
 			self.__conn.close()
 # 			self.__isconnect=0
 			print 'database has benn closed'
@@ -116,10 +119,15 @@ class DBmanager:
 				if order!='':
 					sql+=' order by '+order
 				sql+=limit
+				sql+=''
 # 				print sql
 				count=None
 				try:
-					count=self.__cur.execute(sql)
+					if self.__cur is not None:
+						count=self.__cur.execute(sql)
+					else:
+						self.connectdb()
+						count=self.__cur.execute(sql)
 				except MySQLdb.Error,e:
 					if self.isdisconnect(e):
 						self.connectdb()
@@ -144,8 +152,9 @@ class DBmanager:
 							print temp[i],
 						print ''
 					"""
-
-					col= len(content)
+					col=None
+					if content is not None:
+						col= len(content)
 					return result,content,count,col
 
 
@@ -163,7 +172,7 @@ class DBmanager:
 	def replaceinserttableinfo_byparams(self,table,select_params,insert_values):
 		if len(insert_values)<1 :
 			print '没有插入参数'
-			return
+			return False
 		elif  self.__isconnect==1:
 			
 			try:
@@ -180,7 +189,7 @@ class DBmanager:
 						sql=sql+'%s'+','	
 					sql=sql+'%s'+')'			
 				else:
-					return
+					return False
 
 # 				print sql
 				returnmeg=None
@@ -190,11 +199,12 @@ class DBmanager:
 				
 					self.__conn.commit()
 					if str(returnmeg)=='0':
-						print '进行重试'
-						self.connectdb()
-						returnmeg=self.__cur.executemany(sql,insert_values)
-						print '返回的消息：　'+str(returnmeg)		
-						self.__conn.commit()				
+						print '没有数据变化'
+					return True
+# 						self.connectdb()
+# 						returnmeg=self.__cur.executemany(sql,insert_values)
+# 						print '返回的消息：　'+str(returnmeg)		
+# 						self.__conn.commit()				
 				except MySQLdb.Error,e:
 					if self.isdisconnect(e):
 						
@@ -204,17 +214,17 @@ class DBmanager:
 						print '返回的消息：　'+str(returnmeg)
 				
 						self.__conn.commit()
-
+						return True
 					else:
 						debug=Debug.getObject()
 						debug.error(str(e))
 
 			except MySQLdb.Error,e:
 				print  '操作的过程中出现异常:' +str(e)
-				return
+				return False
 		else:
 			print '''has not connet'''  
-			return
+			return False
 	def updatetableinfo_byparams(self,table,select_params=[],set_params=[],request_params=[],equal_params=[],extra=''):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
@@ -322,7 +332,8 @@ class DBmanager:
 				
 				print '返回的消息：　'+str(returnmeg)
 				if returnmeg>0:
-					self.__conn.commit()
+					if self.__conn is not None:
+						self.__conn.commit()
 					return True
 				else:
 					return False
@@ -330,8 +341,10 @@ class DBmanager:
 
 			except Exception,e:
 				print  '操作的过程中出现异常 :' +str(e)
+				return False
 		else:
 			print '''has not connet'''  
+			return False
 	
 		#self.__cur.execute('insert into webdata(address,content,meettime) values(%s,%s,%s)',['这个稳重','123123','1992-12-12 12:12:12'])
 		#self.__conn.commit()   

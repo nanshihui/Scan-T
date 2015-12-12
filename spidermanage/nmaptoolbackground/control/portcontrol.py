@@ -5,8 +5,8 @@ from ..model import ports
 import re
 
 limitpage=15
-DBhelp=SQLTool.getObject()
-localconfig=config.Config()
+DBhelp=None
+
 def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and'):
     validresult=False
     request_params=[]
@@ -39,7 +39,9 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         request_params.append('detail')
         values_params.append(SQLTool.formatstring(detail))
     global DBhelp
+    DBhelp=SQLTool.getObject()
     DBhelp.connectdb()
+    localconfig=config.Config()
     table=localconfig.porttable
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)
 
@@ -53,7 +55,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     else:
         pagecount = count / limitpage
 
-    print pagecount
+#     print pagecount
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
