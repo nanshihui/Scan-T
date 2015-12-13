@@ -129,13 +129,15 @@ class DBmanager:
 						self.connectdb()
 						count=self.__cur.execute(sql)
 				except MySQLdb.Error,e:
-					if self.isdisconnect(e):
-						self.connectdb()
-						count=self.__cur.execute(sql)
-					else:
-						debug=Debug.getObject()
-						debug.error(str(e))
-
+					try:
+						if self.isdisconnect(e):
+							self.connectdb()
+							count=self.__cur.execute(sql)
+						else:
+							debug=Debug.getObject()
+							debug.error(str(e))
+					except Exception,e:
+						return (0,0,0,0)
 				if count>0:
 					result=self.__cur.fetchall()
 					content=self.__cur.description
@@ -206,19 +208,21 @@ class DBmanager:
 # 						print '返回的消息：　'+str(returnmeg)		
 # 						self.__conn.commit()				
 				except MySQLdb.Error,e:
-					if self.isdisconnect(e):
+					try:
+						if self.isdisconnect(e):
 						
-						print '进行重连'
-						self.connectdb()
-						returnmeg=self.__cur.executemany(sql,insert_values)
-						print '返回的消息：　'+str(returnmeg)
+							print '进行重连'
+							self.connectdb()
+							returnmeg=self.__cur.executemany(sql,insert_values)
+							print '返回的消息：　'+str(returnmeg)
 				
-						self.__conn.commit()
-						return True
-					else:
-						debug=Debug.getObject()
-						debug.error(str(e))
-
+							self.__conn.commit()
+							return True
+						else:
+							debug=Debug.getObject()
+							debug.error(str(e))
+					except Exception,e:
+						return False
 			except MySQLdb.Error,e:
 				print  '操作的过程中出现异常:' +str(e)
 				return False
@@ -268,14 +272,17 @@ class DBmanager:
 				
 					self.__conn.commit()
 				except MySQLdb.Error,e:
-					if self.isdisconnect(e):
-						self.connectdb()
-						count=self.__cur.execute(sql)
+					try:
+						if self.isdisconnect(e):
+							self.connectdb()
+							count=self.__cur.execute(sql)
 				
-						self.__conn.commit()
-					else:
-						debug=Debug.getObject()
-						debug.error(str(e))
+							self.__conn.commit()
+						else:
+							debug=Debug.getObject()
+							debug.error(str(e))
+					except Exception,e:
+						return False
 				if count>0:
 					return True
 				else:
@@ -322,14 +329,15 @@ class DBmanager:
 				try:
 					returnmeg=self.__cur.executemany(sql,insert_values)
 				except MySQLdb.Error,e:
-					print str(e)
-					if self.isdisconnect(e):
-						self.connectdb()
-						returnmeg=self.__cur.executemany(sql,insert_values)
-					else:
-						debug=Debug.getObject()
-						debug.error(str(e))	
-				
+					try:
+						if self.isdisconnect(e):
+							self.connectdb()
+							returnmeg=self.__cur.executemany(sql,insert_values)
+						else:
+							debug=Debug.getObject()
+							debug.error(str(e))	
+					except Exception,e:
+						return False
 				print '返回的消息：　'+str(returnmeg)
 				if returnmeg>0:
 					if self.__conn is not None:

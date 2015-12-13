@@ -43,8 +43,17 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     DBhelp.connectdb()
     localconfig=config.Config()
     table=localconfig.porttable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)
+    content=None
+    result=None
+    try:
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)
+    except Exception,e:
+        print str(e)+'portcontrol 50'
+        if DBhelp is not None:
+            DBhelp.closedb()
+        return [],0,0
 
+        
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:
@@ -59,9 +68,17 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra,command=command)
-    
-        DBhelp.closedb()
+        try:
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra,command=command)
+        except Exception,e:
+            print str(e)+'portcontrol 69'
+            if DBhelp is not None:
+                DBhelp.closedb()
+            return [],0,0
+        if DBhelp is not None:
+                DBhelp.closedb()
+            
+
         portarray=[]
         if count>0:
             validresult=True
@@ -118,9 +135,14 @@ def portadd(port):
         values_params.append(SQLTool.formatstring(detail))        
     table=localconfig.porttable
     DBhelp.connectdb()
-
-    tempresult=DBhelp.replaceinserttableinfo_byparams(table, request_params, [tuple(values_params)])
-    DBhelp.closedb()
+    tempresult=None
+    try:
+        tempresult=DBhelp.replaceinserttableinfo_byparams(table, request_params, [tuple(values_params)])
+    except Exception,e:
+        print str(e)
+    finally:
+        if DBhelp is not None:
+            DBhelp.closedb()
 
     return tempresult
 def divided(ports,params='port'):
