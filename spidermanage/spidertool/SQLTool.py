@@ -136,6 +136,7 @@ class DBmanager:
 						else:
 							debug=Debug.getObject()
 							debug.error(str(e))
+							return (0,0,0,0)
 					except Exception,e:
 						return (0,0,0,0)
 				if count>0:
@@ -221,6 +222,7 @@ class DBmanager:
 						else:
 							debug=Debug.getObject()
 							debug.error(str(e))
+							return False
 					except Exception,e:
 						return False
 			except MySQLdb.Error,e:
@@ -281,6 +283,7 @@ class DBmanager:
 						else:
 							debug=Debug.getObject()
 							debug.error(str(e))
+							return False
 					except Exception,e:
 						return False
 				if count>0:
@@ -336,6 +339,7 @@ class DBmanager:
 						else:
 							debug=Debug.getObject()
 							debug.error(str(e))	
+							return False
 					except Exception,e:
 						return False
 				print '返回的消息：　'+str(returnmeg)
