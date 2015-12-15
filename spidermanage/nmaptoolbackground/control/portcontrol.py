@@ -39,7 +39,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         request_params.append('detail')
         values_params.append(SQLTool.formatstring(detail))
     global DBhelp
-    DBhelp=SQLTool.getObject()
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     localconfig=config.Config()
     table=localconfig.porttable
@@ -51,6 +51,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         print str(e)+'portcontrol 50'
         if DBhelp is not None:
             DBhelp.closedb()
+            DBhelp=None
         return [],0,0
 
         
@@ -77,6 +78,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
             return [],0,0
         if DBhelp is not None:
                 DBhelp.closedb()
+                DBhelp=None
             
 
         portarray=[]
@@ -134,6 +136,7 @@ def portadd(port):
         request_params.append('detail')
         values_params.append(SQLTool.formatstring(detail))        
     table=localconfig.porttable
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     tempresult=None
     try:

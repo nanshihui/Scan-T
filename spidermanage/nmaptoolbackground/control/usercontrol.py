@@ -1,11 +1,11 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import SQLTool ,config
-DBhelp=SQLTool.getObject()
+
 localconfig=config.Config()
 def validuser(username,password):
-    global DBhelp
     validresult=False
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     result,content,count,col=DBhelp.searchtableinfo_byparams([localconfig.usertable], ['username','role','userpower'], ['username','password'], [SQLTool.formatstring(username),SQLTool.formatstring(password)])
     DBhelp.closedb()

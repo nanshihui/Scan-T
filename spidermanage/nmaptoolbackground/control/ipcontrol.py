@@ -5,7 +5,7 @@ from ..model import ipmain
 
 
 limitpage=15
-DBhelp=SQLTool.getObject()
+
 localconfig=config.Config()
 def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostname='',state='',page='0'):
     validresult=False
@@ -35,6 +35,7 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     if state!='':
         request_params.append('state')
         values_params.append(SQLTool.formatstring(state))
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.iptable
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], request_params, values_params)
@@ -108,6 +109,7 @@ def ipadd(ip):
         values_params.append(hostname)
    
     table=localconfig.iptable
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
     tempresult=DBhelp.replaceinserttableinfo_byparams(table, request_params, [tuple(values_params)])

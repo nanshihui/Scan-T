@@ -5,7 +5,7 @@ from ..model import job
 
 
 limitpage=15
-DBhelp=SQLTool.getObject()
+
 
 localconfig=config.Config()
 def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0'):
@@ -30,6 +30,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     if result!='':
         request_params.append('result')
         values_params.append(SQLTool.formatstring(result))
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.tasktable
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime','forcesearch'], request_params, values_params)
@@ -124,6 +125,7 @@ def jobadd(job):
         request_params.append('forcesearch')
         values_params.append(forcesearch)        
     table=localconfig.tasktable
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
     tempresult=DBhelp.inserttableinfo_byparams(table=table, select_params=request_params,insert_values= [tuple(values_params)])
@@ -170,6 +172,7 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
         wset_params.append('taskid')
         wand_params.append(SQLTool.formatstring(taskid))
     table=localconfig.tasktable
+    DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
     tempresult=DBhelp.updatetableinfo_byparams([table],request_params,values_params,wset_params,wand_params)

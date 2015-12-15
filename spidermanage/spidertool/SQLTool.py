@@ -8,6 +8,7 @@ from MySQLdb.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
 import debugdetail as Debug
 DBhelp=None
+SQLPOOL=None
 def getObject():
 	global DBhelp
 	if DBhelp is None:
@@ -26,7 +27,6 @@ class DBmanager:
 	__charset=''
 	__cachemin=1
 	__cachemax=100
-	__pool = None
 	def __init__(self):
 		temp=config.Config
 		self.__host = temp.host
@@ -40,16 +40,19 @@ class DBmanager:
 		self.__conn=None
 		self.__cur=None
 	def getConnect(self):
-		if self.__pool is None:
-			self.__pool = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=0 ,maxshared=0,maxconnections=0,blocking=True,maxusage=0,
+		global SQLPOOL
+		if SQLPOOL is None:
+			SQLPOOL = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=0 ,maxshared=0,maxconnections=0,blocking=True,maxusage=0,
 									host=self.__host , port=self.__port , user=self.__user , passwd=self.__passwd,
 									db=self.__db,use_unicode=False,charset=self.__charset
  									,cursorclass=DictCursor
 									)
-		return self.__pool.connection()
+		return SQLPOOL.connection()
 	def connectdb(self):
 		try:
 			self.__conn=self.getConnect()
+# 			if self.__cur is not None:
+# 				self.__cur.close()
 # 			self.__conn=MySQLdb.connect(self.__host,self.__user,self.__passwd,self.__db,self.__port,charset=self.__charset,cursorclass=DictCursor)
 			self.__cur=self.__conn.cursor()
 # 			self.__isconnect=1
