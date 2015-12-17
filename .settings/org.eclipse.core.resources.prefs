@@ -31,6 +31,7 @@ encoding//spidermanage/spidertool/debugdetail.py=utf-8
 encoding//spidermanage/spidertool/detectDede.py=utf-8
 encoding//spidermanage/spidertool/gzipsupport.py=utf-8
 encoding//spidermanage/spidertool/portscantask.py=utf-8
+encoding//spidermanage/spidertool/scapytool.py=utf-8
 encoding//spidermanage/spidertool/searchTask.py=utf-8
 encoding//spidermanage/spidertool/sniffertask.py=utf-8
 encoding//spidermanage/spidertool/sniffertool.py=utf-8
