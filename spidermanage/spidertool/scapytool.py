@@ -5,15 +5,18 @@ import scapy_http.http
 from scapy.modules.p0f import prnp0f, p0f
 import re
 import MySQLdb
+import time
+import Sqldatatask
+import Sqldata
+import config
 load_module('p0f')
-# p=sniff(iface="eth0",count=3,store=0)
-# print p[0].show()
-
+sqlTool=None
 username_list = ['user','username','ddddd','barcode','id']
- 
+ipinsertdataset=set()
+insertdataset=set()
 passwd_list = ['passwd','password','pwd','upass']
 def monitor_callback(pkt):
-    print '----------------------------------'
+    global sqlTool
 #     print pkt.sprintf("{IP:%IP.src% -> %IP.dst%\n}{Raw:%Raw.load%\n}")
 
 #     prnp0f(pkt)
@@ -29,7 +32,49 @@ def monitor_callback(pkt):
         if hasattr(pkt[IP],'sport'):
             print pkt[IP].src+':'+str(pkt[IP].sport)+'----->'+pkt[IP].dst+':'+str(pkt[IP].dport)
             if Ether in pkt:
+                global ipinsertdataset
+                global insertdataset
+                localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
                 print pkt[Ether].src+'----->'+pkt[Ether].dst
+                extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
+                
+                insertdata=[]
+                
+                insertdataset.add((str(pkt[IP].src),str(pkt[IP].sport),'open'))
+                print '当前ip缓存的数量为：' +str(len(insertdataset))
+                sqldatawprk=[]
+                if len(insertdataset)>10:
+                    insertdatatemp=[i for i in insertdataset]  
+                    for j in insertdatatemp:
+                        tempip,tempport,tempstate=j
+                        insertdata.append((tempip,tempport,localtime,tempstate))
+                        
+                        dic={"table":config.Config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
+                        tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
+                        sqldatawprk=[]
+                        sqldatawprk.append(tempwprk)
+                    sqlTool.add_work(sqldatawprk)  
+                    print '插入ip到数据库'
+                    insertdataset=set()
+                ipinsertdata=[]
+                
+                ipinsertdataset.add((str(pkt[IP].src),'up',pkt[Ether].src))
+                print '当前port缓存的数量为：' +str(len(ipinsertdataset))
+                sqldatawprk=[]
+                if len(ipinsertdataset)>10:
+                    ipinsertdatatemp=[i for i in ipinsertdataset]  
+                    for j in ipinsertdatatemp:
+                        tempip,tempstate,tempmacaddress=j
+                        ipinsertdata.append((tempip,localtime,tempstate,tempmacaddress))
+                        ipextra=' on duplicate key update  state=\'up\' , updatetime=\''+localtime+'\' ,mac=\''+pkt[Ether].src+'\''
+                        ipdic={"table":config.Config.iptable,"select_params":['ip','updatetime','state','mac'],"insert_values":ipinsertdata,"extra":ipextra}
+                        tempipdata=Sqldata.SqlData('inserttableinfo_byparams',ipdic)
+                        sqldatawprk=[]
+                        sqldatawprk.append(tempipdata)
+
+                    sqlTool.add_work(sqldatawprk)     
+                    print '插入port到数据库'
+                    ipinsertdataset=set()
 #                 if Raw in pkt:
 #                     if hasattr(pkt[Raw],'load'):
 #                         print hexdump(pkt[Raw].load)
@@ -37,7 +82,7 @@ def monitor_callback(pkt):
             http_packet_callback(pkt)
 #     if Padding in pkt:
 #         print pkt[Padding].load
-    print '---------------------------------'
+
     
 def http_packet_callback(packet):
     global username_list
@@ -63,7 +108,7 @@ def http_packet_callback(packet):
     #Print http_packet info
         print "[+]IP:%s"%packet[IP].src
         print "[+]Method:%s"%http_method
-        print "[+]Host:%s"%header['Host']
+        print "[+]Host:%s"%header.get('Host','')
         print "[+]Path:%s"%header['Path']
  
     #Some packets donnot have Cookie
@@ -96,7 +141,7 @@ def http_packet_callback(packet):
                          
         if header['Cookie']!='':
     #save data into database
-            save_data(str(packet[IP].src),header['Cookie'],header['Data'],header['Host'],header['Path'],username,passwd,http_method)
+            save_data(str(packet[IP].src),header['Cookie'],header['Data'],header.get('Host',''),header['Path'],username,passwd,http_method)
  
         print ""    
 def save_data(ip,cookie,data,host,path,username,passwd,http_method):
@@ -104,10 +149,10 @@ def save_data(ip,cookie,data,host,path,username,passwd,http_method):
     try:
         conn = MySQLdb.connect(host="localhost",user="root",passwd="123456",db="datap",port=3306)
         cur = conn.cursor()
-        sql = 'replace into http(ip,cookie,data,host,path,username,passwd,method) values (%s,%s,%s,%s,%s,%s,%s,%s)'
-        n = cur.execute(sql,(ip,cookie,data,host,path,username,passwd,http_method))
-        if n != 1:
-            raise MySQLdb.Error(-1,'My insert error')
+        localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
+        sql = 'replace into http(ip,cookie,data,host,path,username,passwd,method,timeupdate,pathsimple) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+        n = cur.execute(sql,(ip,cookie,data,host,path,username,passwd,http_method,localtime,path))
+        
 #close pointer object
         cur.close()
         conn.commit()
@@ -115,9 +160,13 @@ def save_data(ip,cookie,data,host,path,username,passwd,http_method):
         conn.close()
     except MySQLdb.Error,e:
         print "[-]MySQLdb Error %d: %s"%(e.args[0],e.args[1])
-if __name__ == '__main__':                
+def initsniffer():
+    global sqlTool
+    sqlTool=Sqldatatask.getObject()
     sniff(prn=monitor_callback,filter='ip', store=0)
-
+if __name__ == '__main__':                
+    initsniffer()
+#     sniff(prn=monitor_callback, store=0)
 
 
 

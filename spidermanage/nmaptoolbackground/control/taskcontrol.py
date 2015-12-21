@@ -31,7 +31,9 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
         mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
 def scheduleinit():
+    from spidertool import scapytool 
     import taskitem
+    scapytool.initsniffer()
     global mainschedule
     mainschedule=schedule.schedulecontrol()
 
