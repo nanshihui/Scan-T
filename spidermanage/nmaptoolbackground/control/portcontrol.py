@@ -7,7 +7,7 @@ import re
 limitpage=15
 DBhelp=None
 
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and'):
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -38,6 +38,9 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if detail!='':
         request_params.append('detail')
         values_params.append(SQLTool.formatstring(detail))
+    if head!='':
+        request_params.append('head')
+        values_params.append(SQLTool.formatstring(head))
     global DBhelp
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
@@ -46,7 +49,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     content=None
     result=None
     try:
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,extra=extra,command=command)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head'], request_params, values_params,extra=extra,command=command)
     except Exception,e:
         print str(e)+'portcontrol 50'
         if DBhelp is not None:
@@ -70,7 +73,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         try:
-            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail'], request_params, values_params,limit,order='port',extra=extra,command=command)
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head'], request_params, values_params,limit,order='port',extra=extra,command=command)
         except Exception,e:
             print str(e)+'portcontrol 69'
             if DBhelp is not None:
@@ -85,7 +88,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'])
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'],head=temp['head'])
  
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)
@@ -134,7 +137,10 @@ def portadd(port):
         values_params.append(SQLTool.formatstring(script))
     if detail!='':
         request_params.append('detail')
-        values_params.append(SQLTool.formatstring(detail))        
+        values_params.append(SQLTool.formatstring(detail))  
+    if head!='':
+        request_params.append('head')
+        values_params.append(SQLTool.formatstring(head))      
     table=localconfig.porttable
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()

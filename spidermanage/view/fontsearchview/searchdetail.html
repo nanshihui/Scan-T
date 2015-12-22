@@ -151,7 +151,7 @@ function changtext(k,i){
           document.getElementById("scriptdetail").innerHTML=tempstr;
       }
         else{
-             tempstr=clinckdata.ports[clinckitem].detail;
+             tempstr=clinckdata.ports[clinckitem].head+clinckdata.ports[clinckitem].detail;
               document.getElementById("scriptdetail").innerHTML=tempstr;
             }
 }
@@ -237,7 +237,7 @@ function changtext(k,i){
                                                                     "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':ports[i].script)+"</p></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
-                                                                    "<div class=\"box\"><pre> "+(ports[i].detail==null?'无':encodeHtml(ports[i].detail).toString())+"</pre></div></div></div></div> ";
+                                                                    "<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
 
                                            // xmp
                                             }

@@ -26,10 +26,10 @@ class Portscantool:
             self.socketclient.sendall(message)
             reply = self.socketclient.recv(4096)
             self.socketclient.close()
-            return reply
+            return 'reply',reply
         except Exception, msg:
             print 'Failed to create socket. Error code: ' + str(msg)
-            return 'error'
+            return 'error','error'
 
    
 if __name__ == "__main__":

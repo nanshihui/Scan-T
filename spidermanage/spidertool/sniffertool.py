@@ -32,7 +32,7 @@ class SniffrtTool(object):
         try:
             self.nma = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
 
-            self.params='-A -P0   -Pn  -sC  -R -v  -O '
+            self.params='-A   -Pn  -sC  -R -v  -O '
 #             self.params='-sV -T4 -O '                    #快捷扫描加强版
 #             self.params='-sS -sU -T4 -A -v'                                            #深入扫描
         except nmap.PortScannerError:
@@ -58,6 +58,7 @@ class SniffrtTool(object):
                 print hosts,orders,self.params+arguments
                 acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
                 #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)
+                print acsn_result
                 print '我在这里51'
                 return self.callback_result(acsn_result) 
             else:
@@ -79,21 +80,26 @@ class SniffrtTool(object):
         tmp=scan_result
 
         for i in tmp['scan'].keys():
+
             host=i
             result=''
             try:
-                result =  u"ip地址:%s 主机名:%s  ......  %s\n" %(host,tmp['scan'][host]['hostname'],tmp['scan'][host]['status']['state'])
+#                 result =  u"ip地址:%s 主机名:%s  ......  %s\n" %(host,tmp['scan'][host].get('hostnames','null'),tmp['scan'][host]['status'].get('state','null'))
 #                 self.sqlTool.connectdb()
-           
-                if 'osclass' in tmp['scan'][host].keys():
-                    result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass']['vendor']),str(tmp['scan'][host]['osclass']['osfamily']),str(tmp['scan'][host]['osclass']['osgen']),str(tmp['scan'][host]['osclass']['accuracy']))
+#                 print tmp['scan'][host].get('hostname','null')
+#                 if 'osclass' in tmp['scan'][host].keys():
+#                     result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass'].get('vendor','null')),str(tmp['scan'][host]['osclass'].get('osfamily','null')),str(tmp['scan'][host]['osclass'].get('osgen','null')),str(tmp['scan'][host]['osclass'].get('accuracy','null')))
+#                 print result
                 temphosts=str(host)
-                tempvendor=str(tmp['scan'][host]['osclass'].get('vendor','null'))
-                temposfamily=str(tmp['scan'][host]['osclass'].get('osfamily','null'))
-                temposgen=str(tmp['scan'][host]['osclass'].get('osgen','null'))
-                tempaccuracy=str(tmp['scan'][host]['osclass'].get('accuracy','null'))
+                tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
+                temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
+                temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))
+                tempaccuracy=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('accuracy','null'))
                 localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
-                temphostname=str(tmp['scan'][host].get('hostname','null'))
+                temphostname=''
+                for i in tmp['scan'][host]['hostnames']:
+                    temphostname+=str(i.get('name','null'))+' '
+                
                 tempstate=str(tmp['scan'][host]['status'].get('state','null'))
 #                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime
 

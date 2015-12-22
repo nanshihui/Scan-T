@@ -33,11 +33,11 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
 def scheduleinit():
     from spidertool import scapytool 
     import taskitem
-    scapytool.initsniffer()
+#    scapytool.initsniffer()
     global mainschedule
     mainschedule=schedule.schedulecontrol()
 
-    mainschedule.addschedule(taskitem.tick,'0-7','0-23','0','0',id='nmap')   
-    mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','30','0',id='zmap')   
+    mainschedule.addschedule(taskitem.tick,'0-7','0','10','0',id='nmap')   
+    mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','*/20','0',id='zmap')   
     print 'init schedule'
 

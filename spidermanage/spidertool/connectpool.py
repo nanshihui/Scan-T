@@ -29,12 +29,12 @@ class ConnectPool:
 		print '当前访问的位置为： '+URL
 # 		gc.enable() 
 # 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
-		page=self.connectTool.getHTML(URL,way,params,times)
+		head,page=self.connectTool.getHTML(URL,way,params,times)
 # 		po=gc.collect()
 # 		print po
 		self.__connect_pool.get()
 		self.__connect_pool.task_done()
-		return page
+		return head,page
 """
 		try:
 

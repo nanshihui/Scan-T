@@ -4,7 +4,7 @@ class Config(object):
 	#config file #
 	host='localhost'
 	username='root'
-	passwd='123456'
+	passwd=''
 	database='datap'
 	port=3306
 	charset='utf8'

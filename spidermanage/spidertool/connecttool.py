@@ -74,16 +74,16 @@ class ConnectTool:
 			msg=response.read()
 			
 			chardit1 = chardet.detect(msg)
-			the_page = temp+str(msg)
+			the_page = str(msg)
 
 			
 
 			
 			try:
-				return the_page.decode(chardit1['encoding']).encode('utf-8')
+				return temp.decode(chardit1['encoding']).encode('utf-8'),the_page.decode(chardit1['encoding']).encode('utf-8')
 
 			except Exception,e:
-				return the_page
+				return temp,the_page
 			
 #		response = urllib2.urlopen('http://www.baidu.com',timeout=10)
 #		print 'head is %s' % response.info()
@@ -102,7 +102,7 @@ class ConnectTool:
 			else :
 				print '失败次数过多，停止链接'
 				the_page= msgg
-				return the_page
+				return '',the_page
 		finally:
 				if response:
 					response.close()
