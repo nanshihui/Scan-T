@@ -61,7 +61,7 @@ class GetLocationTask(TaskTool):
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)
         
-        
+        time.sleep(0.1)
         ans=''
         return ans
 #        
@@ -95,7 +95,7 @@ def test():
 if __name__ == "__main__":
 
     a=getObject()
-    a.add_work(['123.123.123.123'])
+    a.add_work(['www.baidu.com'])
     while True:
         pass
 

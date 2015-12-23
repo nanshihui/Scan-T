@@ -18,6 +18,7 @@ import Sqldata
 from numpy.numarray.numerictypes import IsType
 import connectpool
 import portscantask
+import getLocationTool
 reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   
 class SniffrtTool(object):
     '''
@@ -44,7 +45,7 @@ class SniffrtTool(object):
         self.sqlTool=Sqldatatask.getObject()
 #         self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
-        
+        self.getlocationtool=getLocationTool.getObject()
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
         orders=''
         if port!='':
@@ -56,6 +57,7 @@ class SniffrtTool(object):
             if hignpersmission=='0':
                 print '我在这里49'
                 print hosts,orders,self.params+arguments
+                
                 acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
                 #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)
                 print acsn_result
@@ -91,6 +93,10 @@ class SniffrtTool(object):
 #                     result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass'].get('vendor','null')),str(tmp['scan'][host]['osclass'].get('osfamily','null')),str(tmp['scan'][host]['osclass'].get('osgen','null')),str(tmp['scan'][host]['osclass'].get('accuracy','null')))
 #                 print result
                 temphosts=str(host)
+                
+                self.getlocationtool.add_work([temphosts])
+                
+                
                 tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
                 temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
                 temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))

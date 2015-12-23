@@ -11,6 +11,7 @@ from nmaptoolbackground.model import job
 import Sqldatatask
 import Sqldata
 import   trace 
+import getLocationTool
 portname = {'80':'http','8080':'http','443':'https','22':'telnet'} 
 class Zmaptool:
     def __init__(self):
@@ -18,6 +19,7 @@ class Zmaptool:
         self.sqlTool=Sqldatatask.getObject()
         self.config=config.Config
         self.portscan=portscantask.getObject()
+        self.getlocationtool=getLocationTool.getObject()
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
     def do_scan(self,port='80',num='10',needdetail='0'):
         path=os.getcwd()
@@ -41,7 +43,7 @@ class Zmaptool:
             jobs=[]
             for i in list:
                 insertdata.append((str(i),port,localtime,'open'))
-                
+                self.getlocationtool.add_work([str(i)])
 
                 if needdetail=='0':
                     global portname
