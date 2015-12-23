@@ -2,7 +2,8 @@
 #coding:utf-8
 import urllib2
 import time
-import re
+import re,json
+import httplib
 class RedirectHandler(urllib2.HTTPRedirectHandler):
 	def http_error_301(self,req,fp,code,msg,headers):
 		print '301问题'
@@ -49,5 +50,23 @@ def isip(ip):
   	else:
 #   		print 'web'
   		return False
-	
+def getLocationinfo(ip):
+	httpClient=None
+	response_data={}
+	try:
+		httpClient = httplib.HTTPConnection('ip.taobao.com', 80, timeout=30)
+		httpClient.request('GET', '/service/getIpInfo.php?ip='+ip)
+ 
+#response是HTTPResponse对象
+		response = httpClient.getresponse()
+#		 print response.status
+#		 print response.reason
+		response_data= response.read()
+		
+	except Exception, e:
+		print '接受的数据出现异常'+str(e)
+	finally:
+		if httpClient:
+			httpClient.close()
+		return json.loads(response_data)
 	

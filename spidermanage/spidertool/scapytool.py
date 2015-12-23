@@ -147,7 +147,7 @@ def http_packet_callback(packet):
 def save_data(ip,cookie,data,host,path,username,passwd,http_method):
 
     try:
-        conn = MySQLdb.connect(host="localhost",user="root",passwd="123456",db="datap",port=3306)
+        conn = MySQLdb.connect(host="localhost",user="root",passwd="",db="datap",port=3306)
         cur = conn.cursor()
         localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
         sql = 'replace into http(ip,cookie,data,host,path,username,passwd,method,timeupdate,pathsimple) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
