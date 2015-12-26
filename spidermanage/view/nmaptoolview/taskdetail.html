@@ -423,6 +423,16 @@ var taskid=''
 var clinckitem=0;
 var xmlhttp;
 var clinckdata='';
+ encodeHtml = function(s){
+      return (typeof s != "string") ? s :
+          s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
+                    function($0){
+                        var c = $0.charCodeAt(0), r = ["&#"];
+                        c = (c == 0x20) ? 0xA0 : c;
+                        r.push(c); r.push(";");
+                        return r.join("");
+                    });
+  };
 function changtext(k,i){
 
     clinckitem=i;
@@ -528,30 +538,51 @@ function changtext(k,i){
                     //        if(data2.jobstate!='1'){
        
                              var datalength=data2.portslength;
+
                              var pagesize=data2.portspagecount;
                              var nowpage=data2.portspage;
                              var ports=data2.ports;
                              currpage=Number(nowpage)+1;
                              var bodyhtml = "";
                              for (var i =0 ;i<datalength;i++){
+                                           
                                                 var msgshow='';
-                                                if (ports[i].detail==null)
+                                                if (ports[i].detail==null||ports[i].detail=='')
+                                                    {
+
                                                       msgshow='';
-                                                 else
-                                                        msgshow=ports[i].detail.substring(0,30)
+                                                  }
+                                                 else{
+                                                    if (ports[i].detail.length>30)
+                                                        msgshow=encodeHtml(ports[i].detail.substring(0,30));
+                                                    else
+                                                        msgshow=encodeHtml(ports[i].detail);
+                                                    }
+                                                    var tempscript='';
+                                                      if (ports[i].script==null||ports[i].script=='')
+                                                    {
+
+                                                      tempscript='';
+                                                  }
+                                                 else{
+                                                    if (ports[i].script.length>30)
+                                                        tempscript=encodeHtml(ports[i].script.substring(0,30));
+                                                    else
+                                                        tempscript=encodeHtml(ports[i].script);
+                                                    }
                                                  bodyhtml+="<tr class=\"first\">"+
                                                 "<td><a href=\"https://www.baidu.com/s?wd=端口 "+ports[i].port+"\" class=\"name\">"+ports[i].port+"</a>"+
                                                 "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
                                                 "<td>"+ports[i].name+"</td>"+
                                                 "<td>"+ports[i].version+"</td>"+
                                                 "<td ><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
-                                                "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+ports[i].script.substring(0,30)+"</a></td>"+
+                                                "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+tempscript+"</a></td>"+
                                                 "<td ><a id=\"modal-19991\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(2,"+i+")\">"+msgshow+"</a></td>"+
                                                 "</tr>";
                                            
                                             }
 
-
+                                  
                                                 document.getElementById("bodyport").innerHTML=bodyhtml;
 var pagehtml="";
   
