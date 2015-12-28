@@ -6,8 +6,100 @@ import re
 
 limitpage=15
 DBhelp=None
+def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city=''):
+    localconfig=config.Config()
+    table=localconfig.porttable
+    iptable=localconfig.iptable
+    validresult=False
+    request_params=[]
+    values_params=[]
 
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head=''):
+    if ip!='':
+        request_params.append('('+table+'.'+'ip')
+        values_params.append(SQLTool.formatstring(ip))
+    if port!='':
+        request_params.append('port')
+        values_params.append(SQLTool.formatstring(port))
+    if timesearch!='':
+        request_params.append('timesearch')
+        values_params.append(SQLTool.formatstring(timesearch))
+    if state!='':
+        request_params.append(table+'.'+'state')
+        values_params.append(SQLTool.formatstring(state))
+    if name!='':
+        request_params.append('name')
+        values_params.append(SQLTool.formatstring(name))
+    if product!='':
+        request_params.append('product')
+        values_params.append(SQLTool.formatstring(product))
+    if version!='':
+        request_params.append('version')
+        values_params.append(SQLTool.formatstring(version))
+    if script!='':
+        request_params.append('script')
+        values_params.append(SQLTool.formatstring(script))
+    if detail!='':
+        request_params.append('detail')
+        values_params.append(SQLTool.formatstring(detail))
+    if head!='':
+        request_params.append('head')
+        values_params.append(SQLTool.formatstring(head))
+    if city!='':
+        request_params.append('city')
+        values_params.append(SQLTool.formatstring(city))
+    global DBhelp
+    DBhelp=SQLTool.DBmanager()
+    DBhelp.connectdb()
+    
+    content=None
+    result=None
+    try:
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,iptable], [table+'.'+'ip','port','timesearch',table+'.'+'state','name','product','version','script','detail','head','city'], request_params, values_params,extra=extra,command=command)
+    except Exception,e:
+        print str(e)+'portcontrol 58'
+        if DBhelp is not None:
+            DBhelp.closedb()
+            DBhelp=None
+        return [],0,0
+
+        
+    if count == 0:
+        pagecount = 0;
+    elif count %limitpage> 0:
+#         pagecount = math.ceil(count / limitpage)
+        pagecount=int((count+limitpage-1)/limitpage) 
+
+
+    else:
+        pagecount = count / limitpage
+
+#     print pagecount
+    if pagecount>0:
+    
+        limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
+        try:
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table,iptable], [table+'.'+'ip','port','timesearch',table+'.'+'state','name','product','version','script','detail','head','city'], request_params, values_params,limit=limit,order=table+'.'+'port',extra=extra,command=command)
+        except Exception,e:
+            print str(e)+'portcontrol 69'
+            if DBhelp is not None:
+                DBhelp.closedb()
+            return [],0,0
+        if DBhelp is not None:
+                DBhelp.closedb()
+                DBhelp=None
+            
+
+        portarray=[]
+        if count>0:
+            validresult=True
+            for temp in result :
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'],head=temp['head'],city=temp['city'])
+ 
+#                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
+                portarray.append(aport)
+        return portarray,count,pagecount
+    return [],0,pagecount
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -41,6 +133,9 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     if head!='':
         request_params.append('head')
         values_params.append(SQLTool.formatstring(head))
+    if city!='':
+        request_params.append('city')
+        values_params.append(SQLTool.formatstring(city))
     global DBhelp
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()

@@ -7,7 +7,7 @@ from ..model import ipmain
 limitpage=15
 
 localconfig=config.Config()
-def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostname='',state='',page='0'):
+def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostname='',state='',page='0',city=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -35,10 +35,13 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     if state!='':
         request_params.append('state')
         values_params.append(SQLTool.formatstring(state))
+    if city!='':
+        request_params.append('city')
+        values_params.append(SQLTool.formatstring(city))
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.iptable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], request_params, values_params)
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state','city'], request_params, values_params)
 
     if count == 0:
         pagecount = 0;
@@ -50,18 +53,18 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     else:
         pagecount = count / limitpage
 
-#     print pagecount
+#     print str(pagecount)+'当前页数'
     if pagecount>0:
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'], request_params, values_params,limit,order='updatetime desc')
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state','city'], request_params, values_params,limit,order='updatetime desc')
     
         DBhelp.closedb()
         ips=[]
         if count>0:
             validresult=True
             for temp in result :
-                aip=ipmain.Ip(ip=temp['ip'],vendor=temp['vendor'],osfamily=temp['osfamily'],osgen=temp['osgen'],accurate=temp['accurate'],updatetime=temp['updatetime'],hostname=temp['hostname'],state=temp['state'])
+                aip=ipmain.Ip(ip=temp['ip'],vendor=temp['vendor'],osfamily=temp['osfamily'],osgen=temp['osgen'],accurate=temp['accurate'],updatetime=temp['updatetime'],hostname=temp['hostname'],state=temp['state'],city=temp['city'])
 #                 aip=ipmain.Ip(ip=temp[0],vendor=temp[1],osfamily=temp[2],osgen=temp[3],accurate=temp[4],updatetime=temp[5],hostname=temp[6],state=temp[7])
                 ips.append(aip)
         return ips,count,pagecount
@@ -107,7 +110,9 @@ def ipadd(ip):
     if hostname!='':
         request_params.append('hostname')
         values_params.append(hostname)
-   
+    if city!='':
+        request_params.append('city')
+        values_params.append(city)
     table=localconfig.iptable
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()

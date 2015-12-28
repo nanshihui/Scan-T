@@ -2,7 +2,7 @@
 #coding:utf-8
 from spidertool import webtool
 class Ip(object):
-    def __init__(self,ip='',vendor='',osfamily='',osgen='',accurate='',state='',hostname='unknow',updatetime=''):
+    def __init__(self,ip='',vendor='',osfamily='',osgen='',accurate='',state='',hostname='unknow',updatetime='',city=''):
         '''
         Constructor
         '''
@@ -19,7 +19,7 @@ class Ip(object):
    
         self.state=state
         self.hostname=hostname
-
+        self.city=city
     def setIP(self,ip):
         self.ip=ip
 

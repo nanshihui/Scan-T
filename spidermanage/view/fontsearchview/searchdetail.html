@@ -201,6 +201,7 @@ function changtext(k,i){
                 if(xmlhttp.status == 200){
 
                     var a=xmlhttp.responseText;
+
                      searchresult(a);
                 }
             }
@@ -218,7 +219,7 @@ function changtext(k,i){
             
                          
                          
-       
+  
                              var datalength=data2.portslength;
                              var pagesize=data2.portspagecount;
                              var nowpage=data2.portspage;
@@ -233,8 +234,9 @@ function changtext(k,i){
                                                                     "<p><span class=\"subtext\">端口名:"+(ports[i].name==null?'':ports[i].name)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口产品:"+(ports[i].product==null?'':ports[i].product)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">端口版本:"+(ports[i].version==null?'':ports[i].version)+"</span></p>"+
+                                                                    "<p><span class=\"subtext\">主机位置:"+(ports[i].city==null?'':ports[i].city)+"</span></p>"+
                                                                     "</div><div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':ports[i].script)+"</p></div>"+
+                                                                    "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':encodeHtml(ports[i].script))+"</p></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
                                                                     "<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
