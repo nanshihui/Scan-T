@@ -93,28 +93,28 @@ class SniffrtTool(object):
 #                     result +=u"系统信息 ： %s %s %s   准确度:%s  \n" % (str(tmp['scan'][host]['osclass'].get('vendor','null')),str(tmp['scan'][host]['osclass'].get('osfamily','null')),str(tmp['scan'][host]['osclass'].get('osgen','null')),str(tmp['scan'][host]['osclass'].get('accuracy','null')))
 #                 print result
                 temphosts=str(host)
-                
-                self.getlocationtool.add_work([temphosts])
-                
-                
-                tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
-                temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
-                temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))
-                tempaccuracy=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('accuracy','null'))
                 localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
-                temphostname=''
-                for i in tmp['scan'][host]['hostnames']:
-                    temphostname+=str(i.get('name','null'))+' '
+                self.getlocationtool.add_work([temphosts])
+                if len(tmp['scan'][host]['osmatch'])>0:
+                                            
+                    tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
+                    temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
+                    temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))
+                    tempaccuracy=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('accuracy','null'))
+                    
+                    temphostname=''
+                    for i in tmp['scan'][host]['hostnames']:
+                        temphostname+=str(i.get('name','null'))+' '
                 
-                tempstate=str(tmp['scan'][host]['status'].get('state','null'))
+                    tempstate=str(tmp['scan'][host]['status'].get('state','null'))
 #                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime
 
 #                 self.sqlTool.replaceinserttableinfo_byparams(table=self.config.iptable,select_params= ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],insert_values= [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)])         
-                sqldatawprk=[]
-                dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
-                tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
-                sqldatawprk.append(tempwprk)
-                self.sqlTool.add_work(sqldatawprk)               
+                    sqldatawprk=[]
+                    dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
+                    tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+                    sqldatawprk.append(tempwprk)
+                    self.sqlTool.add_work(sqldatawprk)               
                 
                 
                 if 'tcp' in  tmp['scan'][host].keys():
