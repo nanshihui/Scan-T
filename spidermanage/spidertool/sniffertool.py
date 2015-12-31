@@ -157,7 +157,7 @@ class SniffrtTool(object):
                         sqldatawprk.append(tempwprk)
                         self.sqlTool.add_work(sqldatawprk)
             except Exception,e:
-                print e
+                print 'nmap error'+str(e)
             except IOError,e:
                 print '错误IOError'+str(e)
             except KeyError,e:
