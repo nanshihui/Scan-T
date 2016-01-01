@@ -34,6 +34,18 @@ CREATE TABLE `ip_maindata` (
   `hostname` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `mac` varchar(60) DEFAULT NULL,
+  `country` varchar(10) DEFAULT NULL,
+  `country_id` varchar(16) DEFAULT NULL,
+  `area` varchar(10) DEFAULT NULL,
+  `area_id` int(11) DEFAULT '0',
+  `region` varchar(15) DEFAULT NULL,
+  `region_id` varchar(15) DEFAULT NULL,
+  `city` varchar(15) DEFAULT NULL,
+  `city_id` int(11) DEFAULT '0',
+  `county` varchar(45) DEFAULT NULL,
+  `county_id` int(11) DEFAULT NULL,
+  `isp` varchar(15) DEFAULT NULL,
+  `isp_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,4 +59,4 @@ CREATE TABLE `ip_maindata` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-22 18:39:24
+-- Dump completed on 2015-12-31 11:32:23

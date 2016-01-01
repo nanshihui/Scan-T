@@ -46,7 +46,9 @@ class SniffrtTool(object):
 #         self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
         self.getlocationtool=getLocationTool.getObject()
-    def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0'):
+    def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0',callback=''):
+        if callback=='': 
+            callback=self.callback_result
         orders=''
         if port!='':
             orders+=port
@@ -62,10 +64,10 @@ class SniffrtTool(object):
                 #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)
                 print acsn_result
                 print '我在这里51'
-                return self.callback_result(acsn_result) 
+                return callback(acsn_result) 
             else:
                 print '我在这里52'
-                return self.callback_result(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments) ) 
+                return callback(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments,callback=callback) ) 
 
         except nmap.PortScannerError,e:
             print e
@@ -95,7 +97,7 @@ class SniffrtTool(object):
                 temphosts=str(host)
                 localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
                 self.getlocationtool.add_work([temphosts])
-                if len(tmp['scan'][host]['osmatch'])>0:
+                try :
                                             
                     tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
                     temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
@@ -115,7 +117,8 @@ class SniffrtTool(object):
                     tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
                     sqldatawprk.append(tempwprk)
                     self.sqlTool.add_work(sqldatawprk)               
-                
+                except Exception,e:
+                    print 'nmap system error'+str(e)
                 
                 if 'tcp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['tcp'].keys()

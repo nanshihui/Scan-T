@@ -42,4 +42,4 @@ CREATE TABLE `django_migrations` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-22 18:39:24
+-- Dump completed on 2015-12-31 11:32:23
