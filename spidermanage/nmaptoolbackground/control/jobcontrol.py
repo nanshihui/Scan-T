@@ -133,7 +133,9 @@ def jobadd(job):
     DBhelp.closedb()
 
     return tempresult
-
+def jobgetwork():
+    
+    pass
 def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
 
 

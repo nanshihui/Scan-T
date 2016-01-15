@@ -15,6 +15,7 @@ import json
 # Create your views here.
 def getwork(request):
     data={}
+    
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 def destroyjob(request):
     data=updatejob(request,state='6')
