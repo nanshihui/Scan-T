@@ -246,7 +246,7 @@ function changtext(k,i){
                                                                     "<p><span class=\"subtext\">端口版本:"+(ports[i].version==null?'':ports[i].version)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">主机位置:"+(ports[i].city==null?'':ports[i].city)+"</span></p>"+
                                                                     "</div><div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">概要信息："+(ports[i].script==null?'':encodeHtml(ports[i].script))+"</p></div>"+
+                                                                    "<p class=\"package-description\">概要信息：</p><pre>"+(ports[i].script==null?'无':encodeHtml(ports[i].script))+"</pre></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>"+
                                                                     "<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
