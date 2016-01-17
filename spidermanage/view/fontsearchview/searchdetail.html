@@ -32,7 +32,7 @@
 
     </style>
     </head>
-    <body class="home-template" ryt11928="1" onload="searchdetail(0);">
+    <body class="home-template" ryt11928="1" onload="searchdetail('');">
     
     	<header class="site-header jumbotron">
     		<div class="site-nav"><a  href="/nmaptool/login"  >登陆</a> <span>/</span> <a href="#">关于</a>
@@ -46,6 +46,7 @@
                                                             </p>
                                                             <div   role="search"  >
                                                                 <div class="form-group">
+                                                                  <input type="hidden" id="pagenum" name="pagenum" value={{page}}>
                                                                     <input type="text"  id="searchcontent" class="form-control search clearable" placeholder="搜索组件，例如：MySQL" value={{data}}> 
                                                                     <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
                                                                     
@@ -177,9 +178,15 @@ function changtext(k,i){
             return xmlhttp;
         }
  function searchdetail(currpage) {
+
+            var number='0'
+            if (currpage==""&&typeof(currpage)!='number'){
+
+            currpage=document.getElementById("pagenum").value;
+            }
             xmlhttp= GetXmlHttp(xmlhttp);
              content=document.getElementById("searchcontent").value;
-            var number=currpage;
+             number=currpage;
             var str='';
             nowpage=currpage;
 
@@ -269,18 +276,17 @@ function changtext(k,i){
                                                                        if (divs[i].className == 'box') show(divs[i]);
                                                                }
                                                 var pagehtml="";
-  
+
                                                 if(pagesize>0){
-
-
+                                               
                                                       if (currpage <=1) {
-                
+                                                          
                           pagehtml+= "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
                     
 
                     
                                  }else {
-              
+                             
                          pagehtml+= "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
                          pagehtml+= "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
                          pagehtml+= "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";

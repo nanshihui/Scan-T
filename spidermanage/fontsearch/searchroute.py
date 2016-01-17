@@ -19,11 +19,12 @@ def indexpage(request):
     return render_to_response('fontsearchview/search.html', {'data':''})
 def mainpage(request):
     content=request.GET.get('searchcontent','')
-    
-    return render_to_response('fontsearchview/searchdetail.html', {'data':content})
+    page=request.GET.get('page','0')
+    return render_to_response('fontsearchview/searchdetail.html', {'data':content,'page':page})
 def detailpage(request):
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
+    print 'page:'+page
     response_data = {}  
     response_data['result'] = '0'
     if  content!='':
