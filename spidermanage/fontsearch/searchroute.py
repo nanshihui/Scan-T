@@ -24,7 +24,6 @@ def mainpage(request):
 def detailpage(request):
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
-    print 'page:'+page
     response_data = {}  
     response_data['result'] = '0'
     if  content!='':

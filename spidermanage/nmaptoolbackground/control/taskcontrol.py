@@ -14,7 +14,14 @@ def getObject():
         nmaptask=sniffertask.snifferTask(1)
         nmaptask.set_deal_num(5)
     return nmaptask
-
+def getavailwork():
+    global nmaptask
+    if nmaptask is None:
+        nmaptask=sniffertask.snifferTask(1)
+        nmaptask.set_deal_num(5)
+        return ''
+    else:
+        nmaptask.get_work()
 
 def taskinit():
     global  nmaptask 
@@ -37,7 +44,7 @@ def scheduleinit():
     global mainschedule
     mainschedule=schedule.schedulecontrol()
 
-    mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/15','0',id='nmap')   
-    mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','0','0',id='zmap')   
+    mainschedule.addschedule(taskitem.tick,'0-7','1-19','*/10','0',id='nmap')   
+    mainschedule.addschedule(taskitem.ticknormal,'0-7','20-23','*/10','0',id='zmap')   
     print 'init schedule'
 

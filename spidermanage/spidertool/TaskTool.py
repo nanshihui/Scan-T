@@ -18,7 +18,8 @@ class TaskTool:
 	###
 	def add_work(self,work):
 		self.threadtool.push(work)
-
+	def get_work(self):
+		return self.threadtool.get_work()
 	def task(self,req,threadname):
 		print threadname+'执行任务中'+str(datetime.datetime.now())
 		ans =threadname+'任务结束'+str(datetime.datetime.now()) 
