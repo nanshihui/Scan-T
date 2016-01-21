@@ -48,14 +48,16 @@ class ThreadTool:
 		self.job=job
 #获取当前剩余的任务，用于集群操做
 	def get_work(self):
+		tmparray=[]
 		if self.q_request.qsize()>0:
 			try:
 				req = self.q_request.get(block=True,timeout=4)
-				return req
+				tmparray.append(req)
+				return tmparray
 			except:
-				return ''
+				return tmparray
 		else:
-			return ''
+			return tmparray
 	def start(self):
 		sizenumber=min(self.threads_num,self.q_request.qsize())
 		if self.isThread==1:

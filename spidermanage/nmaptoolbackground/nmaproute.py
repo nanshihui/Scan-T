@@ -16,6 +16,14 @@ import json
 # Create your views here.
 def getwork(request):
     data={}
+    taskinstance=taskcontrol.getObject()
+    tempwork=taskinstance.get_work()
+    
+    if len(tempwork)>0:
+        data['result']='1'
+        data['job']=tempwork
+    else:
+        data['result']='0'
     
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 def destroyjob(request):
