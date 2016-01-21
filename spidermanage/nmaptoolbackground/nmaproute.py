@@ -9,6 +9,7 @@ from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
+from spidertool import  connectpool
 import httplib
 import json
 
@@ -113,15 +114,17 @@ def chartdata(request):
     httpClient = None
     response_data={}
     try:
-        httpClient = httplib.HTTPConnection('echarts.baidu.com', 80, timeout=30)
-        httpClient.request('GET', '/doc/example/data/migration.json')
- 
+#         httpClient = httplib.HTTPConnection('echarts.baidu.com', 80, timeout=30)
+#         httpClient.request('GET', '/doc/example/data/migration.json')
+        connectpool_t=connectpool.getObject()
+        address='http://echarts.baidu.com/echarts2/doc/example/data/migration.json'
+        head,ans = connectpool_t.getConnect(address)
     #response是HTTPResponse对象
-        response = httpClient.getresponse()
+#         response = httpClient.getresponse()
 #         print response.status
 #         print response.reason
-        response_data= response.read()
-        
+        response_data= ans
+        print response_data
     except Exception, e:
         print '接受的数据出现异常'+str(e)
     finally:

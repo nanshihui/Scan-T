@@ -10,4 +10,6 @@ a new spider with more function
 
 ### 后台主程序在spidermanage文件夹下的manage.py
 
+
 * PS:if want to help with me to complete this project ...please fork it ^_^
+* Simple introduction:[Screenshot Preview](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/)
