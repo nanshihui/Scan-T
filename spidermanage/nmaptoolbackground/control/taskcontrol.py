@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#coding:utf-8
 from spidertool import sniffertask
 import schedule
 from datetime import datetime
@@ -5,15 +7,17 @@ import time
 import logging
 import random
 
-logging.basicConfig()
+logging.basicConfig()#日志基础配置
 nmaptask=None
 mainschedule=None
+#实例化函数
 def getObject():
     global nmaptask
     if nmaptask is None:
         nmaptask=sniffertask.snifferTask(1)
         nmaptask.set_deal_num(5)
     return nmaptask
+#获取可利用任务
 def getavailwork():
     global nmaptask
     if nmaptask is None:
@@ -22,29 +26,32 @@ def getavailwork():
         return ''
     else:
         nmaptask.get_work()
-
+#任务初始化函数
 def taskinit():
     global  nmaptask 
     nmaptask= sniffertask.snifferTask(0)
     nmaptask.set_deal_num(5)
+#任务添加函数
 def taskadd(array):
     global  nmaptask 
     if nmaptask is None:
         nmaptask =sniffertask.snifferTask(0)
     nmaptask.add_work(array)
+#定时任务添加函数
 def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id=''):
     global mainschedule
     if mainschedule is None:
         mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
+#定时任务初始化函数
 def scheduleinit():
     from spidertool import scapytool 
     import taskitem
-#    scapytool.initsniffer()
+#    scapytool.initsniffer()＃被动嗅探功能
     global mainschedule
     mainschedule=schedule.schedulecontrol()
 
-    mainschedule.addschedule(taskitem.tick,'0-7','1-22','*/10','0',id='nmap')   
-    mainschedule.addschedule(taskitem.ticknormal,'0-7','23-23','*/10','0',id='zmap')   
+#     mainschedule.addschedule(taskitem.tick,'0-7','1-22','*/10','0',id='nmap')#nmap定时任务器   
+#     mainschedule.addschedule(taskitem.ticknormal,'0-7','23-23','*/10','0',id='zmap')#zmap定时任务器
     print 'init schedule'
 

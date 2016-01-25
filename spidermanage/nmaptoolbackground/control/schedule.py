@@ -1,4 +1,5 @@
-#coding=utf-8
+#!/usr/bin/python
+#coding:utf-8
 from apscheduler.schedulers.background import BackgroundScheduler
 # from apscheduler.schedulers.blocking import BlockingScheduler
 from datetime import datetime

@@ -31,7 +31,7 @@ class SniffrtTool(object):
         Constructor
         '''
         try:
-            self.nma = nmap.PortScanner()                                     # instantiate nmap.PortScanner object
+            self.nma = nmap.PortScanner()     # instantiate nmap.PortScanner object
 
             self.params='-A   -Pn  -sC  -R -v  -O '
 #             self.params='-sV -T4 -O '                    #快捷扫描加强版

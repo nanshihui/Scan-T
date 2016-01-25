@@ -22,7 +22,6 @@ class SqlDataTask(TaskTool):
 # 		self.sqlhelp.connectdb()
 		func=req.getFunc()
 		Dic=req.getDic()
-		print Dic
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
 
 		

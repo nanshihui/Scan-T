@@ -121,6 +121,12 @@ def ipadd(ip):
     DBhelp.closedb()
 
     return tempresult
-
+def ip_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate):
+#     sqldatawprk=[]
+#     dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
+#     tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+#     sqldatawprk.append(tempwprk)
+#     self.sqlTool.add_work(sqldatawprk)
+    pass 
     
     

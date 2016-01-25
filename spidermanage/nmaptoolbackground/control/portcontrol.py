@@ -278,6 +278,13 @@ def divided(ports,params='port'):
         list= p.findall(temp)
         sql+=params+'  ='+SQLTool.formatstring(list[0])+' )    '
     return sql
+def port_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate):
+#     sqldatawprk=[]
+#     dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
+#     tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+#     sqldatawprk.append(tempwprk)
+#     self.sqlTool.add_work(sqldatawprk)
+    pass 
     
 #             print 'there is no any thing match'
 if __name__ == "__main__":   

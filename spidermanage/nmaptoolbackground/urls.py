@@ -19,5 +19,7 @@ urlpatterns = [
     url(r'^chartshow/$',route.chartshow,name='chartshow'),      
     url(r'^chartdata/$',route.chartdata,name='chartdata'),
     url(r'^getwork/$',route.getwork,name='getwork'),      
+    url(r'^uploadipinfo/$',route.upload_ip_info,name='uploadipinfo'),
+    url(r'^uploadportinfo/$',route.upload_port_info,name='uploadportinfo'),
     
 ]

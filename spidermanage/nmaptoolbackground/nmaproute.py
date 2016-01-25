@@ -14,18 +14,7 @@ import httplib
 import json
 
 # Create your views here.
-def getwork(request):
-    data={}
-    taskinstance=taskcontrol.getObject()
-    tempwork=taskinstance.get_work()
-    
-    if len(tempwork)>0:
-        data['result']='1'
-        data['jobs']=tempwork
-    else:
-        data['result']='0'
-    
-    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
+
 def destroyjob(request):
     data=updatejob(request,state='6')
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
@@ -228,8 +217,30 @@ def updatejob(request,state=''):
                         
             response_data['result'] = '1'
         return response_data
-       
+def getwork(request):
+    data={}
+    taskinstance=taskcontrol.getObject()
+    tempwork=taskinstance.get_work()
+    
+    if len(tempwork)>0:
+        data['result']='1'
+        data['jobs']=tempwork
+    else:
+        data['result']='0'
+    
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 
+def upload_ip_info(request):
+    tempvendor=request.POST.get('vendor','')
+    temposfamily=request.POST.get('osfamily','')
+    temposgen=request.POST.get('osgen','')
+    tempaccuracy=request.POST.get('accuracy','')
+    temphostname=request.POST.get('hostname','')
+    tempstate=request.POST.get('state','')
+    ipcontrol.ip_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)
+def upload_port_info(request):
+#     portcontrol.port_info_upload
+    pass
     
 
 
