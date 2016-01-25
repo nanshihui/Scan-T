@@ -7,6 +7,9 @@ a new spider with more function
 * spidermanage         					web端配置文件模块(config of django)
 * nmaptoolbackground 			/nmaptool子路径下的具体细分处理(the specific ways to deal with the path)
 * zmap 为开源工具
+* fontsearch         					用户搜索模块整体，里面是一个独立的web项目。拆开模块写是为了方便移植
+* common_static         			存储静态文件。
+* sqldata         					数据库文件
 
 ##TODO
 * 添加nmap扫描跟随zmap

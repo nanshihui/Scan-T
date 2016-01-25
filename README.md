@@ -2,7 +2,7 @@
 ###state:coding
 a new spider with more function
 ##spidertool 爬虫相关工具包
-* src    爬虫独立逻辑代码(spider  code)
+* src    爬虫独立逻辑代码后期的更新都放到spidermanage里面的toolforsipder的文件夹了(spider  code)
 * spidermanage     爬虫后台管理类(a web manage about the spider to control the task )
 
 ### 注意事项

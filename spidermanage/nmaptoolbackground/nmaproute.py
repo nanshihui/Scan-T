@@ -21,7 +21,7 @@ def getwork(request):
     
     if len(tempwork)>0:
         data['result']='1'
-        data['job']=tempwork
+        data['jobs']=tempwork
     else:
         data['result']='0'
     
