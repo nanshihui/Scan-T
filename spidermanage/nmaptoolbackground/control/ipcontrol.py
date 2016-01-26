@@ -1,9 +1,8 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import SQLTool ,config
+from spidertool import SQLTool ,config,Sqldatatask
 from ..model import ipmain
-
-
+import time 
 limitpage=15
 
 localconfig=config.Config()
@@ -122,11 +121,13 @@ def ipadd(ip):
 
     return tempresult
 def ip_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate):
+    localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
+    sqlTool=Sqldatatask.getObject()
 #     sqldatawprk=[]
 #     dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
 #     tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
 #     sqldatawprk.append(tempwprk)
-#     self.sqlTool.add_work(sqldatawprk)
+#     sqlTool.add_work(sqldatawprk)
     pass 
     
     

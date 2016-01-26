@@ -9,7 +9,7 @@ from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
-from spidertool import  connectpool
+from spidertool import  connectpool,Sqldatatask,Sqldata
 import httplib
 import json
 
@@ -231,18 +231,36 @@ def getwork(request):
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 
 def upload_ip_info(request):
-    tempvendor=request.POST.get('vendor','')
-    temposfamily=request.POST.get('osfamily','')
-    temposgen=request.POST.get('osgen','')
-    tempaccuracy=request.POST.get('accuracy','')
-    temphostname=request.POST.get('hostname','')
-    tempstate=request.POST.get('state','')
-    ipcontrol.ip_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)
+    sqldatawprk=[]
+    func=request.POST.get('func','')
+    dic=request.POST.get('dic',{})
+    tempwprk=Sqldata.SqlData(func,dic)
+    sqldatawprk.append(tempwprk)
+    sqlTool=Sqldatatask.getObject()
+    sqlTool.add_work(sqldatawprk)
+#     works=request.POST.get('workdetail',[])
+#     print works
+#     tempvendor=request.POST.get('vendor','')
+#     temposfamily=request.POST.get('osfamily','')
+#     temposgen=request.POST.get('osgen','')
+#     tempaccuracy=request.POST.get('accuracy','')
+#     temphostname=request.POST.get('hostname','')
+#     tempstate=request.POST.get('state','')
+#     ipcontrol.ip_info_upload(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)
+    data={}
+    data['result']='1'
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
+
 def upload_port_info(request):
-#     portcontrol.port_info_upload
-    pass
-    
+    sqldatawprk=[]
+    func=request.POST.get('func','')
+    dic=request.POST.get('dic',{})
+    tempwprk=Sqldata.SqlData(func,dic)
+    sqldatawprk.append(tempwprk)
+    sqlTool=Sqldatatask.getObject()
+    sqlTool.add_work(sqldatawprk)
 
-
-
+    data={}
+    data['result']='1'
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 
