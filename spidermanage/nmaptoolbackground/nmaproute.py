@@ -233,8 +233,9 @@ def getwork(request):
 def upload_ip_info(request):
     sqldatawprk=[]
     func=request.POST.get('func','')
-    dic=request.POST.get('dic',{})
-    tempwprk=Sqldata.SqlData(func,dic)
+    dic=request.POST.get('dic','{}')
+    nowdic=eval(dic)
+    tempwprk=Sqldata.SqlData(func,nowdic)
     sqldatawprk.append(tempwprk)
     sqlTool=Sqldatatask.getObject()
     sqlTool.add_work(sqldatawprk)
@@ -254,8 +255,9 @@ def upload_ip_info(request):
 def upload_port_info(request):
     sqldatawprk=[]
     func=request.POST.get('func','')
-    dic=request.POST.get('dic',{})
-    tempwprk=Sqldata.SqlData(func,dic)
+    dic=request.POST.get('dic','{}')
+    nowdic=eval(dic)
+    tempwprk=Sqldata.SqlData(func,nowdic)
     sqldatawprk.append(tempwprk)
     sqlTool=Sqldatatask.getObject()
     sqlTool.add_work(sqldatawprk)
