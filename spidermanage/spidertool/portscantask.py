@@ -54,11 +54,11 @@ class PortscanTask(TaskTool):
         insertdata=[]
         temp=str(ans)
 
-        insertdata.append((ip,port,localtime,str(head),str(temp)))
+        insertdata.append((ip,port,localtime,str(head),str(temp),str(port)))
                                          
         extra=' on duplicate key update  detail=\''+str(temp).replace("'","&apos;")+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\''
         sqldatawprk=[]
-        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head'],"insert_values":insertdata,"extra":extra}
+        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber'],"insert_values":insertdata,"extra":extra}
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)

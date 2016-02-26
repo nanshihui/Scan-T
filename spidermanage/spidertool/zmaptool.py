@@ -42,7 +42,7 @@ class Zmaptool:
             insertdata=[]
             jobs=[]
             for i in list:
-                insertdata.append((str(i),port,localtime,'open'))
+                insertdata.append((str(i),port,localtime,'open',str(port)))
                 self.getlocationtool.add_work([str(i)])
 
                 if needdetail=='0':
@@ -62,7 +62,7 @@ class Zmaptool:
             
 #             self.sqlTool.inserttableinfo_byparams(table=self.config.porttable,select_params=['ip','port','timesearch','state'],insert_values=insertdata,extra=extra)
             sqldatawprk=[]
-            dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
+            dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','state','portnumber'],"insert_values":insertdata,"extra":extra}
             tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
             sqldatawprk.append(tempwprk)
             self.sqlTool.add_work(sqldatawprk)       

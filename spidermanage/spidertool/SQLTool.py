@@ -123,7 +123,7 @@ class DBmanager:
 					sql+=' order by '+order
 				sql+=limit
 				sql+=''
-# 				print sql
+				print sql
 				count=None
 				try:
 					if self.__cur is not None:

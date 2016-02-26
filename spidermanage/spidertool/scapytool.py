@@ -47,9 +47,9 @@ def monitor_callback(pkt):
                     insertdatatemp=[i for i in insertdataset]  
                     for j in insertdatatemp:
                         tempip,tempport,tempstate=j
-                        insertdata.append((tempip,tempport,localtime,tempstate))
+                        insertdata.append((tempip,tempport,localtime,tempstate,str(tempport)))
                         
-                        dic={"table":config.Config.porttable,"select_params":['ip','port','timesearch','state'],"insert_values":insertdata,"extra":extra}
+                        dic={"table":config.Config.porttable,"select_params":['ip','port','timesearch','state','portnumber'],"insert_values":insertdata,"extra":extra}
                         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
                         sqldatawprk=[]
                         sqldatawprk.append(tempwprk)

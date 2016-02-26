@@ -27,8 +27,11 @@ def detailpage(request):
     response_data = {}  
     response_data['result'] = '0'
     if  content!='':
-        extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\'  or timesearch like ' +'\'%'+content+'%\' or head like \'%' +content+'%\') and  snifferdata.ip=ip_maindata.ip '
-        ports,portcount,portpagecount=portcontrol.portabstractshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
+        extra='  where     match(snifferdata.ip,portnumber,version,snifferdata.state,name,product,timesearch,head,detail,script) against(\''+content+'\' in Boolean mode) and  snifferdata.ip=ip_maindata.ip '
+       
+#         extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\'  or timesearch like ' +'\'%'+content+'%\' or head like \'%' +content+'%\') and  snifferdata.ip=ip_maindata.ip '
+#         ports,portcount,portpagecount=portcontrol.portabstractshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
+        ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
 
         response_data['result'] = '1' 
     

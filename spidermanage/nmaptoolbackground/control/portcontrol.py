@@ -15,10 +15,10 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
     values_params=[]
 
     if ip!='':
-        request_params.append('('+table+'.'+'ip')
+        request_params.append(table+'.'+'ip')
         values_params.append(SQLTool.formatstring(ip))
     if port!='':
-        request_params.append('port')
+        request_params.append('('+'port')
         values_params.append(SQLTool.formatstring(port))
     if timesearch!='':
         request_params.append('timesearch')
@@ -211,6 +211,8 @@ def portadd(port):
         values_params.append(SQLTool.formatstring(ip))
     if port!='':
         request_params.append('port')
+        values_params.append(SQLTool.formatstring(port))
+        request_params.append('portnumber')
         values_params.append(SQLTool.formatstring(port))
     if timesearch!='':
         request_params.append('timesearch')

@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `datap` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `datap`;
--- MySQL dump 10.13  Distrib 5.5.46, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.47, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: datap
 -- ------------------------------------------------------
--- Server version	5.5.46-0+deb8u1
+-- Server version	5.5.47-0+deb8u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,9 +36,11 @@ CREATE TABLE `snifferdata` (
   `detail` text,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `head` text,
+  `portnumber` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `index2` (`ip`,`port`)
-) ENGINE=InnoDB AUTO_INCREMENT=147895 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `index2` (`ip`,`port`),
+  FULLTEXT KEY `cnFullIndex` (`ip`,`portnumber`,`version`,`state`,`name`,`product`,`timesearch`,`head`,`detail`,`script`) /*!50100 WITH PARSER `mysqlcft` */ 
+) ENGINE=MyISAM AUTO_INCREMENT=697105 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ CREATE TABLE `snifferdata` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-31 11:32:23
+-- Dump completed on 2016-02-26 17:20:18
