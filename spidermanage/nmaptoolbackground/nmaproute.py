@@ -14,7 +14,7 @@ import httplib
 import json
 
 # Create your views here.
-
+#a function to change the state of job
 def destroyjob(request):
     data=updatejob(request,state='6')
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
@@ -24,6 +24,7 @@ def pausejob(request):
 def startjob(request):
     data=updatejob(request,state='2')
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+#a function to get the port information of IP
 def taskdetail(request):
     if request.method=='GET':
         islogin = request.COOKIES.get('islogin',False)
@@ -44,6 +45,7 @@ def taskdetail(request):
             
 
 #     jobcontrol.getIP(jobs)
+#a function to get the job of user
 def ipmain(request):   
     if request.method=='POST':
         islogin = request.COOKIES.get('islogin',False)
@@ -97,7 +99,7 @@ def ipmain(request):
         else:
             return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
 
-                
+#a function to redirect to main page               
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
     username = request.COOKIES.get('username','')
@@ -107,6 +109,7 @@ def indexpage(request):
 def chartshow(request):
     response= render_to_response('nmaptoolview/chartshow.html', {'data':''})
     return response
+#a function to redirect to get the test data from baidu
 def chartdata(request):
     httpClient = None
     response_data={}
@@ -151,7 +154,7 @@ def login(request):
             return response
         else:
             return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
-
+#a function to get the job
 def jobshow(request):
 
     islogin = request.COOKIES.get('islogin',False)
@@ -170,6 +173,7 @@ def jobshow(request):
     else:
         
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+#a function to add the job
 def jobadd(request):
     islogin = request.COOKIES.get('islogin',False)
     username = request.COOKIES.get('username','')
@@ -217,6 +221,10 @@ def updatejob(request,state=''):
                         
             response_data['result'] = '1'
         return response_data
+    
+    
+    
+#the function below is to use for assign work to other PC   
 def getwork(request):
     data={}
     taskinstance=taskcontrol.getObject()

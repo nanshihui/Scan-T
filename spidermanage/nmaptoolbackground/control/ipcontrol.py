@@ -4,7 +4,7 @@ from spidertool import SQLTool ,config,Sqldatatask
 from ..model import ipmain
 import time 
 limitpage=15
-
+#this is a file to do something relate ip,such as get information about ip 
 localconfig=config.Config()
 def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostname='',state='',page='0',city=''):
     validresult=False

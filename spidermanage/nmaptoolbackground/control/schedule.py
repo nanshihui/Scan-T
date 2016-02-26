@@ -7,7 +7,6 @@ import time
 import os 
 def tick():
     print('Tick! The time is: %s' % datetime.now())
-
 class schedulecontrol:
     def __init__(self):
         self.scheduler = BackgroundScheduler()
