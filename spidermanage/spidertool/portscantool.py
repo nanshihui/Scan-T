@@ -8,6 +8,7 @@ import os
 import SQLTool
 import config
 import socket
+from template_identify import port_identify
 portway = {'sip':'INVITE  world \r\n\r\n','2':'8080','3':'443','4':'22','5':'23'}  
 class Portscantool:
     def __init__(self):
@@ -17,7 +18,7 @@ class Portscantool:
 
     def do_scan(self,ip,port,name):
         try:
-
+            port_identify.port_deal(ip=ip,port=port,name=name)
             self.socketclient=  socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socketclient.connect((ip,int(port)))
 
