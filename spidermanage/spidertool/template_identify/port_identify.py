@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
-import port_template
+import component_func
+from plugins import port_template
 def port_deal(ip='',port='',name=''):
     
 #     way='sql'
@@ -9,9 +10,9 @@ def port_deal(ip='',port='',name=''):
 
 
 def getFunc(name,port):
-    func=port_template.portFunc.get(name,port_template.empty)
+    func=component_func.componentFunc.get(name,port_template.empty)
 #检测对应产品，使用payload检测漏洞        
     return func
 
-way='sql'
-getFunc(way,way)(way)
+way='mysql'
+getFunc(way,way)(ip='',port='',name='')
