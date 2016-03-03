@@ -30,20 +30,20 @@ def monitor_callback(pkt):
 
     if IP in pkt:
         if hasattr(pkt[IP],'sport'):
-            print pkt[IP].src+':'+str(pkt[IP].sport)+'----->'+pkt[IP].dst+':'+str(pkt[IP].dport)
+#             print pkt[IP].src+':'+str(pkt[IP].sport)+'----->'+pkt[IP].dst+':'+str(pkt[IP].dport)
             if Ether in pkt:
                 global ipinsertdataset
                 global insertdataset
                 localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
-                print pkt[Ether].src+'----->'+pkt[Ether].dst
+#                 print pkt[Ether].src+'----->'+pkt[Ether].dst
                 extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
                 
                 insertdata=[]
                 
                 insertdataset.add((str(pkt[IP].src),str(pkt[IP].sport),'open'))
-                print '当前ip缓存的数量为：' +str(len(insertdataset))
+#                 print '当前ip缓存的数量为：' +str(len(insertdataset))
                 sqldatawprk=[]
-                if len(insertdataset)>10:
+                if len(insertdataset)>20:
                     insertdatatemp=[i for i in insertdataset]  
                     for j in insertdatatemp:
                         tempip,tempport,tempstate=j
@@ -54,14 +54,13 @@ def monitor_callback(pkt):
                         sqldatawprk=[]
                         sqldatawprk.append(tempwprk)
                     sqlTool.add_work(sqldatawprk)  
-                    print '插入ip到数据库'
                     insertdataset=set()
                 ipinsertdata=[]
                 
                 ipinsertdataset.add((str(pkt[IP].src),'up',pkt[Ether].src))
-                print '当前port缓存的数量为：' +str(len(ipinsertdataset))
+#                 print '当前port缓存的数量为：' +str(len(ipinsertdataset))
                 sqldatawprk=[]
-                if len(ipinsertdataset)>10:
+                if len(ipinsertdataset)>20:
                     ipinsertdatatemp=[i for i in ipinsertdataset]  
                     for j in ipinsertdatatemp:
                         tempip,tempstate,tempmacaddress=j
@@ -73,7 +72,7 @@ def monitor_callback(pkt):
                         sqldatawprk.append(tempipdata)
 
                     sqlTool.add_work(sqldatawprk)     
-                    print '插入port到数据库'
+#                     print '插入port到数据库'
                     ipinsertdataset=set()
 #                 if Raw in pkt:
 #                     if hasattr(pkt[Raw],'load'):

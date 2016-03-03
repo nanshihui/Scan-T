@@ -22,7 +22,7 @@ class SqlDataTask(TaskTool):
 # 		self.sqlhelp.connectdb()
 		func=req.getFunc()
 		Dic=req.getDic()
-		print func,Dic
+# 		print func,Dic
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
 
 		

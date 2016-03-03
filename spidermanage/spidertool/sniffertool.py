@@ -57,16 +57,16 @@ class SniffrtTool(object):
         try:
            
             if hignpersmission=='0':
-                print '我在这里49'
-                print hosts,orders,self.params+arguments
-                
+#                 print '我在这里49'
+#                 print hosts,orders,self.params+arguments
+#                 
                 acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
                 #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)
-                print acsn_result
-                print '我在这里51'
+#                 print acsn_result
+#                 print '我在这里51'
                 return callback(acsn_result) 
             else:
-                print '我在这里52'
+#                 print '我在这里52'
                 return callback(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments,callback=callback) ) 
 
         except nmap.PortScannerError,e:
@@ -98,15 +98,25 @@ class SniffrtTool(object):
                 localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
                 self.getlocationtool.add_work([temphosts])
                 try :
-                                            
-                    tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
-                    temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
-                    temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))
-                    tempaccuracy=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('accuracy','null'))
-                    
+
+                    tempvendor='null'
+                    temposfamily='null'
+                    temposgen='null'
+                    tempaccuracy='null'
+                    if len(tmp['scan'][host]['osmatch'])>0 and len(tmp['scan'][host]['osmatch'][0]['osclass'])>0:
+                        tempvendor=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('vendor','null'))
+
+                        temposfamily=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osfamily','null'))
+              
+                        temposgen=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('osgen','null'))
+                  
+                        tempaccuracy=str(tmp['scan'][host]['osmatch'][0]['osclass'][0].get('accuracy','null'))
+
                     temphostname=''
-                    for i in tmp['scan'][host]['hostnames']:
-                        temphostname+=str(i.get('name','null'))+' '
+                    tempdecide=tmp['scan'][host].get('hostnames',[])
+                    if len(tempdecide)>0:
+                        for i in tmp['scan'][host]['hostnames']:
+                            temphostname+=str(i.get('name','unknow'))+' '
                 
                     tempstate=str(tmp['scan'][host]['status'].get('state','null'))
 #                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime
@@ -118,7 +128,7 @@ class SniffrtTool(object):
                     sqldatawprk.append(tempwprk)
                     self.sqlTool.add_work(sqldatawprk)               
                 except Exception,e:
-                    print 'nmap system error'+str(e)
+                    print 'nmap system error d '+str(e)
                 
                 if 'tcp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['tcp'].keys()
