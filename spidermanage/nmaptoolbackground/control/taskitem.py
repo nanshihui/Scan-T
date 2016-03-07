@@ -10,9 +10,9 @@ def tick():
     temp.do_scan(port=operator.get(str(num)),num='12',needdetail='1')
     print('Tick! The time is: %s' % datetime.now())
 def ticknormal():
-    num=random.randint(6, 6)
+    num=random.randint(1, 1)
 
     temp=zmaptool.Zmaptool()
     
-    temp.do_scan(port=operator.get(str(num)),num='100')
+    temp.do_scan(port=operator.get(str(num)),num='30')
     print('Tick! The time is: %s' % datetime.now())
