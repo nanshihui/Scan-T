@@ -12,7 +12,7 @@ import Sqldatatask
 import Sqldata
 import   trace 
 import getLocationTool
-portname = {'80':'http','8080':'http','443':'https','22':'telnet'} 
+portname = {'80':'http','8080':'http','443':'https','22':'telnet','3306':'mysql'} 
 class Zmaptool:
     def __init__(self):
 #         self.sqlTool=SQLTool.getObject()

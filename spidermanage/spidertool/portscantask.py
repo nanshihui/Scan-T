@@ -35,6 +35,8 @@ class PortscanTask(TaskTool):
         port=req[2]
         head=None
         ans=None
+        hackinfo=''
+        keywords=''
         if req[0]=='http' or req[0]=='https':
             if ip[0:4]=='http':
                 address=ip+':'+port
@@ -47,9 +49,9 @@ class PortscanTask(TaskTool):
             print address
             head,ans = self.connectpool.getConnect(address)
             from template_identify import page_identify
-            keywords=page_identify.identify_main(head=head,context=ans,ip=ip,port=port)
+            keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port)
         else:
-            head,ans=self.portscan.do_scan(ip,port,req[0])
+            head,ans,keywords,hackinfo=self.portscan.do_scan(ip,port,req[0])
         
 #         print ans
 #         self.sqlTool.connectdb()
@@ -57,11 +59,11 @@ class PortscanTask(TaskTool):
         insertdata=[]
         temp=str(ans)
 
-        insertdata.append((ip,port,localtime,str(head),str(temp),str(port)))
+        insertdata.append((ip,port,localtime,str(head),str(temp),str(port),hackinfo,keywords))
                                          
-        extra=' on duplicate key update  detail=\''+str(temp).replace("'","&apos;")+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\''
+        extra=' on duplicate key update  detail=\''+str(temp).replace("'","&apos;")+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+str(hackinfo)+'\',keywords=\''+str(keywords)+'\''
         sqldatawprk=[]
-        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber'],"insert_values":insertdata,"extra":extra}
+        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords'],"insert_values":insertdata,"extra":extra}
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)

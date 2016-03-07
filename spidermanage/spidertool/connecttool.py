@@ -96,11 +96,11 @@ class ConnectTool:
 				msgg= '错误码为: %s' % str(e)
 			print msgg
 			if times <4:
-				print '尝试第'+str(times)+'次'
+				print str(url)+'   尝试第'+str(times)+'次'
 				time.sleep(3)
 				return self.getHTML(URL, way, params, times+1)
 			else :
-				print '失败次数过多，停止链接'
+				print str(url)+'  失败次数过多，停止链接'
 				the_page= msgg
 				return '',the_page
 		finally:

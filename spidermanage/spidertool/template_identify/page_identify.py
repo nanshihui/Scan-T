@@ -3,5 +3,6 @@
 def identify_main(head='',context='',ip='',port=''):
 #    dedeCMS()
 #检测网站的产品    
-    
-    return ''
+    keywords=''
+    hackinfo=''
+    return keywords,hackinfo

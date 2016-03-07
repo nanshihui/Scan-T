@@ -1,18 +1,28 @@
 #!/usr/bin/python
 #coding:utf-8
-import component_func
+import component_func,port_func
 from plugins import port_template
 def port_deal(ip='',port='',name=''):
-    
-#     way='sql'
-#     getFunc(way,way)(way)  
-    pass
+    head=None
+    ans=None
+    keywords=name
+    hackinfo=''
+    port_function=getFunc(name,port)
+    if port_function !=None:
+        head,ans,keywords,hackinfo=port_function(ip=ip,port=port,name=name)
+    return head,ans,keywords,hackinfo
 
 
 def getFunc(name,port):
-    func=component_func.componentFunc.get(name,port_template.empty)
+    func=None
+    if name !='':
+        
+        func=component_func.componentFunc.get(name,port_template.empty)
+    if port !='':
+        func=port_func.portFunc.get(port,port_template.empty)
+    else:
+        func= None
 #检测对应产品，使用payload检测漏洞        
     return func
 
-way='mysql'
-getFunc(way,way)(ip='',port='',name='')
+

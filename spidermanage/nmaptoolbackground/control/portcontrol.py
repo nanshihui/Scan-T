@@ -168,7 +168,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         try:
-            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head'], request_params, values_params,limit,order='port',extra=extra,command=command)
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head','hackinfo'], request_params, values_params,limit,order='port',extra=extra,command=command)
         except Exception,e:
             print str(e)+'portcontrol 69'
             if DBhelp is not None:
@@ -183,7 +183,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'],head=temp['head'])
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'],head=temp['head'],hackinfo=temp['hackinfo'])
  
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)

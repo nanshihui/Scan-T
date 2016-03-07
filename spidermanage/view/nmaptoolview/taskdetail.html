@@ -299,13 +299,13 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="col-md-2 sortable">
+                                <th class="col-md-1 sortable">
                                     端口号
                                 </th>
-                                <th class="col-md-2 sortable">
+                                <th class="col-md-1 sortable">
                                     <span class="line"></span>端口名
                                 </th>
-                                <th class="col-md-2 sortable">
+                                <th class="col-md-1 sortable">
                                     <span class="line"></span>端口版本
                                 </th>
                                 <th class="col-md-2 sortable ">
@@ -317,6 +317,10 @@
                                 </th>
                                         <th class="col-md-3 sortable ">
                                     <span class="line"></span>具体内容
+                                </th>
+                                 </th>
+                                        <th class="col-md-3 sortable ">
+                                    <span class="line"></span>潜在信息
                                 </th>
                             </tr>
                         </thead>
@@ -443,8 +447,12 @@ function changtext(k,i){
        tempstr=clinckdata.ports[clinckitem].script;
           document.getElementById("scriptdetail").innerHTML=tempstr;
       }
-        else{
+         if(k==2){
              tempstr=clinckdata.ports[clinckitem].detail;
+              document.getElementById("scriptdetail").innerHTML=tempstr;
+            }
+                if(k==3){
+             tempstr=clinckdata.ports[clinckitem].hackinfo;
               document.getElementById("scriptdetail").innerHTML=tempstr;
             }
 }
@@ -570,6 +578,26 @@ function changtext(k,i){
                                                     else
                                                         tempscript=encodeHtml(ports[i].script);
                                                     }
+
+                                                  var temphackinfo='';
+                                                  
+                                                      if (ports[i].hackinfo==null||ports[i].hackinfo=='')
+                                                    {
+
+                                                      temphackinfo='';
+                                                  }
+                                                 else{
+                                                    if (ports[i].hackinfo.length>30)
+                                                        temphackinfo=encodeHtml(ports[i].hackinfo.substring(0,30));
+                                                    else
+                                                        temphackinfo=encodeHtml(ports[i].hackinfo);
+                                                    }
+
+
+
+
+
+
                                                  bodyhtml+="<tr class=\"first\">"+
                                                 "<td><a href=\"https://www.baidu.com/s?wd=端口 "+ports[i].port+"\" class=\"name\">"+ports[i].port+"</a>"+
                                                 "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
@@ -578,6 +606,7 @@ function changtext(k,i){
                                                 "<td ><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
                                                 "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+tempscript+"</a></td>"+
                                                 "<td ><a id=\"modal-19991\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(2,"+i+")\">"+msgshow+"</a></td>"+
+                                                "<td ><a id=\"modal-19992\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(3,"+i+")\">"+temphackinfo+"</a></td>"+
                                                 "</tr>";
                                            
                                             }
