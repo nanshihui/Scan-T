@@ -4,9 +4,8 @@
 # from subprocess import Popen, PIPE
 # import sys
 # sys.path.append("..")
-from spidertool.template_identify import commandtool
+from spidertool import commandtool
 def rsync(ip='',port='',name=''):
-    print 'rsync deal'
     head=''
     ans=None
     keywords=''
