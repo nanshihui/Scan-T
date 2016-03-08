@@ -37,8 +37,12 @@
     <![endif]-->
 </head>
 <body>
+        {%if username != ''%}
+<div class="site-nav"><a  href="/nmaptool/"  >{{username}}</a> <span>/</span> <a href="#">关于</a>
+{%else%}
+<div class="site-nav"><a  href="/nmaptool/login"  >登陆</a> <span>/</span> <a href="#">关于</a>
+{% endif %}
 
-<div class="site-nav"><a   href="/nmaptool/login"  >登陆</a> <span>/</span> <a href="#">关于</a>
             </div>
 
    <div class="container">

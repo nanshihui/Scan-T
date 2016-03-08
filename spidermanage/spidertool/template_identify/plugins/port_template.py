@@ -46,7 +46,7 @@ def empty(ip='',port='',name=''):
     ans=None
     keywords=None
     hackinfo=None
-    
+    print 'this is empty func'
     
     return head,ans,keywords,hackinfo
  

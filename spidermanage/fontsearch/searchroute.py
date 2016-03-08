@@ -15,8 +15,8 @@ import json
 
                 
 def indexpage(request):
-
-    return render_to_response('fontsearchview/search.html', {'data':''})
+    username = request.COOKIES.get('username','')
+    return render_to_response('fontsearchview/search.html', {'data':'','username':username})
 def mainpage(request):
     content=request.GET.get('searchcontent','')
     page=request.GET.get('page','0')
