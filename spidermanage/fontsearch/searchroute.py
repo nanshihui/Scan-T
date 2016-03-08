@@ -20,10 +20,12 @@ def indexpage(request):
 def mainpage(request):
     content=request.GET.get('searchcontent','')
     page=request.GET.get('page','0')
-    return render_to_response('fontsearchview/searchdetail.html', {'data':content,'page':page})
+    username = request.COOKIES.get('username','')
+    return render_to_response('fontsearchview/searchdetail.html', {'data':content,'page':page,'username':username})
 def detailpage(request):
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
+    username = request.COOKIES.get('username','')
     response_data = {}  
     response_data['result'] = '0'
     if  content!='':
@@ -40,6 +42,7 @@ def detailpage(request):
         response_data['portslength']=portcount
         response_data['portspagecount']=portpagecount
         response_data['portspage']=page
+        response_data['username']=username
     return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     
     

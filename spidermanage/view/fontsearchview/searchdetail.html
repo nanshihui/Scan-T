@@ -143,6 +143,7 @@ var clinckitem=0;
 var xmlhttp;
 var clinckdata='';
 
+var username="{{username}}"
 function changtext(k,i){
 
     clinckitem=i;
@@ -255,8 +256,19 @@ function changtext(k,i){
                                                                     "</div><div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">概要信息：</p><pre>"+(ports[i].script==null?'无':encodeHtml(ports[i].script))+"</pre></div>"+
                                                                     "<div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">详细信息：</p>"+
-                                                                    "<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
+                                                                    "<p class=\"package-description\">详细信息：</p>";
+                                                     
+                                                      
+                                                               
+                                                                      if    (data2.username=='admin'){
+
+                                                                bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail+'\nhackinfo:\n'+ports[i].hackinfo).toString())+"</pre></div></div></div></div> ";
+                                                         }
+                                                         else{
+                                                   bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
+                                                         }
+                                                         
+                                                                   
 
                                            // xmp
                                             }
