@@ -52,7 +52,7 @@
         </div>
         <ul class="nav navbar-nav pull-right hidden-xs">
             <li class="hidden-xs hidden-sm">
-                <input class="search" type="text" />
+                <input class="search" type="text"  onkeydown='getsearchvalue("search");'/>
             </li>
             <li class="notification-dropdown hidden-xs hidden-sm">
                 <a href="#" class="trigger">
@@ -237,6 +237,13 @@
 
     <!-- build the charts -->
     <script type="text/javascript">
+      function getsearchvalue(id){
+    if(event.keyCode==13){
+       var tempcontent=document.getElementById(id).value;
+         window.location='/search/searchmain/?page=0&searchcontent='+tempcontent;
+    }
+    //
+  }
  var xmlhttp;
      //创建XMLHttpRequest对象
         function GetXmlHttp(xmlhttp){
