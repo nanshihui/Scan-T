@@ -2,7 +2,7 @@
 
 [![Build Status](http://nanshihui.github.io/public/status.svg)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) [![Python 2.6|2.7](http://nanshihui.github.io/public/python.svg)](https://www.python.org/) [![License](http://nanshihui.github.io/public/license.svg)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) 
 
-toolforsipder is an open source penetration testing tool that automates the process of detecting and collecting the hosts flaws and port fingerprinting. It comes with a powerful detection engine, many niche features for the ultimate penetration tester .
+  toolforsipder is an open source penetration testing tool that automates the process of detecting and collecting the hosts flaws and port fingerprinting. It comes with a powerful detection engine, many niche features for the ultimate penetration tester .
 
 Screenshots
 ----
@@ -30,18 +30,16 @@ Usage
 
 To get a list of basic options and switches use:
 
-    sudo python manage.py runserver localhost:80
-
-
+    sudo python spidermanage/manage.py runserver localhost:80
     
-##spidertool 爬虫相关工具包
-* src    爬虫独立逻辑代码后期的更新都放到spidermanage里面的sipdertool的文件夹了(spider  code,the new one is in the document which named sipdertool from spidermanage)
-* spidermanage     爬虫后台管理类(a web manage about the spider to control the task )
+Notice
+----
+* src    spider code,the new one is in the document which named sipdertool from spidermanage,please ignore this one
+* spidermanage     a network management platform about the spider to control the task 
+* PS:if want to help with me to complete this project ...please fork it ^_^  
 
-### 注意事项
-* spidermanage里面已经包含src里面的相关文件,独立保留一份，方便移植,后期将删除，最新版本的独立文件在spidermanage里面的sipdertool的文件夹了
 
-### 后台主程序在spidermanage文件夹下的manage.py
 
-* PS:if want to help with me to complete this project ...please fork it ^_^
+
+
 
