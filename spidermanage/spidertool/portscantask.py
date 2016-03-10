@@ -59,7 +59,7 @@ class PortscanTask(TaskTool):
         insertdata=[]
         temp=str(ans)
 
-        insertdata.append((ip,port,localtime,str(head),str(temp),str(port),hackinfo,keywords))
+        insertdata.append((ip,port,localtime,str(head),str(temp).replace("'","&apos;"),str(port),hackinfo.replace("'","&apos;"),keywords))
                                          
         extra=' on duplicate key update  detail=\''+str(temp).replace("'","&apos;")+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+str(hackinfo).replace("'","&apos;")+'\',keywords=\''+str(keywords)+'\''
         sqldatawprk=[]
