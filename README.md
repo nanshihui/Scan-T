@@ -1,6 +1,6 @@
 # toolforspider
 
-[![Build Status](http://nanshihui.github.io/public/status.xml)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) [![Python 2.6|2.7](http://nanshihui.github.io/public/python.xml)](https://www.python.org/) [![License](http://nanshihui.github.io/public/license.xml)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) 
+[![Build Status](http://nanshihui.github.io/public/build)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) [![Python 2.6|2.7](http://nanshihui.github.io/public/python)](https://www.python.org/) [![License](http://nanshihui.github.io/public/license)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) 
 
 toolforsipder is an open source penetration testing tool that automates the process of detecting and collecting the hosts flaws and port fingerprinting. It comes with a powerful detection engine, many niche features for the ultimate penetration tester .
 
