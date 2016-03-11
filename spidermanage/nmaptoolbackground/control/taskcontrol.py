@@ -50,7 +50,7 @@ def scheduleinit():
 #     scapyitem=scapytask.ScapyTask()#被动嗅探
     global mainschedule
     mainschedule=schedule.schedulecontrol()
-
+#     mainschedule.addschedule(taskitem.listiptask,'0-7','*/21','13','0',id='listiptask')#自定义扫描段任务器
     mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/10','0',id='nmap')#nmap定时任务器   
 #     mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','*/44','0',id='zmap')#zmap定时任务器
     print 'init schedule'

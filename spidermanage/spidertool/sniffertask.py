@@ -9,6 +9,12 @@ import  sniffertool
 import webtool
 from nmaptoolbackground.control import jobcontrol  
 from nmaptoolbackground.model import job  
+snifferinstance=None
+def getObject():
+    global snifferinstance
+    if snifferinstance is None:
+        snifferinstance=snifferTask(1)
+    return snifferinstance
 class snifferTask(TaskTool):
     def __init__(self,isThread=1):
         TaskTool.__init__(self,isThread)

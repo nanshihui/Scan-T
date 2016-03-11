@@ -16,7 +16,7 @@ def getObject():
         getlocationtaskinstance=GetLocationTask(1)
     return getlocationtaskinstance
 def getlocationjsondata(jsondata):
-    print jsondata
+#     print jsondata
     if jsondata.get('code','1')==0:
         country=jsondata['data'].get('country','0')
         country_id=str(jsondata['data'].get('country_id','0'))
@@ -43,7 +43,7 @@ class GetLocationTask(TaskTool):
         self.config=config.Config
         self.set_deal_num(1)
     def task(self,req,threadname):
-        print 'the ip is '+req
+        print 'ip location do ......the ip is '+req
         ip=req
         jsondata=webtool.getLocationinfo(req)
         country,country_id,area,area_id,region,region_id,city,city_id,county,county_id,isp,isp_id=getlocationjsondata(jsondata)

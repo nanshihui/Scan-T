@@ -58,7 +58,7 @@ class SniffrtTool(object):
            
             if hignpersmission=='0':
 #                 print '我在这里49'
-#                 print hosts,orders,self.params+arguments
+                print hosts,orders,self.params+arguments
 #                 
                 acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=self.params+arguments)
                 #acsn_result=self.nma.scan(hosts=hosts,ports= orders,arguments=arguments)

@@ -58,10 +58,19 @@ class PortscanTask(TaskTool):
         localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
         insertdata=[]
         temp=str(ans)
-
-        insertdata.append((ip,port,localtime,str(head),str(temp).replace("'","&apos;"),str(port),hackinfo.replace("'","&apos;"),keywords))
+        msg=''
+        if temp is not None:
+            msg=str(temp).replace("'","&apos;")
+        else:
+            msg=''
+        hackinfomsg=''
+        if hackinfo is not None:
+            hackinfomsg=str(hackinfo).replace("'","&apos;")
+        else:
+            hackinfomsg=''
+        insertdata.append((ip,port,localtime,str(head),msg,str(port),hackinfomsg,keywords))
                                          
-        extra=' on duplicate key update  detail=\''+str(temp).replace("'","&apos;")+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+str(hackinfo).replace("'","&apos;")+'\',keywords=\''+str(keywords)+'\''
+        extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\''
         sqldatawprk=[]
         dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords'],"insert_values":insertdata,"extra":extra}
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
