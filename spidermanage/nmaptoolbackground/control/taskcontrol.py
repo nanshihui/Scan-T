@@ -42,7 +42,7 @@ def addschedule(event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='
     global mainschedule
     if mainschedule is None:
         mainschedule=schedule.schedulecontrol()
-    mainschedule.addschedule(tick,day_of_week,hour,minute,second,id=id)
+    mainschedule.addschedule(event,day_of_week,hour,minute,second,id=id)
 #定时任务初始化函数
 def scheduleinit():
     from spidertool import scapytool 
@@ -52,6 +52,6 @@ def scheduleinit():
     mainschedule=schedule.schedulecontrol()
 #     mainschedule.addschedule(taskitem.listiptask,'0-7','*/21','13','0',id='listiptask')#自定义扫描段任务器
     mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/10','0',id='nmap')#nmap定时任务器   
-#     mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','*/44','0',id='zmap')#zmap定时任务器
+#     mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','*/7','0',id='zmap')#zmap定时任务器
     print 'init schedule'
 

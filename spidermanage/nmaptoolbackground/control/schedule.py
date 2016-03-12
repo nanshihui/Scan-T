@@ -13,10 +13,10 @@ class schedulecontrol:
         self.scheduler.start()
  
 
-    def addschedule(self,event, day_of_week='0-7', hour='11',minute='57' ,second='0',id=''):
+    def addschedule(self,event, day_of_week='0-7', hour='11',minute='57' ,second='0',id='',type='cron'):
         if id=='':
             id=str(time.strftime("%Y-%m-%d %X", time.localtime()));
-        self.scheduler.add_job(event,'cron', day_of_week=day_of_week, hour=hour,minute=minute ,second=second,id=id)    
+        self.scheduler.add_job(event,type, day_of_week=day_of_week, hour=hour,minute=minute ,second=second,id=id)    
     def removeschedule(self,id):
         self.scheduler.remove_job(id)
 if __name__ == "__main__":           

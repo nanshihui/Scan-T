@@ -58,16 +58,11 @@ class PortscanTask(TaskTool):
         localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
         insertdata=[]
         temp=str(ans)
-        msg=''
-        if temp is not None:
-            msg=str(temp).replace("'","&apos;")
-        else:
-            msg=''
-        hackinfomsg=''
-        if hackinfo is not None:
-            hackinfomsg=str(hackinfo).replace("'","&apos;")
-        else:
-            hackinfomsg=''
+
+        head=SQLTool.escapeword(head)
+        msg=SQLTool.escapeword(temp)
+        hackinfomsg=SQLTool.escapeword(hackinfo)
+
         insertdata.append((ip,port,localtime,str(head),msg,str(port),hackinfomsg,keywords))
                                          
         extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\''
