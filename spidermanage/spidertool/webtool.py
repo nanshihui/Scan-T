@@ -68,7 +68,12 @@ def getLocationinfo(ip):
 	finally:
 		if httpClient:
 			httpClient.close()
-		return json.loads(response_data)
+		try:
+			return json.loads(response_data)
+		except Exception,e:
+			print response_data
+			print str(e)+'json error'
+			return {}
 def md5(str):
 	import hashlib
 	m = hashlib.md5()   

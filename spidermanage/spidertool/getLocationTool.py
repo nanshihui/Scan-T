@@ -30,6 +30,13 @@ def getlocationjsondata(jsondata):
         county_id=str(jsondata['data'].get('county_id','0'))
         isp=jsondata['data'].get('isp','0')
         isp_id=str(jsondata['data'].get('isp_id','0'))
+        if area_id=='':
+            area_id='0'
+        if city_id=='':
+            city_id='0'
+        if county_id=='':
+            county_id='0'          
+              
         return country,country_id,area,area_id,region,region_id,city,city_id,county,county_id,isp,isp_id
     else:
         return '0','0','0','0','0','0','0','0','0','0','0','0'

@@ -59,9 +59,10 @@ class PortscanTask(TaskTool):
         insertdata=[]
         temp=str(ans)
 
-        head=SQLTool.escapeword(head)
-        msg=SQLTool.escapeword(temp)
-        hackinfomsg=SQLTool.escapeword(hackinfo)
+        head=SQLTool.escapewordby(head)
+        msg=SQLTool.escapewordby(temp)
+        hackinfomsg=SQLTool.escapewordby(hackinfo)
+        keywords=SQLTool.escapewordby(keywords)
 
         insertdata.append((ip,port,localtime,str(head),msg,str(port),hackinfomsg,keywords))
                                          

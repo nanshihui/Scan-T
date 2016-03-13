@@ -373,6 +373,15 @@ def escapeword(word):
 	else:
 		msg=''
 	return msg
+def escapewordby(word):
+	if word is None:
+		return ''
+	else:
+		
+		content=''
+		content = str(MySQLdb.escape_string(str(word)))
+		return content
+
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()
