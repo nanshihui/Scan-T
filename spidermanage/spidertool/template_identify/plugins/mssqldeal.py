@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 
-def mssql(ip='',port='1433',name=''):
+def mssql(ip='',port='1433',name='',productname=''):
     head=''
     ans=None
     keywords=''

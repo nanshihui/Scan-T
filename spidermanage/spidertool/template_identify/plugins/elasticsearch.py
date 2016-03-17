@@ -1,11 +1,9 @@
 #!/usr/bin/python
 #coding:utf-8
 
-def sipdeal(ip='',port='',name='',productname=''):
-    print 'this is sipdeal'
 
 
-def mysql(ip='',port='3306',name='',productname=''):
+def elasticsearch(ip='',port='3306',name='',productname=''):
     head=''
     ans=None
     keywords=''
@@ -43,14 +41,7 @@ def mysql(ip='',port='3306',name='',productname=''):
     return head,ans,keywords,hackinfo
     
 
-def empty(ip='',port='',name='',productname=''):
-    head=None
-    ans=None
-    keywords=None
-    hackinfo=None
-    print 'this is empty func'
-    
-    return head,ans,keywords,hackinfo
+
  
 
     

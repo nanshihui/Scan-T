@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool.template_identify.httpdect.webdection import main
+from webdection import main
+
 def dect(head='',context='',ip='',port=''):
 #     webdection
     keywords=''
@@ -13,5 +14,5 @@ def dect(head='',context='',ip='',port=''):
     print keywords
     return keywords,hackinfo
 
-# w = main.main('www.baidu.com',1)
-# print w
+w = main.getwebinfo('www.baidu.com',1)
+print w

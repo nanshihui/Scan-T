@@ -2,7 +2,7 @@
 #!/usr/bin/python 
 import paramiko
 
-def ssh2(ip='',port='22',name=''):
+def ssh2(ip='',port='22',name='',productname=''):
     head=''
     ans=None
     keywords=''

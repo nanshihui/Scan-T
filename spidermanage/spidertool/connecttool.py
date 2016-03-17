@@ -13,6 +13,7 @@ import gc
 import ssl
 import chardet
 from Queue import Queue
+import json
 WEBCONFIG=webconfig.WebConfig
 class ConnectTool:
 	def  __init__(self,WEBCONFIG=WEBCONFIG,debuglevel=0):
@@ -42,22 +43,27 @@ class ConnectTool:
 			self.__opener=urllib2.build_opener(self.__encoding_support,self.__httpcookieprocessor,self.__null_proxy_handler,self.__httpHandler,self.__httpsHandler,self.__RedirectHandler)
 		urllib2.install_opener(self.__opener)
 
-	def  getHTML(self,URL,way='GET',params={},times=1):
+	def  getHTML(self,URL,way='GET',params={},times=1,header=None,type=''):
 		print datetime.datetime.now()
-		data = urllib.urlencode(params)
+		if type=='':
+			
+			data = urllib.urlencode(params)
+		if type=='JSON':
+			data=json.dumps(params) 
 
 		url=URL
-
+		if header is None:
+			header=self.__headers
 		if way=='POST':
-			req = urllib2.Request(url, data=data, headers=self.__headers)
+			req = urllib2.Request(url, data=data, headers=header)
 
 
 		elif len(params)==0:
-			req= urllib2.Request(url,headers=self.__headers)
+			req= urllib2.Request(url,headers=header)
 
 
 		else :
-			req= urllib2.Request(url+'?'+data,headers=self.__headers)
+			req= urllib2.Request(url+'?'+data,header)
 
 		response=None
 		try:

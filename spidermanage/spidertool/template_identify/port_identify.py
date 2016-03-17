@@ -2,19 +2,19 @@
 #coding:utf-8
 import component_func,port_func
 from plugins import port_template
-def port_deal(ip='',port='',name=''):
+def port_deal(ip='',port='',name='',productname=''):
     head=None
     ans=None
     keywords=name
     hackinfo=''
-    port_function=getFunc(name,port)
+    port_function=getFunc(name,port,productname)
     if port_function !=None:
-        head,ans,keywords,hackinfo=port_function(ip=ip,port=port,name=name)
+        head,ans,keywords,hackinfo=port_function(ip=ip,port=port,name=name,productname=productname)
         
     return head,ans,keywords,hackinfo
 
 
-def getFunc(name,port):
+def getFunc(name,port,productname):
     func=None
     if name !='':
         
