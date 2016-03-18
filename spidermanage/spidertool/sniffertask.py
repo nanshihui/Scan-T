@@ -20,7 +20,7 @@ class snifferTask(TaskTool):
         TaskTool.__init__(self,isThread)
         self.sniffer= sniffertool.SniffrtTool()
     def task(self,req,threadname):
-        print threadname+'执行任务中'+str(datetime.datetime.now())
+        print threadname+'NMAP 扫描执行任务中'+str(datetime.datetime.now())
         jobid=req.getJobid()
         hosts=req.getJobaddress();
         ports=req.getPort()
@@ -29,7 +29,7 @@ class snifferTask(TaskTool):
         if isjob=='1':
             tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
         ans = self.sniffer.scanaddress([hosts], [str(ports)], arguments)
-        print threadname+'任务结束'+str(datetime.datetime.now())
+        print threadname+'NMAP 扫描任务结束'+str(datetime.datetime.now())
         if isjob=='1':
             tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
         return ans

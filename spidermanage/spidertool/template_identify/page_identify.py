@@ -2,14 +2,13 @@
 #coding:utf-8
 from httpdect import headdect
 from poc_file import pocsearchtask
-def identify_main(head='',context='',ip='',port='',productname=''):
+def identify_main(head='',context='',ip='',port='',productname='',protocol='',nmapscript=''):
     keywords=''
     hackinfo=''
-    keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port)
+    keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port,protocol=protocol)
     temp=pocsearchtask.getObject()
-    temp.add_work([(head,context,ip,port,productname,keywords,hackinfo)])
+    temp.add_work([(head,context,ip,port,productname,keywords,nmapscript)])
     
-#    dedeCMS()
-#检测网站的产品    
+
 
     return keywords,hackinfo

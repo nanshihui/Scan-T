@@ -149,7 +149,7 @@ class SniffrtTool(object):
                         tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
                         sqldatawprk.append(tempwprk)
                         self.sqlTool.add_work(sqldatawprk)
-                        self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate,tempproduct)])
+                        self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate,tempproduct,tempscript)])
 
                 elif 'udp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['udp'].keys()

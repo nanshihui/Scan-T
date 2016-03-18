@@ -26,7 +26,7 @@ class PortscanTask(TaskTool):
         self.config=config.Config
         self.set_deal_num(5)
     def task(self,req,threadname):
-        print threadname+'执行任务中'+str(datetime.datetime.now())
+        print threadname+'端口扫描　执行任务中'+str(datetime.datetime.now())
 
 #         print req[0],req[1],req[2],req[3]
         if req[3]!='open':
@@ -34,6 +34,7 @@ class PortscanTask(TaskTool):
         ip=req[1]
         port=req[2]
         productname=req[4]
+        nmapscript=req[5]
         head=None
         ans=None
         hackinfo=''
@@ -50,7 +51,7 @@ class PortscanTask(TaskTool):
             print address
             head,ans = self.connectpool.getConnect(address)
             from template_identify import page_identify
-            keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=address,port=port,productname=productname)
+            keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port,productname=productname,protocol=req[0],nmapscript=nmapscript)
         else:
             head,ans,keywords,hackinfo=self.portscan.do_scan(ip,port,req[0],productname=productname)
         
@@ -77,7 +78,7 @@ class PortscanTask(TaskTool):
 
 
 #         self.sqlTool.closedb()
-        print threadname+'任务结束'+str(datetime.datetime.now())
+        print threadname+'端口扫描　任务结束'+str(datetime.datetime.now())
         
         
         

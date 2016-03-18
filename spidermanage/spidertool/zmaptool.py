@@ -48,7 +48,7 @@ class Zmaptool:
                 if needdetail=='0':
                     global portname
                     nowportname=portname.get(port,'')
-                    self.portscan.add_work([(nowportname,str(i),port,'open')])
+                    self.portscan.add_work([(nowportname,str(i),port,'open','','')])
                 else:
                     
                     ajob=job.Job(jobaddress=str(i),jobport='',forcesearch='0',isjob='0')

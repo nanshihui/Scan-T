@@ -36,8 +36,8 @@ class PocsearchTask(TaskTool):
         port=req[3]
         productname=req[4]
         keywords=req[5]
-        hackinfo=req[6]
-        self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=hackinfo)
+        nmapscript=req[6]
+        self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
         
         print threadname+'POC检测任务结束'+str(datetime.datetime.now())
         

@@ -10,6 +10,7 @@ class P(T):
         target_url = "http://"+ip+":9200/_nodes/stats"
         result = {}
         result['result']=False
+        r=None
         try:
             r=requests.get(url=target_url,timeout=2)
             if r.status_code==200:
@@ -24,6 +25,8 @@ class P(T):
         except Exception,e:
             print e.text
         finally:
+            if r is not None:
+                r.close()
             return result
 if __name__ == '__main__':
-    print P().verify(ip='42.120.7.130',port='9200')          
+    print P().verify(ip='42.120.7.120',port='9200')          

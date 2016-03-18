@@ -18,7 +18,7 @@ class SqlDataTask(TaskTool):
 		self.sqlhelp=SQLTool.getObject()
 		self.sqlhelp.connectdb()
 	def task(self,req,threadname):
-		print threadname+'执行任务中'+str(datetime.datetime.now())
+		print threadname+'数据库任务　执行任务中'+str(datetime.datetime.now())
 # 		self.sqlhelp.connectdb()
 		func=req.getFunc()
 		Dic=req.getDic()
@@ -26,7 +26,7 @@ class SqlDataTask(TaskTool):
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
 
 		
-		print threadname+'任务结束'+str(datetime.datetime.now())
+		print threadname+'数据库任务　结束'+str(datetime.datetime.now())
 # 		self.sqlhelp.closedb()
 		return ans
 
