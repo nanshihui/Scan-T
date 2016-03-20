@@ -17,6 +17,9 @@ def ticknormal():
     temp=zmaptool.Zmaptool()
     
     temp.do_scan(port=operator.get(str(num)),num='30')
+def gchelp():
+    import gc
+    gc.collect()
     print('Tick! The time is: %s' % datetime.now())
 def listiptask():
     listitem=iptask.getObject()

@@ -40,8 +40,9 @@ def ipshow(ip='',vendor='',osfamily='',osgen='',accurate='',updatetime='',hostna
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.iptable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state','city'], request_params, values_params)
-
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params)
+    if count>0:
+        count= int(result[0]['count(*)'])
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:

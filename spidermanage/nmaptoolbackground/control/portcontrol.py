@@ -54,15 +54,17 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
     content=None
     result=None
     try:
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table,iptable], [table+'.'+'ip','port','timesearch',table+'.'+'state','name','product','version','script','detail','head','city'], request_params, values_params,extra=extra,command=command)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table,iptable], ['count(*)'], request_params, values_params,extra=extra,command=command)
     except Exception,e:
         print str(e)+'portcontrol 58'
         if DBhelp is not None:
             DBhelp.closedb()
             DBhelp=None
         return [],0,0
-
-        
+    
+    
+    if count>0:
+        count= int(result[0]['count(*)'])
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:
@@ -144,14 +146,15 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     content=None
     result=None
     try:
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head'], request_params, values_params,extra=extra,command=command)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params,extra=extra,command=command)
     except Exception,e:
         print str(e)+'portcontrol 50'
         if DBhelp is not None:
             DBhelp.closedb()
             DBhelp=None
         return [],0,0
-
+    if count>0:
+        count= int(result[0]['count(*)'])
         
     if count == 0:
         pagecount = 0;

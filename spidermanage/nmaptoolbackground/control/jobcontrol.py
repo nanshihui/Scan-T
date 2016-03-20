@@ -33,8 +33,9 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.tasktable
-    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime','forcesearch'], request_params, values_params)
-
+    result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params)
+    if count>0:
+        count= int(result[0]['count(*)'])
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:
