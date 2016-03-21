@@ -15,6 +15,10 @@ import json
 
 # Create your views here.
 #a function to change the state of job
+def userinfo(request):
+    
+    return render_to_response('nmaptoolview/userinfo.html', {'data':''})
+
 def destroyjob(request):
     data=updatejob(request,state='6')
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
@@ -155,6 +159,11 @@ def login(request):
         else:
             return render_to_response('nmaptoolview/login.html', {'data':'用户名或密码错误'})  
 #a function to get the job
+def sigin(request):
+    if request.method=='GET':
+        return render_to_response('nmaptoolview/sigin.html', {'data':''})
+    
+    
 def jobshow(request):
 
     islogin = request.COOKIES.get('islogin',False)
