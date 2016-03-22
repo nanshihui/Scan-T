@@ -129,18 +129,23 @@ class PocController(object):
         self.match_POC(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,POCS=POCS, **kw)
     def match_POC(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo='',POCS=None, **kw):
         haveresult=False
+        dataresult=[]
+        i=0
         for poc in POCS:
 
             result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
 
 
             if result['result']:
-                haveresult=callbackresult.storedata(ip=ip,port=port,hackinfo=result)
+                i=1
+                dataresult.append(result)
+                
                 print '发现漏洞'
-                break;
+        if i==1:
+            
+            callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
 
-
-        if haveresult == False:
+        else:
             print '-----------------------'
             print '暂未发现相关漏洞'
     def __match_rules(self,pocclass=None,head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw):
