@@ -148,6 +148,7 @@ class PocController(object):
         else:
             print '-----------------------'
             print '暂未发现相关漏洞'
+        del POCS
     def __match_rules(self,pocclass=None,head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw):
 
         return pocclass.match_rule(head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw)

@@ -17,6 +17,7 @@ from nmaptoolbackground.control import taskcontrol
 from dozer import Dozer,Logview
 # from spidertool import trace
 import faulthandler
+import pdb
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "spidermanage.settings")
@@ -26,6 +27,6 @@ application = get_wsgi_application()
 # application = Logview(application)
 faulthandler.enable()
 taskcontrol.scheduleinit()
-
+# pdb.set_trace()
 
 

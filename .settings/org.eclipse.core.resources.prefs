@@ -138,6 +138,7 @@ encoding//spidermanage/spidertool/template_identify/poc_file/plugins/callbackres
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_groovy.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_nodestate.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/default.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/apache/apache_state.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/axis/axis_config_read.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/axis/axis_crackpass.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/axis/axis_info.py=utf-8
@@ -153,7 +154,10 @@ encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/resin/resin_fileread3.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/resin/resin_fileread4.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/tomcat/tomcat_crackpass.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/weblogic/t.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/weblogic/weblogic_crackpass.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/t.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_sqlhack.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/pocdect.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/pocsearchtask.py=utf-8
 encoding//spidermanage/spidertool/template_identify/port_func.py=utf-8
