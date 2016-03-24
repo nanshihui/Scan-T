@@ -130,10 +130,13 @@ encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/w
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/manage/phpmyadmin.py=utf-8
 encoding//spidermanage/spidertool/template_identify/page_identify.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/elasticsearch.py=utf-8
+encoding//spidermanage/spidertool/template_identify/plugins/ftp_weakpass.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/mssqldeal.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/port_template.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/rsyncdeal.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/sshdeal.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/application/ftp/ftpweakpass.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/application/t.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_groovy.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_nodestate.py=utf-8

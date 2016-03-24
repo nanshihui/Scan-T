@@ -5,7 +5,7 @@ import sys
 
 from lib.logger import initLog
 if __name__ == '__main__':
-    logger = initLog('WebDect.log', 2, True)
+    logger = initLog('WebDect.log', 3, True)
     a=default.PocController(logger=logger)
     ip='42.120.7.130'
     keywords='elasticsearch'

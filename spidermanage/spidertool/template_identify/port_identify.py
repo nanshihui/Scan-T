@@ -2,7 +2,8 @@
 #coding:utf-8
 import component_func,port_func
 from plugins import port_template
-def port_deal(ip='',port='',name='',productname=''):
+from poc_file import pocsearchtask
+def port_deal(ip='',port='',name='',productname='',head=None,context=None,nmapscript=None):
     head=None
     ans=None
     keywords=name
@@ -10,7 +11,9 @@ def port_deal(ip='',port='',name='',productname=''):
     port_function=getFunc(name,port,productname)
     if port_function !=None:
         head,ans,keywords,hackinfo=port_function(ip=ip,port=port,name=name,productname=productname)
-        
+    else:
+        temp=pocsearchtask.getObject()
+        temp.add_work([(head,context,ip,port,productname,keywords,nmapscript,name)])
     return head,ans,keywords,hackinfo
 
 
@@ -18,9 +21,9 @@ def getFunc(name,port,productname):
     func=None
     if name !='':
         
-        func=component_func.componentFunc.get(name,port_template.empty)
+        func=component_func.componentFunc.get(name,None)
     if str(port) !='':
-        func=port_func.portFunc.get(str(port),port_template.empty)
+        func=port_func.portFunc.get(str(port),None)
     else:
         func= None
 #检测对应产品，使用payload检测漏洞        

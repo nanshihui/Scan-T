@@ -6,10 +6,8 @@ import time
 import connectpool
 import portscantool
 import SQLTool,config
-import Sqldata
 from TaskTool import TaskTool
 import MySQLdb
-import Sqldatatask
 portscantskinstance=None
 def getObject():
     global portscantskinstance
@@ -19,7 +17,7 @@ def getObject():
 class PortscanTask(TaskTool):
     def __init__(self,isThread=1,deamon=True):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        
+        import Sqldatatask
         self.sqlTool=Sqldatatask.getObject()
         self.connectpool=connectpool.getObject()
         self.portscan=portscantool.Portscantool()
@@ -53,7 +51,7 @@ class PortscanTask(TaskTool):
             from template_identify import page_identify
             keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port,productname=productname,protocol=req[0],nmapscript=nmapscript)
         else:
-            head,ans,keywords,hackinfo=self.portscan.do_scan(ip,port,req[0],productname=productname)
+            head,ans,keywords,hackinfo=self.portscan.do_scan(head=head,context=ans,ip=ip,port=port,name=req[0],productname=productname,nmapscript=nmapscript)
         
 #         print ans
 #         self.sqlTool.connectdb()
@@ -65,7 +63,7 @@ class PortscanTask(TaskTool):
         msg=SQLTool.escapewordby(temp)
         hackinfomsg=SQLTool.escapewordby(hackinfo)
         keywords=SQLTool.escapewordby(keywords)
-
+        import Sqldata
         insertdata.append((ip,port,localtime,str(head),msg,str(port),hackinfomsg,keywords))
                                          
         extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\''

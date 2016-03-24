@@ -191,15 +191,12 @@ class PocController(object):
                 matched_modules.add((module_name,comonentname))
                 continue
             if rules(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo='')  :
+                     
+                     
+                matched_modules.add((module_name,comonentname))
+#             matched_modules.add((module_name,comonentname))
                     
-                    
-#                     self.logger and self.logger.info('Match Keyword: %s -> %s', resp.url, keyword)
-                    matched_modules.add((module_name,comonentname))
-                    
-# 
-#         for match in matched_modules:
-#             othermodule.remove(match)
-#         print othermodule
+
         return matched_modules, othermodule
 
 

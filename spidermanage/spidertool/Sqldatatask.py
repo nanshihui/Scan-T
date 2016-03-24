@@ -24,7 +24,7 @@ class SqlDataTask(TaskTool):
 		Dic=req.getDic()
 # 		print func,Dic
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
-
+		del Dic
 		
 		print threadname+'数据库任务　结束'+str(datetime.datetime.now())
 # 		self.sqlhelp.closedb()

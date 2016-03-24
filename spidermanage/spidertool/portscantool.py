@@ -16,13 +16,13 @@ class Portscantool:
         socket.setdefaulttimeout(8)
         self.config=config.Config
 
-    def do_scan(self,ip,port,name,productname):
+    def do_scan(self,head,context,ip,port,name,productname,nmapscript):
         keywords=name
         hackinfo=''
         reply=''
         self.socketclient=None
         try:
-            head,ans,keywords,hackinfo=port_identify.port_deal(ip=ip,port=port,name=name,productname=productname)
+            head,ans,keywords,hackinfo=port_identify.port_deal(ip=ip,port=port,name=name,productname=productname,head=head,context=context,nmapscript=nmapscript)
             if ans==None:
                 self.socketclient=  socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.socketclient.connect((ip,int(port)))
