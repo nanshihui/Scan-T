@@ -30,14 +30,14 @@ class PocsearchTask(TaskTool):
     def task(self,req,threadname):
         print threadname+'POC检测任务启动'+str(datetime.datetime.now())
         
-        head=req[0]
-        context=req[1]
-        ip=req[2]
-        port=req[3]
-        productname=req[4]
-        keywords=req[5]
-        nmapscript=req[6]
-        protocol=req[7]
+        head='' if req[0] is None else req[0]
+        context='' if req[1] is None else req[1]
+        ip='' if req[2] is None else req[2]
+        port='' if req[3] is None else req[3]
+        productname='' if req[4] is None else req[4]
+        keywords='' if req[5] is None else req[5]
+        nmapscript='' if req[6] is None else req[6]
+        protocol='' if req[7] is None else req[7]
 #         print 'poc   未启动内存增长状况'
 #         gc.collect()
 #         objgraph.show_growth()

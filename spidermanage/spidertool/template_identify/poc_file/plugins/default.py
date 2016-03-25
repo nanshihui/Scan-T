@@ -164,6 +164,12 @@ class PocController(object):
         othermodule=[]
 #         for module_name in self.components.keys():
 #             othermodule.extend(self.components[module_name].keys())
+        if productname ==None:
+            productname=''
+        if head ==None:
+            head=''
+        if hackinfo ==None:
+            hackinfo=''
 
         kw=keywords#关键词
         for module_name, module_info in self.keywords.items():

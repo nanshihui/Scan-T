@@ -43,11 +43,15 @@ def ftpdeal(ip='',port='21',name='',productname=''):
         hackinfo='allow annoymous ftp'
         return head,ans,'ftp',hackinfo
     else:
-        userlist=['root','123456','admin','12345','111111','password','123123','1234','12345678','123456789','sa','test','Administrator','ftp']
+#         userlist=['root','123456','admin','12345','111111','password','123123','1234','12345678','123456789','sa','test','Administrator','ftp']
+# 
+# 
+#         passlist=['root','123456','admin','','12345','111111','password','123123','1234','12345678','123456789','sa','ftp',
+#             'abc123','qwerty','test','','123']
+        userlist=['admin','test']
 
 
-        passlist=['root','123456','admin','','12345','111111','password','123123','1234','12345678','123456789','sa','ftp',
-            'abc123','qwerty','test','','123']
+        passlist=['admin','test']
         for user in userlist:
             for pwd in passlist:
                 print 'ftp尝试'+user+':'+pwd
