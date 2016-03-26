@@ -25,15 +25,15 @@ class InfoDisScanner(InfoDisScannerBase):
         self.logger=initLog("logger_fuzz.log", 2, True)
         self._init_rules()
     def scanvul(self,ip,protocal,port):
+        if len(self.url_dict)==0:
+            self._init_rules()
         self.final_severity = 0
         url=ip+':'+str(port)
         status,has404=self.check_404(url=url,protocal=protocal)           # check the existence of status 404
-        print 'FUZZ-------------------'+str(status)+str(has404)
         if status !=-1:
             tempqueue=Queue.Queue()
             self._enqueue(url,tempqueue)
             dataresult=self._scan_worker(url_queue=tempqueue,protocal=protocal,_status=status,has_404=has404,ip=ip,port=port)
-            print 'FUZZ------result-------------'+str(dataresult)
             if dataresult is not None:
                 callbackfuzz.storedata(ip=ip,port=port,hackinfo=dataresult)
         else:
@@ -49,9 +49,7 @@ class InfoDisScanner(InfoDisScannerBase):
             p_status = re.compile('{status=(\d{3})}')
             p_content_type = re.compile('{type="([^"]+)"}')
             p_content_type_no = re.compile('{type_no="([^"]+)"}')
-
-            for rule_file in glob.glob('rules/*.txt'):
-                print 'file place:'+rule_file
+            for rule_file in glob.glob(os.path.split(os.path.realpath(__file__))[0]+'/rules/*.txt'):
                 infile = open(rule_file, 'r')
                 for url in infile:
                     if url.startswith('/'):
@@ -70,7 +68,6 @@ class InfoDisScanner(InfoDisScannerBase):
                         print (url, severity, tag, status, content_type, content_type_no)
                 infile.close()
         except Exception, e:
-            print str(e)+'fuzz load file error'
             self.logger.error('[Exception in InfoDisScanner._load_dict] %s' % e)
 
     def _http_request(self, url, timeout=10,protocal='http',path=None):
@@ -154,7 +151,6 @@ class InfoDisScanner(InfoDisScannerBase):
     def _scan_worker(self,url_queue,protocal,_status,has_404,ip,port):
         resultarray=[]
         results={}
-        print 'FUZZ-------queuesize------------'+str(url_queue.qsize())
 
         while url_queue.qsize() > 0:
             try:
@@ -164,7 +160,6 @@ class InfoDisScanner(InfoDisScannerBase):
             url=None
             try:
                 url_description, severity, tag, code, content_type, content_type_no,path = item
-                print 'FUZZ-------data------------'+str(item)
 
                 url = url_description['full_url']
                 prefix = url_description['prefix']
@@ -175,7 +170,6 @@ class InfoDisScanner(InfoDisScannerBase):
                 break
             try:
                 status, headers, html_doc = self._http_request(url=prefix,protocal=protocal,path=path)
-                print 'FUZZ-------------------'+str(status)+':'+str(url)+path
 
                 self.logger.info(str(status)+url)
                 if (status in [200, 301, 302, 303]) and (has_404 or status!=_status):

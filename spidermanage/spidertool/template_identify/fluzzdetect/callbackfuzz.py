@@ -32,6 +32,7 @@ def storedata(ip='',port='',hackinfo=None):
     tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
     sqldatawprk.append(tempwprk)
     sqlTool.add_work(sqldatawprk)   
+    print 'fuzz 数据存储'
     pass
  
      
