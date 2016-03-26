@@ -27,11 +27,13 @@ class InfoDisScanner(InfoDisScannerBase):
     def scanvul(self,url,protocal):
         self.final_severity = 0
 
-        status=self.check_404(url,protocal)           # check the existence of status 404
-        if status:
+        status,has404=self.check_404(url=url,protocal=protocal)           # check the existence of status 404
+        if status !=-1:
             tempqueue=self._enqueue(url)
             
-            self._scan_worker(self,tempqueue,protocal)
+            dataresult=self._scan_worker(self,tempqueue,protocal,status,has404)
+            
+            callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
         else:
             return None
 
@@ -67,13 +69,13 @@ class InfoDisScanner(InfoDisScannerBase):
         except Exception, e:
             logging.error('[Exception in InfoDisScanner._load_dict] %s' % e)
 
-    def _http_request(self, url, timeout=10,protocal='http'):
+    def _http_request(self, url, timeout=10,protocal='http',path=None):
         conn=None
         try:
-            if not url: url = '/'
+            if not path: path = '/'
             conn_fuc = httplib.HTTPSConnection if protocal == 'https' else httplib.HTTPConnection
             conn = conn_fuc(url, timeout=timeout)
-            conn.request(method='GET', url=url,
+            conn.request(method='GET', url=path,
                          headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36 BBScan/1.0'}
             )
             resp = conn.getresponse()
@@ -120,49 +122,40 @@ class InfoDisScanner(InfoDisScannerBase):
             pass
         raise Exception('Fail to decode response Text')
 
-    def get_status(self, url):
-        return self._http_request(url)[0]
+
 
     def check_404(self,url,protocal):
         """
         check status 404 existence
         """
+        _status=0
+        has_404=False
         try:
-            _status, headers, html_doc = self._http_request(url=url,protocal=protocal)
+            _status, headers, html_doc = self._http_request(url=url,protocal=protocal,path='/A_NOT_EXISTED_URL_TO_CHECK_404_STATUS_EXISTENCE')
+            has_404 = (_status == 404)
             if _status == -1:
                 print '[ERROR] Fail to connect to %s' % url
-                return False
+                return -1,has_404
 
-            return True
+            return _status,has_404
         except Exception, e:
-            return False
+            return _status,has_404
 
 
-
-
-    def _get_url(self):
-        """
-        get url with global lock
-        """
-        self.lock.acquire()
-        if self.url_index_offset < self.len_urls:
-            url = self.urls[self.url_index_offset]
-        else:
-            url = None, None, None
-        self.url_index_offset += 1
-        self.lock.release()
-        return url
 
     def _update_severity(self, severity):
         if severity > self.final_severity:
             self.final_severity = severity
 
-    def _scan_worker(self,url_queue,protocal):
+    def _scan_worker(self,url_queue,protocal,_status,has_404):
+        resultarray=[]
+        results={}
         while url_queue.qsize() > 0:
             try:
                 item = url_queue.get(timeout=1.0)
             except:
                 return None
+            url=None
             try:
                 url_description, severity, tag, code, content_type, content_type_no = item
                 url = url_description['full_url']
@@ -174,29 +167,30 @@ class InfoDisScanner(InfoDisScannerBase):
                 break
             try:
                 status, headers, html_doc = self._http_request(url=url,protocal=protocal)
-                if (status in [200, 301, 302, 303]) and (self.has_404 or status!=self._status):
+                if (status in [200, 301, 302, 303]) and (has_404 or status!=_status):
                     if code and status != code:
                         continue
                     if not tag or html_doc.find(tag) >= 0:
                         if content_type and headers.get('content-type', '').find(content_type) < 0 or \
                             content_type_no and headers.get('content-type', '').find(content_type_no) >=0:
                             continue
-                        self.lock.acquire()
-                        # print '[+] [Prefix:%s] [%s] %s' % (prefix, status, 'http://' + self.host +  url)
-                        if not prefix in self.results:
-                            self.results[prefix]= []
-                        self.results[prefix].append({'status':status, 'url': '%s://%s%s' % (self.schema, self.host, url)} )
-                        self._update_severity(severity)
-                        self.lock.release()
 
-                if len(self.results) >= 30:
-                    print 'More than 30 vulnerabilities found for [%s], could be false positive.' % self.host
+                        # print '[+] [Prefix:%s] [%s] %s' % (prefix, status, 'http://' + self.host +  url)
+                        if results.get(prefix,None) is None:
+                            results[prefix]= []
+                        results[prefix].append({'status':status, 'url': '%s' % (url)} )
+                        self._update_severity(severity)
+
+
+                if len(results) >= 30:
+                    print 'More than 30 vulnerabilities found for [%s], could be false positive.' % url
                     return
             except Exception, e:
                 logging.error('[InfoDisScanner._scan_worker][2][%s] Exception %s' % (url, e))
 
   
-         
+        
+
       
 
 
