@@ -10,26 +10,25 @@ from spidertool import config,webconfig
 from spidertool.TaskTool import TaskTool
 import objgraph
 import gc
-from plugins import default 
-
-pocscantaskinstance=None
+from fuzzdetect import InfoDisScanner 
+fuzzinstance=None
 def getObject():
-    global pocscantaskinstance
-    if pocscantaskinstance is None:
-        pocscantaskinstance=PocsearchTask(1)
-    return pocscantaskinstance
-class PocsearchTask(TaskTool):
+    global fuzzinstance
+    if fuzzinstance is None:
+        fuzzinstance=FuzzTask(1)
+    return fuzzinstance
+class FuzzTask(TaskTool):
     def __init__(self,isThread=1,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        logger = initLog('POCDect.log', 3, True)
         self.set_deal_num(1)
-        self.pocscan=default.PocController(logger=logger)
+        logger = initLog('fuzzDect.log', 3, True)
+        self.fuzzscan=InfoDisScanner()
         
 
 
 
     def task(self,req,threadname):
-        print threadname+'POC检测任务启动'+str(datetime.datetime.now())
+        print threadname+'FUZZ检测任务启动'+str(datetime.datetime.now())
         
         head='' if req[0] is None else req[0]
         context='' if req[1] is None else req[1]
@@ -43,11 +42,12 @@ class PocsearchTask(TaskTool):
 #         gc.collect()
 #         objgraph.show_growth()
 #         temp=default.PocController(logger=logger)
-        self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
+        print ip,port,protocol,'fuzz'
+        self.fuzzscan.scanvul(ip=ip,port=port,protocal=protocol)
 
 #         self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
         
-        print threadname+'POC检测任务结束'+str(datetime.datetime.now())
+        print threadname+'FUZZ检测任务结束'+str(datetime.datetime.now())
 #         print 'poc   内存增长状况'
 #         gc.collect()
 #         objgraph.show_growth()

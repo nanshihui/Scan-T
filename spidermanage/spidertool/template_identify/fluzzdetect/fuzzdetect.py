@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-
-
 import urlparse
 import httplib
-import logging
+from lib.logger import initLog
 import re
 import threading
 import Queue
@@ -16,26 +14,30 @@ import ipaddress
 import os
 import webbrowser
 from lib.interface import InfoDisScannerBase
+import callbackfuzz
+from __builtin__ import str
 
 class InfoDisScanner(InfoDisScannerBase):
     def __init__(self, timeout=600, depth=2):
         self.START_TIME = time.time()
         self.TIME_OUT = timeout
         self.LINKS_LIMIT = 20       # max number of links
-
+        self.logger=initLog("logger_fuzz.log", 2, True)
         self._init_rules()
-    def scanvul(self,url,protocal):
+    def scanvul(self,ip,protocal,port):
         self.final_severity = 0
-
+        url=ip+':'+str(port)
         status,has404=self.check_404(url=url,protocal=protocal)           # check the existence of status 404
+        print 'FUZZ-------------------'+str(status)+str(has404)
         if status !=-1:
-            tempqueue=self._enqueue(url)
-            
-            dataresult=self._scan_worker(self,tempqueue,protocal,status,has404)
-            
-            callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
+            tempqueue=Queue.Queue()
+            self._enqueue(url,tempqueue)
+            dataresult=self._scan_worker(url_queue=tempqueue,protocal=protocal,_status=status,has_404=has404,ip=ip,port=port)
+            print 'FUZZ------result-------------'+str(dataresult)
+            if dataresult is not None:
+                callbackfuzz.storedata(ip=ip,port=port,hackinfo=dataresult)
         else:
-            return None
+            pass
 
 
 
@@ -49,6 +51,7 @@ class InfoDisScanner(InfoDisScannerBase):
             p_content_type_no = re.compile('{type_no="([^"]+)"}')
 
             for rule_file in glob.glob('rules/*.txt'):
+                print 'file place:'+rule_file
                 infile = open(rule_file, 'r')
                 for url in infile:
                     if url.startswith('/'):
@@ -64,10 +67,11 @@ class InfoDisScanner(InfoDisScannerBase):
                         content_type_no = _.group(1) if _ else ''
                         url = url.split()[0]
                         self.url_dict.append((url, severity, tag, status, content_type, content_type_no))
-                        #print (url, severity, tag, status, content_type, content_type_no)
+                        print (url, severity, tag, status, content_type, content_type_no)
                 infile.close()
         except Exception, e:
-            logging.error('[Exception in InfoDisScanner._load_dict] %s' % e)
+            print str(e)+'fuzz load file error'
+            self.logger.error('[Exception in InfoDisScanner._load_dict] %s' % e)
 
     def _http_request(self, url, timeout=10,protocal='http',path=None):
         conn=None
@@ -93,14 +97,14 @@ class InfoDisScanner(InfoDisScannerBase):
         finally:
             if conn is not None:
                 conn.close()
-    def _enqueue(self, url):
-        url_queue=Queue.Queue()
+    def _enqueue(self, url,url_queue):
+        
         for _ in self.url_dict:
             full_url = url.rstrip('/') + _[0]
             url_description = {'prefix': url.rstrip('/'), 'full_url': full_url}
-            item = (url_description, _[1], _[2], _[3], _[4], _[5])
+            item = (url_description, _[1], _[2], _[3], _[4], _[5],_[0])
             url_queue.put(item)
-        return url_queue
+
             
 
     @staticmethod
@@ -147,9 +151,11 @@ class InfoDisScanner(InfoDisScannerBase):
         if severity > self.final_severity:
             self.final_severity = severity
 
-    def _scan_worker(self,url_queue,protocal,_status,has_404):
+    def _scan_worker(self,url_queue,protocal,_status,has_404,ip,port):
         resultarray=[]
         results={}
+        print 'FUZZ-------queuesize------------'+str(url_queue.qsize())
+
         while url_queue.qsize() > 0:
             try:
                 item = url_queue.get(timeout=1.0)
@@ -157,16 +163,21 @@ class InfoDisScanner(InfoDisScannerBase):
                 return None
             url=None
             try:
-                url_description, severity, tag, code, content_type, content_type_no = item
+                url_description, severity, tag, code, content_type, content_type_no,path = item
+                print 'FUZZ-------data------------'+str(item)
+
                 url = url_description['full_url']
                 prefix = url_description['prefix']
             except Exception, e:
-                logging.error('[InfoDisScanner._scan_worker][1] Exception: %s' % e)
+                self.logger.error('[InfoDisScanner._scan_worker][1] Exception: %s' % e)
                 continue
             if not item or not url:
                 break
             try:
-                status, headers, html_doc = self._http_request(url=url,protocal=protocal)
+                status, headers, html_doc = self._http_request(url=prefix,protocal=protocal,path=path)
+                print 'FUZZ-------------------'+str(status)+':'+str(url)+path
+
+                self.logger.info(str(status)+url)
                 if (status in [200, 301, 302, 303]) and (has_404 or status!=_status):
                     if code and status != code:
                         continue
@@ -184,11 +195,11 @@ class InfoDisScanner(InfoDisScannerBase):
 
                 if len(results) >= 30:
                     print 'More than 30 vulnerabilities found for [%s], could be false positive.' % url
-                    return
             except Exception, e:
-                logging.error('[InfoDisScanner._scan_worker][2][%s] Exception %s' % (url, e))
+                self.logger.error('[InfoDisScanner._scan_worker][2][%s] Exception %s' % (url, e))
 
-  
+        if len(results) >= 1:
+            return results
         
 
       
@@ -199,14 +210,14 @@ class InfoDisScanner(InfoDisScannerBase):
 
 
 if __name__ == '__main__':
-        a = InfoDisScanner(url, lock, timeout*60)
-        t = threading.Thread(target=self._scan_worker)
+        a = InfoDisScanner()
+        print a.scanvul(ip='113.105.74.144',port='80',protocal='http')
 
 
-        if results:
-            for key in results.keys():
-                for url in results[key]:
-                    print  '[+] [%s] %s' % (url['status'], url['url'])
+#         if results:
+#             for key in results.keys():
+#                 for url in results[key]:
+#                     print  '[+] [%s] %s' % (url['status'], url['url'])
 
        
 
