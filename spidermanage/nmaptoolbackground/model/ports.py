@@ -3,7 +3,7 @@
 
 from spidertool import webtool
 class Port(object):
-    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo=''):
+    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo='',disclosure=''):
         '''
         Constructor
         '''
@@ -23,6 +23,7 @@ class Port(object):
         self.head=head
         self.city=city
         self.hackinfo=hackinfo
+        self.disclosure=disclosure
     def getIP(self):
         return self.ip
     def getPort(self):

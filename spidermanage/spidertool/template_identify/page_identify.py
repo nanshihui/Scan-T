@@ -11,11 +11,11 @@ def identify_main(head='',context='',ip='',port='',productname='',protocol='',nm
 #     gc.collect()
 #     objgraph.show_growth()
     
-#     keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port,protocol=protocol)
+    keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port,protocol=protocol)
     fuz=fuzztask.getObject()
     fuz.add_work([(head,context,ip,port,productname,keywords,nmapscript,protocol)])
-#     temp=pocsearchtask.getObject()
-#     temp.add_work([(head,context,ip,port,productname,keywords,nmapscript,protocol)])
+    temp=pocsearchtask.getObject()
+    temp.add_work([(head,context,ip,port,productname,keywords,nmapscript,protocol)])
      
 #     gc.collect()
 #     objgraph.show_growth()

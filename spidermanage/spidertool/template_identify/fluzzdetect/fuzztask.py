@@ -20,7 +20,7 @@ def getObject():
 class FuzzTask(TaskTool):
     def __init__(self,isThread=1,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        self.set_deal_num(1)
+        self.set_deal_num(3)
         logger = initLog('fuzzDect.log', 3, True)
         self.fuzzscan=InfoDisScanner()
         

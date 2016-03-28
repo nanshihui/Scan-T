@@ -1,5 +1,3 @@
-# urls for InfoDisclosurePlugin
-# last modified: 2015-11-13 my[at]lijiejie.com
 # format: path {severity=Severity} {tag="text string to find"} {status=HTTP_STATUS} {type="content-type should contain this string"} {type_no="content-type should not contain this string"}
 # each item must starts with right slash "/"
 # severity is 3 by default
