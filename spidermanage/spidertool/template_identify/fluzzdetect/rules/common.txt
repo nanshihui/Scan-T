@@ -188,6 +188,8 @@
 /httpd.conf             {status=200}
 /id_dsa                 {status=200}
 /Web.config             {status=200}
+/cgi-bin/test.cgi             {status=200}
+/cgi-bin/php.cgi             {status=200}
 
 
 # webshell

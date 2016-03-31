@@ -13,6 +13,12 @@ import Sqldata
 import   trace 
 import getLocationTool
 portname = {'80':'http','8080':'http','443':'https','22':'telnet','3306':'mysql','873':'rsync'} 
+zmapinstance=None
+def getObject():
+    global zmapinstance
+    if zmapinstance is None:
+        zmapinstance=Zmaptool()
+    return zmapinstance
 class Zmaptool:
     def __init__(self):
 #         self.sqlTool=SQLTool.getObject()

@@ -8,14 +8,14 @@ operator = {'6':'3306','1':'80','2':'8080','3':'443','4':'22','5':'21','7':'873'
 def tick():
     num=random.randint(1, 1)
 
-    temp=zmaptool.Zmaptool()
+    temp=zmaptool.getObject()
 #     objgraph.show_growth()
     temp.do_scan(port=operator.get(str(num)),num='12',needdetail='1')
     print('Tick! The time is: %s' % datetime.now())
 def ticknormal():
     num=random.randint(1, 1)
 
-    temp=zmaptool.Zmaptool()
+    temp=zmaptool.getObject()
     
     temp.do_scan(port=operator.get(str(num)),num='30')
 def gchelp():
