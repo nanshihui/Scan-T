@@ -28,5 +28,5 @@ def rsync(ip='',port='',name='',productname=''):
     print ip+hackinfo
 
     return head,ans,keywords,hackinfo
-# rsync(ip='121.40.217.83')
+# print rsync(ip='121.40.217.83')
 # rsync(ip='202.100.78.10')121.40.217.83

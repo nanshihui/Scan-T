@@ -259,23 +259,26 @@ function changtext(k,i){
                                                                     "<p><span class=\"subtext\">端口版本:"+(ports[i].version==null?'':ports[i].version)+"</span></p>"+
                                                                     "<p><span class=\"subtext\">主机位置:"+(ports[i].city==null?'':ports[i].city)+"</span></p>"+
                                                                     "</div><div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">概要信息：</p><pre>"+(ports[i].script==null?'无':encodeHtml(ports[i].script))+"</pre></div>"+
-                                                                    "<div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">详细信息：</p>";
+                                                                    "<p class=\"package-description\">概要信息：</p>";
+                                                
                                                      
                                                       
                                                                
                                                                       if    (data2.username=='admin'){
 
-                                                                bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail+'\nhackinfo:\n'+ports[i].hackinfo+'\ndisclosed:\n'+ports[i].disclosure).toString())+"</pre></div></div></div></div> ";
+                                                                bodyhtml+="<pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(ports[i].script+'\nhackinfo:\n'+ports[i].hackinfo+'\ndisclosed:\n'+ports[i].disclosure).toString())+"</pre></div>"+
+                                                                    "<div class=\"col-md-9 \">"+
+                                                                    "<p class=\"package-description\">详细信息：</p>";
                                        
 
 
                                                          }
                                                          else{
-                                                   bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";
+                                                                                   bodyhtml+="<pre>"+(ports[i].script==null?'无':encodeHtml(ports[i].script).toString())+"</pre></div>"+
+                                                                    "<div class=\"col-md-9 \">"+
+                                                                    "<p class=\"package-description\">详细信息：</p>";
                                                          }
-                                                         
+                                                            bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";        
                                                                    
 
                                            // xmp
