@@ -1,49 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 
-# from datetime import datetime
-# from elasticsearch import Elasticsearch
-# es=Elasticsearch([{'host': 'localhost', 'port': 9200}])
-# es.indices.create(index='asd',ignore=400)
-# res=es.index(index='asd',doc_type='snifferdata',body={
-# 		"any":"data", 
-# 		"timestamp": datetime.now(),
-# 		'other':12
 
-# 	})
-# print res
-# print(res['created'])
-# try:
-# 	res = es.get(index="asd", doc_type='snifferdata')
-# 	print(res['_source'])
-# except:
-# 	print 'can not get'
-# try:
-# 	res = es.search(index="asd", body={"query": {"match_all": {}}})
-# 	print("Got %d Hits:" % res['hits']['total'])
-# 	for hit in res['hits']['hits']:
-# 		print("%(any)s %(timestamp)s" % hit["_source"])
-# except:
-# 	print 'can not search'
-##
-
-"""
-select ip as IP,
-port as Port,
-timesearch as Timesearch,
-state as State,
-name as Name,
-product as Product,
-version as Version,
-script as Script,
-detail as Detail,
-id as Id,
-head as Head,
-hackinfo as Hackinfo,
-keywords as Keywords,
-disclosure as Disclosure from snifferdata"""
-
-###
 from datetime import datetime
 from elasticsearch_dsl import DocType, String, Date, Integer,MultiSearch,Search,Q
 from elasticsearch_dsl.connections import connections
@@ -51,7 +9,7 @@ from elasticsearch_dsl.connections import connections
 # Define a default Elasticsearch client
 connections.create_connection(hosts=['localhost'])
 
-class Snifferdata_ela(DocType):
+class default(DocType):
 	IP = String(analyzer='ik')
 	Port = Integer()
 	Timesearch = String(analyzer='ik')
@@ -67,12 +25,10 @@ class Snifferdata_ela(DocType):
 	Keywords= String(analyzer='ik')
 	Disclosure= String(analyzer='ik') 
 	class Meta:
-		index = 'snifferdata'
-		doc_type='test'
+		index = 'test'
 
 	def save(self, ** kwargs):
-		return super(Snifferdata_ela, self).save(** kwargs)
-
+		return super(default, self).save(** kwargs)
 	def initindex(self):
 		self.init()
 	@classmethod
@@ -83,13 +39,14 @@ class Snifferdata_ela(DocType):
 			return data
 		except Exception, e:
 			print e
- 			
-# Snifferdata_ela().initindex()		
+
+
+# default().initindex()	
 
 
 
-# create and save 
-# machinedata = Snifferdata_ela()
+# create and save and article
+# machinedata = default()
 # machinedata.IP = """123.12.32.1"""
 # machinedata.Port = 1
 # machinedata.Timesearch = """2012-02-02 11:11:11:111"""
@@ -104,25 +61,19 @@ class Snifferdata_ela(DocType):
 # machinedata.Hackinfo= 'hackinfo'
 # machinedata.Keywords= 'keywords'
 # machinedata.Disclosure= 'discolssd'
-#  
+ 
 # machinedata.save()
 # 
-# 
-# 
-# 
-# get data
-# try:
-# 	data = Snifferdata_ela.getdata(id='42')
-# except Exception ,e:
-# 	print e
 
+# data = default.getdata(id='12')
+# data.delete()
 # Display cluster health
 # print(connections.get_connection().cluster.health())
 
-#multisearch
+#search
 
-# ms = MultiSearch(index='snifferdata',doc_type='snifferdata_ela')
-# searcttext='http'
+# ms = MultiSearch(index='test',doc_type='default')
+# searcttext='scrupt'
 # s=Search().query(Q("match", IP=searcttext) | 
 # 											Q("match", Port=(int(searcttext) if searcttext.isdigit() else 0)) | 
 # 											Q("match", Timesearch=searcttext) | 
@@ -139,6 +90,9 @@ class Snifferdata_ela(DocType):
 # )
 # ms=ms.add(s)
 # responses = ms.execute()
+
+
+
 # for response in responses:
 # 	print("Results for query %r." % response.search.query)
 # 	try:
@@ -147,6 +101,12 @@ class Snifferdata_ela(DocType):
 # 			print hit 
 # 	except Exception,e:
 # 		print e
+
+
+
+
+
+
 
 
 
