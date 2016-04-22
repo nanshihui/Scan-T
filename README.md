@@ -34,8 +34,6 @@ To get a list of basic options and switches use:
     
 Notice
 ----
-* src    
-spider code,the new one is in the document which named sipdertool from spidermanage,please ignore this one
 * spidermanage     
 a network management platform about the spider to control the task 
 * PS:if want to help with me to complete this project ...please fork it ^_^  
