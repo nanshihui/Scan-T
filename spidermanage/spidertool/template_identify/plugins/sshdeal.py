@@ -10,7 +10,7 @@ def ssh2(ip='',port='22',name='',productname=''):
 
     ssh=None
     passwd=['root','123456','admin','','12345','111111','password','123123','1234','12345678','123456789','696969',
-            'abc123','qwerty']
+            'abc123','qwerty','oracle']
     for i in passwd:
         try:
             ssh = paramiko.SSHClient()

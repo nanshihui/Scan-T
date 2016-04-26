@@ -113,13 +113,14 @@
 /js/swfupload/swfupload.swf     {status=200}      {type_no="html"}
 /uploadify
 
-
+/uapws/ {severity=2}
 /jmx-console/    {severity=2}
 /jmx-console/HtmlAdaptor       {status=200}
 /cacti/          {severity=2}
 /cacti/cacti.sql {status=200}  {type_no="html"}
 /zabbix/         {severity=2}
 /jira/           {severity=2}
+/script           {severity=2}
 /nagios/         {severity=2}
 /kibana/         {severity=2}
 /jenkins/	 {severity=2}  {status=200}
@@ -190,7 +191,6 @@
 /id_dsa                 {status=200}
 /Web.config             {status=200}
 /cgi-bin/test-cgi             {status=200}
-/cgi-bin/test.cgi             {status=200}
 /cgi-bin/php.cgi             {status=200}
 
 
