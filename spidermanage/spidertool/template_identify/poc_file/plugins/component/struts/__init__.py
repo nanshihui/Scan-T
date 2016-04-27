@@ -1,3 +1,10 @@
+import requests
 KEYWORDS = ['struts', ]
 def rules(head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
-    return False
+    if 'struts2' in context or '.action' in context:
+        return True
+    else:
+
+        return False
+    
+

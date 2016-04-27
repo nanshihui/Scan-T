@@ -145,6 +145,7 @@ encoding//spidermanage/spidertool/template_identify/poc_file/plugins/application
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_groovy.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_nodestate.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2032.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/default.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/apache/apache_state.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/middileware/axis/axis_config_read.py=utf-8
