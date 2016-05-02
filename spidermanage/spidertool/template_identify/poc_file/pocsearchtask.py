@@ -39,11 +39,14 @@ class PocsearchTask(TaskTool):
         keywords='' if req[5] is None else req[5]
         nmapscript='' if req[6] is None else req[6]
         protocol='' if req[7] is None else req[7]
+        productinfo={}
+        productinfo['productname']=productname
+        productinfo['protocol']=protocol
 #         print 'poc   未启动内存增长状况'
 #         gc.collect()
 #         objgraph.show_growth()
 #         temp=default.PocController(logger=logger)
-        self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
+        self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productinfo, keywords=keywords, hackinfo=nmapscript)
 
 #         self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
         

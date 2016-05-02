@@ -11,7 +11,7 @@ class T(object):
                 }
         self.keywords = []
         self.versions = []
-    def match_rule(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw):
+    def match_rule(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo='', **kw):
 ##
 #head 返回的请求头
 #context　返回请求正文html代码
@@ -26,11 +26,11 @@ class T(object):
         
         return True
 
-    def verify(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
         result = {}
         result['result']=False
         return result
-    def attack(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def attack(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
         result = {}
         result['result']=False
         return result

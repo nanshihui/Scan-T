@@ -6,7 +6,7 @@ class P(T):
     def __init__(self):
         T.__init__(self)
         keywords=['struts']
-    def verify(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
         target_url = 'http://'+ip+':'+port+'/index.action'
         result = {}
         timeout=3

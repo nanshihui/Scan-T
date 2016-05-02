@@ -90,9 +90,9 @@ class PocController(object):
     def loader(self):
         self.components = {}
         self.__load_component_plugins(map(lambda module_info: module_info['module_name'], self.modules_list))
-    def env_init(self, head='',context='',ip='',port='',productname='',keywords='',hackinfo='',defaultpoc=''):
+    def env_init(self, head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',defaultpoc=''):
         self.init(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,defaultpoc=defaultpoc)
-    def __match_modules_by_poc(self,head='',context='',ip='',port='',productname='',keywords='',defaultpoc=''):
+    def __match_modules_by_poc(self,head='',context='',ip='',port='',productname=None,keywords='',defaultpoc=''):
         matched_modules = set()
         othermodule=[]
 
@@ -103,7 +103,7 @@ class PocController(object):
 
 
         return matched_modules, othermodule
-    def init(self,  head='',context='',ip='',port='',productname='',keywords='',hackinfo='', defaultpoc='',**kw):
+    def init(self,  head='',context='',ip='',port='',productname=None,keywords='',hackinfo='', defaultpoc='',**kw):
         POCS = []
         modules_list = []
         
@@ -127,7 +127,7 @@ class PocController(object):
                 self.logger and self.logger.info('Init Plugin: %s', item)
         print ' 要执行筛选的组件:      '+str(POCS) 
         self.match_POC(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,POCS=POCS, **kw)
-    def match_POC(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo='',POCS=None, **kw):
+    def match_POC(self,head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',POCS=None, **kw):
         haveresult=False
         dataresult=[]
         i=0
@@ -144,14 +144,14 @@ class PocController(object):
         if i==1:
             
             callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
-
+            pass
         else:
             print '-----------------------'
             print '暂未发现相关漏洞'
         del POCS
-    def __match_rules(self,pocclass=None,head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw):
+    def __match_rules(self,pocclass=None,head='',context='',ip='',port='',productname=None,keywords='',hackinfo='', **kw):
 
-        return pocclass.match_rule(head='',context='',ip='',port='',productname='',keywords='',hackinfo='', **kw)
+        return pocclass.match_rule(head='',context='',ip='',port='',productname=productname,keywords='',hackinfo='', **kw)
         
     
     
@@ -159,13 +159,13 @@ class PocController(object):
     
     
     
-    def __match_modules_by_info(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def __match_modules_by_info(self,head='',context='',ip='',port='',productname=None,keywords='',hackinfo=''):
         matched_modules = set()
         othermodule=[]
 #         for module_name in self.components.keys():
 #             othermodule.extend(self.components[module_name].keys())
-        if productname ==None:
-            productname=''
+        if (productname is not None and productname.get('productname',None) is None):
+            productname['productname']=''
         if head ==None:
             head=''
         if hackinfo ==None:
@@ -181,7 +181,7 @@ class PocController(object):
                 matched_modules.add((module_name,comonentname))
                 continue
             for keyword in modulekeywords:
-                if keyword in kw or keyword in productname.lower()  or keyword in head.lower() or keyword in hackinfo.lower()    :
+                if keyword in kw or keyword in productname.get('productname','').lower()  or keyword in head.lower() or keyword in hackinfo.lower()    :
                     
                     
 #                     self.logger and self.logger.info('Match Keyword: %s -> %s', resp.url, keyword)
@@ -207,7 +207,7 @@ class PocController(object):
 
 
 
-    def detect(self, head='',context='',ip='',port='',productname='',keywords='',hackinfo='',defaultpoc=''):
+    def detect(self, head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',defaultpoc=''):
 
 
         self.env_init(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,defaultpoc=defaultpoc)

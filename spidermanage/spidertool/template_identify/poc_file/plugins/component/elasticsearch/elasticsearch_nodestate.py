@@ -6,7 +6,7 @@ import requests,urllib2,json,urlparse
 class P(T):
     def __init__(self):
         T.__init__(self)
-    def verify(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
         target_url = "http://"+ip+":9200/_nodes/stats"
         result = {}
         result['result']=False

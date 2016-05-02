@@ -12,4 +12,4 @@ if __name__ == '__main__':
 #     ip=str(sys.argv[1])
 #     keywords=str(sys.argv[2])
 
-    a.detect(head='',context='',ip=ip,port='',productname='',keywords=keywords,hackinfo='') 
+    a.detect(head='',context='',ip=ip,port='',productname={},keywords=keywords,hackinfo='') 

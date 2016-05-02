@@ -38,7 +38,7 @@ class P(T):
                 req.close()
             return content
     
-    def verify(self,head='',context='',ip='',port='',productname='',keywords='',hackinfo=''):
+    def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
 
         result = {}
         content_2 = self.CVE20151427(ip)
