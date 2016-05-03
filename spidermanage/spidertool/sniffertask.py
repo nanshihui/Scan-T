@@ -7,6 +7,7 @@ import connectpool
 from TaskTool import TaskTool
 import  sniffertool
 import webtool
+from logger import initLog
 from nmaptoolbackground.control import jobcontrol  
 from nmaptoolbackground.model import job  
 snifferinstance=None
@@ -18,9 +19,14 @@ def getObject():
 class snifferTask(TaskTool):
     def __init__(self,isThread=1):
         TaskTool.__init__(self,isThread)
-        self.sniffer= sniffertool.SniffrtTool()
+        self.logger = initLog('logs/sniffertask.log', 2, True,'sniffertask')
+
+        self.sniffer= sniffertool.SniffrtTool(logger=self.logger)
+
     def task(self,req,threadname):
-        print threadname+'NMAP 扫描执行任务中'+str(datetime.datetime.now())
+        self.logger and self.logger.info('%sNMAP 扫描执行任务中%s', threadname,str(datetime.datetime.now()))
+
+
         jobid=req.getJobid()
         hosts=req.getJobaddress();
         ports=req.getPort()
@@ -29,7 +35,8 @@ class snifferTask(TaskTool):
         if isjob=='1':
             tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
         ans = self.sniffer.scanaddress([hosts], [str(ports)], arguments)
-        print threadname+'NMAP 扫描任务结束'+str(datetime.datetime.now())
+        self.logger and self.logger.info('%sNMAP 扫描任务结束%s', threadname,str(datetime.datetime.now()))
+
         if isjob=='1':
             tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
         return ans

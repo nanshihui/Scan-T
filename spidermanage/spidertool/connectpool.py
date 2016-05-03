@@ -4,6 +4,7 @@
 import connecttool
 import Queue
 import gc
+from logger import initLog
 connectpoolinstance=None
 def getObject():
 	global connectpoolinstance
@@ -15,6 +16,7 @@ class ConnectPool:
 	def __init__(self,poolsize=10):
 		self.__connect_pool = Queue.Queue(maxsize=poolsize) 		#连接池
 		self.connectTool=connecttool.ConnectTool()
+		self.logger = initLog('logs/connectpool.log', 2, True,'connectpool')
 #		self.__connect_pool.put(connectTool,block=False)
 	def check_network(self):
 		import httplib2 
@@ -26,7 +28,8 @@ class ConnectPool:
 		return 1 
 	def  getConnect(self,URL,way='GET',params={},times=1):
 		self.__connect_pool.put(1)
-		print '当前访问的位置为： '+URL
+		self.logger and self.logger.info('当前访问的位置为：%s', URL)
+
 # 		gc.enable() 
 # 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
 		head,page=self.connectTool.getHTML(URL,way,params,times)

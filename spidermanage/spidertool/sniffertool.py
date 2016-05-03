@@ -26,7 +26,7 @@ class SniffrtTool(object):
     '''
 
 
-    def __init__(self):
+    def __init__(self,logger=None):
         '''
         Constructor
         '''
@@ -37,15 +37,19 @@ class SniffrtTool(object):
 #             self.params='-sV -T4 -O '                    #快捷扫描加强版
 #             self.params='-sS -sU -T4 -A -v'                                            #深入扫描
         except nmap.PortScannerError:
-            print('Nmap not found', sys.exc_info()[0])
+#             print('Nmap not found', sys.exc_info()[0])
+            self.logger and self.logger.info('Nmap not found:%s',sys.exc_info()[0])
 
         except:
-            print('Unexpected error:', sys.exc_info()[0])
+#             print('Unexpected error:', sys.exc_info()[0])
+            self.logger and self.logger.info('Unexpected error:%s',sys.exc_info()[0])
+
         self.config=config.Config
         self.sqlTool=Sqldatatask.getObject()
 #         self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
         self.getlocationtool=getLocationTool.getObject()
+        self.logger=logger
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0',callback=''):
         if callback=='': 
             callback=self.callback_result
@@ -71,12 +75,12 @@ class SniffrtTool(object):
 
         except nmap.PortScannerError,e:
             print e
-            print '我在这里57'
             return ''
 
         except:
-            print('Unexpected error:', sys.exc_info()[0])
-            print '我在这里62'
+            print('Unexpected error', sys.exc_info()[0])
+            self.logger and self.logger.info('Unexpected error:%s',sys.exc_info()[0])
+
             return ''
     def callback_result(self,scan_result):
 

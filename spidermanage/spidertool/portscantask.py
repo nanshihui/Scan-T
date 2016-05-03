@@ -8,6 +8,7 @@ import portscantool
 import SQLTool,config
 from TaskTool import TaskTool
 import MySQLdb
+from logger import initLog
 portscantskinstance=None
 def getObject():
     global portscantskinstance
@@ -18,14 +19,14 @@ class PortscanTask(TaskTool):
     def __init__(self,isThread=1,deamon=True):
         TaskTool.__init__(self,isThread,deamon=deamon)
         import Sqldatatask
+        self.logger = initLog('logs/portScantask.log', 2, True,'portscantask')
         self.sqlTool=Sqldatatask.getObject()
         self.connectpool=connectpool.getObject()
         self.portscan=portscantool.Portscantool()
         self.config=config.Config
         self.set_deal_num(5)
     def task(self,req,threadname):
-        print threadname+'端口扫描　执行任务中'+str(datetime.datetime.now())
-
+        self.logger and self.logger.info('%s 端口扫描　执行任务中%s', threadname,str(datetime.datetime.now()))
 #         print req[0],req[1],req[2],req[3]
         if req[3]!='open':
             return ''
@@ -76,9 +77,10 @@ class PortscanTask(TaskTool):
 
 
 #         self.sqlTool.closedb()
-        print threadname+'端口扫描　任务结束'+str(datetime.datetime.now())
+       
         
-        
+        self.logger and self.logger.info('%s 端口扫描　任务结束%s', threadname,str(datetime.datetime.now()))
+
         
         
         

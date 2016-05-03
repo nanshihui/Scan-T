@@ -71,5 +71,15 @@ except Exception,e:
 e='askjdajksnd Masdnk'
 if 'M' in str(e):
 	print 123123
-debug=Debug.getObject()
-debug.error("asd")
+# debug=Debug.getObject()
+# debug.error("asd")
+
+
+def aaaa():
+	from logger import initLog
+	logger = initLog('portScantask.log', 2, True,'asd')
+
+	logger.info('%s 端口扫描　执行任务中%s', 1,2)
+
+
+
