@@ -53,6 +53,7 @@ encoding//spidermanage/spidertool/template_identify/httpdect/headdect.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/systemdect.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/__init__.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/getgeoipinfo.py=utf-8
+encoding//spidermanage/spidertool/template_identify/httpdect/webdection/lib/logger.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/lib/parser.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/lib/robots.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/main.py=utf-8

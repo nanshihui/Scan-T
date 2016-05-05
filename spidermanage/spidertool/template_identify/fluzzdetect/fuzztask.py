@@ -20,16 +20,16 @@ def getObject():
 class FuzzTask(TaskTool):
     def __init__(self,isThread=1,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        self.set_deal_num(3)
-        logger = initLog('fuzzDect.log', 3, True)
+        self.set_deal_num(6)
+        self.logger = initLog('logs/fuzzDect.log', 2, True)
         self.fuzzscan=InfoDisScanner()
         
 
 
 
     def task(self,req,threadname):
-        print threadname+'FUZZ检测任务启动'+str(datetime.datetime.now())
-        
+
+        self.logger and self.logger.info('%sFUZZ检测任务启动%s', threadname,str(datetime.datetime.now()))
         head='' if req[0] is None else req[0]
         context='' if req[1] is None else req[1]
         ip='' if req[2] is None else req[2]
@@ -42,12 +42,15 @@ class FuzzTask(TaskTool):
 #         gc.collect()
 #         objgraph.show_growth()
 #         temp=default.PocController(logger=logger)
-        print ip,port,protocol,'fuzz'
+
+        
+        self.logger and self.logger.info('FUZZ检测:   %s:%s,%s',ip,port,protocol)
+       
         self.fuzzscan.scanvul(ip=ip,port=port,protocal=protocol)
 
 #         self.pocscan.detect(head=head, context=context, ip=ip, port=port, productname=productname, keywords=keywords, hackinfo=nmapscript)
         
-        print threadname+'FUZZ检测任务结束'+str(datetime.datetime.now())
+        self.logger and self.logger.info('%sFUZZ检测任务结束%s', threadname,str(datetime.datetime.now()))
 #         print 'poc   内存增长状况'
 #         gc.collect()
 #         objgraph.show_growth()

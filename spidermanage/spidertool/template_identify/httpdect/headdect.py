@@ -12,7 +12,6 @@ def dect(head='',context='',ip='',port='',protocol=''):
         ip=protocol+'://'+ip
         w = main.getwebinfo(ip+':'+port,0)
     keywords= str(w)
-    print keywords
     return keywords,hackinfo
 
 # w = main.getwebinfo('www.baidu.com',1)

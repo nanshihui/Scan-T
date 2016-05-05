@@ -22,7 +22,7 @@ class InfoDisScanner(InfoDisScannerBase):
         self.START_TIME = time.time()
         self.TIME_OUT = timeout
         self.LINKS_LIMIT = 20       # max number of links
-        self.logger=initLog("logger_fuzz.log", 2, True)
+        self.logger=initLog("logs/fuzzDect.log", 2, True)
         self._init_rules()
     def scanvul(self,ip,protocal,port):
         if len(self.url_dict)==0:
@@ -135,7 +135,8 @@ class InfoDisScanner(InfoDisScannerBase):
             _status, headers, html_doc = self._http_request(url=url,protocal=protocal,path='/A_NOT_EXISTED_URL_TO_CHECK_404_STATUS_EXISTENCE')
             has_404 = (_status == 404)
             if _status == -1:
-                print '[ERROR] Fail to connect to %s' % url
+                self.logger.error('[ERROR] Fail to connect to %s' , url)
+
                 return -1,has_404
 
             return _status,has_404

@@ -6,7 +6,8 @@ import time
 import datetime
 from MySQLdb.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
-import debugdetail as Debug
+from logger import initLog
+
 DBhelp=None
 SQLPOOL=None
 def getObject():
@@ -39,6 +40,8 @@ class DBmanager:
 		self.__cachemin=temp.cachemin
 		self.__conn=None
 		self.__cur=None
+		self.logger = initLog('logs/sqltool.log', 2, True,'sqltool')
+
 	def getConnect(self):
 		global SQLPOOL
 		if SQLPOOL is None:
@@ -137,8 +140,10 @@ class DBmanager:
 							self.connectdb()
 							count=self.__cur.execute(sql)
 						else:
-							debug=Debug.getObject()
-							debug.error(str(e))
+
+							self.logger and self.logger.error('数据库错误%s',str(e))
+
+
 							return (0,0,0,0)
 					except Exception,e:
 						return (0,0,0,0)
@@ -223,8 +228,7 @@ class DBmanager:
 							self.__conn.commit()
 							return True
 						else:
-							debug=Debug.getObject()
-							debug.error(str(e))
+							self.logger and self.logger.error('数据库错误%s',str(e))
 							return False
 					except Exception,e:
 						return False
@@ -284,8 +288,10 @@ class DBmanager:
 				
 							self.__conn.commit()
 						else:
-							debug=Debug.getObject()
-							debug.error(str(e))
+
+							
+							self.logger and self.logger.error('数据库错误%s',str(e))
+
 							return False
 					except Exception,e:
 						return False
@@ -295,7 +301,8 @@ class DBmanager:
 					return False
 
 			except MySQLdb.Error,e:
-				print  '操作的过程中出现异常 :' +str(e)
+
+				self.logger and self.logger.error('数据库操作的过程中出现异常 %s',str(e))
 				return False
 		else:
 			print '''has not connet'''  
@@ -340,8 +347,8 @@ class DBmanager:
 							self.connectdb()
 							returnmeg=self.__cur.executemany(sql,insert_values)
 						else:
-							debug=Debug.getObject()
-							debug.error(str(e))	
+							self.logger and self.logger.error('数据库错误%s',str(e))
+
 							return False
 					except Exception,e:
 						return False
