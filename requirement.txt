@@ -1,8 +1,0 @@
-Requirement
-1.nmap 7.0 and later
-2.json https://github.com/json-c/json-c.git
-3.redis https://github.com/antirez/redis.git
-4.zmap  https://github.com/zmap/zmap.git
-5.Python 2.7
-6.Django 1.9
-7.other component you can use pip to directly install
