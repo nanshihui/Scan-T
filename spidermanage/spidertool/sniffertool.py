@@ -15,7 +15,7 @@ import SQLTool
 import Sqldatatask
 import config
 import Sqldata
-from numpy.numarray.numerictypes import IsType
+
 import connectpool
 import portscantask
 import getLocationTool
