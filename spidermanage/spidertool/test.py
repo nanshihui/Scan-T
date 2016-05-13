@@ -73,7 +73,7 @@ if 'M' in str(e):
 	print 123123
 # debug=Debug.getObject()
 # debug.error("asd")
-
+print 'this is the test file please ignore it'
 
 def aaaa():
 	from logger import initLog
