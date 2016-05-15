@@ -83,7 +83,7 @@
 /sqlnet.log       {status=200}       {type_no="html"}
 /data/user.txt    {status=200}       {type_no="html"}
 /user.txt         {status=200}       {type_no="html"}
-
+/seeyon//logs/login.log  {status=200}       {type_no="html"}
 
 /phpinfo.php   {tag="allow_url_fopen"}  {status=200}
 /info.php      {tag="allow_url_fopen"}  {status=200}

@@ -134,6 +134,9 @@ encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/t
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/thirdparty/doubleclick.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/thirdparty/t.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/waf/t.py=utf-8
+encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/bbs/phpwind.py=utf-8
+encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/blog/pjblog.py=utf-8
+encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/blog/wordpress.py=utf-8
 encoding//spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/manage/phpmyadmin.py=utf-8
 encoding//spidermanage/spidertool/template_identify/page_identify.py=utf-8
 encoding//spidermanage/spidertool/template_identify/plugins/elasticsearch.py=utf-8
