@@ -12,6 +12,7 @@ import Sqldatatask
 import Sqldata
 import   trace 
 import getLocationTool
+import sniffertask
 portname = {'80':'http','8080':'http','443':'https','22':'telnet','3306':'mysql','873':'rsync'} 
 zmapinstance=None
 def getObject():
@@ -60,7 +61,7 @@ class Zmaptool:
                     ajob=job.Job(jobaddress=str(i),jobport='',forcesearch='0',isjob='0')
                     jobs.append(ajob)
             if needdetail!='0':
-                tasktotally=taskcontrol.getObject()
+                tasktotally=sniffertask.getObject()
 
                 tasktotally.add_work(jobs)
             extra=' on duplicate key update  state=\'open\' , timesearch=\''+localtime+'\''
