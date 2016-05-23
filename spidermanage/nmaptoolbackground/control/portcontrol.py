@@ -6,7 +6,7 @@ import re
 
 limitpage=15
 DBhelp=None
-def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city=''):
+def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city='',hackinfo='',disclosure=''):
     localconfig=config.Config()
     table=localconfig.porttable
     iptable=localconfig.iptable
@@ -18,7 +18,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
         request_params.append(table+'.'+'ip')
         values_params.append(SQLTool.formatstring(ip))
     if port!='':
-        request_params.append('('+'port')
+        request_params.append('port')
         values_params.append(SQLTool.formatstring(port))
     if timesearch!='':
         request_params.append('timesearch')
@@ -54,7 +54,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
     content=None
     result=None
     try:
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params,extra=extra,command=command)
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table+' left join ip_maindata on snifferdata.ip=ip_maindata.ip'], ['count(*)'], request_params, values_params,extra=extra,command=command)
     except Exception,e:
         print str(e)+'portcontrol 58'
         if DBhelp is not None:
@@ -80,7 +80,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         try:
-            result,content,count,col=DBhelp.searchtableinfo_byparams([table], [table+'.'+'ip','port','timesearch',table+'.'+'state','name','product','version','script','detail','head','city','hackinfo','disclosure'], request_params, values_params,limit=limit,order=table+'.'+'port',extra=extra,command=command)
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table+' left join ip_maindata on snifferdata.ip=ip_maindata.ip'], [table+'.'+'ip','port','timesearch',table+'.'+'state','name','product','version','script','detail','head','city','hackinfo','disclosure'], request_params, values_params,limit=limit,order=table+'.'+'port',extra=extra,command=command)
         except Exception,e:
             print str(e)+'portcontrol 69'
             if DBhelp is not None:

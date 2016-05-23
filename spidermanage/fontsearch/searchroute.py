@@ -28,21 +28,49 @@ def detailpage(request):
     username = request.COOKIES.get('username','')
     response_data = {}  
     response_data['result'] = '0'
-    if  content!='':
-        extra='   left join ip_maindata on snifferdata.ip=ip_maindata.ip  where     match(snifferdata.ip,portnumber,version,snifferdata.state,name,product,timesearch,head,detail,script) against(\''+content+'\' in Boolean mode)  '
+    jsoncontent=None
+    import json
+    try:
+        jsonmsg='{'+content+'}'
+        jsoncontent=json.loads(jsonmsg)
+    except Exception,e:
+        print e
+        pass
+
+    if jsoncontent is None:
+    
+        if  content!='':
+            extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+content+'\' in Boolean mode)  '
        
 #         extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\'  or timesearch like ' +'\'%'+content+'%\' or head like \'%' +content+'%\') and  snifferdata.ip=ip_maindata.ip '
 #         ports,portcount,portpagecount=portcontrol.portabstractshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
-        ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
+            ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
 
-        response_data['result'] = '1' 
+        
+            response_data['result'] = '1' 
     
     
-        response_data['ports']=ports
-        response_data['portslength']=portcount
-        response_data['portspagecount']=portpagecount
-        response_data['portspage']=page
-        response_data['username']=username
+            response_data['ports']=ports
+            response_data['portslength']=portcount
+            response_data['portspagecount']=portpagecount
+            response_data['portspage']=page
+            response_data['username']=username
+    else:
+
+        jsoncontent['page']=page
+        try:
+            ports,portcount,portpagecount=getattr(portcontrol, 'portabstractshow','portabstractshow')(**jsoncontent)
+            response_data['result'] = '1' 
+    
+    
+            response_data['ports']=ports
+            response_data['portslength']=portcount
+            response_data['portspagecount']=portpagecount
+            response_data['portspage']=page
+            response_data['username']=username
+        except Exception,e:
+            print e
+            pass
     return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     
     

@@ -81,5 +81,26 @@ def aaaa():
 
 	logger.info('%s 端口扫描　执行任务中%s', 1,2)
 
+import json
+param='{"admin":1,"user":"asd"}'
+d = json.loads(param)
+print d.keys()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
