@@ -1,0 +1,12 @@
+BeautifulSoup==3.2.1
+beautifulsoup4==4.4.1
+zenmap==7.12
+Django==1.9
+python-nmap==0.5.0.post1
+DBUtils==1.1
+paramiko==1.16.0
+ruamel.ordereddict==0.4.9
+scapy==2.3.2
+scapy-http==1.7
+objgraph==2.0.1
+pycrypto==2.6.1
