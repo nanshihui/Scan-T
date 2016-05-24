@@ -155,6 +155,9 @@ encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/c
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_groovy.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/elasticsearch_nodestate.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/elasticsearch/t.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts032test.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2016.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2019.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2032.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/t.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/t.py=utf-8

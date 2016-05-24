@@ -29,7 +29,11 @@ class Portscantool:
 
 #             message = "GET / HTTP/1.1\r\nHost: oschina.net\r\n\r\n"
                 message =portway.get(name,"GET  world \r\n\r\n")
-                self.socketclient.sendall(message)
+                if self.socketclient:
+                    self.socketclient.sendall(message)
+                else:
+                    self.socketclient=  socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    self.socketclient.connect((ip,int(port)))
                 reply = self.socketclient.recv(4096)
 
                 return 'reply info:  ',reply,keywords,hackinfo

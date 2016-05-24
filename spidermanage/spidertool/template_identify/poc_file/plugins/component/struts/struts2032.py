@@ -7,7 +7,11 @@ class P(T):
         T.__init__(self)
         keywords=['struts']
     def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
-        target_url = 'http://'+ip+':'+port+'/index.action'
+        target_url=''
+        if productname.get('path',''):
+            target_url = 'http://'+ip+':'+port+productname.get('path','')            
+        else:
+            target_url = 'http://'+ip+':'+port+'/login.action'
         result = {}
         timeout=3
         result['result']=False

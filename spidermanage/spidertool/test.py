@@ -85,11 +85,30 @@ import json
 param='{"admin":1,"user":"asd"}'
 d = json.loads(param)
 print d.keys()
+param='as'
+if param:
+	print 'asdasd'
+from funcmemo import memoize
+@memoize
+def fibonacci(n):
+    if n < 2: return n
+    print n
+    return fibonacci(n - 1) + fibonacci(n - 2)
 
+# fibonacci(25)
 
-
-
-
+def fib(max):  
+    a, b = 1, 1  
+    while a < max:  
+        yield a #generators return an iterator that returns a stream of values.  
+        print str(a)+'               111111111'
+        a+=1
+for n in fib(15):  
+    pass
+a={}
+a['a']='1'
+if a.get('a',''):
+	print 1
 
 
 
