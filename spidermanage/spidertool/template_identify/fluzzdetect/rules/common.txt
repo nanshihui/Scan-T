@@ -137,10 +137,12 @@
 /pmd/index.php                    {tag="phpMyAdmin"}   {status=200}
 /phpmyadmin2/index.php    {tag="phpMyAdmin"}    {status=200}
 /phpmyadmin3/index.php    {tag="phpMyAdmin"}    {status=200}
-/phpmyadmin2014/index.php    {tag="phpMyAdmin"}    {status=200}
+/phpmyadmin2yy014/index.php    {tag="phpMyAdmin"}    {status=200}
 /phpmyadmin2015/index.php    {tag="phpMyAdmin"}    {status=200}
 /dbadmin/index.php           {tag="phpMyAdmin"}    {status=200}
 /%20../web-inf/  {severity=2}
+/yyoa/common/js/menu/test.jsp?doType=101&S1=select%20database%28%29; {status=200}
+/epp/detail/publishinfodetail.jsp?pk_message=1002A31000000000BS0X'  {severity=2}
 # Directory traversal
 /../../../../../../../../../../../../../etc/passwd  {tag="root:x:"}
 //../../../../../../../../../../../../../etc/passwd {tag="root:x:"}
