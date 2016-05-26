@@ -4,7 +4,8 @@
 
 ##tool工具说明
 * 以tool结尾为对应模块的功能       
-* 以task结尾为对应模块的多线程版本                        					
+* 以task结尾为对应模块的多线程版本  
+                      					
 ### template_identify
 
 包含模糊检测以及POC检测模块以及web指纹识别模块

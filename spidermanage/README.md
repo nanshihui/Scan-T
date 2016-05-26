@@ -12,6 +12,7 @@
 * common_static         			存储静态文件。
 * sqldata         					数据库文件
 * spidertool                          					逻辑核心模块
+
 ##TODO
 * 查看是否还存在内存泄露
 * 优化任务调度
