@@ -9,15 +9,15 @@ echo '{
         "url": "jdbc:mysql://127.0.0.1:3306/datap",
         "user": "root",
         "password": "",
-        "sql": "select ip as IP,port as Port,timesearch as Timesearch,state as State,name as Name,product as Product,version as Version, CONCAT(\"(\",script,\")\") as Script, CONCAT(\"(\",detail,\")\")as Detail,id as Id, CONCAT(\"(\",head,\")\")as Head, CONCAT(\"(\",hackinfo,\")\")as Hackinfo,keywords as Keywords, CONCAT(\"(\",disclosure,\")\")as Disclosure from snifferdata where timesearch<\"2016-04-20 14:40:00\"",
+        "sql": "select ip as IP,vendor as Vendor, osfamily as Osfamily, osgen as Osgen ,accurate as Accurate,updatetime as Updatetime,hostname as Hostname,state as State,mac as Mac,country as Country,country_id as Country_id,area as Area,area_id as Area_id,region as Region,region_id as Region_id,city as City,city_id as City_id,county as County,county_id as County_id,isp as Isp,isp_id as Isp_id  from ip_maindata where updatetime<\"2016-05-29 14:40:00\"",
         "treat_binary_as_string": true,
         "elasticsearch": {
             "cluster": "datap",
             "host": "127.0.0.1",
             "port": 9300
         },
-        "index": "snifferdata",
-        "type": "snifferdata_ela"
+        "index": "datap",
+        "type": "ip_maindata"
 }
 }' | java \
 -cp "${lib}/*" \

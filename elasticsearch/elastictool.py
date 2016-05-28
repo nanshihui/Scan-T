@@ -9,7 +9,7 @@ from elasticsearch_dsl.connections import connections
 # Define a default Elasticsearch client
 connections.create_connection(hosts=['localhost'])
 
-class default(DocType):
+class snifferdata(DocType):
 	IP = String(analyzer='ik')
 	Port = Integer()
 	Timesearch = String(analyzer='ik')
@@ -25,7 +25,7 @@ class default(DocType):
 	Keywords= String(analyzer='ik')
 	Disclosure= String(analyzer='ik') 
 	class Meta:
-		index = 'test'
+		index = 'datap'
 
 	def save(self, ** kwargs):
 		return super(default, self).save(** kwargs)
@@ -41,7 +41,7 @@ class default(DocType):
 			print e
 
 
-# default().initindex()	
+snifferdata().initindex()	
 
 
 
