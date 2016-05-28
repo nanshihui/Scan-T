@@ -10,7 +10,7 @@ def tick():
 
     temp=zmaptool.getObject()
 #     objgraph.show_growth()
-    temp.do_scan(port=operator.get(str(num)),num='12',needdetail='1')
+    temp.do_scan(port=operator.get(str(num)),num='20',needdetail='1')
     print('Tick! The time is: %s' % datetime.now())
 def ticknormal():
     num=random.randint(1, 1)
