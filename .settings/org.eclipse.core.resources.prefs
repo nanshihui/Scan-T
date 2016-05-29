@@ -1,7 +1,8 @@
 eclipse.preferences.version=1
-encoding//elasticsearch/createmapping.py=utf-8
-encoding//elasticsearch/elastictool.py=utf-8
-encoding//elasticsearch/importmapping.py=utf-8
+encoding//elasticsearchmanage/elastictool.py=utf-8
+encoding//elasticsearchmanage/importmapping.py=utf-8
+encoding//elasticsearchmanage/logger.py=utf-8
+encoding//elasticsearchmanage/mapping.py=utf-8
 encoding//spidermanage/fontsearch/searchroute.py=utf-8
 encoding//spidermanage/fontsearch/urls.py=utf-8
 encoding//spidermanage/nmaptoolbackground/control/ipcontrol.py=utf-8

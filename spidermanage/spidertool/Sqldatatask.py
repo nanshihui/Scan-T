@@ -5,6 +5,13 @@ import datetime
 import time
 import SQLTool
 from TaskTool import TaskTool
+
+
+
+import sys
+sys.path.append("..")
+from elasticsearchmanage import elastictool
+
 sqltaskdata=None
 def getObject():
 	global sqltaskdata
@@ -24,6 +31,10 @@ class SqlDataTask(TaskTool):
 		Dic=req.getDic()
 # 		print func,Dic
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
+		try:
+			ans=getattr(elastictool, func,'default')(**Dic)
+		except Exception,e:
+			print 'error in elasticsearch',e
 		del Dic
 		
 		print threadname+'数据库任务　结束'+str(datetime.datetime.now())

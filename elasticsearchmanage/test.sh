@@ -9,7 +9,7 @@ echo '{
         "url": "jdbc:mysql://127.0.0.1:3306/datap",
         "user": "root",
         "password": "",
-        "sql": "select ip as IP,vendor as Vendor, osfamily as Osfamily, osgen as Osgen ,accurate as Accurate,updatetime as Updatetime,hostname as Hostname,state as State,mac as Mac,country as Country,country_id as Country_id,area as Area,area_id as Area_id,region as Region,region_id as Region_id,city as City,city_id as City_id,county as County,county_id as County_id,isp as Isp,isp_id as Isp_id  from ip_maindata where updatetime<\"2016-05-29 14:40:00\"",
+        "sql": "select CONCAT(ip,\":\",port) as _id,ip as ip,port as port,timesearch as timesearch,state as state,name as name,product as product,version as version,script as script, detail as detail,id as id, head as head,hackinfo as hackinfo,keywords as keywords,  disclosure as disclosure from snifferdata where timesearch>\"2016-05-22 14:40:00\"",
         "treat_binary_as_string": true,
         "elasticsearch": {
             "cluster": "datap",
@@ -17,7 +17,7 @@ echo '{
             "port": 9300
         },
         "index": "datap",
-        "type": "ip_maindata"
+        "type": "snifferdata"
 }
 }' | java \
 -cp "${lib}/*" \
