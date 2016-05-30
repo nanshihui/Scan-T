@@ -111,12 +111,15 @@ if a.get('a',''):
 	print 1
 
 
+print int('100')
+
+a={"a":"2","b":"3"}
+print a.keys()
 
 
-
-
-
-
+c=[]
+c.append(1)
+print c
 
 
 

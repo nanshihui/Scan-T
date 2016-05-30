@@ -68,7 +68,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:
-#         pagecount = math.ceil(count / limitpage)
+
         pagecount=int((count+limitpage-1)/limitpage) 
 
 
@@ -99,6 +99,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
  
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)
+        print str(count)+'          '+str(pagecount)
         return portarray,count,pagecount
     return [],0,pagecount
 def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city=''):

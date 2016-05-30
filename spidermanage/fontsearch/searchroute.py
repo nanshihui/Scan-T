@@ -9,7 +9,6 @@ from nmaptoolbackground.control import usercontrol,jobcontrol,ipcontrol,portcont
 from django.views import generic
 from spidertool import webtool
 
-
 import json
 
 
@@ -39,14 +38,19 @@ def detailpage(request):
 
     if jsoncontent is None:
     
-        if  content!='':
-            extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+content+'\' in Boolean mode)  '
-       
+        if  content!='' and len(content)>0:
+            print '存在内容，进入elasticsearch 检索'
 #         extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\'  or timesearch like ' +'\'%'+content+'%\' or head like \'%' +content+'%\') and  snifferdata.ip=ip_maindata.ip '
 #         ports,portcount,portpagecount=portcontrol.portabstractshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
-            ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
+          
+            
+            from elasticsearchmanage import elastictool
+            ports,portcount,portpagecount=elastictool.search(page=page,dic=None,content=content)
+#             extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+content+'\' in Boolean mode)  '
 
-        
+#             ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
+
+            print '检索完毕'
             response_data['result'] = '1' 
     
     
@@ -56,21 +60,33 @@ def detailpage(request):
             response_data['portspage']=page
             response_data['username']=username
     else:
+        action=jsoncontent.keys()
+        if 'use' in action or 'city' in action:
+            jsoncontent['page']=page
+            if 'all' in action:
+                extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+jsoncontent['all']+'\' in Boolean mode)  '
 
-        jsoncontent['page']=page
-        try:
-            ports,portcount,portpagecount=getattr(portcontrol, 'portabstractshow','portabstractshow')(**jsoncontent)
+                ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
+
+            else:
+        
+                ports,portcount,portpagecount=getattr(portcontrol, 'portabstractshow','portabstractshow')(**jsoncontent)
             response_data['result'] = '1' 
-    
-    
             response_data['ports']=ports
             response_data['portslength']=portcount
             response_data['portspagecount']=portpagecount
             response_data['portspage']=page
             response_data['username']=username
-        except Exception,e:
-            print e
-            pass
+        else:
+            print '进入elasticsearch 具体关键词匹配'
+            from elasticsearchmanage import elastictool
+            ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
+            response_data['result'] = '1' 
+            response_data['ports']=ports
+            response_data['portslength']=portcount
+            response_data['portspagecount']=portpagecount
+            response_data['portspage']=page
+            response_data['username']=username
     return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
     
     
