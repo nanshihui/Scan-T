@@ -62,8 +62,10 @@ def detailpage(request):
     else:
         action=jsoncontent.keys()
         if 'use' in action or 'city' in action:
+            del jsoncontent['use']
             jsoncontent['page']=page
             if 'all' in action:
+                
                 extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+jsoncontent['all']+'\' in Boolean mode)  '
 
                 ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
@@ -78,6 +80,9 @@ def detailpage(request):
             response_data['portspage']=page
             response_data['username']=username
         else:
+            if len(content)==0:
+                return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+ 
             print '进入elasticsearch 具体关键词匹配'
             from elasticsearchmanage import elastictool
             ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)

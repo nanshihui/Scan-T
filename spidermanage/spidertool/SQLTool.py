@@ -372,7 +372,16 @@ class DBmanager:
 		#self.__conn.commit()   
 def formatstring(str):
 	return '\''+str+'\''
+import chardet	
+def decode(msg):
 
+    chardit1 = chardet.detect(msg)
+
+    try:
+        return msg.decode(chardit1['encoding']).encode('utf-8')
+
+    except Exception,e:
+        return str(msg)
 def escapeword(word):
 	msg=''
 	if word is not None:
@@ -386,7 +395,7 @@ def escapewordby(word):
 	else:
 		
 		content=''
-		content = str(MySQLdb.escape_string(str(word)))
+		content = str(MySQLdb.escape_string(str(decode(word))))
 		return content
 
 if __name__ == "__main__":

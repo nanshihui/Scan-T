@@ -7,9 +7,21 @@ from elasticsearch_dsl import DocType, String, Date, Integer,MultiSearch,Search,
 from elasticsearch_dsl.connections import connections
 import mapping
 from logger import initLog
+import chardet
 logger = initLog('logs/elastic.log', 2, True)
 # Define a default Elasticsearch client
 # connections.create_connection(hosts=['localhost'])
+
+def decode(msg):
+
+    chardit1 = chardet.detect(msg)
+
+    try:
+        return msg.decode(chardit1['encoding']).encode('utf-8')
+
+    except Exception,e:
+        return str(msg)
+
 def get_table_obj(_cls_name):  
     obj =  getattr(mapping,_cls_name)  
     return obj 
@@ -50,14 +62,12 @@ def inserttableinfo_byparams(table,select_params,insert_values,extra='',updateva
                 instanceitem=instanceins(meta={'id': ':'.join(eachitem[:primarykey])})
         else:
             instanceitem=instanceins(meta={'id': ':'.join(eachitem[:primarykey])})
-        logger and logger.info('instanceitem: %s', instanceitem)
 
-        logger and logger.info('get primarykey: %s', ':'.join(eachitem[:primarykey]))
         for i in xrange(0,len(select_params)):
 
-            logger and logger.info('set the value: %s : %s', select_params[i],eachitem[i])
 
-            setvalue(instanceitem,select_params[i],eachitem[i])
+
+            setvalue(instanceitem,select_params[i],decode(eachitem[i]))
         try:
             res=instanceitem.save()
         except Exception,e:
@@ -69,6 +79,7 @@ def replaceinserttableinfo_byparams(table,select_params,insert_values,primarykey
 # inserttableinfo_byparams('snifferdata', ['ip','port','product'], [('1','2','http')],primarykey=2)
 
 def search(page='0',dic=None,content=None):
+
     limitpage=15
     validresult=False
     if content is not None:
@@ -153,7 +164,8 @@ def search(page='0',dic=None,content=None):
         print '返回的实际数量为%d' % count 
         if count>0:
             for temp in response :
-                aport=ports.Port(ip=temp.ip,port=temp.port,timesearch=temp.timesearch,state=temp.state,name=temp.name,product=temp.product,version=temp.version,script=temp.script,detail=temp.detail,head=temp.head,city='',hackinfo=temp.hackinfo,disclosure=temp.disclosure)
+                dic=temp.to_dict()
+                aport=ports.Port(ip=temp.ip,port=temp.port,timesearch=temp.timesearch,state=dic.get('state',''),name=dic.get('name',''),product=dic.get('product',''),version=dic.get('version',''),script=dic.get('script',''),detail=dic.get('detail',''),head=dic.get('head',''),city='',hackinfo=dic.get('hackinfo',''),disclosure=dic.get('disclosure',''))
  
                 portarray.append(aport)
         return portarray,count,pagecount
@@ -204,10 +216,6 @@ def search(page='0',dic=None,content=None):
 #             print hit.doc_types
 #     except Exception,e:
 #         print e
-
-
-
-
 
 
 

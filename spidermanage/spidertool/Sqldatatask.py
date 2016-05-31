@@ -8,9 +8,6 @@ from TaskTool import TaskTool
 
 
 
-import sys
-sys.path.append("..")
-from elasticsearchmanage import elastictool
 
 sqltaskdata=None
 def getObject():
@@ -32,6 +29,10 @@ class SqlDataTask(TaskTool):
 # 		print func,Dic
 		ans=getattr(self.sqlhelp, func,'default')(**Dic)
 		try:
+			import sys
+			sys.path.append("..")
+			from elasticsearchmanage import elastictool
+
 			ans=getattr(elastictool, func,'default')(**Dic)
 		except Exception,e:
 			print 'error in elasticsearch',e
