@@ -1,6 +1,9 @@
 #!/usr/bin/python
 #coding:utf-8
+import sys;
+reload(sys);
 
+sys.setdefaultencoding('utf8');
 from elasticsearch_dsl.query import MultiMatch, Match
 from datetime import datetime
 from elasticsearch_dsl import DocType, String, Date, Integer,MultiSearch,Search,Q
@@ -12,7 +15,7 @@ logger = initLog('logs/elastic.log', 2, True)
 # Define a default Elasticsearch client
 # connections.create_connection(hosts=['localhost'])
 
-def decode(msg):
+def decodestr(msg):
 
     chardit1 = chardet.detect(msg)
 
@@ -67,7 +70,7 @@ def inserttableinfo_byparams(table,select_params,insert_values,extra='',updateva
 
 
 
-            setvalue(instanceitem,select_params[i],decode(eachitem[i]))
+            setvalue(instanceitem,select_params[i],decodestr(eachitem[i]))
         try:
             res=instanceitem.save()
         except Exception,e:
@@ -165,7 +168,7 @@ def search(page='0',dic=None,content=None):
         if count>0:
             for temp in response :
                 dic=temp.to_dict()
-                aport=ports.Port(ip=temp.ip,port=temp.port,timesearch=temp.timesearch,state=dic.get('state',''),name=dic.get('name',''),product=dic.get('product',''),version=dic.get('version',''),script=dic.get('script',''),detail=dic.get('detail',''),head=dic.get('head',''),city='',hackinfo=dic.get('hackinfo',''),disclosure=dic.get('disclosure',''))
+                aport=ports.Port(ip=temp.ip,port=temp.port,timesearch=temp.timesearch,state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=getproperty(dic,'script'),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
  
                 portarray.append(aport)
         return portarray,count,pagecount
@@ -175,8 +178,13 @@ def search(page='0',dic=None,content=None):
     else:
         print '查询失败'
         return [],0,0
-
-
+def getproperty(dic,property):
+    return decodestring(str(dic.get(property,'')))
+def decodestring(msg):
+    if str:
+        return decodestr(msg).decode('string_escape')
+    else:
+        return '' 
 
 # print ":".join(map(str, item[:3]))
 # data = default.getdata(id='12')

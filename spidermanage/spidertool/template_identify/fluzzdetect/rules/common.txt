@@ -61,6 +61,7 @@
 /_web/monitor/remoteDebug.do?_p=YXM9MSZ0PTI4JnA9MSZtPU4m&tt=0.06622753707913736&command=id {severity=2}
 /FCKeditor/editor/filemanager/connectors/test.html {severity=2}
 /FCKeditor/editor/filemanager/browser/default/browser.html  {severity=2}
+
 # Tomcat Examples
 /examples           {severity=2}
 /examples/servlets/servlet/SessionExample    {severity=2}

@@ -7,7 +7,9 @@ import datetime
 from MySQLdb.cursors import DictCursor
 from DBUtils.PooledDB import PooledDB
 from logger import initLog
-
+import sys;
+reload(sys);
+sys.setdefaultencoding('utf8');
 DBhelp=None
 SQLPOOL=None
 def getObject():
@@ -397,7 +399,23 @@ def escapewordby(word):
 		content=''
 		content = str(MySQLdb.escape_string(str(decode(word))))
 		return content
+def getproperty(dic,property):
+    return decodestring(str(dic.get(property,'')))
+def decodestring(msg):
+    if str:
+        return decodestr(msg).decode('string_escape')
+    else:
+        return '' 
+def decodestr(msg):
+	if msg is None:
+		msg=''
+	chardit1 = chardet.detect(msg)
 
+	try:
+		return msg.decode(chardit1['encoding']).encode('utf-8')
+
+	except Exception,e:
+		return str(msg)	
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()
