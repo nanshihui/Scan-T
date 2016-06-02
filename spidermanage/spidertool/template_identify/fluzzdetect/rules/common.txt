@@ -122,9 +122,10 @@
 /cacti/cacti.sql {status=200}  {type_no="html"}
 /zabbix/         {severity=2}
 /jira/           {severity=2}
-/script           {severity=2}
+/script           {status=200} 
 /nagios/         {severity=2}
 /kibana/         {severity=2}
+_ {status=200}
 /jenkins/	 {severity=2}  {status=200}
 /memadmin/index.php      {tag="MemAdmin"}
 /phpmyadmin/index.php    {tag="phpMyAdmin"}    {status=200}

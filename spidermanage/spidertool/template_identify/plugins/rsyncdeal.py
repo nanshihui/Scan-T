@@ -5,8 +5,8 @@
 # import sys
 # sys.path.append("..")
 
-# import commandtool
-from spidertool import commandtool
+import commandtool
+# from spidertool import commandtool
 def rsync(ip='',port='',name='',productname=''):
     head=''
     ans=None

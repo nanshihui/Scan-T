@@ -251,7 +251,7 @@ def upload_ip_info(request):
     sqldatawprk=[]
     func=request.POST.get('func','')
     dic=request.POST.get('dic','{}')
-    nowdic=eval(dic)
+    nowdic=eval(dic)#存在安全隐患, 改用json库
     tempwprk=Sqldata.SqlData(func,nowdic)
     sqldatawprk.append(tempwprk)
     sqlTool=Sqldatatask.getObject()

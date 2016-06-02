@@ -122,7 +122,7 @@ c.append(1)
 print c
 
 
-
-
+if '1' in ['1','2','3']:
+	print 'yes'
 
 

@@ -10,7 +10,7 @@ def identify_main(head='',context='',ip='',port='',productname='',protocol='',nm
 #     print '运行前状态'
 #     gc.collect()
 #     objgraph.show_growth()
-    
+    print ip,port,'正在纳入检测的队列'
     keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port,protocol=protocol)
     fuz=fuzztask.getObject()
     fuz.add_work([(head,context,ip,port,productname,keywords,nmapscript,protocol)])

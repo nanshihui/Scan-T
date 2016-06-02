@@ -84,7 +84,8 @@ class SniffrtTool(object):
             return ''
     def callback_result(self,scan_result):
 
-        print '——————'
+
+
         tmp=scan_result
 
         for i in tmp['scan'].keys():
@@ -155,6 +156,10 @@ class SniffrtTool(object):
                         self.sqlTool.add_work(sqldatawprk)
                         self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate,tempproduct,tempscript)])
 
+
+
+
+
                 elif 'udp' in  tmp['scan'][host].keys():
                     ports = tmp['scan'][host]['udp'].keys()
                     for port in ports:
@@ -171,6 +176,7 @@ class SniffrtTool(object):
                         sqldatawprk=[]
                         dic={"table":self.config.porttable,"select_params": ['ip','port','timesearch','state','name','product','version','script','portnumber'],"insert_values": [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript,str(tempport))]}
                         tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+
                         sqldatawprk.append(tempwprk)
                         self.sqlTool.add_work(sqldatawprk)
             except Exception,e:

@@ -69,8 +69,8 @@ def inserttableinfo_byparams(table,select_params,insert_values,extra='',updateva
         for i in xrange(0,len(select_params)):
 
 
-
-            setvalue(instanceitem,select_params[i],decodestr(eachitem[i]))
+            logger and logger.info('更新数据%s :%s',select_params[i],decodestr(str(eachitem[i])))
+            setvalue(instanceitem,select_params[i],decodestr(str(eachitem[i])))
         try:
             res=instanceitem.save()
         except Exception,e:

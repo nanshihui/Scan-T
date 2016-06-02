@@ -21,16 +21,16 @@ def storedata(ip='',port='',hackinfo=None):
 
     hackinfo=SQLTool.escapewordby(str(hackinfo))
     extra=' on duplicate key update  hackinfo=\''+hackinfo+'\' , timesearch=\''+localtime+'\''
-             
+
     insertdata.append((str(ip),port,hackinfo,str(port)))
- 
- 
+
+
     sqldatawprk=[]
     dic={"table":config.Config.porttable,"select_params":['ip','port','hackinfo','portnumber'],"insert_values":insertdata,"extra":extra}
-                
+
     tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
     sqldatawprk.append(tempwprk)
-    sqlTool.add_work(sqldatawprk)   
+    sqlTool.add_work(sqldatawprk)
     pass
 def storeresult(result=None):
     print '----------------------------------------'

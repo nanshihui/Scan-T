@@ -238,6 +238,7 @@ encoding//spidermanage/spidertool/template_identify/poc_file/lib/logger.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/application/ftp/ftpweakpass.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/application/t.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py=utf-8
+encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/bash/bash.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/cacti/cactifiledisclosure.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/cacti/cactiweathermap.py=utf-8
 encoding//spidermanage/spidertool/template_identify/poc_file/plugins/component/cacti/t.py=utf-8

@@ -16,9 +16,10 @@ class Portscantool:
         socket.setdefaulttimeout(8)
         self.config=config.Config
 
-    def do_scan(self,head,context,ip,port,name,productname,nmapscript):
+    def do_scan(self,head=None,context=None,ip=None,port=None,name=None,productname=None,nmapscript=None):
         keywords=name
         hackinfo=''
+        ans = None
         reply=''
         self.socketclient=None
         try:
@@ -48,7 +49,7 @@ class Portscantool:
    
 if __name__ == "__main__":
     temp=Portscantool()
-    temp.do_scan('218.104.51.44', '5060')
+    temp.do_scan(ip='172.20.13.11', port='80')
 #     temp.do_scan('218.106.87.35', '110')
     
 

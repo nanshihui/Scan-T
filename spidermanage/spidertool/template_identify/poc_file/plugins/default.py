@@ -46,7 +46,7 @@ class PocController(object):
     def __load(self, module_name, plugin_name):
 
         plugin_name = '%s.%s' % (module_name, plugin_name)
-
+        print plugin_name
         plugin = __import__(plugin_name,globals=globals(), fromlist=['P'])
 
         self.logger and self.logger.info('Load Plugin: %s.P', plugin_name)
@@ -130,11 +130,13 @@ class PocController(object):
     def match_POC(self,head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',POCS=None, **kw):
         haveresult=False
         dataresult=[]
+        result={}
         i=0
         for poc in POCS:
-
-            result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
-
+            try:
+                result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
+            except Exception,e:
+                print e
 
             if result['result']:
                 i=1
@@ -207,10 +209,14 @@ class PocController(object):
 
 
 
-    def detect(self, head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',defaultpoc=''):
+    def detect(self, head='',context='',ip='',port='',productname={},keywords='',hackinfo='',defaultpoc=''):
 
 
         self.env_init(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,defaultpoc=defaultpoc)
 
         return
 
+if __name__ == "__main__":
+
+    a=PocController()
+    a.detect(ip='117.78.7.84',port='7001',hackinfo='weblogic')

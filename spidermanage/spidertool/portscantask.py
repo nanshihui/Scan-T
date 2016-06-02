@@ -7,7 +7,7 @@ import connectpool
 import portscantool
 import SQLTool,config
 from TaskTool import TaskTool
-import MySQLdb
+
 from logger import initLog
 portscantskinstance=None
 def getObject():
@@ -24,10 +24,11 @@ class PortscanTask(TaskTool):
         self.connectpool=connectpool.getObject()
         self.portscan=portscantool.Portscantool()
         self.config=config.Config
-        self.set_deal_num(5)
+        self.set_deal_num(15)
     def task(self,req,threadname):
         self.logger and self.logger.info('%s 端口扫描　执行任务中%s', threadname,str(datetime.datetime.now()))
 #         print req[0],req[1],req[2],req[3]
+
         if req[3]!='open':
             return ''
         ip=req[1]
@@ -38,22 +39,28 @@ class PortscanTask(TaskTool):
         ans=None
         hackinfo=''
         keywords=''
-        if req[0]=='http' or req[0]=='https':
+        print '取出有的ip队列', ip, port
+        if (req[0]=='http' or req[0]=='https') or (req[0]=='tcpwrapped' and port in ['80','8080','7001']):
+            print '现在能够取得的ip以及端口号', ip, port
             if ip[0:4]=='http':
                 address=ip+':'+port
             else:
                 if  port=='443':
                     address='https'+'://'+ip+':'+port
+
                 else:
-                    
-                    address=req[0]+'://'+ip+':'+port
-            print address
+                    if req[0]=='tcpwrapped' and port in ['80','8080','7001']:
+                        address = 'http://' + ip + ':' + port
+                    else:
+                        address=req[0]+'://'+ip+':'+port
+
+
             head,ans = self.connectpool.getConnect(address)
             from template_identify import page_identify
             keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port,productname=productname,protocol=req[0],nmapscript=nmapscript)
         else:
             head,ans,keywords,hackinfo=self.portscan.do_scan(head=head,context=ans,ip=ip,port=port,name=req[0],productname=productname,nmapscript=nmapscript)
-        
+            pass
 #         print ans
 #         self.sqlTool.connectdb()
         localtime=str(time.strftime("%Y-%m-%d %X", time.localtime()))
@@ -65,7 +72,7 @@ class PortscanTask(TaskTool):
         hackinfomsg=SQLTool.escapewordby(hackinfo)
         keywords=SQLTool.escapewordby(keywords)
         import Sqldata
-        insertdata.append((ip,port,localtime,str(head),msg,str(port),hackinfomsg,keywords))
+        insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords))
                                          
         extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\''
         sqldatawprk=[]
@@ -87,10 +94,10 @@ class PortscanTask(TaskTool):
         return ans
 
 if __name__ == "__main__":
-    links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.com','http://www.cctv.com','http://www.vip.com']
+    links = [('http','117.78.7.84','7001','open','weblogic','weblogic')]
     
-    f = searchTask()
-    f.set_deal_num(2)
+    f = PortscanTask()
+
     f.add_work(links)
 
     #f.start_task()
