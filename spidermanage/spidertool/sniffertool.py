@@ -145,7 +145,7 @@ class SniffrtTool(object):
                         tempportstate=str(tmp['scan'][host]['tcp'][port].get('state',''))
                         tempproduct=str(tmp['scan'][host]['tcp'][port].get('product',''))
                         tempportversion=str(tmp['scan'][host]['tcp'][port].get('version',''))
-                        tempscript=str(tmp['scan'][host]['tcp'][port].get('script',''))
+                        tempscript=SQLTool.decodestring(str(tmp['scan'][host]['tcp'][port].get('script','')))
 
                         
 #                         self.sqlTool.replaceinserttableinfo_byparams(table=self.config.porttable,select_params= ['ip','port','timesearch','state','name','product','version','script'],insert_values= [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         

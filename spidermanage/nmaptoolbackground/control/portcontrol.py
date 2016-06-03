@@ -187,7 +187,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=temp['script'],detail=temp['detail'],head=temp['head'],hackinfo=temp['hackinfo'])
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.decodestring(temp['script']),detail=temp['detail'],head=SQLTool.decodestring(temp['head']),hackinfo=temp['hackinfo'])
  
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)

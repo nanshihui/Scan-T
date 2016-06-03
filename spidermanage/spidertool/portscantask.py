@@ -39,9 +39,9 @@ class PortscanTask(TaskTool):
         ans=None
         hackinfo=''
         keywords=''
-        print '取出有的ip队列', ip, port
+
         if (req[0]=='http' or req[0]=='https') or (req[0]=='tcpwrapped' and port in ['80','8080','7001']):
-            print '现在能够取得的ip以及端口号', ip, port
+
             if ip[0:4]=='http':
                 address=ip+':'+port
             else:

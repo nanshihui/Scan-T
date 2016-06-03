@@ -37,7 +37,7 @@
 /login     {severity=2}   {status=200}
 /jmx  {severity=2}
 /index.php/login/     {severity=2}    {status=200}
-
+_utils {status=200}
 /conf      {severity=2}
 /test      {severity=2}
 /cache     {severity=2}
