@@ -35,3 +35,7 @@ class TaskTool:
 			return 
 	def has_work_left(self):
 		return self.threadtool.taskleft()
+	def get_length(self):
+		return self.threadtool.getqueue_size()
+	def get_current_task_num(self):
+		return self.threadtool.get_running_size()

@@ -16,6 +16,7 @@ class Portscantool:
         socket.setdefaulttimeout(8)
         self.config=config.Config
 
+        self.socketclient=None
     def do_scan(self,head=None,context=None,ip=None,port=None,name=None,productname=None,nmapscript=None):
         keywords=name
         hackinfo=''

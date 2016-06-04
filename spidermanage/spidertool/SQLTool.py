@@ -88,6 +88,7 @@ class DBmanager:
 	#@select_params				要显示的列名，数组
 	#@request_params     		条件匹配参数，数组
 	#@equal_params				每一个与request_params对应相等的数组
+	@classmethod
 	def isdisconnect(self,e):
 		if 'MySQL server has gone away' in str(e) or 'cursor closed' in  str(e) or 'Lost connection to MySQL server during query' in str(e):
 			return True

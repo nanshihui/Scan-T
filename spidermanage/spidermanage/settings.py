@@ -27,9 +27,9 @@ TEMPLATE_DIRS = (
 SECRET_KEY = 'gv#at(m24cx^yeko=my37m(iw6%4%wv!e-8e_4=+u%%*id+2ny'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

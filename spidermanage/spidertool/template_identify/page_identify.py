@@ -20,6 +20,11 @@ def identify_main(head='',context='',ip='',port='',productname='',protocol='',nm
 #     gc.collect()
 #     objgraph.show_growth()
 #     print '检测运行后状态'
+
+
+
+
+
     return keywords,hackinfo
 # fuz=fuzztask.getObject()
 # fuz.add_work([('head','context','113.105.74.144','80','productname','keywords','nmapscript','http')])

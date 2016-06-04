@@ -33,7 +33,7 @@ class SniffrtTool(object):
         try:
             self.nma = nmap.PortScanner()     # instantiate nmap.PortScanner object
 
-            self.params='-A   -Pn  -sC  -R -v  -O '
+            self.params='-A   -Pn  -sC  -R -v  -O -T4'
 #             self.params='-sV -T4 -O '                    #快捷扫描加强版
 #             self.params='-sS -sU -T4 -A -v'                                            #深入扫描
         except nmap.PortScannerError:
@@ -71,7 +71,7 @@ class SniffrtTool(object):
                 return callback(acsn_result) 
             else:
 #                 print '我在这里52'
-                return callback(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments,callback=callback) ) 
+                return callback(self.nma.scan(hosts=hosts,ports= orders,arguments=arguments) )
 
         except nmap.PortScannerError,e:
             print e
@@ -120,8 +120,8 @@ class SniffrtTool(object):
                     temphostname=''
                     tempdecide=tmp['scan'][host].get('hostnames',[])
                     if len(tempdecide)>0:
-                        for i in tmp['scan'][host]['hostnames']:
-                            temphostname+=str(i.get('name','unknow'))+' '
+                        for y in tmp['scan'][host]['hostnames']:
+                            temphostname+=str(y.get('name','unknow'))+' '
                 
                     tempstate=str(tmp['scan'][host]['status'].get('state','null'))
 #                 print temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime

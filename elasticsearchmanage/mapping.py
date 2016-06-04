@@ -31,6 +31,8 @@ class snifferdata(DocType):
         return super(snifferdata, self).save(** kwargs)
     def initindex(self):
         self.init()
+
+    @classmethod
     def saysomething(self):
         print 'say something'
     @classmethod

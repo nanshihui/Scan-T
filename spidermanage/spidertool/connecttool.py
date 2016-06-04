@@ -45,6 +45,7 @@ class ConnectTool:
 
 	def  getHTML(self,URL,way='GET',params={},times=1,header=None,type=''):
 		print datetime.datetime.now()
+		data=None
 		if type=='':
 			
 			data = urllib.urlencode(params)

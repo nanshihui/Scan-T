@@ -48,6 +48,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
         request_params.append('city')
         values_params.append(SQLTool.formatstring(city))
     global DBhelp
+
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     

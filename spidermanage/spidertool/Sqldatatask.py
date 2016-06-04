@@ -39,8 +39,7 @@ class SqlDataTask(TaskTool):
 		del Dic
 		
 		print threadname+'数据库任务　结束'+str(datetime.datetime.now())
-		
-		time.sleep(0.1)#防止插入过于频繁而坏表
+
 # 		self.sqlhelp.closedb()
 		return ans
 

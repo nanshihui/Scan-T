@@ -24,6 +24,8 @@ class PocController(object):
         self.logger      = logger
         self.result=None
         self.loader()
+
+    @classmethod
     def __list_plugins(self, module_path):
         return set(map(lambda item: item.endswith(('.py', '.pyc')) and item.replace('.pyc', '').replace('.py', ''), listdir(module_path)))
 
@@ -37,6 +39,8 @@ class PocController(object):
         
             plugins_list.remove('t')
         return plugins_list
+
+    @classmethod
     def __get_component_detail_list(self,componentname):
         path = join(abspath(dirname(__file__)), componentname)
         modules_list = set(map(lambda item: isdir(join(path, item)) and item, listdir(path)))
@@ -51,11 +55,15 @@ class PocController(object):
 
         self.logger and self.logger.info('Load Plugin: %s.P', plugin_name)
         return plugin.P
+
+    @classmethod
     def __load_keywords(self,componentname, module_name):
         module_name = componentname+'.%s' % (module_name)
 
         module = __import__(module_name,globals=globals(), fromlist=['KEYWORDS'])
         return module.KEYWORDS,componentname
+
+    @classmethod
     def __load_rules(self,componentname, module_name):
         module_name = componentname+'.%s' % (module_name)
         module = __import__(module_name,globals=globals(), fromlist=['rules'])
@@ -127,6 +135,8 @@ class PocController(object):
                 self.logger and self.logger.info('Init Plugin: %s', item)
         print ' 要执行筛选的组件:      '+str(POCS) 
         self.match_POC(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,POCS=POCS, **kw)
+
+    @classmethod
     def match_POC(self,head='',context='',ip='',port='',productname=None,keywords='',hackinfo='',POCS=None, **kw):
         haveresult=False
         dataresult=[]
@@ -151,6 +161,8 @@ class PocController(object):
             print '-----------------------'
             print '暂未发现相关漏洞'
         del POCS
+
+    @classmethod
     def __match_rules(self,pocclass=None,head='',context='',ip='',port='',productname=None,keywords='',hackinfo='', **kw):
 
         return pocclass.match_rule(head='',context='',ip='',port='',productname=productname,keywords='',hackinfo='', **kw)

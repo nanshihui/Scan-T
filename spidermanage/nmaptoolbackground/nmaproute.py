@@ -10,6 +10,7 @@ from django.views import generic
 from spidertool import webtool
 from model.user import User
 from spidertool import  connectpool,Sqldatatask,Sqldata
+
 import httplib
 import json
 
@@ -283,3 +284,20 @@ def upload_port_info(request):
     data['result']='1'
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 
+def systeminfo(request):
+    from spidertool import sniffertask, zmaptool,portscantask
+    from spidertool.template_identify.fluzzdetect import fuzztask
+    from spidertool.template_identify.poc_file import pocsearchtask
+    resultdata={}
+    resultdata['nmapfont']=taskcontrol.getObject().get_length()
+    resultdata['nmapfont_running'] = taskcontrol.getObject().get_current_task_num()
+    resultdata['nmapback']=sniffertask.getObject().get_length()
+    resultdata['nmapback_running'] = sniffertask.getObject().get_current_task_num()
+    resultdata['portacsn']=portscantask.getObject().get_length()
+    resultdata['portacsn_running'] = portscantask.getObject().get_current_task_num()
+    resultdata['fuzz']=fuzztask.getObject().get_length()
+    resultdata['fuzz_running'] = fuzztask.getObject().get_current_task_num()
+    resultdata['pocdect'] = pocsearchtask.getObject().get_length()
+    resultdata['pocdect_running']=pocsearchtask.getObject().get_current_task_num()
+
+    return HttpResponse(json.dumps(resultdata,skipkeys=True,default=webtool.object2dict), content_type="application/json")

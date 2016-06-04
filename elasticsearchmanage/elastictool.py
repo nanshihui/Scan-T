@@ -20,7 +20,10 @@ def decodestr(msg):
     chardit1 = chardet.detect(msg)
 
     try:
-        return msg.decode(chardit1['encoding']).encode('utf-8')
+        if chardit1['encoding']=='utf-8':
+            return msg
+        else:
+            return msg.decode(chardit1['encoding']).encode('utf-8')
 
     except Exception,e:
         return str(msg)
@@ -168,7 +171,7 @@ def search(page='0',dic=None,content=None):
         if count>0:
             for temp in response :
                 dic=temp.to_dict()
-                aport=ports.Port(ip=temp.ip,port=temp.port,timesearch=temp.timesearch,state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=getproperty(dic,'script'),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
+                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=getproperty(dic,'script'),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
  
                 portarray.append(aport)
         return portarray,count,pagecount
@@ -182,7 +185,9 @@ def getproperty(dic,property):
     return decodestring(str(dic.get(property,'')))
 def decodestring(msg):
     if str:
+
         return decodestr(msg).decode('string_escape')
+
     else:
         return '' 
 

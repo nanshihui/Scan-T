@@ -23,6 +23,10 @@ class InfoDisScanner(InfoDisScannerBase):
         self.TIME_OUT = timeout
         self.LINKS_LIMIT = 20       # max number of links
         self.logger=initLog("logs/fuzzDect.log", 2, True)
+
+
+        self.final_severity=None
+
         self._init_rules()
     def scanvul(self,ip,protocal,port):
         if len(self.url_dict)==0:

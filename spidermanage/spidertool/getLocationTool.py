@@ -69,7 +69,7 @@ class GetLocationTask(TaskTool):
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)
-        
+        del insertdata
         time.sleep(0.1)
         ans=''
         return ans

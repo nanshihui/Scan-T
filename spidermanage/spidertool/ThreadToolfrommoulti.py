@@ -57,7 +57,10 @@ class ThreadTool:
 		self.isThread=isThread
 		self.Threads=[]
 		self.idletask={}
-
+		self.threads_num=None
+		self.work_num=None
+		self.default_object=None
+		self.job=None
 #		self.running = 0
 
 #	def __del__(self): #解构时需等待两个队列完成

@@ -20,6 +20,8 @@ class ThreadTool:
 		self.running = 0
 		self.threads_num = 10
 		self.deamon=deamon
+		self.job=None
+		self.default_object=None
 		if self.isThread==1:
 			self.lock = Lock() #线程锁
 
@@ -40,6 +42,8 @@ class ThreadTool:
 			self.q_request.join()
 			if self.needfinishqueue>0:
 				self.q_finish.join()
+	def getqueue_size(self):
+		return self.q_request.qsize()
 	def set_Thread_size(self,threads_num=10):
 		self.threads_num = threads_num
 	def init_add(self,add_init_object):
@@ -78,6 +82,8 @@ class ThreadTool:
 				self.Threads.append(t)
 				with self.lock:	
 					self.alivenum+=1
+	def get_running_size(self):
+		return self.running
 	def taskleft(self):
 		if self.needfinishqueue>0:
 			return self.q_request.qsize()+self.q_finish.qsize()+self.running

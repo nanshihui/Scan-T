@@ -40,7 +40,7 @@ class P(T):
             result['VerifyInfo']['type'] = 'weak  pass'
             result['VerifyInfo']['URL'] = ip + ':' + port
             result['VerifyInfo']['payload'] = passwd
-            result['VerifyInfo']['result'] = 'pass is '% passwd
+            result['VerifyInfo']['result'] = 'pass is  %s'% passwd
 
         except pexpect.EOF:
             pass
