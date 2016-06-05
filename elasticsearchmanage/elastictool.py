@@ -186,7 +186,7 @@ def getproperty(dic,property):
 def decodestring(msg):
     if str:
 
-        return decodestr(msg).decode('string_escape')
+        return decodestr(msg).decode('string_escape').decode('string_escape')
 
     else:
         return '' 

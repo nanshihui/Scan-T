@@ -1,16 +1,22 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
-from spidertool import zmaptool,iptask
+from spidertool import zmaptool,iptask,sniffertask
 import random
 from datetime import datetime
+
 import objgraph
 operator = {'6':'3306','1':'80','2':'8080','3':'443','4':'22','5':'21','7':'873','8':'9200'}  
 def tick():
-    num=random.randint(1, 1)
+    if sniffertask.getObject().get_length()>30:
+        print('too much work: %s' % datetime.now())
+        pass
+    else:
 
-    temp=zmaptool.getObject()
-#     objgraph.show_growth()
-    temp.do_scan(port=operator.get(str(num)),num='20',needdetail='1')
+        num=random.randint(1, 1)
+
+        temp=zmaptool.getObject()
+
+        temp.do_scan(port=operator.get(str(num)),num='20',needdetail='1')
     print('Tick! The time is: %s' % datetime.now())
 def ticknormal():
     num=random.randint(1, 1)

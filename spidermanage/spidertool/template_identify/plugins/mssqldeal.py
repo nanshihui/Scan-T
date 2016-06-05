@@ -30,4 +30,4 @@ def mssql(ip='',port='1433',name='',productname=''):
             if con !=None:
                 con.close()
     return head,ans,keywords,hackinfo
-# head,ans,keywords,hackinfo=mssql(ip='172.20.13.11')
+# print mssql(ip='192.168.1.100')

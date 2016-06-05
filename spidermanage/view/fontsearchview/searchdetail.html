@@ -72,6 +72,8 @@ word-wrap: break-word;   */
     				</div>
     			</div>
     		</div>
+    </div>
+            </div>
     	</header>
         <div class="mostused-packages well well-sm text-center hidden-xs hidden-sm"></div>
         <div class="container protocal-notice">
@@ -112,6 +114,7 @@ word-wrap: break-word;   */
              <p>反馈或建议请发送邮件至：nanshihui@gmail.com</p>
          </div>
      </div>
+         </div>
  </footer>
 <script type="text/javascript">
  function show(box) {
@@ -277,8 +280,7 @@ function changtext(k,i){
                                                       
                                                                
                                                                       if    (data2.username=='admin'){
-
-                                                                bodyhtml+="<pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(ports[i].script+'\nhackinfo:\n'+ports[i].hackinfo+'\ndisclosed:\n'+ports[i].disclosure).toString())+"</pre></div>"+
+                                                                bodyhtml+="<div class=\"box\"><pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(ports[i].script+'\nhackinfo:\n '+ports[i].hackinfo+' \n disclosed:\n '+ports[i].disclosure).toString())+"</pre></div></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>";
                                        

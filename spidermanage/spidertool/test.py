@@ -126,3 +126,11 @@ if '1' in ['1','2','3']:
 	print 'yes'
 
 
+aList = [123, 'xyz', 'zara', 'abc', 'xyz','bb','a'];
+
+for i in aList:
+	print i
+	if i=='xyz':
+		aList.remove('xyz')
+
+print aList

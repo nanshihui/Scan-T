@@ -29,7 +29,7 @@ Usage
 
 To get a list of basic options and switches use:
 
-    sudo python spidermanage/manage.py runserver localhost:80
+    sudo python spidermanage/manage.py runserver localhost:80 --insecure
     
 Notice
 ----

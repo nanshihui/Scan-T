@@ -18,9 +18,9 @@ def getObject():
         fuzzinstance=FuzzTask(1)
     return fuzzinstance
 class FuzzTask(TaskTool):
-    def __init__(self,isThread=1,deamon=False):
+    def __init__(self,isThread=2,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
-        self.set_deal_num(6)
+        self.set_deal_num(15)
         self.logger = initLog('logs/fuzzDect.log', 2, True)
         self.fuzzscan=InfoDisScanner()
         
