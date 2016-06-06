@@ -30,7 +30,7 @@ class P(T):
         finally:
             if res is not None:
                 res.close()
-                
+                del res
                 
         if res_html.find("88888887") <> -1:
       

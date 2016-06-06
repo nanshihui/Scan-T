@@ -285,7 +285,7 @@ def upload_port_info(request):
     return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")   
 
 def systeminfo(request):
-    from spidertool import sniffertask, zmaptool,portscantask
+    from spidertool import sniffertask, zmaptool,portscantask,Sqldatatask
     from spidertool.template_identify.fluzzdetect import fuzztask
     from spidertool.template_identify.poc_file import pocsearchtask
     resultdata={}
@@ -299,5 +299,6 @@ def systeminfo(request):
     resultdata['fuzz_running'] = fuzztask.getObject().get_current_task_num()
     resultdata['pocdect'] = pocsearchtask.getObject().get_length()
     resultdata['pocdect_running']=pocsearchtask.getObject().get_current_task_num()
-
+    resultdata['sqltask'] = Sqldatatask.getObject().get_length()
+    resultdata['sqltask_running']=Sqldatatask.getObject().get_current_task_num()
     return HttpResponse(json.dumps(resultdata,skipkeys=True,default=webtool.object2dict), content_type="application/json")

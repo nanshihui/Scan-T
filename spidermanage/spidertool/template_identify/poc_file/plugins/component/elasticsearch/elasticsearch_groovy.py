@@ -37,6 +37,7 @@ class P(T):
 
             if req:
                 req.close()
+                del req
             return content
     
     def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):

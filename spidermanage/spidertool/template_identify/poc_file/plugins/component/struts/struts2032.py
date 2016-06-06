@@ -52,6 +52,7 @@ class P(T):
         finally:
             if res is not None:
                 res.close()
+                del res
         if jsp_file in res_html:
             info = target_url + "struts032  Vul"
             result['result']=True

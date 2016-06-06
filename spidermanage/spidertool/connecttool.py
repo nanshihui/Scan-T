@@ -113,7 +113,7 @@ class ConnectTool:
 		finally:
 				if response:
 					response.close()
-# 					del response
+					del response
 		#response.close()
 
 

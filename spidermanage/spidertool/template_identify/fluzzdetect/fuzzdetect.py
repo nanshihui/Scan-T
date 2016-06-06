@@ -98,6 +98,8 @@ class InfoDisScanner(InfoDisScannerBase):
         finally:
             if conn is not None:
                 conn.close()
+
+                del conn
     def _enqueue(self, url,url_queue):
         
         for _ in self.url_dict:

@@ -12,7 +12,7 @@ import multiprocessing
 
 import gevent
 import gevent.monkey
-gevent.monkey.patch_socket()
+# gevent.monkey.patch_socket()
 stack_size(32768*16)
 class ThreadTool:
 	def __init__(self,isThread=1,needfinishqueue=0,deamon=True):
@@ -27,8 +27,8 @@ class ThreadTool:
 		self.job=None
 		self.default_object=None
 		if self.isThread==1:
-			self.lock = Lock() #线程锁
-
+			# self.lock = Lock() #线程锁
+			self.lock=threading.Lock()
 			self.q_request = Queue() #任务队列
 			if needfinishqueue>0:
 				self.q_finish = Queue() #完成队列

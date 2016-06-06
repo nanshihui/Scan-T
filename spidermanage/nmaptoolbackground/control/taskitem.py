@@ -7,6 +7,7 @@ from datetime import datetime
 import objgraph
 operator = {'6':'3306','1':'80','2':'8080','3':'443','4':'22','5':'21','7':'873','8':'9200'}  
 def tick():
+    gchelp()
     if sniffertask.getObject().get_length()>30:
         print('too much work: %s' % datetime.now())
         pass

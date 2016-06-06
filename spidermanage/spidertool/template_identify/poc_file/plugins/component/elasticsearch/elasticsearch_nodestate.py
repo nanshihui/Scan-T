@@ -27,6 +27,7 @@ class P(T):
         finally:
             if r is not None:
                 r.close()
+                del r
             return result
 if __name__ == '__main__':
     print P().verify(ip='42.120.7.120',port='9200')          

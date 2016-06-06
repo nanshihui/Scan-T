@@ -23,7 +23,7 @@ import pdb
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "spidermanage.settings")
 
 application = get_wsgi_application()
-# application = Dozer(application)
+application = Dozer(application)
 # application = Logview(application)
 faulthandler.enable()
 taskcontrol.scheduleinit()
