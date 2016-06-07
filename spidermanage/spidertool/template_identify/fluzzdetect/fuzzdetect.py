@@ -39,7 +39,9 @@ class InfoDisScanner(InfoDisScannerBase):
             self._enqueue(url,tempqueue)
             dataresult=self._scan_worker(url_queue=tempqueue,protocal=protocal,_status=status,has_404=has404,ip=ip,port=port)
             if dataresult is not None:
+
                 callbackfuzz.storedata(ip=ip,port=port,hackinfo=dataresult)
+                pass
         else:
             pass
 
@@ -212,8 +214,9 @@ class InfoDisScanner(InfoDisScannerBase):
 
 if __name__ == '__main__':
         a = InfoDisScanner()
-        print a.scanvul(ip='113.105.74.144',port='80',protocal='http')
-
+        while True:
+            print a.scanvul(ip='qcpj.bnuz.edu.cn',port='80',protocal='http')
+            print a.scanvul(ip='www.bnuz.edu.cn', port='80', protocal='http')
 
 #         if results:
 #             for key in results.keys():

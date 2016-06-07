@@ -63,7 +63,8 @@ class FuzzTask(TaskTool):
 
 if __name__ == "__main__":
 
-    pass
+    fuz=getObject()
+
 
 
 
