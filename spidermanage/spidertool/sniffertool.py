@@ -145,9 +145,9 @@ class SniffrtTool(object):
                         tempportstate=str(tmp['scan'][host]['tcp'][port].get('state',''))
                         tempproduct=str(tmp['scan'][host]['tcp'][port].get('product',''))
                         tempportversion=str(tmp['scan'][host]['tcp'][port].get('version',''))
-                        tempscript=SQLTool.decodestring(str(tmp['scan'][host]['tcp'][port].get('script','')))
+                        tempscript=SQLTool.decodestr(str(tmp['scan'][host]['tcp'][port].get('script',{})))
 
-                        
+
 #                         self.sqlTool.replaceinserttableinfo_byparams(table=self.config.porttable,select_params= ['ip','port','timesearch','state','name','product','version','script'],insert_values= [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript)])         
                         sqldatawprk=[]
                         dic={"table":self.config.porttable,"select_params": ['ip','port','timesearch','state','name','product','version','script','portnumber'],"insert_values": [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript,str(tempport))]}
@@ -256,7 +256,7 @@ if __name__ == "__main__":
 
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
-    hosts=['www.cctv.com']
+    hosts=['121.43.104.188']
     temp.scanaddress(hosts,ports=['80'],arguments='')
 
 

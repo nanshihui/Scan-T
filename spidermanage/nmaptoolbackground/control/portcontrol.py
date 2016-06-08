@@ -96,7 +96,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.decodestring(temp['script']),detail=SQLTool.decodestring(temp['detail']),head=SQLTool.decodestring(temp['head']),city=temp['city'],hackinfo=SQLTool.decodestring(temp['hackinfo']),disclosure=SQLTool.decodestring(temp['disclosure']))
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.getdecodeproperty(temp,'script'),detail=SQLTool.getdecodeproperty(temp,'detail'),head=SQLTool.getdecodeproperty(temp,'head'),city=temp['city'],hackinfo=SQLTool.getdecodeproperty(temp,'hackinfo'),disclosure=SQLTool.getdecodeproperty(temp,'disclosure'))
 
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)
@@ -188,8 +188,8 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
         if count>0:
             validresult=True
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.decodestring(temp['script']),detail=temp['detail'],head=SQLTool.decodestring(temp['head']),hackinfo=temp['hackinfo'])
- 
+                aport=ports.Port(ip=SQLTool.getdecodeproperty(temp,'ip'),port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.getdecodeproperty(temp,'script'),detail=SQLTool.getdecodeproperty(temp,'detail'),head=SQLTool.getdecodeproperty(temp,'head'),hackinfo=temp['hackinfo'])
+
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)
         return portarray,count,pagecount

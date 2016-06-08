@@ -280,7 +280,7 @@ function changtext(k,i){
                                                       
                                                                
                                                                       if    (data2.username=='admin'){
-                                                                bodyhtml+="<div class=\"box\"><pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(ports[i].script+'\nhackinfo:\n '+ports[i].hackinfo+' \n disclosed:\n '+ports[i].disclosure).toString())+"</pre></div></div>"+
+                                                                bodyhtml+="<div class=\"box\"><pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(decodebase64(ports[i].script)+'\nhackinfo:\n '+ports[i].hackinfo+' \n disclosed:\n '+ports[i].disclosure).toString())+"</pre></div></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>";
                                        
@@ -288,7 +288,7 @@ function changtext(k,i){
 
                                                          }
                                                          else{
-                                                                                   bodyhtml+="<pre>"+(ports[i].script==null?'无':encodeHtml(ports[i].script).toString())+"</pre></div>"+
+                                                                                   bodyhtml+="<pre>"+(ports[i].script==null?'无':encodeHtml(decodebase64(ports[i].script)).toString())+"</pre></div>"+
                                                                     "<div class=\"col-md-9 \">"+
                                                                     "<p class=\"package-description\">详细信息：</p>";
                                                          }
@@ -359,6 +359,19 @@ document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
  }
 }
 
+ function decodebase64(base64Str) {
+     var unicode= BASE64.decoder(base64Str);//返回会解码后的unicode码数组。
+
+//可由下面的代码编码为string
+
+var str = '';
+for(var i = 0 , len =  unicode.length ; i < len ;++i){
+      str += String.fromCharCode(unicode[i]);
+}
+
+     return str;
+ }
+
 
  encodeHtml = function(s){
       return (typeof s != "string") ? s :
@@ -374,7 +387,7 @@ document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
        
     	<script src="/static/fontsearch/js/jquery.min.js"></script>
         <script src="/static/fontsearch/js/highlight.js"></script>
-        
+         <script src="/static/fontsearch/js/jbase64.js"></script>
     	<script src="/static/fontsearch/js/bootstrap.min.js"></script>
     	 <script src="/static/fontsearch/js/geopattern.min.js"></script>
     	 <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>

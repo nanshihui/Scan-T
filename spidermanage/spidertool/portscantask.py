@@ -40,7 +40,7 @@ class PortscanTask(TaskTool):
         hackinfo=''
         keywords=''
 
-        if (req[0]=='http' or req[0]=='https') or (req[0]=='tcpwrapped' and port in ['80','8080','7001']):
+        if (req[0]=='http' or req[0]=='https') or (req[0] in ['tcpwrapped','None'] and port in ['80','8080','7001']):
 
             if ip[0:4]=='http':
                 address=ip+':'+port

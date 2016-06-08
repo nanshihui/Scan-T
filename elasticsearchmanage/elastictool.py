@@ -14,19 +14,39 @@ import chardet
 logger = initLog('logs/elastic.log', 2, True)
 # Define a default Elasticsearch client
 # connections.create_connection(hosts=['localhost'])
-
+import base64
 def decodestr(msg):
 
     chardit1 = chardet.detect(msg)
 
     try:
+
         if chardit1['encoding']=='utf-8':
             return msg
         else:
-            return msg.decode(chardit1['encoding']).encode('utf-8')
+            if chardit1['encoding']=='ISO-8859-2':
+                return msg
+            else:
+                return msg.decode(chardit1['encoding']).encode('utf-8')
 
     except Exception,e:
         return str(msg)
+def getproperty(dic,property):
+    return decodestring(str(dic.get(property,' ')))
+def decodestring(msg):
+
+    if str:
+        try:
+            return decodestr(msg.decode('string_escape').decode('string_escape'))
+        except Exception,e:
+            print e,42
+
+
+
+
+    else:
+        return ' '
+
 
 def get_table_obj(_cls_name):  
     obj =  getattr(mapping,_cls_name)  
@@ -146,7 +166,7 @@ def search(page='0',dic=None,content=None):
 # }
 # })
     s= s[int(page)*limitpage:int(page)*limitpage+limitpage]
-    print q.to_dict()
+
     response = s.execute()
     if response.success():
         
@@ -171,9 +191,12 @@ def search(page='0',dic=None,content=None):
         if count>0:
             for temp in response :
                 dic=temp.to_dict()
-                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=getproperty(dic,'script'),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
- 
+                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(getproperty(dic,'script')),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
+
+
+
                 portarray.append(aport)
+
         return portarray,count,pagecount
 
 
@@ -181,15 +204,7 @@ def search(page='0',dic=None,content=None):
     else:
         print '查询失败'
         return [],0,0
-def getproperty(dic,property):
-    return decodestring(str(dic.get(property,'')))
-def decodestring(msg):
-    if str:
 
-        return decodestr(msg).decode('string_escape').decode('string_escape')
-
-    else:
-        return '' 
 
 # print ":".join(map(str, item[:3]))
 # data = default.getdata(id='12')

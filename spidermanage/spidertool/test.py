@@ -141,8 +141,4 @@ def asd():
 def asd1():
 	time.sleep(2)
 	print 11231
-import gevent
 
-
-gevent.joinall([gevent.spawn(asd),gevent.spawn(asd1)])
-print 'asdasdasdas'

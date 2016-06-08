@@ -376,15 +376,7 @@ class DBmanager:
 def formatstring(str):
 	return '\''+str+'\''
 import chardet	
-def decode(msg):
 
-    chardit1 = chardet.detect(msg)
-
-    try:
-        return msg.decode(chardit1['encoding']).encode('utf-8')
-
-    except Exception,e:
-        return str(msg)
 def escapeword(word):
 	msg=''
 	if word is not None:
@@ -398,25 +390,42 @@ def escapewordby(word):
 	else:
 		
 		content=''
-		content = str(MySQLdb.escape_string(str(decode(word))))
+		content = str(MySQLdb.escape_string(str(decodestr(word))))
 		return content
 def getproperty(dic,property):
     return decodestring(str(dic.get(property,'')))
-def decodestring(msg):
+def encodestring(msg):
     if str:
-        return decodestr(msg).decode('string_escape')
+        return decodestr(msg).encode('string_escape')
     else:
         return '' 
+
+
+
 def decodestr(msg):
 	if msg is None:
 		msg=''
+
 	chardit1 = chardet.detect(msg)
 
 	try:
-		return msg.decode(chardit1['encoding']).encode('utf-8')
+    
+		if chardit1['encoding']=='utf-8':
+			return msg
+		else:
+			return msg.decode(chardit1['encoding']).encode('utf-8')
 
 	except Exception,e:
-		return str(msg)	
+		return str(msg)
+def getdecodeproperty(dic,property):
+    return decodestring(str(dic.get(property,'')))
+def decodestring(msg):
+    if str:
+
+        return decodestr(msg.decode('string_escape').decode('string_escape'))
+
+    else:
+        return ''
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()

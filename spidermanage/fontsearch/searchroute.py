@@ -96,10 +96,15 @@ def detailpage(request):
             response_data['portspage']=page
             response_data['username']=username
     try:
+
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
-    except:
+    except Exception,e:
+        print e
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict,encoding='latin-1'), content_type="application/json")
 
+
+        # return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict, encoding='GB2312'),
+        #             content_type="application/json")
 
     
 
