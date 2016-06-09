@@ -123,7 +123,9 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w=p.getHTML('http://www.ijinshan.com')
+	w=p.getHTML('http://218.28.144.77')
+	chardit1 = chardet.detect(w)
+	print chardit1
  	print w
 	
 	

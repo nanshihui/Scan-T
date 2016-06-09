@@ -15,7 +15,7 @@ def getObject():
     global snifferinstance
     if snifferinstance is None:
         snifferinstance=snifferTask(1)
-        snifferinstance.set_deal_num(5)
+        snifferinstance.set_deal_num(10)
     return snifferinstance
 class snifferTask(TaskTool):
     def __init__(self,isThread=1):

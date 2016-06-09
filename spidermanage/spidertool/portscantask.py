@@ -94,15 +94,13 @@ class PortscanTask(TaskTool):
         return ans
 
 if __name__ == "__main__":
-    links = [('http','117.78.7.84','7001','open','weblogic','weblogic')]
+    links = [('http','218.28.144.77','80','open','weblogic','weblogic')]
     
     f = PortscanTask()
 
     f.add_work(links)
 
-    #f.start_task()
-    while f.has_work_left():
-        v,b=f.get_finish_work()
+
         
     while True:
         pass

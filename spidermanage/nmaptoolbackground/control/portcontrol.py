@@ -95,8 +95,9 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
         portarray=[]
         if count>0:
             validresult=True
+            import  base64
             for temp in result :
-                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=SQLTool.getdecodeproperty(temp,'script'),detail=SQLTool.getdecodeproperty(temp,'detail'),head=SQLTool.getdecodeproperty(temp,'head'),city=temp['city'],hackinfo=SQLTool.getdecodeproperty(temp,'hackinfo'),disclosure=SQLTool.getdecodeproperty(temp,'disclosure'))
+                aport=ports.Port(ip=temp['ip'],port=temp['port'],timesearch=temp['timesearch'],state=temp['state'],name=temp['name'],product=temp['product'],version=temp['version'],script=base64.b64encode(SQLTool.getdecodeproperty(temp,'script')),detail=SQLTool.getdecodeproperty(temp,'detail'),head=SQLTool.getdecodeproperty(temp,'head'),city=temp['city'],hackinfo=SQLTool.getdecodeproperty(temp,'hackinfo'),disclosure=SQLTool.getdecodeproperty(temp,'disclosure'))
 
 #                 aport=ports.Port(ip=temp[0],port=temp[1],timesearch=temp[2],state=temp[3],name=temp[4],product=temp[5],version=temp[6],script=temp[7])
                 portarray.append(aport)

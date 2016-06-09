@@ -403,19 +403,17 @@ def encodestring(msg):
 
 
 def decodestr(msg):
-	if msg is None:
-		msg=''
-
 	chardit1 = chardet.detect(msg)
 
 	try:
-    
-		if chardit1['encoding']=='utf-8':
+		print chardit1['encoding'], msg
+		if chardit1['encoding'] == 'utf-8':
 			return msg
 		else:
+
 			return msg.decode(chardit1['encoding']).encode('utf-8')
 
-	except Exception,e:
+	except Exception, e:
 		return str(msg)
 def getdecodeproperty(dic,property):
     return decodestring(str(dic.get(property,'')))

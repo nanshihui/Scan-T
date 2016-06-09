@@ -20,14 +20,18 @@ def decodestr(msg):
     chardit1 = chardet.detect(msg)
 
     try:
-
-        if chardit1['encoding']=='utf-8':
+        # print chardit1['encoding'],msg.decode('gbk')
+        if chardit1['encoding']=='utf-8' :
             return msg
         else:
-            if chardit1['encoding']=='ISO-8859-2':
-                return msg
+            if  chardit1['encoding']=='ISO-8859-2':
+                return msg.decode('gbk')
             else:
-                return msg.decode(chardit1['encoding']).encode('utf-8')
+                if 'charset=gbk' in msg:
+
+                    return msg.decode('gbk')
+                else:
+                    return msg.decode(chardit1['encoding']).encode('utf-8')
 
     except Exception,e:
         return str(msg)
@@ -37,6 +41,7 @@ def decodestring(msg):
 
     if str:
         try:
+
             return decodestr(msg.decode('string_escape').decode('string_escape'))
         except Exception,e:
             print e,42
@@ -193,6 +198,19 @@ def search(page='0',dic=None,content=None):
                 dic=temp.to_dict()
                 aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(getproperty(dic,'script')),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'))
 
+                # ip=getproperty(dic,'ip')
+                # port=getproperty(dic,'port')
+                # timesearch=getproperty(dic,'timesearch')
+                # state=getproperty(dic,'state')
+                # name=getproperty(dic,'name')
+                # product=getproperty(dic,'product')
+                # version=getproperty(dic,'version')
+                # script=base64.b64encode(getproperty(dic,'script'))
+                # detail=getproperty(dic,'detail')
+                # head=getproperty(dic,'head')
+                # city=''
+                # hackinfo=getproperty(dic,'hackinfo')
+                # disclosure=getproperty(dic,'disclosure')
 
 
                 portarray.append(aport)
@@ -261,4 +279,6 @@ def search(page='0',dic=None,content=None):
 #     
     
     
-    
+if __name__ == '__main__':
+    # print search(page='0', dic=None, content='218.28.144.77')
+    print '\xD6\xD0\xB9\xFA\xD1\xCC\xB2\xDD\xC5\xE0\xD1\xB5\xCD\xF8'.decode('gbk')
