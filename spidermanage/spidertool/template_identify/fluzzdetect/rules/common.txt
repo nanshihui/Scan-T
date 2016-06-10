@@ -463,10 +463,6 @@ _ {status=200}
 
 
 #sql inject
-/messages_list/&categoryType=forMember&messagesCategoryId=5*.html {severity=2}
-/yyoa/common/js/menu/test.jsp?doType=101&S1=select%20database%28%29; {status=200}
-/epp/detail/publishinfodetail.jsp?pk_message=1002A31000000000BS0X'  {severity=2}
-/web/WebSearchDsp.jsp?key=1 {severity=2}
-/web/careerapply/HrmCareerApplyPerView.jsp?id=1  {severity=2}
+
 
 

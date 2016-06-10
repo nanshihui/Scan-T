@@ -14,7 +14,8 @@ class PocController(object):
         self.modules_list = [
 
                 {'module_name': 'component'},
-                 {'module_name': 'middileware'}
+                 {'module_name': 'middileware'},
+            {'module_name': 'database'}
  ]
 
 
