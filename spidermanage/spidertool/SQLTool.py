@@ -406,7 +406,7 @@ def decodestr(msg):
 	chardit1 = chardet.detect(msg)
 
 	try:
-		print chardit1['encoding'], msg
+		# print chardit1['encoding'], msg
 		if chardit1['encoding'] == 'utf-8':
 			return msg
 		else:

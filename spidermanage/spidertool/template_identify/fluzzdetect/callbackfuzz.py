@@ -3,6 +3,7 @@
 
 from spidertool import Sqldatatask,Sqldata,SQLTool
 import spidertool.config as config
+
 import time
 # islocalwork=config.Config.islocalwork
 def storedata(ip='',port='',hackinfo=None):
@@ -31,8 +32,12 @@ def storedata(ip='',port='',hackinfo=None):
                  
     tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
     sqldatawprk.append(tempwprk)
-    sqlTool.add_work(sqldatawprk)   
-    print 'fuzz 数据存储'
+    sqlTool.add_work(sqldatawprk)
+    print 'fuzz 转poc检测'
+    from ..poc_file import pocsearchtask
+    temp=pocsearchtask.getObject()
+    temp.add_work([(None,None,ip,port,None,None,hackinfo,None)])
+    print 'fuzz 数据存储调用'
     pass
  
      

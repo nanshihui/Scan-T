@@ -82,13 +82,13 @@ def inserttableinfo_byparams(table,select_params,insert_values,extra='',updateva
         else:
             eachitem=item
         instanceins= get_table_obj(table)
-        logger and logger.info('get each insert: %s', eachitem)
+        # logger and logger.info('get each insert: %s', eachitem)
         if extra or updatevalue:
-            logger and logger.info('更新数据')
+            # logger and logger.info('更新数据')
             instanceitem = instanceins.getdata(id=':'.join(eachitem[:primarykey]))
             logger and logger.info(str(instanceitem))
             if instanceitem is None:
-                logger and logger.info('找不到该数据，创建数据')
+                # logger and logger.info('找不到该数据，创建数据')
                 instanceins=get_table_obj(table)
                 instanceitem=instanceins(meta={'id': ':'.join(eachitem[:primarykey])})
         else:
@@ -97,7 +97,7 @@ def inserttableinfo_byparams(table,select_params,insert_values,extra='',updateva
         for i in xrange(0,len(select_params)):
 
 
-            logger and logger.info('更新数据%s :%s',select_params[i],decodestr(str(eachitem[i])))
+            # logger and logger.info('更新数据%s :%s',select_params[i],decodestr(str(eachitem[i])))
             setvalue(instanceitem,select_params[i],decodestr(str(eachitem[i])))
         try:
             res=instanceitem.save()
