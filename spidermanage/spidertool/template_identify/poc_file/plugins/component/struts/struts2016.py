@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from ..t import T
+from t import T
 
 import requests
 class P(T):
@@ -9,10 +9,17 @@ class P(T):
         keywords=['struts']
     def verify(self,head='',context='',ip='',port='',productname={},keywords='',hackinfo=''):
         target_url=''
+        target_url = 'http://' + ip + ':' + port
+
         if productname.get('path',''):
-            target_url = 'http://'+ip+':'+port+productname.get('path','')            
+            target_url = 'http://'+ip+':'+port+productname.get('path','')
         else:
-            target_url = 'http://'+ip+':'+port+'/login.action'
+            from script  import linktool
+            listarray=linktool.getaction(target_url)
+            if len(listarray)>0:
+                target_url=listarray[0]
+            else:
+                target_url = 'http://'+ip+':'+port+'/login.action'
         result = {}
         timeout=3
         result['result']=False
@@ -46,7 +53,7 @@ class P(T):
         return result
 
 if __name__ == '__main__':
-    print P().verify(ip='www.htzai.com',port='80')                
+    print P().verify(ip='gimssom.bnuz.edu.cn:8089/zhxxgl',port='80')
             
             
             

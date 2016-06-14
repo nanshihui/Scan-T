@@ -43,9 +43,18 @@ word-wrap: break-word;   */
 
 }
     </style>
+
+
+
+
+
+     <script src="/static/fontsearch/js/pace.js"></script>
+  <!--<link href="/static/fontsearch/css/paceblue/pace-theme-minimal.css"  rel="stylesheet" />-->
+      <link href="/static/fontsearch/css/paceblue/pace-theme-flash.css"  rel="stylesheet" />
+
     </head>
     <body class="home-template" ryt11928="1" onload="searchdetail('');">
-    
+
     	<header class="site-header jumbotron">
         {%if username != ''%}
 <div class="site-nav"><a  href="/nmaptool/"  >{{username}}</a> <span>/</span> <a href="#">关于</a>
@@ -117,6 +126,7 @@ word-wrap: break-word;   */
          </div>
  </footer>
 <script type="text/javascript">
+
  function show(box) {
        // var box = document.getElementById("box");
         var text = box.innerHTML;
@@ -199,7 +209,7 @@ function changtext(k,i){
             return xmlhttp;
         }
  function searchdetail(currpage) {
-
+             
             var number='0'
             if (currpage==""&&typeof(currpage)!='number'){
 
@@ -212,17 +222,21 @@ function changtext(k,i){
             nowpage=currpage;
 
             str='content='+content+'&page='+number;
-
-            xmlhttp.open("POST","/search/searchdetail/",false);
+            
+            xmlhttp.open("POST","/search/searchdetail/",true);
             xmlhttp.onreadystatechange = callback;
             xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xmlhttp.send(str);   
+            scrollto(1200);
+            Pace.track()
+
+            
         }
         function callback(){
 
             if(xmlhttp.readyState!=4){
-
-                
+               
+               
             }
             else{
 
@@ -350,6 +364,9 @@ document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
 
   
                     }
+
+            scrollto(0);
+
         }
         document.onkeydown = function(e) {
  //捕捉回车事件
@@ -383,8 +400,25 @@ for(var i = 0 , len =  unicode.length ; i < len ;++i){
                         return r.join("");
                     });
   };
+
+
+
+      function scrollBodyTopTo(pos) {
+        $("html,body").animate({scrollTop:pos});
+    }
+    function scrollto(y)
+    {
+
+
+
+        // $('html,body').animate({scrollTop:$('#intro').offset().top},800);
+       $('html,body').animate({scrollTop:0}, y);
+    }
+
 </script>
        
+
+
     	<script src="/static/fontsearch/js/jquery.min.js"></script>
         <script src="/static/fontsearch/js/highlight.js"></script>
          <script src="/static/fontsearch/js/jbase64.js"></script>
@@ -392,6 +426,7 @@ for(var i = 0 , len =  unicode.length ; i < len ;++i){
     	 <script src="/static/fontsearch/js/geopattern.min.js"></script>
     	 <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
     	 <script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
+         <script src="/static/fontsearch/js/jquery.scrollTo.js"></script>
     	 <script src="/static/fontsearch/js/site.min.js"></script>
              <script src="/static/fontsearch/js/h.js" type="text/javascript"></script>
 </body>
