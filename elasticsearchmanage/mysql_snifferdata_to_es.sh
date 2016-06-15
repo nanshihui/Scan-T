@@ -9,7 +9,7 @@ echo '{
         "url": "jdbc:mysql://127.0.0.1:3306/datap",
         "user": "root",
         "password": "",
-        "sql": "select CONCAT(ip,\":\",port) as _id,ip as ip,port as port,timesearch as timesearch,state as state,name as name,product as product,version as version,CONCAT(\"(\",script,\")\") as script, CONCAT(\"(\",detail,\")\") as detail,id as id, CONCAT(\"(\",head,\")\") as head,CONCAT(\"(\",hackinfo,\")\") as hackinfo,CONCAT(\"(\",keywords,\")\") as keywords,  CONCAT(\"(\",disclosure,\")\") as disclosure from snifferdata where timesearch>\"2016-05-29 14:40:00\"",
+        "sql": "select CONCAT(ip,\":\",port) as _id,ip as ip,port as port,timesearch as timesearch,state as state,name as name,product as product,version as version,CONCAT(\"(\",script,\")\") as script, CONCAT(\"(\",detail,\")\") as detail,id as id, CONCAT(\"(\",head,\")\") as head,CONCAT(\"(\",hackinfo,\")\") as hackinfo,CONCAT(\"(\",keywords,\")\") as keywords,  CONCAT(\"(\",disclosure,\")\") as disclosure from snifferdata where timesearch>\"2016-06-10 00:00:00\"",
         "treat_binary_as_string": true,
         "elasticsearch": {
             "cluster": "datap",

