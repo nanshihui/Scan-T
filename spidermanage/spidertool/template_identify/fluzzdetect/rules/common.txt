@@ -114,7 +114,7 @@ _utils {status=200}
 /swfupload/swfupload.swf        {status=200}      {type_no="html"}
 /js/swfupload/swfupload.swf     {status=200}      {type_no="html"}
 /uploadify
-
+/continuum/saveInstallation.action {severity=2}
 /uapws/ {severity=2}
 /jmx-console/    {severity=2}
 /jmx-console/HtmlAdaptor       {status=200}
