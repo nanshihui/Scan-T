@@ -9,7 +9,7 @@ from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
 from django.views import generic
 from spidertool import webtool
 from model.user import User
-from spidertool import  connectpool,Sqldatatask,Sqldata
+from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
 
 import httplib
 import json
@@ -237,7 +237,7 @@ def updatejob(request,state=''):
 #the function below is to use for assign work to other PC   
 def getwork(request):
     data={}
-    taskinstance=taskcontrol.getObject()
+    taskinstance=sniffertask.getObject()
     tempwork=taskinstance.get_work()
     
     if len(tempwork)>0:

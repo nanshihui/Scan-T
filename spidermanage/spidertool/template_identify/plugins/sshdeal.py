@@ -21,7 +21,7 @@ def ssh2(ip='',port='22',name='',productname=''):
                 print username,i
                 ssh.connect(ip,int(port),username,i,timeout=5)
 
-                hackinfo= ' ssh the password is :'+i
+                hackinfo= ' ssh the password is :'+username+':'+i
                 print ip+hackinfo
                 keywords='ssh'
                 break
