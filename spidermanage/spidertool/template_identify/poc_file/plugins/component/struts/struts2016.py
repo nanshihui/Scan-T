@@ -53,7 +53,7 @@ class P(T):
         return result
 
 if __name__ == '__main__':
-    print P().verify(ip='gimssom.bnuz.edu.cn:8089/zhxxgl',port='80')
+    print P().verify(ip='116.213.171.228',port='80')
             
             
             

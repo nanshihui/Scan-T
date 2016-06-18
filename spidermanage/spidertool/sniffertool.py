@@ -30,6 +30,7 @@ class SniffrtTool(object):
         '''
         Constructor
         '''
+        self.logger = logger
         try:
             self.nma = nmap.PortScanner()     # instantiate nmap.PortScanner object
 
@@ -49,7 +50,7 @@ class SniffrtTool(object):
 #         self.sqlTool=SQLTool.getObject()
         self.portscan=portscantask.getObject()
         self.getlocationtool=getLocationTool.getObject()
-        self.logger=logger
+
     def scaninfo(self,hosts='localhost', port='', arguments='',hignpersmission='0',callback=''):
         if callback=='': 
             callback=self.callback_result

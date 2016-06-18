@@ -18,11 +18,11 @@ Require
 Installation
 ----
 
-you can download toolforspider by cloning the [Git](https://github.com/nanshihui/Scan-T) repository:
+you can download Scan-T by cloning the [Git](https://github.com/nanshihui/Scan-T) repository:
 
     git clone https://github.com/nanshihui/Scan-T.git
 
-toolforspider works out of the box with [Python](http://www.python.org/download/) version **2.6.x** and **2.7.x** on any platform.
+Scan-T works out of the box with [Python](http://www.python.org/download/) version **2.6.x** and **2.7.x** on any platform.
 
 Usage
 ----
