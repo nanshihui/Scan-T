@@ -54,6 +54,6 @@ def ssh2(ip='',port='22',name='',productname=''):
             break
     return head,ans,keywords,hackinfo
 if __name__ == "__main__":
-    temp=ssh2('202.118.48.122')
+    temp=ssh2('114.55.42.46')
     print temp
     
