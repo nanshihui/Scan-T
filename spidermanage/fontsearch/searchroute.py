@@ -52,8 +52,7 @@ def detailpage(request):
 #             ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
             except Exception,e:
                 print e
-                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(
-                **jsoncontent)
+                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
 
             print '检索完毕'
             response_data['result'] = '1' 
@@ -89,10 +88,15 @@ def detailpage(request):
                 return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
  
             print '进入elasticsearch 具体关键词匹配'
-            import sys
-            sys.path.append("..")
-            from elasticsearchmanage import elastictool
-            ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
+            try:
+                import sys
+                sys.path.append("..")
+                from elasticsearchmanage import elastictool
+                ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
+            except Exception,e:
+                print e
+                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+
             response_data['result'] = '1' 
             response_data['ports']=ports
             response_data['portslength']=portcount
