@@ -87,7 +87,8 @@ _utils {status=200}
 /data/user.txt    {status=200}       {type_no="html"}
 /user.txt         {status=200}       {type_no="html"}
 /seeyon//logs/login.log  {status=200}       {type_no="html"}
-
+/download/    {severity=2}
+/src/    {severity=2}
 /phpinfo.php   {tag="allow_url_fopen"}  {status=200}
 /info.php      {tag="allow_url_fopen"}  {status=200}
 /index.php     {tag="allow_url_fopen"}  {status=200}
