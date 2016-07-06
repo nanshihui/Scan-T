@@ -65,6 +65,9 @@ class ProcessTool:
 		self.q_request=multiprocessing.Queue()
 		if self.needfinishqueue>0:
 			self.q_finish=multiprocessing.Queue()
+		from gevent.queue import JoinableQueue as geventqueue
+		from gevent.lock import Semaphore
+		self.gevent_request=geventqueue()
 
 
 	def __del__(self): #解构时需等待两个队列完成
@@ -134,13 +137,6 @@ class ProcessTool:
 					self.alivenum += 1
 
 
-
-
-
-
-
-
-
 	def pop(self):
 		return self.q_finish.get()
 	def do_job(self,job,req,threadname):
@@ -148,18 +144,8 @@ class ProcessTool:
 
 	def getTaskProcess(self):
 		while True:
-			array=[]
-			if self.taskleft()>0:
-				for i in range(10):
-					try:
-						req = self.q_request.get(block=True,timeout=1000)
-						array.append(req)
-					except:
-						continue
 
-
-			# 	break
-			# req = self.q_request.get()
+			req = self.q_request.get()
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
 
@@ -168,20 +154,15 @@ class ProcessTool:
 			print '进程'+threadname+'发起请求: '
 
 			ans=self.do_job(self.job,req,threadname)
-#			ans = self.connectpool.getConnect(req)
-
-# 			self.lock.release()
 			if self.needfinishqueue>0:
 				self.q_finish.put((req,ans))
-#			self.lock.acquire()
+
 			with self.lock:
 				self.running= self.running-1
 			threadname=multiprocessing.current_process().name
 
 			print '进程'+threadname+'完成请求'
-#			self.lock.release()
 
-			#self.q_request.task_done()
 
 
 

@@ -13,9 +13,10 @@ class PocController(object):
     def __init__(self, logger=None):
         self.modules_list = [
 
-                {'module_name': 'component'},
-                 {'module_name': 'middileware'},
-            {'module_name': 'database'}
+            {'module_name': 'component'},
+            {'module_name': 'middileware'},
+            {'module_name': 'database'},
+            {'module_name': 'thirdparty'}
  ]
 
 
@@ -39,6 +40,8 @@ class PocController(object):
         if 't' in plugins_list:
         
             plugins_list.remove('t')
+        if 'miniCurl' in plugins_list:
+            plugins_list.remove('miniCurl')
         return plugins_list
 
     @classmethod
