@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# from spidertool import Sqldatatask,Sqldata,SQLTool
-# import spidertool.config as config
+from spidertool import Sqldatatask,Sqldata,SQLTool
+import spidertool.config as config
 
 import time
 # islocalwork=config.Config.islocalwork

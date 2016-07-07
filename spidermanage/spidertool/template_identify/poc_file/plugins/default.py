@@ -159,8 +159,8 @@ class PocController(object):
                 print '发现漏洞'
         if i==1:
             
-            # callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
-            callbackresult.storeresult(dataresult)
+            callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
+            # callbackresult.storeresult(dataresult)
             pass
         else:
             print '-----------------------'
