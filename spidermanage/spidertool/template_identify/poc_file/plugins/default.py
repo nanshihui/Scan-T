@@ -159,7 +159,8 @@ class PocController(object):
                 print '发现漏洞'
         if i==1:
             
-            callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
+            # callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
+            callbackresult.storeresult(dataresult)
             pass
         else:
             print '-----------------------'
@@ -235,4 +236,4 @@ class PocController(object):
 if __name__ == "__main__":
 
     a=PocController()
-    a.detect(ip='117.78.7.84',port='7001',hackinfo='weblogic')
+    a.detect(ip='wlkpc.965432.com',port='80',hackinfo='jboss')

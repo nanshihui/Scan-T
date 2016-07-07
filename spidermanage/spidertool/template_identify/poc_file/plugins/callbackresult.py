@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from spidertool import Sqldatatask,Sqldata,SQLTool
-import spidertool.config as config
+# from spidertool import Sqldatatask,Sqldata,SQLTool
+# import spidertool.config as config
 
 import time
 # islocalwork=config.Config.islocalwork
@@ -33,11 +33,12 @@ def storedata(ip='',port='',hackinfo=None):
     sqlTool.add_work(sqldatawprk)
     pass
 def storeresult(result=None):
-    print '----------------------------------------'
-    print '发现漏洞'
-    print '位置:'+result['VerifyInfo']['URL']
-    print '类型:'+result['VerifyInfo']['type']
-    print 'payload:'+result['VerifyInfo']['payload']
+    for i in result:
+        print '----------------------------------------'
+        print '发现漏洞'
+        print '位置:'+i['VerifyInfo']['URL']
+        print '类型:'+i['VerifyInfo']['type']
+        print 'payload:'+i['VerifyInfo']['payload']
     
     return True
     

@@ -2,13 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54d03a85-8815-4b9f-9691-e63c71d3e22e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/JDWPvul.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/script/jdwpshellifier.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/t.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_15c79527412438e082f29477cac6615e.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_1c57c67f275707dd80bdc18e5c1beacf.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_2dfd7f88ee6d799d20acc63dd4415740.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_36a4b7da8eb1236fe90702917414be9b.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_37a9631e32aa708bd92245fc6c58a3e2.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_3bc351fc44e165037a2858cca535daff.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_4141413dd98bf6b83a0ef89121e21e8e.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_438eb917bf7282fe63112633ab0d6d88.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_43e197b39d04da26a8db29a11e20ba37.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_51d1fd5443079bb9e0ef6549fa56f24b.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_5678b6311dbde4b94c58a3bf8409283b.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_79de760480462e3249956c4b569f4735.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_8aa9e202a644f5bf72f62697dc5cffe8.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_8e580e80fe39d4225f60ec8c6cf0f9ef.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_a276ebea23e900843f2d96644c8d9635.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_ab0848ed9726fbfcb5c792e4f10a522d.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_b711cec27176da0d99657efa8b6132ff.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_bb59124b77921e4e66821a47145fff7e.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_bce7494fb568f157454c46c1f826e39e.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_c1f1619bd109fab3dd34109823464c5b.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_c7f0f9c28bc350ed0e9d99a9445b27df.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_e6e168b28708db8756f8221e052ee8fc.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_ececaafc7676dac4a46cfecae1fcaf57.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_f0d579746ee3b4a46f8b479b5c39aeaa.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_f14fc893e5606be3d4363255e2faa97a.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_f529437f40cc636d5ddaeedcc9d910de.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/miniCurl.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/redis_110cf1b2c499f8a16cacf3d07c0dbb51.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/redis_20acd453edc2cd2b2adc89a7abbaf213.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/spidertool/processtool.py" afterPath="$PROJECT_DIR$/spidermanage/spidertool/processtool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py" afterPath="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py" />
     </list>
     <ignored path="Scan-T.iws" />
@@ -35,6 +59,7 @@
     <SUITE FILE_PATH="coverage/Scan-T$activemqvul.coverage" NAME="activemqvul Coverage Results" MODIFIED="1467692936750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ" />
     <SUITE FILE_PATH="coverage/Scan-T$ThreadTool.coverage" NAME="manage.py Coverage Results" MODIFIED="1465029673253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage" />
     <SUITE FILE_PATH="coverage/Scan-T$zabbix_weakpass.coverage" NAME="zabbix_weakpass Coverage Results" MODIFIED="1466170855823" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix" />
+    <SUITE FILE_PATH="coverage/Scan-T$default.coverage" NAME="default Coverage Results" MODIFIED="1467850908136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins" />
     <SUITE FILE_PATH="coverage/Scan-T$mssqldeal.coverage" NAME="mssqldeal Coverage Results" MODIFIED="1465049004453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/plugins" />
     <SUITE FILE_PATH="coverage/Scan-T$sshdeal.coverage" NAME="sshdeal Coverage Results" MODIFIED="1466143824004" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/plugins" />
     <SUITE FILE_PATH="coverage/Scan-T$connecttool__1_.coverage" NAME="connecttool (1) Coverage Results" MODIFIED="1466246610148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/script" />
@@ -56,24 +81,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py">
+      <file leaf-file-name="miniCurl.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/miniCurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1845">
-              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+            <state relative-caret-position="135">
+              <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1039_jxt_486fc62302d5bda4cf1661ce071434f1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/1039_jxt/1039_jxt_486fc62302d5bda4cf1661ce071434f1.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-163">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -94,57 +107,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spidermanage/common_static/fontsearch/js/jbase64.js" />
-        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/portcontrol.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weaver_oa/weaver_oa_90cf760b8a2e2d99db719abccfeebdc0.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weaver_oa/weaver_oa_3ed81a7b7ecec6b02824c5c96047e466.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weaver_oa/weaver_oa_5409f5483e8fcd29f9bf6e1848e38e6a.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weaver_oa/weaver_oa_2dbcd6e069fbf87fcad819c18cd745f3.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weaver_oa/weaver_oa_06f7bbe731e3bfb9a551cfdad7009e1a.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/zhongruan_firewall/zhongruan_firewall_741b933b7e76b6c3be00924b46dc539f.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/dswjcms/dswjcms_ddc2eed8c210ffabb1d35dd048117c5a.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/php168/php168_c4c291d7d13227610237eed11d6ce3a5.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/php168/php168_5964296d993089c9391f89ec714f325c.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_65b7f413f44dbcfad5c02f806ab76b40.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_95e237d0e52b708d79da8b752d913d41.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_e0ac5e73ee1282bd40e2335df4eece65.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_f2098613a4654a574adce4250b25262b.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_aef282469c44946d0d84aeebf0dce342.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_01d42a78e1074ecf35dcc4068b3c74a7.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_72411125d5bfd481d0a23245b0cb1f31.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_d6ba161426cc67630c22afdcd81ba96b.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_9ce3da4ae05ac9dc9a376b9e91b121fb.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_006956aaeabec76b4e6e8607781e1c1f.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_99c3d7ab8ff829c2b08a48ae69e8c311.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/iwms/iwms_78c70699b10cb25465d3c24942be707e.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/xuezi_ceping/xuezi_ceping_d4b986f3a34d22dc8df0bdd1526827b9.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_02c611a2b615c6a360498f706426b8a7.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_83e28f76a10751c48c0e99ce2c51ac9d.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_287505928131bed635e183dd09726310.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/panabit/panabit_4178d7957d6274a97851cf49ca66ee5a.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/panabit/panabit_8cc21558f16b75435ae8038bf391430c.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jenkins/jenkins_7169e1f85ba269f7406e6bf051f09378.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/B2Bbuilder/B2Bbuilder_88d41f26478833fcf31d6c8754a96b03.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/speedcms/speedcms_e9a6789f3734cfcd15e1d52af309d263.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/mongodb/mongodb_3424c41575152169952570c3848c5a93.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/mongodb/mongodb_08d9faea4ed61f3a973c2051f91ef3a8.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/tp-link/tp-link_b7148b5df47295f672dae5b177c85d9d.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/huashi_tv/huashi_tv_d4a3e2f76e430531537464e2600d98bc.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/zrar_zw/zrar_zw_ab00b2719e987efe4ea72af72d011d66.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/phpweb/phpweb_848a91e4d2679294c945fcb024538ee0.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_4a96b74fcf06febd76ed7e91a1349d71.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_82975e667c8a2b6780eddeecb709d921.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_3eeb068ed13189d51bf139dc7dd3f05f.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/empire_cms/empire_cms_ac3f71a520fbb4d3112143ff36c013dc.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/empire_cms/empire_cms_3a321071c3583a63a54ae9014f8d8013.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/kxmail/kxmail_28abb843e5c8d62ec768b301397ff565.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/kxmail/kxmail_931d8cf566ac5cfaff22bb127c234dab.py" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/portscantask.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts033.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/sniffertask.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/database/mongo/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/database/mongo/mongo_auth.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/fluzzdetect/callbackfuzz.py" />
-        <option value="$PROJECT_DIR$/elasticsearchmanage/elastictool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/page_identify.py" />
-        <option value="$PROJECT_DIR$/spidermanage/logs/connectpool.log" />
-        <option value="$PROJECT_DIR$/spidermanage/logs/sniffertask.log" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts032test.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2032.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2019.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/script/linktool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/rsync/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/redis_unauth.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/rsync/rsync_auth.py" />
-        <option value="$PROJECT_DIR$/spidermanage/README.md" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/README.md" />
-        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/nmaproute.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/SQLTool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/taskcontrol.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/cacti/cactiweathermap.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidermanage/urls.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/plugins/sshdeal.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_weakpass.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla/joomla_unrec.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2016.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/sniffertool.py" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/connecttool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/view/fontsearchview/searchdetail.html" />
-        <option value="$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/fluzzdetect/rules/common.txt" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_sqlhack.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/mod_python.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/ThreadTool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/processtool.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/script/jdwpshellifier.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/JDWPvul.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/script/activemqshell.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/activemqvul.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weblogic/__init__.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weblogic/weblogic_ac3772ca531f22eae73ae999a683105c.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jboss/jboss_6d3f64cf04bbf6b12c70324e7ae1664a.py" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/zabbix/zabbix_f79c890c496c968745bedd756700ed85.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/zabbix/zabbix_df7b2660f70deb033abf765d4fac4997.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/axis2/axis2_18105d2510ee4d1adb18374a8cd16b09.py" />
       </list>
     </option>
   </component>
@@ -155,9 +168,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="38" />
-    <option name="width" value="1336" />
-    <option name="height" value="730" />
+    <option name="x" value="71" />
+    <option name="y" value="55" />
+    <option name="width" value="1221" />
+    <option name="height" value="667" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -184,7 +198,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -313,171 +326,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template_identify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poc_file" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template_identify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poc_file" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="thirdparty" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="1039_jxt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template_identify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template_identify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="template_identify" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,18 +339,22 @@
     <property name="SearchEverywhereHistoryKey" value="weblogic&#9;null&#9;null&#10;res&#9;null&#9;null&#10;del res&#9;null&#9;null&#10;weakref&#9;null&#9;null&#10;cookie&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/application" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/script" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP" />
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/script" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/joomla" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.activemqvul">
+  <component name="RunManager" selected="Python.default">
     <configuration default="false" name="zabbix_sqlhack" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -513,24 +369,6 @@
       <module name="Scan-T" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_sqlhack.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="connecttool" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spidermanage/spidertool" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Scan-T" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spidermanage/spidertool/connecttool.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -585,6 +423,24 @@
       <module name="Scan-T" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/activemqvul.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="default" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Scan-T" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -799,18 +655,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.zabbix_sqlhack" />
-      <item index="1" class="java.lang.String" itemvalue="Python.connecttool" />
-      <item index="2" class="java.lang.String" itemvalue="Python.connecttool (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.JDWPvul" />
-      <item index="4" class="java.lang.String" itemvalue="Python.activemqvul" />
+      <item index="1" class="java.lang.String" itemvalue="Python.connecttool (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.JDWPvul" />
+      <item index="3" class="java.lang.String" itemvalue="Python.activemqvul" />
+      <item index="4" class="java.lang.String" itemvalue="Python.default" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.activemqvul" />
-        <item index="1" class="java.lang.String" itemvalue="Python.JDWPvul" />
-        <item index="2" class="java.lang.String" itemvalue="Python.zabbix_sqlhack" />
-        <item index="3" class="java.lang.String" itemvalue="Python.connecttool (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.connecttool" />
+        <item index="0" class="java.lang.String" itemvalue="Python.default" />
+        <item index="1" class="java.lang.String" itemvalue="Python.activemqvul" />
+        <item index="2" class="java.lang.String" itemvalue="Python.JDWPvul" />
+        <item index="3" class="java.lang.String" itemvalue="Python.zabbix_sqlhack" />
+        <item index="4" class="java.lang.String" itemvalue="Python.connecttool (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -831,28 +687,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="38" width="1336" height="730" extended-state="0" />
-    <editor active="true" />
+    <frame x="71" y="55" width="1221" height="667" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31661677" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36691236" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8545781" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34470376" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39936608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24193548" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57835823" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39936608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -874,376 +730,410 @@
           <line>4</line>
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/python.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_aef282469c44946d0d84aeebf0dce342.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/rayengine.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/fsmcms/fsmcms_01d42a78e1074ecf35dcc4068b3c74a7.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/swiftlet.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_72411125d5bfd481d0a23245b0cb1f31.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/servlet.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_d6ba161426cc67630c22afdcd81ba96b.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="195">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/component/tomcat.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_9ce3da4ae05ac9dc9a376b9e91b121fb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/framework/express.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_006956aaeabec76b4e6e8607781e1c1f.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/language/aspnet.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/yuanwei_gateway/yuanwei_gateway_99c3d7ab8ff829c2b08a48ae69e8c311.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/language/asp.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/iwms/iwms_78c70699b10cb25465d3c24942be707e.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/language/jsp.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/xuezi_ceping/xuezi_ceping_d4b986f3a34d22dc8df0bdd1526827b9.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/waf/360webscan.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_02c611a2b615c6a360498f706426b8a7.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/waf/360wzb.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_83e28f76a10751c48c0e99ce2c51ac9d.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/waf/safe3.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/ruvarhrm/ruvarhrm_287505928131bed635e183dd09726310.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/blog/pjblog.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/panabit/panabit_4178d7957d6274a97851cf49ca66ee5a.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/webapp/blog/wordpress.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/panabit/panabit_8cc21558f16b75435ae8038bf391430c.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/httpdect/webdection/plugin/language/node.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jenkins/jenkins_7169e1f85ba269f7406e6bf051f09378.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/processtool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/B2Bbuilder/B2Bbuilder_88d41f26478833fcf31d6c8754a96b03.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="119" column="26" selection-start-line="119" selection-start-column="17" selection-end-line="119" selection-end-column="26" />
+        <state relative-caret-position="15">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/ThreadTool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/speedcms/speedcms_e9a6789f3734cfcd15e1d52af309d263.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="42" selection-end-column="45" />
+        <state relative-caret-position="90">
+          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/t.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/mongodb/mongodb_3424c41575152169952570c3848c5a93.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/bash/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/mongodb/mongodb_08d9faea4ed61f3a973c2051f91ef3a8.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="90">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/docker/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/tp-link/tp-link_b7148b5df47295f672dae5b177c85d9d.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="191">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/openssl/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/huashi_tv/huashi_tv_d4a3e2f76e430531537464e2600d98bc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="76" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="76" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/zrar_zw/zrar_zw_ab00b2719e987efe4ea72af72d011d66.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/phpweb/phpweb_848a91e4d2679294c945fcb024538ee0.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/__init__.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_4a96b74fcf06febd76ed7e91a1349d71.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/pocsearchtask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_82975e667c8a2b6780eddeecb709d921.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="42" column="32" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="32" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/jinpan/jinpan_3eeb068ed13189d51bf139dc7dd3f05f.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/empire_cms/empire_cms_ac3f71a520fbb4d3112143ff36c013dc.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/empire_cms/empire_cms_3a321071c3583a63a54ae9014f8d8013.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/kxmail/kxmail_28abb843e5c8d62ec768b301397ff565.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/kxmail/kxmail_931d8cf566ac5cfaff22bb127c234dab.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/callbackresult.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/pocdect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/openssl/heartbleed.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/script/jdwpshellifier.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="51" column="26" selection-start-line="51" selection-start-column="26" selection-end-line="51" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="20" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/script/shell.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/JDWP/JDWPvul.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="48" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/t.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/script/activemqshell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3405">
-          <caret line="232" column="42" selection-start-line="232" selection-start-column="42" selection-end-line="232" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/ActiveMQ/activemqvul.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/zebra/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/docker/dockerleak.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/t.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/database/mongo/mongo_auth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/tomcat/tomcat_crackpass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/resin/t.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/resin/resin_fileread.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/fast_cgi/fast_cgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/bash/bash.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="150">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2019.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/weblogic/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="56" column="42" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="42" />
+        <state relative-caret-position="105">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/miniCurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/weblogic/weblogic_ac3772ca531f22eae73ae999a683105c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
           <folding>
-            <element signature="e#60#76#0" expanded="false" />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/struts/struts2032.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/weblogic/weblogic_SSRF.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-268">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
           <folding>
-            <element signature="e#40#57#0" expanded="false" />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/default.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1845">
-          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        <state relative-caret-position="159">
+          <caret line="200" column="20" selection-start-line="200" selection-start-column="20" selection-end-line="200" selection-end-column="20" />
+          <folding>
+            <element signature="e#42#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss/jboss_6d3f64cf04bbf6b12c70324e7ae1664a.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="48" column="48" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss/jboss_crackpass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-855">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/1039_jxt/1039_jxt_486fc62302d5bda4cf1661ce071434f1.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss/jboss_head_getshell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
+        <state relative-caret-position="-853">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss/jboss_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/jboss/jboss_unrce.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-568">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_f79c890c496c968745bedd756700ed85.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="37" column="58" selection-start-line="37" selection-start-column="58" selection-end-line="37" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_df7b2660f70deb033abf765d4fac4997.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_53dc8aab341adba743a9f15c80129dac.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/zabbix/zabbix_6d32b84d0be89f2e893f8f611f443f1b.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/redis_20acd453edc2cd2b2adc89a7abbaf213.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="45" column="14" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/redis/redis_110cf1b2c499f8a16cacf3d07c0dbb51.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/phpmoadmin/phpmoadmin_6ab973473772fa2b262b577488cf3fe9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/thirdparty/axis2/axis2_18105d2510ee4d1adb18374a8cd16b09.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/middileware/websphere/websphere_54c4cd39c77c28b8a8824a7ce2a1d10d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/template_identify/poc_file/plugins/component/miniCurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
