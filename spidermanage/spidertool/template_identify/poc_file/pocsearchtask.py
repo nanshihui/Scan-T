@@ -22,7 +22,7 @@ class PocsearchTask(TaskTool):
     def __init__(self,isThread=1,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
         logger = initLog('logs/POCDect.log', 2, True)
-        self.set_deal_num(1)
+        self.set_deal_num(20)
         self.pocscan=default.PocController(logger=logger)
         
 

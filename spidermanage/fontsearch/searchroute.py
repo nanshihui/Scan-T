@@ -52,8 +52,10 @@ def detailpage(request):
 #             ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
             except Exception,e:
                 print e
-                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
-
+                try:
+                    ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+                except Exception,e:
+                    print e
             print '检索完毕'
             response_data['result'] = '1' 
     
