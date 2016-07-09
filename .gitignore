@@ -61,3 +61,7 @@ docs/_build/
 
 # PyBuilder
 target/
+将删除 elasticsearchmanage/logs/
+将删除 spidermanage/logs/
+将删除 spidermanage/spidertool/logs/
+将删除 spidermanage/spidertool/template_identify/fluzzdetect/logs/
