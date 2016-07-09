@@ -151,14 +151,15 @@ class PocController(object):
                 result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
             except Exception,e:
                 print e
-            if type(result)==bool:
-                pass
-            else:
+            if type(result)==dict:
                 if result['result']:
                     i=1
                     dataresult.append(result)
-                
+
                     print '发现漏洞'
+
+            else:
+                pass
         if i==1:
             
             callbackresult.storedata(ip=ip,port=port,hackinfo=dataresult)
@@ -238,4 +239,4 @@ class PocController(object):
 if __name__ == "__main__":
 
     a=PocController()
-    a.detect(ip='112.64.196.14',port='80',context='用友TurboCRM')
+    a.detect(ip='213.207.111.233',port='8080',context='jenkins')

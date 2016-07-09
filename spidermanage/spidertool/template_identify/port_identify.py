@@ -2,7 +2,7 @@
 #coding:utf-8
 import component_func,port_func
 from plugins import port_template
-from poc_file import pocsearchtask
+from vuldect import pocsearchtask
 def port_deal(ip='',port='',name='',productname='',head=None,context=None,nmapscript=None):
     head=None
     ans=None

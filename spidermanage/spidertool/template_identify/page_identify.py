@@ -13,7 +13,7 @@ def identify_main(head='',context='',ip='',port='',productname='',protocol='',nm
     try:
         from httpdect import headdect
         from fluzzdetect import fuzztask
-        from poc_file import pocsearchtask
+        from vuldect import pocsearchtask
         keywords,hackinfo=headdect.dect(head=head,context=context,ip=ip,port=port,protocol=protocol)
         fuz=fuzztask.getObject()
         fuz.add_work([(head,context,ip,port,productname,keywords,nmapscript,protocol)])

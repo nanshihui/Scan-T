@@ -36,7 +36,7 @@ Notice
 * spidermanage     
 a network management platform about the spider to control the task 
 * PS:if want to help with me to complete this project ...please fork it ^_^  
-
+* Commercial uses are strictly prohibited.
 
 
 

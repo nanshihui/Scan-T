@@ -142,3 +142,5 @@ def asd1():
 	time.sleep(2)
 	print 11231
 
+ff={}
+print type(ff)==dict

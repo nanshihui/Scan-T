@@ -34,7 +34,7 @@ def storedata(ip='',port='',hackinfo=None):
     sqldatawprk.append(tempwprk)
     sqlTool.add_work(sqldatawprk)
     print 'fuzz 转poc检测'
-    from ..poc_file import pocsearchtask
+    from ..vuldect import pocsearchtask
     temp=pocsearchtask.getObject()
     temp.add_work([(None,None,ip,port,None,None,hackinfo,None)])
     print 'fuzz 数据存储调用'
