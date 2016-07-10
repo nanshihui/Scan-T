@@ -16,6 +16,8 @@ class PocController(object):
             {'module_name': 'component'},
             {'module_name': 'middileware'},
             {'module_name': 'database'},
+            {'module_name': 'basemodel'},
+            {'module_name': 'router'},
             {'module_name': 'thirdparty'}
  ]
 
@@ -147,6 +149,7 @@ class PocController(object):
         result={}
         i=0
         for poc in POCS:
+
             try:
                 result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
             except Exception,e:
@@ -239,4 +242,4 @@ class PocController(object):
 if __name__ == "__main__":
 
     a=PocController()
-    a.detect(ip='213.207.111.233',port='8080',context='jenkins')
+    a.detect(ip='202.121.168.201',port='9000',context='zabbix')
