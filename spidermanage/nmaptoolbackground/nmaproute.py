@@ -286,8 +286,8 @@ def upload_port_info(request):
 
 def systeminfo(request):
     from spidertool import sniffertask, zmaptool,portscantask,Sqldatatask
-    from spidertool.template_identify.fluzzdetect import fuzztask
-    from spidertool.template_identify.vuldect import pocsearchtask
+    from spidertool.detection.fluzzdetect import fuzztask
+    from spidertool.detection.vuldect import pocsearchtask
     resultdata={}
     resultdata['nmapfont']=taskcontrol.getObject().get_length()
     resultdata['nmapfont_running'] = taskcontrol.getObject().get_current_task_num()

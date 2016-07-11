@@ -7,7 +7,13 @@ from os import listdir
 from urlparse import urljoin
 from re import compile
 import callbackresult
-
+GPocController=None
+def getObject():
+    global  GPocController
+    if  GPocController is None:
+        GPocController=PocController()
+        GPocController.loadonce()
+    return GPocController.getitem()
 
 class PocController(object):
     def __init__(self, logger=None):
@@ -27,8 +33,12 @@ class PocController(object):
         self.components     = {}
         self.logger      = logger
         self.result=None
-        self.loader()
 
+        self.loadonce()
+    def getitem(self):
+        return self.keywords,self.rules,self.components
+    def loadonce(self):
+        self.loader()
     @classmethod
     def __list_plugins(self, module_path):
         return set(map(lambda item: item.endswith(('.py', '.pyc')) and item.replace('.pyc', '').replace('.py', ''), listdir(module_path)))
@@ -152,14 +162,19 @@ class PocController(object):
 
             try:
                 result = poc.verify(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo)
+
+                if type(result) == dict:
+                    if result['result']:
+                        i = 1
+                        dataresult.append(result)
+
+                        print '发现漏洞'
+
+
+
             except Exception,e:
                 print e
-            if type(result)==dict:
-                if result['result']:
-                    i=1
-                    dataresult.append(result)
 
-                    print '发现漏洞'
 
             else:
                 pass
@@ -233,7 +248,11 @@ class PocController(object):
 
 
     def detect(self, head='',context='',ip='',port='',productname={},keywords='',hackinfo='',defaultpoc=''):
+        self.logger and self.logger.info('now the source component: %s', self.components)
 
+        if self.components=={} or self.keywords == {} or self.rules=={}:
+
+            self.loader()
 
         self.env_init(head=head,context=context,ip=ip,port=port,productname=productname,keywords=keywords,hackinfo=hackinfo,defaultpoc=defaultpoc)
 

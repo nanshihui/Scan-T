@@ -28,6 +28,7 @@ def detailpage(request):
     response_data = {}  
     response_data['result'] = '0'
     jsoncontent=None
+    ports=None
     import json
     try:
         jsonmsg='{'+content+'}'
