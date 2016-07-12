@@ -56,8 +56,12 @@ class PortscanTask(TaskTool):
 
 
             head,ans = self.connectpool.getConnect(address)
-            from detection import page_identify
-            keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port,productname=productname,protocol=req[0],nmapscript=nmapscript)
+            try:
+                from detection import page_identify
+
+                keywords,hackinfo=page_identify.identify_main(head=head,context=ans,ip=ip,port=port,productname=productname,protocol=req[0],nmapscript=nmapscript)
+            except:
+                pass
         else:
             head,ans,keywords,hackinfo=self.portscan.do_scan(head=head,context=ans,ip=ip,port=port,name=req[0],productname=productname,nmapscript=nmapscript)
             pass
