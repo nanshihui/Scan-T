@@ -12,7 +12,6 @@ build/
 develop-eggs/
 dist/
 downloads/
-detection/
 eggs/
 .eggs/
 lib/
@@ -38,6 +37,10 @@ pip-delete-this-directory.txt
 webdection/
 middileware/
 component/
+httpdect/
+plugin/
+vuldect/
+fluzzdetect/
 thirdparty/
 router/
 basemodel/
