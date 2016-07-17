@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54d03a85-8815-4b9f-9691-e63c71d3e22e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/spidermanage/common_static/fontsearch/js/base64.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/common_static/fontsearch/css/site.min.css" afterPath="$PROJECT_DIR$/spidermanage/common_static/fontsearch/css/site.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py" afterPath="$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/spidertool/webtool.py" afterPath="$PROJECT_DIR$/spidermanage/spidertool/webtool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/fontsearchview/search.html" afterPath="$PROJECT_DIR$/spidermanage/view/fontsearchview/search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/fontsearchview/searchdetail.html" afterPath="$PROJECT_DIR$/spidermanage/view/fontsearchview/searchdetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/login.html" afterPath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/mainpage.html" afterPath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/mainpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/taskdetail.html" afterPath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/taskdetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/userinfo.html" afterPath="$PROJECT_DIR$/spidermanage/view/nmaptoolview/userinfo.html" />
     </list>
     <ignored path="Scan-T.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,11 +62,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bash_e81d76bdbfb7aeddf62543f7b91e0139.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/bash/bash_e81d76bdbfb7aeddf62543f7b91e0139.py">
+      <file leaf-file-name="redis_unauth.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/redis/redis_unauth.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+            <state relative-caret-position="495">
+              <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="struts2_ognlconsole.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2_ognlconsole.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -66,51 +84,83 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="component_func.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/component_func.py">
+      <file leaf-file-name="struts2devmode.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2devmode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="765">
+              <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page_identify.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/page_identify.py">
+      <file leaf-file-name="struts032test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts032test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="780">
+              <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="port_func.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/port_func.py">
+      <file leaf-file-name="struts2016.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2016.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="735">
+              <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="port_identify.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/port_identify.py">
+      <file leaf-file-name="struts2019.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2019.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="765">
+              <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bash.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/bash/bash.py">
+      <file leaf-file-name="struts2032.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2032.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+            <state relative-caret-position="1035">
+              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XAMPP_0513e4ffc8bbb2129805b3ac0e9545ea.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/xampp/XAMPP_0513e4ffc8bbb2129805b3ac0e9545ea.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zebradefaultpass.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/zebra/zebradefaultpass.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jetty_707bac5f5dea2ba7f23f1aba99683159.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/jetty/jetty_707bac5f5dea2ba7f23f1aba99683159.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -132,57 +182,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/ip_94ac1081e15528940bdd2954f1981ed7.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/pptp/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/elasticsearch/ip_297ab6cee76b13281453e033ea17df44.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/zte/ip_63186dc96be77fc14e4023422d6b5956.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/ip_480479bdbc2690167375e05c04947aee.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/elasticsearch/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/snmp/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/snmp/ip_480479bdbc2690167375e05c04947aee.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/ip_a8171b91f934bb46294aa01a950f56c5.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/ip_b6e33779b8746d1af33098dd684897f5.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/ip_ed9f3125b47f2720a2b6397b142c30e4.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ns-asg/ip_eef29cf30ca972ef08bd68e8ce825f73.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ip/Juniper_NetScreenOS_NetScreen_f46e2b674e0d361d8d69d423e7052217.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/juniper_vpn/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/yongyou_a8/yongyou_a8_9da744e927db3744dab2459c5282e22e.py" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_df7b2660f70deb033abf765d4fac4997.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_53dc8aab341adba743a9f15c80129dac.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_6d32b84d0be89f2e893f8f611f443f1b.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/default.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/callbackresult.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_f79c890c496c968745bedd756700ed85.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/redis/redis_20acd453edc2cd2b2adc89a7abbaf213.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/redis/redis_110cf1b2c499f8a16cacf3d07c0dbb51.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/zentao/zentao_9074c1fa21b6669f34849e2635974027.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/zte/zte_0f5eed64340a988db82ae42e1debb64b.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/weblogic/weblogic_crackpass.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/weblogic/weblogic_unrec.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_sqlhack.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/zabbix/zabbix_weakpass.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/resin/resin_fileread3.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/jboss/jboss_head_getshell.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware/jboss/jboss_unrce.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/router/miniCurl.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/router/asus/www_f1ceb0edd46d55c9465fb347bf6e282d.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/basemodel/http/www_2cd6e35ac47714c13206836991b19fa6.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/basemodel/http/www_4b5349a645e817306cbb82e775362ae2.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/php/www_cbd8d7759e889424d0cad9ee5d2033c6.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ftp/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/README.md" />
-        <option value="$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/__init__.py" />
-        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/taskcontrol.py" />
-        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/nmaproute.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/callbackresult.py" />
-        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/pocsearchtask.py" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/default.py" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/portscantask.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/telnet_c64edf372c2ac9a7dfc57dd45b70b398.py" />
         <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/port_identify.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/script/struts2devmode.py" />
+        <option value="$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py" />
+        <option value="$PROJECT_DIR$/elasticsearchmanage/elastictool.py" />
+        <option value="$PROJECT_DIR$/spidermanage/view/fontsearchview/search.html" />
+        <option value="$PROJECT_DIR$/spidermanage/view/nmaptoolview/mainpage.html" />
+        <option value="$PROJECT_DIR$/spidermanage/view/nmaptoolview/login.html" />
+        <option value="$PROJECT_DIR$/spidermanage/view/nmaptoolview/taskdetail.html" />
+        <option value="$PROJECT_DIR$/spidermanage/view/nmaptoolview/userinfo.html" />
+        <option value="$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/taskcontrol.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/webtool.py" />
+        <option value="$PROJECT_DIR$/spidermanage/common_static/fontsearch/js/jquery.base64.js" />
+        <option value="$PROJECT_DIR$/spidermanage/view/fontsearchview/searchdetail.html" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/apache/apache_state.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_config_read.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_crackpass.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_info.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/glassfish/glassfish_crackpass.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/glassfish/glassfish_fileread.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/leak.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/ms15_034.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_crackpass.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_info.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_crackpass.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread2.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread4.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/tomcat/tomcat_crackpass.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/database/mongo/mongo_auth.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/ActiveMQ/activemqvul.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/JDWP/JDWPvul.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/bash/bash.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/cacti/cactifiledisclosure.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/cacti/cactiweathermap.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/docker/dockerleak.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/elasticsearch_groovy.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/elasticsearch_nodestate.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/fast_cgi/fast_cgi.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/joomla/joomla_unrec.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/openssl/heartbleed.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/redis/redis_unauth.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2devmode.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts032test.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2016.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2019.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2032.py" />
+        <option value="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/zebra/zebradefaultpass.py" />
       </list>
     </option>
   </component>
@@ -222,6 +272,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -419,103 +470,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telnet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scan-T" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidermanage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spidertool" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="detection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="httpdect" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webdection" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
+              <option name="myItemId" value="jetty" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -525,19 +485,19 @@
     <property name="SearchEverywhereHistoryKey" value="weblogic&#9;null&#9;null&#10;res&#9;null&#9;null&#10;del res&#9;null&#9;null&#10;weakref&#9;null&#9;null&#10;cookie&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/juniper_vpn" />
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ns-asg" />
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/elasticsearch" />
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/snmp" />
-      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/zte" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/basemodel" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/database" />
       <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/middileware" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/juniper_vpn" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/ns-asg" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/component/elasticsearch" />
+      <recent name="$PROJECT_DIR$/spidermanage/spidertool/template_identify/vuldect/plugins/thirdparty/snmp" />
     </key>
   </component>
   <component name="RunManager" selected="Python.default">
@@ -874,9 +834,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29721814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2942899" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -930,367 +890,374 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/elasticsearchmanage/elastictool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3745">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/elasticsearchmanage/logs/jdbc.log">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/basemodel/http/warf_824fce41c4ef9e1a4d97d07178970c4b.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/basemodel/http/script_language.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_config_read.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+          <caret line="44" column="39" selection-start-line="44" selection-start-column="39" selection-end-line="44" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/basemodel/http/www_4b5349a645e817306cbb82e775362ae2.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_crackpass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+        <state relative-caret-position="405">
+          <caret line="58" column="62" selection-start-line="58" selection-start-column="62" selection-end-line="58" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/basemodel/http/www_7b2f2e712d947a7ad946d1d754f62c7a.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/axis/axis_info.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="373">
+          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/glassfish/glassfish_crackpass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="51" column="62" selection-start-line="51" selection-start-column="62" selection-end-line="51" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/glassfish/glassfish_fileread.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/iis_9302267e7026e957e78f0860b94f3fc9.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-720">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#27#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/basemodel/http/www_fe6a472b5ab8a070de5c9ad80c902c60.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/iis_pathget_7158291cc93fa16509d8f1b2c5931f80.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-225">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/php/php_Version_dect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/ftp/ftp_1b803e39031e6c24b9783cb2a6506ed5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/ftp/ftp_c01009d5b0ef003082e281a2c84bf5ac.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/ftp/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/README.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="195">
-            <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/ssl/ssl_e46588d5d76618bb1deba438fd2fbdbf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/ActiveMQ/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/jetty/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/miniCurl.py" />
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/t.py" />
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/juniper_vpn/Juniper_NetScreenOS_NetScreen_f46e2b674e0d361d8d69d423e7052217.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/juniper_vpn/juniper_vpn_93c4dbda368263199a5022b17fcfb077.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/pocdect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/taskitem.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/leak.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="27" column="10" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="10" />
+          <caret line="37" column="45" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/taskcontrol.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/iis/ms15_034.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+        <state relative-caret-position="345">
+          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/callbackresult.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/default.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/pocsearchtask.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/nmaptoolbackground/nmaproute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3840">
-          <caret line="268" column="11" selection-start-line="268" selection-start-column="11" selection-end-line="268" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/nmaptoolbackground/control/portcontrol.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/fontsearch/searchroute.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/tongdaoa/tongdaoa_bb3f709a547efb14aea254e73ee1f1e5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/iptask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_6d3f64cf04bbf6b12c70324e7ae1664a.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/iptool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_crackpass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-227">
+        <state relative-caret-position="268">
+          <caret line="124" column="49" selection-start-line="124" selection-start-column="49" selection-end-line="124" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_head_getshell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="63" column="54" selection-start-line="63" selection-start-column="54" selection-end-line="63" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_info.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/jboss/jboss_unrce.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/nginx/nginx_c3bb9f1f2f151c7043d159ca6f77babb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-347">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/portscantask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_crackpass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="298">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/portscantool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
+        <state relative-caret-position="373">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="40" column="50" selection-start-line="40" selection-start-column="50" selection-end-line="40" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/resin/resin_fileread4.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="39" column="50" selection-start-line="39" selection-start-column="50" selection-end-line="39" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/tomcat/tomcat_crackpass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="76" column="62" selection-start-line="76" selection-start-column="62" selection-end-line="76" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/weblogic/weblogic_crackpass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-527">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/processtool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/weblogic/weblogic_SSRF.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-92">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/scapytask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/weblogic/weblogic_unrec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-2897">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/searchTask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/zabbix/zabbix_sqlhack.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-512">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/sniffertask.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/middileware/zabbix/zabbix_weakpass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13">
-          <caret line="37" column="26" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/sniffertool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-675">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/scapytool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/database/mongo/mongo_auth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="373">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/SQLTool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/ActiveMQ/activemqvul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="373">
+          <caret line="60" column="16" selection-start-line="60" selection-start-column="16" selection-end-line="60" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/TaskTool.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/JDWP/JDWPvul.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidermanage/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="120" selection-end-column="27" />
+        <state relative-caret-position="373">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/bash/bash.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="61" column="58" selection-start-line="61" selection-start-column="58" selection-end-line="61" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/cacti/cactifiledisclosure.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="24" column="15" selection-start-line="24" selection-start-column="15" selection-end-line="24" selection-end-column="15" />
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/cacti/cactiweathermap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/docker/dockerleak.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/elasticsearch_groovy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="53" column="50" selection-start-line="53" selection-start-column="50" selection-end-line="53" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/elasticsearch_nodestate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/ip_0c14c5c94dd50ece8de9b5f7fc1e2512.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-242">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/elasticsearch/ip_297ab6cee76b13281453e033ea17df44.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-107">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/fast_cgi/fast_cgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/httpfileserver/httpfileserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-137">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/joomla/joomla_unrec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="40" column="16" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/openssl/heartbleed.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/bash/bash_e81d76bdbfb7aeddf62543f7b91e0139.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/redis/redis_unauth.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+        <state relative-caret-position="495">
+          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2_ognlconsole.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/component_func.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2devmode.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts032test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2016.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="51" column="50" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2019.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="52" column="50" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/struts/struts2032.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/xampp/XAMPP_0513e4ffc8bbb2129805b3ac0e9545ea.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/component/zebra/zebradefaultpass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/page_identify.py">
+    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/jetty/jetty_707bac5f5dea2ba7f23f1aba99683159.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/port_func.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/vuldect/plugins/thirdparty/telnet/telnet_c64edf372c2ac9a7dfc57dd45b70b398.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-32">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spidermanage/spidertool/detection/port_identify.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
           <folding />
         </state>
       </provider>

@@ -27,6 +27,8 @@ def object2dict(obj):
 	d['__class__'] = obj.__class__.__name__
 	d['__module__'] = obj.__module__
 	d.update(obj.__dict__)
+
+
 	return d
  
 def dict2object(d):

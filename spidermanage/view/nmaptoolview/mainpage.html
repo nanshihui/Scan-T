@@ -1,641 +1,653 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-	<title>后台管理系统</title>
-             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
+    <title>后台管理系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
 
-	
+
     <!-- bootstrap -->
-    <link href="/static/nmaptool/css/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="/static/nmaptool/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+    <link href="/static/nmaptool/css/bootstrap/bootstrap.css" rel="stylesheet"/>
+    <link href="/static/nmaptool/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet"/>
 
     <!-- libraries -->
-    <link href="/static/nmaptool/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
-    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="/static/nmaptool/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet"/>
 
     <!-- global styles -->
     <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/layout.css">
     <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/elements.css">
     <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/icons.css">
-      <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
+    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="/static/nmaptool/css/compiled/index.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/nmaptool/css/compiled/index.css" type="text/css" media="screen"/>
 
     <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
 
     <!-- lato font -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic'
+          rel='stylesheet' type='text/css'>
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body onload="loadtask(0);">
-    <!-- navbar -->
-    <header class="navbar navbar-inverse" role="banner">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
-        </div>
-        <ul class="nav navbar-nav pull-right hidden-xs">
-            <li class="hidden-xs hidden-sm">
+<!-- navbar -->
+<header class="navbar navbar-inverse" role="banner">
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
+    </div>
+    <ul class="nav navbar-nav pull-right hidden-xs">
+        <li class="hidden-xs hidden-sm">
 
-                <input class="search" type="text" id="search" onkeydown='getsearchvalue("search");'/>
-              
-            </li>
-            <li class="notification-dropdown hidden-xs hidden-sm">
-                <a href="#" class="trigger">
-                    <i class="icon-warning-sign"></i>
-                    <span class="count">0</span>
-                </a>
-                <div class="pop-dialog">
-                    <div class="pointer right">
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <div class="body">
-                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                        <div class="notifications">
-                            <h3>你有没有新信息</h3>
-                        
-                            <div class="footer">
-                                <a href="#" class="logout">查看所有消息</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="notification-dropdown hidden-xs hidden-sm">
-                <a href="#" class="trigger">
-                    <i class="icon-envelope"></i>
-                </a>
-                <div class="pop-dialog">
-                    <div class="pointer right">
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <div class="body">
-                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                        <div class="messages">
-                            <h5>没有新消息</h5>
-                    
-                            <div class="footer">
-                                <a href="#" class="logout">查看所有消息</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
-                           {{username}}
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#personal-info.html">个人信息</a></li>
-                    <li><a href="#">账号设置</a></li>
-                    <li><a href="#">账单</a></li>
-                    <li><a href="#">导出数据</a></li>
-                    <li><a href="#">发送反馈</a></li>
-                </ul>
-            </li>
-            <li class="settings hidden-xs hidden-sm">
-                <a href="#" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings hidden-xs hidden-sm">
-                <a href="/nmaptool/logout" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </header>
-    <!-- end navbar -->
+            <input class="search" type="text" id="search" onkeydown='getsearchvalue("search");'/>
 
-    <!-- sidebar -->
-    <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
+        </li>
+        <li class="notification-dropdown hidden-xs hidden-sm">
+            <a href="#" class="trigger">
+                <i class="icon-warning-sign"></i>
+                <span class="count">0</span>
+            </a>
+            <div class="pop-dialog">
+                <div class="pointer right">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="/nmaptool/mainpage">
-                    <i class="icon-home"></i>
-                    <span>首页</span>
-                </a>
-            </li>            
+                <div class="body">
+                    <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                    <div class="notifications">
+                        <h3>你有没有新信息</h3>
 
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-group"></i>
-                    <span>用户</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="user-list.html">用户列表</a></li>
-                    <li><a href="new-user.html">新用户</a></li>
-                    <li><a href="user-profile.html">用户资料</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a class="dropdown-toggle" href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>表格</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="/nmaptool/chartshow">网络状况</a></li>
-                    <li><a href="datatables.html">数据表格</a></li>
-                </ul>
-            </li>
-         
-            <li>
-                <a href="#">
-                    <i class="icon-cog"></i>
-                    <span>我的信息</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>其他</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="code-editor.html">代码编辑器</a></li>
-                    <li><a href="grids.html">网格</a></li>
-                    <li><a href="signin.html">登录</a></li>
-                    <li><a href="signup.html">注册</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- end sidebar -->
-
-	<!-- main container -->
-    <div class="content">
-
-
-
-    
-
-        <div id="pad-wrapper">
-
-         
-            <!-- end UI elements section -->
-
-            <!-- table sample -->
-            <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
-            <div class="table-products section">
-                <div class="row head">
-                    <div class="col-md-12">
-                        <h4>任务信息 <small>概要</small></h4>
+                        <div class="footer">
+                            <a href="#" class="logout">查看所有消息</a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row filter-block">
-                    <div class="col-md-8 col-md-offset-5">
-                        <div class="ui-select">
-                            <select>
-                                 <option>未启动</option>
-                              <option>进行中</option>
-                              <option>已完成</option>
-                              <option>暂停</option>
-                            </select>
-                        </div>
-                        <input type="text" class="search">
-                        <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990" role="button">+ 新增任务</a>
-
-                        <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">新增任务</h5>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="form-group">
-                      
-
-                                <input type="label" style="border:0px;" class="form-control" value="任务名" />
-                                <input type="text" class="form-control"   id="jobname" />
-                                <input type="label" style="border:0px;" class="form-control" value="扫描地址" />
-                                <input type="text" class="form-control"   id="jobaddress" />
-                                <input type="label" style="border:0px;" class="form-control" value="扫描端口" />
-                                <input type="text" class="form-control"   id="jobport" />
-                                <input type="label" style="border:0px;" class="form-control" value="优先级" />
-                                <input type="text" class="form-control"   id="priority" value="1"/>
-                                <input type="label" style="border:0px;" class="form-control" value="扫描概要" />
-                                <input type="text" class="form-control"   id="abstract" value="无"/>
-
-
-                            </div>
-
-
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
             </div>
+        </li>
+        <li class="notification-dropdown hidden-xs hidden-sm">
+            <a href="#" class="trigger">
+                <i class="icon-envelope"></i>
+            </a>
+            <div class="pop-dialog">
+                <div class="pointer right">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <div class="body">
+                    <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                    <div class="messages">
+                        <h5>没有新消息</h5>
+
+                        <div class="footer">
+                            <a href="#" class="logout">查看所有消息</a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <table class="table table-hover" id="tableId">
-                        <thead>
-                            <tr>
-                                <th class="col-md-3">
-                                    <input type="checkbox">
-                                    任务名
-                                </th>
-                                    <th class="col-md-3">
-                                     <span class="line"></span>
-                                    目标地址
-                                </th>
-                                <th class="col-md-3">
-                                    <span class="line"></span>信息概要
-                                </th>
-                                <th class="col-md-3">
-                                    <span class="line"></span>状态
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody id="head">
-                   
-                       
-                        </tbody>
-                    </table>
-                </div>
-                <ul class="pagination" id="page">
-                 
-                </ul>
             </div>
-            <!-- end table sample -->
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                {{username}}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#personal-info.html">个人信息</a></li>
+                <li><a href="#">账号设置</a></li>
+                <li><a href="#">账单</a></li>
+                <li><a href="#">导出数据</a></li>
+                <li><a href="#">发送反馈</a></li>
+            </ul>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a href="#" role="button">
+                <i class="icon-cog"></i>
+            </a>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a href="/nmaptool/logout" role="button">
+                <i class="icon-share-alt"></i>
+            </a>
+        </li>
+    </ul>
+</header>
+<!-- end navbar -->
+
+<!-- sidebar -->
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            <a href="/nmaptool/mainpage">
+                <i class="icon-home"></i>
+                <span>首页</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-group"></i>
+                <span>用户</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="user-list.html">用户列表</a></li>
+                <li><a href="new-user.html">新用户</a></li>
+                <li><a href="user-profile.html">用户资料</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="dropdown-toggle" href="tables.html">
+                <i class="icon-th-large"></i>
+                <span>表格</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="/nmaptool/chartshow">网络状况</a></li>
+                <li><a href="datatables.html">数据表格</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="icon-cog"></i>
+                <span>我的信息</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-share-alt"></i>
+                <span>其他</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="code-editor.html">代码编辑器</a></li>
+                <li><a href="grids.html">网格</a></li>
+                <li><a href="signin.html">登录</a></li>
+                <li><a href="signup.html">注册</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- end sidebar -->
+
+<!-- main container -->
+<div class="content">
+
+
+    <div id="pad-wrapper">
+
+
+        <!-- end UI elements section -->
+
+        <!-- table sample -->
+        <!-- the script for the toggle all checkboxes from header is located in js/theme.js -->
+        <div class="table-products section">
+            <div class="row head">
+                <div class="col-md-12">
+                    <h4>任务信息
+                        <small>概要</small>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row filter-block">
+                <div class="col-md-8 col-md-offset-5">
+                    <div class="ui-select">
+                        <select>
+                            <option>未启动</option>
+                            <option>进行中</option>
+                            <option>已完成</option>
+                            <option>暂停</option>
+                        </select>
+                    </div>
+                    <input type="text" class="search">
+                    <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990"
+                       role="button">+ 新增任务</a>
+
+                    <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                    </button>
+                                    <h5 class="modal-title">新增任务</h5>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+
+
+                                        <input type="label" style="border:0px;" class="form-control" value="任务名"/>
+                                        <input type="text" class="form-control" id="jobname"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描地址"/>
+                                        <input type="text" class="form-control" id="jobaddress"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描端口"/>
+                                        <input type="text" class="form-control" id="jobport"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="优先级"/>
+                                        <input type="text" class="form-control" id="priority" value="1"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描概要"/>
+                                        <input type="text" class="form-control" id="abstract" value="无"/>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table table-hover" id="tableId">
+                    <thead>
+                    <tr>
+                        <th class="col-md-3">
+                            <input type="checkbox">
+                            任务名
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>
+                            目标地址
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>信息概要
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>状态
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="head">
+
+
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" id="page">
+
+            </ul>
         </div>
+        <!-- end table sample -->
     </div>
+</div>
 
 
-	<!-- scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="/static/nmaptool/js/bootstrap.min.js"></script>
-    <script src="/static/nmaptool/js/jquery-ui-1.10.2.custom.min.js"></script>
-    <!-- knob -->
-    <script src="/static/nmaptool/js/jquery.knob.js"></script>
-    <!-- flot charts -->
-    <script src="/static/nmaptool/js/jquery.flot.js"></script>
-    <script src="/static/nmaptool/js/jquery.flot.stack.js"></script>
-    <script src="/static/nmaptool/js/jquery.flot.resize.js"></script>
-    <script src="/static/nmaptool/js/theme.js"></script>
-  <script  language="javascript">
-  function getsearchvalue(id){
-    if(event.keyCode==13){
-       var tempcontent=document.getElementById(id).value;
-         window.location='/search/searchmain/?page=0&searchcontent='+tempcontent;
+<!-- scripts -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/static/nmaptool/js/bootstrap.min.js"></script>
+<script src="/static/nmaptool/js/jquery-ui-1.10.2.custom.min.js"></script>
+<!-- knob -->
+<script src="/static/nmaptool/js/jquery.knob.js"></script>
+<!-- flot charts -->
+<script src="/static/nmaptool/js/jquery.flot.js"></script>
+<script src="/static/nmaptool/js/jquery.flot.stack.js"></script>
+<script src="/static/nmaptool/js/jquery.flot.resize.js"></script>
+<script src="/static/nmaptool/js/theme.js"></script>
+<script language="javascript">
+    function getsearchvalue(id) {
+        if (event.keyCode == 13) {
+            var tempcontent = document.getElementById(id).value;
+            window.location = '/search/searchmain/?page=0&searchcontent=' + tempcontent;
+        }
+        //
     }
-    //
-  }
-        var xmlhttp;
-        var message=''
-        var currpage=1;
-        var nextpagehtml;
-        var pagesize=0;
-        var nowpage=0;
-        var jobs=null;
-        //创建XMLHttpRequest对象
-        function GetXmlHttp(xmlhttp){
-            if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
-            {
-                xmlhttp=new XMLHttpRequest();
-            }
-            else if(window.ActiveXObject) //IE浏览器用activexobject对象创建
-            {
-
-                try{
-                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
-                }catch(e){
-                    try{
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }catch(e){
-
-
-                    }
-                }
-            }
-            return xmlhttp;
+    var xmlhttp;
+    var message = ''
+    var currpage = 1;
+    var nextpagehtml;
+    var pagesize = 0;
+    var nowpage = 0;
+    var jobs = null;
+    //创建XMLHttpRequest对象
+    function GetXmlHttp(xmlhttp) {
+        if (window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+        {
+            xmlhttp = new XMLHttpRequest();
         }
-
-        function loadtask(currpage) {
-            xmlhttp= GetXmlHttp(xmlhttp);
-            var number=currpage;
-            var str='';
-            str='page='+number+'&username='+message;
-            nowpage=currpage;
-            xmlhttp.open("POST","/nmaptool/jobshow/",false);
-            xmlhttp.onreadystatechange = callback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-        }
-        function callback(){
-
-            if(xmlhttp.readyState!=4){
-
-                document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>" ;
-            }
-            else{
-
-                if(xmlhttp.status == 200){
-
-                    var a=xmlhttp.responseText;
-                    infoshow(a);
-                }
-            }
-        }
-function startjob(taskid){
-            localjobid=jobs[taskid].jobid;
-            xmlhttp= GetXmlHttp(xmlhttp);
-            var str='';
-            str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobstart/",false);
-            xmlhttp.onreadystatechange = jobcallback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-}
-function pausejob(taskid){
-            localjobid=jobs[taskid].jobid;
-            xmlhttp= GetXmlHttp(xmlhttp);
-            var str='';
-            str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobpause/",false);
-            xmlhttp.onreadystatechange = jobcallback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-}
-
-function destroyjob(taskid){
-            localjobid=jobs[taskid].jobid;
-            xmlhttp= GetXmlHttp(xmlhttp);
-            var str='';
-            str='taskid='+localjobid;
-            xmlhttp.open("POST","/nmaptool/jobdestroy/",false);
-            xmlhttp.onreadystatechange = jobcallback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-}
-    function jobcallback(){
-
-            if(xmlhttp.readyState!=4){
-
-               
-            }
-            else{
-
-                if(xmlhttp.status == 200){
-
-                    var a=xmlhttp.responseText;
-                          var data2=JSON.parse(a);
-
-                     if(data2.result=='1'){
-
-                         window.location.reload();
-                     }
-                    else{
-                        alert('操作失败');
-                    }
-
-                }
-            }
-        }
- function infoshow(a)
+        else if (window.ActiveXObject) //IE浏览器用activexobject对象创建
         {
 
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
 
-
-            var data2=JSON.parse(a);
-            var result=data2.result;
-            var datalength=data2.length;
-            var pagesize=data2.pagecount;
-            var nowpage=data2.page
-             jobs=data2.jobs;
-            currpage=Number(nowpage)+1;
-              var bodyhtml = "";
-            
-         
-            if(result!='0') {
-
-      
-
-
-             
-
-                for (var i = 0; i < datalength; i++) {
-                     var labelstatus=''
-                     var Active='';
-                     statuss=jobs[i].jobstatus;
-
-                     switch(statuss){
-                        case '1':Active='未启动';labelstatus='default';break;
-                        case '2':Active='正在排队';labelstatus='info';break;
-                        case '3':Active='正在执行';labelstatus='primary';break;
-                        case '4':Active='挂起';labelstatus='warning';break;
-                        case '5':Active='已完成';labelstatus='success';break;
-                        case '6':Active='已终止';labelstatus='danger';break;
-                        default:Active='未知';labelstatus='danger';break;
-                     }
-
-             
-                     var temport=''
-                     if (jobs[i].jobport==''){
-                        temport='全部可用端口';
-                     }
-                     else
-                        temport=jobs[i].jobport;
-                     bodyhtml+="<tr>"+
-                                        "<td><input type=\"checkbox\">"+
-                                            "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>"+
-                                            "<a href=\"/nmaptool/taskdetail?jobid="+jobs[i].jobid+"\">"+jobs[i].jobname +"</a></td>"+
-                                        "<td class=\"description\">"+jobs[i].jobaddress+"</td>"+
-                                        "<td class=\"description\">"+temport+"</td>"+
-                                        "<td><span class=\"label label-"+labelstatus+"\">"+Active+"</span><ul class=\"actions\">"+
-                                     
-                                            "<li onclick='startjob("+i+");'><i class=\"table-start\" ></i></li>"+
-                                            "<li onclick='pausejob("+i+");'><i class=\"table-pause\"></i></li>"+
-                                            "<li><i class=\"table-edit\"></i></li>"+
-                                            "<li><i class=\"table-settings\"></i></li>"+
-                                            "<li class=\"last\" onclick='destroyjob("+i+");'><i class=\"table-delete\"></i></li>"+
-                                            "</ul>"+
-                                         "</td>"+
-                                        "</tr>";
-
-                }
-                document.getElementById("head").innerHTML = bodyhtml;
-            }
-            var pagehtml="";
-  
-            if(pagesize>0){
-
-
-                    if (currpage <=1) {
-                
-                    pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
-                    
-
-                    
-                     }else {
-              
-                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&laquo;</a></li>";
-                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
-                         pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";
-                     }
-                    if(pagesize-currpage==1){
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                      pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&raquo;</a></li>";
-                     }
-                     else if(pagesize-currpage>=2){
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage+1 ) + ");' href='javascript:void(0);'>"+(currpage+2).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&raquo;</a></li>";
-                     }
-                  
-
-
-                
-            }
-
-            document.getElementById("page").innerHTML = pagehtml;
-
-        }
-            
-
-
-        function createdata(){
-
-
-            var jobname= document.getElementById("jobname").value;
-            var jobaddress= document.getElementById("jobaddress").value;
-            var jobport= document.getElementById("jobport").value;
-            var priority= document.getElementById("priority").value;
-            var abstract=  document.getElementById("abstract").value;
-
-            xmlhttp= GetXmlHttp(xmlhttp);
-
-            xmlhttp.open("POST","/nmaptool/jobadd/",true);
-            xmlhttp.onreadystatechange = createcallback;
-            var str='jobname='+jobname+'&jobaddress='+jobaddress+'&jobport='+jobport+'&priority='+priority+'&abstract='+abstract;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);
-
-        }
-       function createcallback(){
-
-            if(xmlhttp.readyState!=4){
-
-                // document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>"  ;
-            }
-            else{
-
-                if(xmlhttp.status == 200){
-
-                    var a=xmlhttp.responseText;
-                        var data2=JSON.parse(a);
-
-                     if(data2.result=='1'){
-
-                         window.location.reload();
-                     }
-                    else{
-                        alert('添加失败');
-                    }
 
                 }
             }
         }
+        return xmlhttp;
+    }
 
+    function loadtask(currpage) {
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var number = currpage;
+        var str = '';
+        str = 'page=' + number + '&username=' + message;
+        nowpage = currpage;
+        xmlhttp.open("POST", "/nmaptool/jobshow/", false);
+        xmlhttp.onreadystatechange = callback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function callback() {
+
+        if (xmlhttp.readyState != 4) {
+
+            document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>";
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+                infoshow(a);
+            }
+        }
+    }
+    function startjob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobstart/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function pausejob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobpause/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+
+    function destroyjob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobdestroy/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function jobcallback() {
+
+        if (xmlhttp.readyState != 4) {
+
+
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+                var data2 = JSON.parse(a);
+
+                if (data2.result == '1') {
+
+                    window.location.reload();
+                }
+                else {
+                    alert('操作失败');
+                }
+
+            }
+        }
+    }
+    function infoshow(a) {
+
+
+        var data2 = JSON.parse(a);
+        var result = data2.result;
+        var datalength = data2.length;
+        var pagesize = data2.pagecount;
+        var nowpage = data2.page
+        jobs = data2.jobs;
+        currpage = Number(nowpage) + 1;
+        var bodyhtml = "";
+
+
+        if (result != '0') {
+
+
+            for (var i = 0; i < datalength; i++) {
+                var labelstatus = ''
+                var Active = '';
+                statuss = jobs[i].jobstatus;
+
+                switch (statuss) {
+                    case '1':
+                        Active = '未启动';
+                        labelstatus = 'default';
+                        break;
+                    case '2':
+                        Active = '正在排队';
+                        labelstatus = 'info';
+                        break;
+                    case '3':
+                        Active = '正在执行';
+                        labelstatus = 'primary';
+                        break;
+                    case '4':
+                        Active = '挂起';
+                        labelstatus = 'warning';
+                        break;
+                    case '5':
+                        Active = '已完成';
+                        labelstatus = 'success';
+                        break;
+                    case '6':
+                        Active = '已终止';
+                        labelstatus = 'danger';
+                        break;
+                    default:
+                        Active = '未知';
+                        labelstatus = 'danger';
+                        break;
+                }
+
+
+                var temport = ''
+                if (jobs[i].jobport == '') {
+                    temport = '全部可用端口';
+                }
+                else
+                    temport = jobs[i].jobport;
+                bodyhtml += "<tr>" +
+                        "<td><input type=\"checkbox\">" +
+                        "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>" +
+                        "<a href=\"/nmaptool/taskdetail?jobid=" + jobs[i].jobid + "\">" + jobs[i].jobname + "</a></td>" +
+                        "<td class=\"description\">" + jobs[i].jobaddress + "</td>" +
+                        "<td class=\"description\">" + temport + "</td>" +
+                        "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span><ul class=\"actions\">" +
+
+                        "<li onclick='startjob(" + i + ");'><i class=\"table-start\" ></i></li>" +
+                        "<li onclick='pausejob(" + i + ");'><i class=\"table-pause\"></i></li>" +
+                        "<li><i class=\"table-edit\"></i></li>" +
+                        "<li><i class=\"table-settings\"></i></li>" +
+                        "<li class=\"last\" onclick='destroyjob(" + i + ");'><i class=\"table-delete\"></i></li>" +
+                        "</ul>" +
+                        "</td>" +
+                        "</tr>";
+
+            }
+            document.getElementById("head").innerHTML = bodyhtml;
+        }
+        var pagehtml = "";
+
+        if (pagesize > 0) {
+
+
+            if (currpage <= 1) {
+
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+
+
+            } else {
+
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&laquo;</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
+            }
+            if (pagesize - currpage == 1) {
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&raquo;</a></li>";
+            }
+            else if (pagesize - currpage >= 2) {
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage + 1 ) + ");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&raquo;</a></li>";
+            }
+
+
+        }
+
+        document.getElementById("page").innerHTML = pagehtml;
+
+    }
+
+
+    function createdata() {
+
+
+        var jobname = document.getElementById("jobname").value;
+        var jobaddress = document.getElementById("jobaddress").value;
+        var jobport = document.getElementById("jobport").value;
+        var priority = document.getElementById("priority").value;
+        var abstract = document.getElementById("abstract").value;
+
+        xmlhttp = GetXmlHttp(xmlhttp);
+
+        xmlhttp.open("POST", "/nmaptool/jobadd/", true);
+        xmlhttp.onreadystatechange = createcallback;
+        var str = 'jobname=' + jobname + '&jobaddress=' + jobaddress + '&jobport=' + jobport + '&priority=' + priority + '&abstract=' + abstract;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+
+    }
+    function createcallback() {
+
+        if (xmlhttp.readyState != 4) {
+
+            // document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>"  ;
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+                var data2 = JSON.parse(a);
+
+                if (data2.result == '1') {
+
+                    window.location.reload();
+                }
+                else {
+                    alert('添加失败');
+                }
+
+            }
+        }
+    }
 
 
 </script>
-    <script type="text/javascript">
-        $(function () {
+<script type="text/javascript">
+    $(function () {
 
-            // jQuery Knobs
-            $(".knob").knob();
+        // jQuery Knobs
+        $(".knob").knob();
 
 
+        // jQuery UI Sliders
+        $(".slider-sample1").slider({
+            value: 100,
+            min: 1,
+            max: 500
+        });
+        $(".slider-sample2").slider({
+            range: "min",
+            value: 130,
+            min: 1,
+            max: 500
+        });
+        $(".slider-sample3").slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [40, 170],
+        });
 
-            // jQuery UI Sliders
-            $(".slider-sample1").slider({
-                value: 100,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample2").slider({
-                range: "min",
-                value: 130,
-                min: 1,
-                max: 500
-            });
-            $(".slider-sample3").slider({
-                range: true,
-                min: 0,
-                max: 500,
-                values: [ 40, 170 ],
-            });
 
-            
+        // jQuery Flot Chart
+        var visits = [[1, 50], [2, 40], [3, 45], [4, 23], [5, 55], [6, 65], [7, 61], [8, 70], [9, 65], [10, 75], [11, 57], [12, 59]];
+        var visitors = [[1, 25], [2, 50], [3, 23], [4, 48], [5, 38], [6, 40], [7, 47], [8, 55], [9, 43], [10, 50], [11, 47], [12, 39]];
 
-            // jQuery Flot Chart
-            var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
-            var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
-
-            var plot = $.plot($("#statsChart"),
-                [ { data: visits, label: "Signups"},
-                 { data: visitors, label: "Visits" }], {
+        var plot = $.plot($("#statsChart"),
+                [{data: visits, label: "Signups"},
+                    {data: visitors, label: "Visits"}], {
                     series: {
-                        lines: { show: true,
-                                lineWidth: 1,
-                                fill: true, 
-                                fillColor: { colors: [ { opacity: 0.1 }, { opacity: 0.13 } ] }
-                             },
-                        points: { show: true, 
-                                 lineWidth: 2,
-                                 radius: 3
-                             },
+                        lines: {
+                            show: true,
+                            lineWidth: 1,
+                            fill: true,
+                            fillColor: {colors: [{opacity: 0.1}, {opacity: 0.13}]}
+                        },
+                        points: {
+                            show: true,
+                            lineWidth: 2,
+                            radius: 3
+                        },
                         shadowSize: 0,
                         stack: true
                     },
-                    grid: { hoverable: true, 
-                           clickable: true, 
-                           tickColor: "#f9f9f9",
-                           borderWidth: 0
-                        },
+                    grid: {
+                        hoverable: true,
+                        clickable: true,
+                        tickColor: "#f9f9f9",
+                        borderWidth: 0
+                    },
                     legend: {
-                            // show: false
-                            labelBoxBorderColor: "#fff"
-                        },  
+                        // show: false
+                        labelBoxBorderColor: "#fff"
+                    },
                     colors: ["#a7b5c5", "#30a0eb"],
                     xaxis: {
-                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4,"APR"], [5,"MAY"], [6,"JUN"], 
-                               [7,"JUL"], [8,"AUG"], [9,"SEP"], [10,"OCT"], [11,"NOV"], [12,"DEC"]],
+                        ticks: [[1, "JAN"], [2, "FEB"], [3, "MAR"], [4, "APR"], [5, "MAY"], [6, "JUN"],
+                            [7, "JUL"], [8, "AUG"], [9, "SEP"], [10, "OCT"], [11, "NOV"], [12, "DEC"]],
                         font: {
                             size: 12,
                             family: "Open Sans, Arial",
@@ -644,50 +656,50 @@ function destroyjob(taskid){
                         }
                     },
                     yaxis: {
-                        ticks:3, 
+                        ticks: 3,
                         tickDecimals: 0,
-                        font: {size:12, color: "#9da3a9"}
+                        font: {size: 12, color: "#9da3a9"}
                     }
-                 });
+                });
 
-            function showTooltip(x, y, contents) {
-                $('<div id="tooltip">' + contents + '</div>').css( {
-                    position: 'absolute',
-                    display: 'none',
-                    top: y - 30,
-                    left: x - 50,
-                    color: "#fff",
-                    padding: '2px 5px',
-                    'border-radius': '6px',
-                    'background-color': '#000',
-                    opacity: 0.80
-                }).appendTo("body").fadeIn(200);
-            }
+        function showTooltip(x, y, contents) {
+            $('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: y - 30,
+                left: x - 50,
+                color: "#fff",
+                padding: '2px 5px',
+                'border-radius': '6px',
+                'background-color': '#000',
+                opacity: 0.80
+            }).appendTo("body").fadeIn(200);
+        }
 
-            var previousPoint = null;
-            $("#statsChart").bind("plothover", function (event, pos, item) {
-                if (item) {
-                    if (previousPoint != item.dataIndex) {
-                        previousPoint = item.dataIndex;
+        var previousPoint = null;
+        $("#statsChart").bind("plothover", function (event, pos, item) {
+            if (item) {
+                if (previousPoint != item.dataIndex) {
+                    previousPoint = item.dataIndex;
 
-                        $("#tooltip").remove();
-                        var x = item.datapoint[0].toFixed(0),
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(0),
                             y = item.datapoint[1].toFixed(0);
 
-                        var month = item.series.xaxis.ticks[item.dataIndex].label;
+                    var month = item.series.xaxis.ticks[item.dataIndex].label;
 
-                        showTooltip(item.pageX, item.pageY,
-                                    item.series.label + " of " + month + ": " + y);
-                    }
+                    showTooltip(item.pageX, item.pageY,
+                            item.series.label + " of " + month + ": " + y);
                 }
-                else {
-                    $("#tooltip").remove();
-                    previousPoint = null;
-                }
-            });
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;
+            }
         });
-    </script>
-  
+    });
+</script>
+
 
 </body>
 </html>

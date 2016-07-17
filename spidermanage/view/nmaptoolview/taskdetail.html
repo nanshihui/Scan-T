@@ -1,14 +1,13 @@
-
 <!DOCTYPE html>
 <html>
 <head>
     <title>后台管理系统</title>
-             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-                <meta name="keywords" content="" />
-                 <meta name="description" content="" />
-	
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+
     <!-- bootstrap -->
     <link href="/static/nmaptool/css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="/static/nmaptool/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet">
@@ -19,244 +18,240 @@
     <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/icons.css">
 
     <!-- libraries -->
-    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
-          <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
+    <link href="/static/nmaptool/css/lib/font-awesome.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/nmaptool/css/compiled/skins/dark.css">
 
     <!-- this page specific styles -->
-    <link rel="stylesheet" href="/static/nmaptool/css/compiled/user-list.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/static/nmaptool/css/compiled/user-list.css" type="text/css" media="screen"/>
 
     <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
 
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body onload="loadiptask();">
 
-    <!-- navbar -->
+<!-- navbar -->
 <header class="navbar navbar-inverse" role="banner">
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
-        </div>
-        <ul class="nav navbar-nav pull-right hidden-xs">
-            <li class="hidden-xs hidden-sm">
-                  <input class="search" type="text" id="search" onkeydown='getsearchvalue("search");'/>
-            </li>
-            <li class="notification-dropdown hidden-xs hidden-sm">
-                <a href="#" class="trigger">
-                    <i class="icon-warning-sign"></i>
-                    <span class="count">0</span>
-                </a>
-                <div class="pop-dialog">
-                    <div class="pointer right">
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <div class="body">
-                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                        <div class="notifications">
-                            <h3>你有没有新信息</h3>
-                        
-                            <div class="footer">
-                                <a href="#" class="logout">查看所有消息</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="notification-dropdown hidden-xs hidden-sm">
-                <a href="#" class="trigger">
-                    <i class="icon-envelope"></i>
-                </a>
-                <div class="pop-dialog">
-                    <div class="pointer right">
-                        <div class="arrow"></div>
-                        <div class="arrow_border"></div>
-                    </div>
-                    <div class="body">
-                        <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
-                        <div class="messages">
-                            <h5>没有新消息</h5>
-                    
-                            <div class="footer">
-                                <a href="#" class="logout">查看所有消息</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
-                    {{username}}
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#personal-info.html">个人信息</a></li>
-                    <li><a href="#">账号设置</a></li>
-                    <li><a href="#">账单</a></li>
-                    <li><a href="#">导出数据</a></li>
-                    <li><a href="#">发送反馈</a></li>
-                </ul>
-            </li>
-            <li class="settings hidden-xs hidden-sm">
-                <a href="#" role="button">
-                    <i class="icon-cog"></i>
-                </a>
-            </li>
-            <li class="settings hidden-xs hidden-sm">
-                <a href="/nmaptool/logout" role="button">
-                    <i class="icon-share-alt"></i>
-                </a>
-            </li>
-        </ul>
-    </header>
-    <!-- end navbar -->
-
-    <!-- sidebar -->
-    <!-- sidebar -->
-    <div id="sidebar-nav">
-        <ul id="dashboard-menu">
-            <li class="active">
-                <div class="pointer">
+    <div class="navbar-header">
+        <button class="navbar-toggle" type="button" data-toggle="collapse" id="menu-toggler">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/nmaptool/mainpage"><img src="/static/nmaptool/img/logo.png"></a>
+    </div>
+    <ul class="nav navbar-nav pull-right hidden-xs">
+        <li class="hidden-xs hidden-sm">
+            <input class="search" type="text" id="search" onkeydown='getsearchvalue("search");'/>
+        </li>
+        <li class="notification-dropdown hidden-xs hidden-sm">
+            <a href="#" class="trigger">
+                <i class="icon-warning-sign"></i>
+                <span class="count">0</span>
+            </a>
+            <div class="pop-dialog">
+                <div class="pointer right">
                     <div class="arrow"></div>
                     <div class="arrow_border"></div>
                 </div>
-                <a href="/nmaptool/mainpage">
-                    <i class="icon-home"></i>
-                    <span>首页</span>
-                </a>
-            </li>            
+                <div class="body">
+                    <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                    <div class="notifications">
+                        <h3>你有没有新信息</h3>
 
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-group"></i>
-                    <span>用户</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="user-list.html">用户列表</a></li>
-                    <li><a href="new-user.html">新用户</a></li>
-                    <li><a href="user-profile.html">用户资料</a></li>
-                </ul>
-            </li>
-
-             <li>
-                <a class="dropdown-toggle" href="tables.html">
-                    <i class="icon-th-large"></i>
-                    <span>表格</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="/nmaptool/chartshow">网络状况</a></li>
-                    <li><a href="datatables.html">数据表格</a></li>
-                </ul>
-            </li>
-         
-            <li>
-                <a href="#">
-                    <i class="icon-cog"></i>
-                    <span>我的信息</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-toggle" href="#">
-                    <i class="icon-share-alt"></i>
-                    <span>其他</span>
-                    <i class="icon-chevron-down"></i>
-                </a>
-                <ul class="submenu">
-                    <li><a href="code-editor.html">代码编辑器</a></li>
-                    <li><a href="grids.html">网格</a></li>
-                    <li><a href="signin.html">登录</a></li>
-                    <li><a href="signup.html">注册</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    
- <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h5 class="modal-title">脚本信息</h5>
+                        <div class="footer">
+                            <a href="#" class="logout">查看所有消息</a>
                         </div>
-                        <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="notification-dropdown hidden-xs hidden-sm">
+            <a href="#" class="trigger">
+                <i class="icon-envelope"></i>
+            </a>
+            <div class="pop-dialog">
+                <div class="pointer right">
+                    <div class="arrow"></div>
+                    <div class="arrow_border"></div>
+                </div>
+                <div class="body">
+                    <a href="#" class="close-icon"><i class="icon-remove-sign"></i></a>
+                    <div class="messages">
+                        <h5>没有新消息</h5>
 
-                            <div class="form-group">
-                      
+                        <div class="footer">
+                            <a href="#" class="logout">查看所有消息</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle hidden-xs hidden-sm" data-toggle="dropdown">
+                {{username}}
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#personal-info.html">个人信息</a></li>
+                <li><a href="#">账号设置</a></li>
+                <li><a href="#">账单</a></li>
+                <li><a href="#">导出数据</a></li>
+                <li><a href="#">发送反馈</a></li>
+            </ul>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a href="#" role="button">
+                <i class="icon-cog"></i>
+            </a>
+        </li>
+        <li class="settings hidden-xs hidden-sm">
+            <a href="/nmaptool/logout" role="button">
+                <i class="icon-share-alt"></i>
+            </a>
+        </li>
+    </ul>
+</header>
+<!-- end navbar -->
 
-                                <input type="label" style="border:0px;" class="form-control" value="详细内容" />
-                                <textarea class="form-control"   rows="10" id="scriptdetail"  >
+<!-- sidebar -->
+<!-- sidebar -->
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        <li class="active">
+            <div class="pointer">
+                <div class="arrow"></div>
+                <div class="arrow_border"></div>
+            </div>
+            <a href="/nmaptool/mainpage">
+                <i class="icon-home"></i>
+                <span>首页</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-group"></i>
+                <span>用户</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="user-list.html">用户列表</a></li>
+                <li><a href="new-user.html">新用户</a></li>
+                <li><a href="user-profile.html">用户资料</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a class="dropdown-toggle" href="tables.html">
+                <i class="icon-th-large"></i>
+                <span>表格</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="/nmaptool/chartshow">网络状况</a></li>
+                <li><a href="datatables.html">数据表格</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="icon-cog"></i>
+                <span>我的信息</span>
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-toggle" href="#">
+                <i class="icon-share-alt"></i>
+                <span>其他</span>
+                <i class="icon-chevron-down"></i>
+            </a>
+            <ul class="submenu">
+                <li><a href="code-editor.html">代码编辑器</a></li>
+                <li><a href="grids.html">网格</a></li>
+                <li><a href="signin.html">登录</a></li>
+                <li><a href="signup.html">注册</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h5 class="modal-title">脚本信息</h5>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+
+
+                    <input type="label" style="border:0px;" class="form-control" value="详细内容"/>
+                                <textarea class="form-control" rows="10" id="scriptdetail">
                                      </textarea>
 
-                            </div>
+                </div>
 
 
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
             </div>
-	<!-- main container -->
-    <div class="content">
-        
-        <!-- settings changer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- main container -->
+<div class="content">
+
+    <!-- settings changer -->
     <div id="pad-wrapper" class="user-profile">
-            <!-- header -->
-            <div class="row header">
-                <div class="col-md-8" id="ipinfo">
-        
-                </div>
-                <a class="btn-flat icon pull-right delete-user" data-toggle="tooltip" title="Delete user" data-placement="top">
-                    <i class="icon-trash"></i>
-                </a>
-     <h6>任务编号:{{taskid}}</h6>
+        <!-- header -->
+        <div class="row header">
+            <div class="col-md-8" id="ipinfo">
+
             </div>
-                <h6>主机近期相关信息:</h6>
-                <div id ="hostinfo">
-                    <p  >无</p>
-                </div>
-                            
-                        </div>
+            <a class="btn-flat icon pull-right delete-user" data-toggle="tooltip" title="Delete user"
+               data-placement="top">
+                <i class="icon-trash"></i>
+            </a>
+            <h6>任务编号:{{taskid}}</h6>
+        </div>
+        <h6>主机近期相关信息:</h6>
+        <div id="hostinfo">
+            <p>无</p>
+        </div>
+
+    </div>
 
 
+    <div class="col-md-12 bio">
 
 
-            <div class="col-md-12 bio">
-
-
-         
         <div id="pad-wrapper" class="users-list">
 
-            
-             
+
             <div class="row header">
 
                 <h3>任务明细</h3>
                 <div class="col-md-10 col-sm-12 col-xs-12 pull-right">
                     <input type="text" class="col-md-5 search" placeholder="输入端口...">
-                    
+
                     <!-- custom popup filter -->
                     <!-- styles are located in css/elements.css -->
                     <!-- script that enables this dropdown is located in js/theme.js -->
                     <div class="ui-dropdown">
                         <div class="head" data-toggle="tooltip" title="点我!">
-                           过滤端口
+                            过滤端口
                             <i class="arrow-down"></i>
-                        </div>  
+                        </div>
                         <div class="dialog">
                             <div class="pointer">
                                 <div class="arrow"></div>
@@ -271,15 +266,15 @@
                                         <option>端口号</option>
                                         <option>端口名</option>
                                         <option>版本</option>
-     
+
                                     </select>
                                     <select>
                                         <option>等于</option>
                                         <option>包含</option>
                                         <option>不等于</option>
-                          
+
                                     </select>
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control"/>
                                     <a class="btn-flat small">添加过滤项</a>
                                 </div>
                             </div>
@@ -298,40 +293,39 @@
                 <div class="col-md-12">
                     <table class="table table-hover">
                         <thead>
-                            <tr>
-                                <th class="col-md-1 sortable">
-                                    端口号
-                                </th>
-                                <th class="col-md-1 sortable">
-                                    <span class="line"></span>端口名
-                                </th>
-                                <th class="col-md-1 sortable">
-                                    <span class="line"></span>端口版本
-                                </th>
-                                <th class="col-md-2 sortable ">
-                                    <span class="line"></span>端口产品
-                                </th>
-                                <!--align-right-->
-                                    <th class="col-md-3 sortable ">
-                                    <span class="line"></span>脚本信息
-                                </th>
-                                        <th class="col-md-3 sortable ">
-                                    <span class="line"></span>具体内容
-                                </th>
-                                 </th>
-                                        <th class="col-md-3 sortable ">
-                                    <span class="line"></span>潜在信息
-                                </th>
-                            </tr>
+                        <tr>
+                            <th class="col-md-1 sortable">
+                                端口号
+                            </th>
+                            <th class="col-md-1 sortable">
+                                <span class="line"></span>端口名
+                            </th>
+                            <th class="col-md-1 sortable">
+                                <span class="line"></span>端口版本
+                            </th>
+                            <th class="col-md-2 sortable ">
+                                <span class="line"></span>端口产品
+                            </th>
+                            <!--align-right-->
+                            <th class="col-md-3 sortable ">
+                                <span class="line"></span>脚本信息
+                            </th>
+                            <th class="col-md-3 sortable ">
+                                <span class="line"></span>具体内容
+                            </th>
+                            </th>
+                            <th class="col-md-3 sortable ">
+                                <span class="line"></span>潜在信息
+                            </th>
+                        </tr>
                         </thead>
                         <tbody id="bodyport">
                         <!-- row -->
-                       
-              
-                       
+
+
                         </tbody>
                     </table>
-                </div>                
+                </div>
             </div>
             <ul class="pagination pull-right" id="page">
 
@@ -340,142 +334,141 @@
         </div>
     </div>
     <!-- end main container -->
-<script type="text/javascript">
-  function getsearchvalue(id){
-    if(event.keyCode==13){
-       var tempcontent=document.getElementById(id).value;
-         window.location='/search/searchmain/?page=0&searchcontent='+tempcontent;
-    }
-    //
-  }
-
-    var REGX_HTML_ENCODE = /"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g;
-
-    var REGX_HTML_DECODE = /&\w+;|&#(\d+);/g;
-
-    var REGX_TRIM = /(^\s*)|(\s*$)/g;
-
-    var HTML_DECODE = {
-        "&lt;" : "<", 
-        "&gt;" : ">", 
-        "&amp;" : "&", 
-        "&nbsp;": " ", 
-        "&quot;": "\"", 
-        "©": ""
-
-        // Add more
-    };
-
-    var encodeHtml = function(s){
-        s = (s != undefined) ? s : this.toString();
-        return (typeof s != "string") ? s :
-            s.replace(REGX_HTML_ENCODE, 
-                      function($0){
-                          var c = $0.charCodeAt(0), r = ["&#"];
-                          c = (c == 0x20) ? 0xA0 : c;
-                          r.push(c); r.push(";");
-                          return r.join("");
-                      });
-    };
-
-  var decodeHtml = function(s){
-        var HTML_DECODE = HTML_DECODE;
-
-        s = (s != undefined) ? s : s.toString();
-        return (typeof s != "string") ? s :
-            s.replace(REGX_HTML_DECODE,
-                      function($0, $1){
-                          var c = HTML_DECODE[$0];
-                          if(c == undefined){
-                              // Maybe is Entity Number
-                              if(!isNaN($1)){
-                                  c = String.fromCharCode(($1 == 160) ? 32:$1);
-                              }else{
-                                  c = $0;
-                              }
-                          }
-                          return c;
-                      });
-            return s;
-    };
-
-    var trim = function(s){
-        s = (s != undefined) ? s : this.toString();
-        return (typeof s != "string") ? s :
-            s.replace(REGX_TRIM, "");
-    };
-
-
-    var hashCode = function(){
-        var hash = this.__hash__, _char;
-        if(hash == undefined || hash == 0){
-            hash = 0;
-            for (var i = 0, len=this.length; i < len; i++) {
-                _char = this.charCodeAt(i);
-                hash = 31*hash + _char;
-                hash = hash & hash; // Convert to 32bit integer
+    <script type="text/javascript">
+        function getsearchvalue(id) {
+            if (event.keyCode == 13) {
+                var tempcontent = document.getElementById(id).value;
+                window.location = '/search/searchmain/?page=0&searchcontent=' + tempcontent;
             }
-            hash = hash & 0x7fffffff;
+            //
         }
-        this.__hash__ = hash;
 
-        return this.__hash__; 
-    };
+        var REGX_HTML_ENCODE = /"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g;
+
+        var REGX_HTML_DECODE = /&\w+;|&#(\d+);/g;
+
+        var REGX_TRIM = /(^\s*)|(\s*$)/g;
+
+        var HTML_DECODE = {
+            "&lt;": "<",
+            "&gt;": ">",
+            "&amp;": "&",
+            "&nbsp;": " ",
+            "&quot;": "\"",
+            "©": ""
+
+            // Add more
+        };
+
+        var encodeHtml = function (s) {
+            s = (s != undefined) ? s : this.toString();
+            return (typeof s != "string") ? s :
+                    s.replace(REGX_HTML_ENCODE,
+                            function ($0) {
+                                var c = $0.charCodeAt(0), r = ["&#"];
+                                c = (c == 0x20) ? 0xA0 : c;
+                                r.push(c);
+                                r.push(";");
+                                return r.join("");
+                            });
+        };
+
+        var decodeHtml = function (s) {
+            var HTML_DECODE = HTML_DECODE;
+
+            s = (s != undefined) ? s : s.toString();
+            return (typeof s != "string") ? s :
+                    s.replace(REGX_HTML_DECODE,
+                            function ($0, $1) {
+                                var c = HTML_DECODE[$0];
+                                if (c == undefined) {
+                                    // Maybe is Entity Number
+                                    if (!isNaN($1)) {
+                                        c = String.fromCharCode(($1 == 160) ? 32 : $1);
+                                    } else {
+                                        c = $0;
+                                    }
+                                }
+                                return c;
+                            });
+            return s;
+        };
+
+        var trim = function (s) {
+            s = (s != undefined) ? s : this.toString();
+            return (typeof s != "string") ? s :
+                    s.replace(REGX_TRIM, "");
+        };
 
 
-
-
-
-var currpage=1;
-var pagesize=0;
-var nowpage=0;
-var taskid=''
-var clinckitem=0;
-var xmlhttp;
-var clinckdata='';
- encodeHtml = function(s){
-      return (typeof s != "string") ? s :
-          s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
-                    function($0){
-                        var c = $0.charCodeAt(0), r = ["&#"];
-                        c = (c == 0x20) ? 0xA0 : c;
-                        r.push(c); r.push(";");
-                        return r.join("");
-                    });
-  };
-function changtext(k,i){
-
-    clinckitem=i;
-    var tempstr='';
-      //var json = eval('(' + clinckdata.ports[clinckitem].script + ')'); 
-      //alert((json['http-title']));
-      if(k==1){
-       tempstr=clinckdata.ports[clinckitem].script;
-          document.getElementById("scriptdetail").innerHTML=tempstr;
-      }
-         if(k==2){
-             tempstr=clinckdata.ports[clinckitem].detail;
-              document.getElementById("scriptdetail").innerHTML=tempstr;
+        var hashCode = function () {
+            var hash = this.__hash__, _char;
+            if (hash == undefined || hash == 0) {
+                hash = 0;
+                for (var i = 0, len = this.length; i < len; i++) {
+                    _char = this.charCodeAt(i);
+                    hash = 31 * hash + _char;
+                    hash = hash & hash; // Convert to 32bit integer
+                }
+                hash = hash & 0x7fffffff;
             }
-                if(k==3){
-             tempstr=clinckdata.ports[clinckitem].hackinfo;
-              document.getElementById("scriptdetail").innerHTML=tempstr;
+            this.__hash__ = hash;
+
+            return this.__hash__;
+        };
+
+
+        var currpage = 1;
+        var pagesize = 0;
+        var nowpage = 0;
+        var taskid = ''
+        var clinckitem = 0;
+        var xmlhttp;
+        var clinckdata = '';
+        encodeHtml = function (s) {
+            return (typeof s != "string") ? s :
+                    s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
+                            function ($0) {
+                                var c = $0.charCodeAt(0), r = ["&#"];
+                                c = (c == 0x20) ? 0xA0 : c;
+                                r.push(c);
+                                r.push(";");
+                                return r.join("");
+                            });
+        };
+        function changtext(k, i) {
+
+            clinckitem = i;
+            var tempstr = '';
+            //var json = eval('(' + clinckdata.ports[clinckitem].script + ')');
+            //alert((json['http-title']));
+            if (k == 1) {
+                tempstr = clinckdata.ports[clinckitem].script;
+                document.getElementById("scriptdetail").innerHTML = tempstr;
             }
-}
-  function GetXmlHttp(xmlhttp){
-            if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+            if (k == 2) {
+                tempstr = clinckdata.ports[clinckitem].detail;
+                document.getElementById("scriptdetail").innerHTML = tempstr;
+            }
+            if (k == 3) {
+                tempstr = clinckdata.ports[clinckitem].hackinfo;
+                document.getElementById("scriptdetail").innerHTML = tempstr;
+            }
+        }
+        function GetXmlHttp(xmlhttp) {
+            if (window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
             {
-                xmlhttp=new XMLHttpRequest();
+                xmlhttp = new XMLHttpRequest();
             }
-            else if(window.ActiveXObject) //IE浏览器用activexobject对象创建
+            else if (window.ActiveXObject) //IE浏览器用activexobject对象创建
             {
 
-                try{
+                try {
                     xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
-                }catch(e){
-                    try{
+                } catch (e) {
+                    try {
                         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }catch(e){
+                    } catch (e) {
 
 
                     }
@@ -483,216 +476,224 @@ function changtext(k,i){
             }
             return xmlhttp;
         }
- function loadiptask() {
-            xmlhttp= GetXmlHttp(xmlhttp);
-             taskid="{{taskid}}";
+        function loadiptask() {
+            xmlhttp = GetXmlHttp(xmlhttp);
+            taskid = "{{taskid}}";
 
-            var str='';
-            str='taskid='+taskid;
+            var str = '';
+            str = 'taskid=' + taskid;
 
-            xmlhttp.open("POST","/nmaptool/taskdetail/eachtask/",false);
+            xmlhttp.open("POST", "/nmaptool/taskdetail/eachtask/", false);
             xmlhttp.onreadystatechange = callback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send(str);
         }
-        function callback(){
+        function callback() {
 
-            if(xmlhttp.readyState!=4){
+            if (xmlhttp.readyState != 4) {
 
-                document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:*****</h3><span class=\"area\" >加载中</span>";
-                 document.getElementById("hostinfo").innerHTML="<p >无</p>";
-                
+                document.getElementById("ipinfo").innerHTML = "<h3 class=\"name\" >IP:*****</h3><span class=\"area\" >加载中</span>";
+                document.getElementById("hostinfo").innerHTML = "<p >无</p>";
+
             }
-            else{
+            else {
 
-                if(xmlhttp.status == 200){
+                if (xmlhttp.status == 200) {
 
-                    var a=xmlhttp.responseText;
+                    var a = xmlhttp.responseText;
                     ipshow(a);
                 }
             }
         }
-        function ipshow(a){
-            var data2=JSON.parse(a);
-            clinckdata=data2;
-                var Active='';
-                var labelstatus=''
-  
-                                switch(data2.jobstate){
-                        case '1':Active='未启动';labelstatus='default';break;
-                        case '2':Active='正在排队';labelstatus='info';break;
-                        case '3':Active='正在执行';labelstatus='primary';break;
-                        case '4':Active='挂起';labelstatus='warning';break;
-                        case '5':Active='已完成';labelstatus='success';break;
-                        case '6':Active='已终止';labelstatus='danger';break;
-                        default:Active='未知';labelstatus='danger';break;
-                     }
-            if (data2.result=='0'){
-                    document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:*****</h3><span class=\"area\" >没有该任务</span>";
-            
+        function ipshow(a) {
+            var data2 = JSON.parse(a);
+            clinckdata = data2;
+            var Active = '';
+            var labelstatus = ''
+
+            switch (data2.jobstate) {
+                case '1':
+                    Active = '未启动';
+                    labelstatus = 'default';
+                    break;
+                case '2':
+                    Active = '正在排队';
+                    labelstatus = 'info';
+                    break;
+                case '3':
+                    Active = '正在执行';
+                    labelstatus = 'primary';
+                    break;
+                case '4':
+                    Active = '挂起';
+                    labelstatus = 'warning';
+                    break;
+                case '5':
+                    Active = '已完成';
+                    labelstatus = 'success';
+                    break;
+                case '6':
+                    Active = '已终止';
+                    labelstatus = 'danger';
+                    break;
+                default:
+                    Active = '未知';
+                    labelstatus = 'danger';
+                    break;
             }
-            else if(data2.ipstate=='0'){
+            if (data2.result == '0') {
+                document.getElementById("ipinfo").innerHTML = "<h3 class=\"name\" >IP:*****</h3><span class=\"area\" >没有该任务</span>";
 
-                     
-                                document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
-
-            }else{
-                     document.getElementById("ipinfo").innerHTML="<h3 class=\"name\" >IP:"+data2.ip+"</h3> <span class=\"label label-"+labelstatus+"\">"+Active+"</span>";
-                         
-                         
-                           
-                                document.getElementById("hostinfo").innerHTML="<p >供应商:"+data2.ips.vendor+"</p>"+
-                                                                                                                    "<p >操作系统:"+data2.ips.osfamily+"</p>"+
-                                                                                                                    "<p >内核:"+data2.ips.osgen+"</p>"+
-                                                                                                                    "<p >准确度:"+data2.ips.accurate+"</p>"+
-                                                                                                                    "<p >连接状态:"+data2.ips.state+"</p>"+
-                                                                                                                     "<p >域名:<a href=\"http://"+data2.ips.hostname+"\">"+data2.ips.hostname+"</a></p>"+
-                                                                                                                    "<p >上次更新时间:"+data2.ips.updatetime+"</p>";
-                                
-                    //        if(data2.jobstate!='1'){
-       
-                             var datalength=data2.portslength;
-
-                             var pagesize=data2.portspagecount;
-                             var nowpage=data2.portspage;
-                             var ports=data2.ports;
-                             currpage=Number(nowpage)+1;
-                             var bodyhtml = "";
-                             for (var i =0 ;i<datalength;i++){
-                                           
-                                                var msgshow='';
-                                                if (ports[i].detail==null||ports[i].detail=='')
-                                                    {
-
-                                                      msgshow='';
-                                                  }
-                                                 else{
-                                                    if (ports[i].detail.length>30)
-                                                        msgshow=encodeHtml(ports[i].detail.substring(0,30));
-                                                    else
-                                                        msgshow=encodeHtml(ports[i].detail);
-                                                    }
-                                                    var tempscript='';
-                                                      if (ports[i].script==null||ports[i].script=='')
-                                                    {
-
-                                                      tempscript='';
-                                                  }
-                                                 else{
-                                                    if (ports[i].script.length>30)
-                                                        tempscript=encodeHtml(ports[i].script.substring(0,30));
-                                                    else
-                                                        tempscript=encodeHtml(ports[i].script);
-                                                    }
-
-                                                  var temphackinfo='';
-                                                  
-                                                      if (ports[i].hackinfo==null||ports[i].hackinfo=='')
-                                                    {
-
-                                                      temphackinfo='';
-                                                  }
-                                                 else{
-                                                    if (ports[i].hackinfo.length>30)
-                                                        temphackinfo=encodeHtml(ports[i].hackinfo.substring(0,30));
-                                                    else
-                                                        temphackinfo=encodeHtml(ports[i].hackinfo);
-                                                    }
-
-
-
-
-
-
-                                                 bodyhtml+="<tr class=\"first\">"+
-                                                "<td><a href=\"https://www.baidu.com/s?wd=端口 "+ports[i].port+"\" class=\"name\">"+ports[i].port+"</a>"+
-                                                "<span class=\"subtext\">状态:"+ports[i].state+"</span></td>"+
-                                                "<td>"+ports[i].name+"</td>"+
-                                                "<td>"+ports[i].version+"</td>"+
-                                                "<td ><a href=\"https://www.baidu.com/s?wd="+ports[i].product+"\">"+ports[i].product+"</a></td>"+
-                                                "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1,"+i+")\">"+tempscript+"</a></td>"+
-                                                "<td ><a id=\"modal-19991\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(2,"+i+")\">"+msgshow+"</a></td>"+
-                                                "<td ><a id=\"modal-19992\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(3,"+i+")\">"+temphackinfo+"</a></td>"+
-                                                "</tr>";
-                                           
-                                            }
-
-                                  
-                                                document.getElementById("bodyport").innerHTML=bodyhtml;
-var pagehtml="";
-  
-            if(pagesize>0){
-
-
-                    if (currpage <=1) {
-                
-                    pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
-                    
-
-                    
-                     }else {
-              
-                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
-                         pagehtml+= "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
-                         pagehtml+= "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";
-                     }
-                    if(pagesize-currpage==1){
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                      pagehtml+= "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&#8250;</a></li>";
-                     }
-                     else if(pagesize-currpage>=2){
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage+1 ) + ");' href='javascript:void(0);'>"+(currpage+2).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&#8250;</a></li>";
-                     }
-                  
-
-
-                
             }
-
- document.getElementById("page").innerHTML = pagehtml;
-
+            else if (data2.ipstate == '0') {
 
 
+                document.getElementById("ipinfo").innerHTML = "<h3 class=\"name\" >IP:" + data2.ip + "</h3> <span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
 
-                            /*}
-                            else{
-                                 document.getElementById("bodyport").innerHTML="没有相关信息";
-                            }*/
-  
+            } else {
+                document.getElementById("ipinfo").innerHTML = "<h3 class=\"name\" >IP:" + data2.ip + "</h3> <span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
+
+
+                document.getElementById("hostinfo").innerHTML = "<p >供应商:" + data2.ips.vendor + "</p>" +
+                        "<p >操作系统:" + data2.ips.osfamily + "</p>" +
+                        "<p >内核:" + data2.ips.osgen + "</p>" +
+                        "<p >准确度:" + data2.ips.accurate + "</p>" +
+                        "<p >连接状态:" + data2.ips.state + "</p>" +
+                        "<p >域名:<a href=\"http://" + data2.ips.hostname + "\">" + data2.ips.hostname + "</a></p>" +
+                        "<p >上次更新时间:" + data2.ips.updatetime + "</p>";
+
+                //        if(data2.jobstate!='1'){
+
+                var datalength = data2.portslength;
+
+                var pagesize = data2.portspagecount;
+                var nowpage = data2.portspage;
+                var ports = data2.ports;
+                currpage = Number(nowpage) + 1;
+                var bodyhtml = "";
+                for (var i = 0; i < datalength; i++) {
+
+                    var msgshow = '';
+                    if (ports[i].detail == null || ports[i].detail == '') {
+
+                        msgshow = '';
                     }
-        }
-           function loadtask(currpage) {
-            xmlhttp= GetXmlHttp(xmlhttp);
-            var number=currpage;
-            var str='';
-            str='page='+number+'&taskid='+taskid;
-            nowpage=currpage;
-            xmlhttp.open("POST","/nmaptool/taskdetail/eachtask/",false);
-            xmlhttp.onreadystatechange = portcallback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-        }
-        function portcallback(){
+                    else {
+                        if (ports[i].detail.length > 30)
+                            msgshow = encodeHtml(ports[i].detail.substring(0, 30));
+                        else
+                            msgshow = encodeHtml(ports[i].detail);
+                    }
+                    var tempscript = '';
+                    if (ports[i].script == null || ports[i].script == '') {
 
-            if(xmlhttp.readyState!=4){
+                        tempscript = '';
+                    }
+                    else {
+                        if (ports[i].script.length > 30)
+                            tempscript = encodeHtml(ports[i].script.substring(0, 30));
+                        else
+                            tempscript = encodeHtml(ports[i].script);
+                    }
+
+                    var temphackinfo = '';
+
+                    if (ports[i].hackinfo == null || ports[i].hackinfo == '') {
+
+                        temphackinfo = '';
+                    }
+                    else {
+                        if (ports[i].hackinfo.length > 30)
+                            temphackinfo = encodeHtml(ports[i].hackinfo.substring(0, 30));
+                        else
+                            temphackinfo = encodeHtml(ports[i].hackinfo);
+                    }
+
+
+                    bodyhtml += "<tr class=\"first\">" +
+                            "<td><a href=\"https://www.baidu.com/s?wd=端口 " + ports[i].port + "\" class=\"name\">" + ports[i].port + "</a>" +
+                            "<span class=\"subtext\">状态:" + ports[i].state + "</span></td>" +
+                            "<td>" + ports[i].name + "</td>" +
+                            "<td>" + ports[i].version + "</td>" +
+                            "<td ><a href=\"https://www.baidu.com/s?wd=" + ports[i].product + "\">" + ports[i].product + "</a></td>" +
+                            "<td ><a id=\"modal-19990\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(1," + i + ")\">" + tempscript + "</a></td>" +
+                            "<td ><a id=\"modal-19991\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(2," + i + ")\">" + msgshow + "</a></td>" +
+                            "<td ><a id=\"modal-19992\"  data-toggle=\"modal\" href=\"#modal-container-19990\" role=\"button\" onclick=\"changtext(3," + i + ")\">" + temphackinfo + "</a></td>" +
+                            "</tr>";
+
+                }
+
+
+                document.getElementById("bodyport").innerHTML = bodyhtml;
+                var pagehtml = "";
+
+                if (pagesize > 0) {
+
+
+                    if (currpage <= 1) {
+
+                        pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+
+
+                    } else {
+
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
+                        pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
+                    }
+                    if (pagesize - currpage == 1) {
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                    }
+                    else if (pagesize - currpage >= 2) {
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage + 1 ) + ");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
+                        pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                    }
+
+
+                }
+
+                document.getElementById("page").innerHTML = pagehtml;
+
+
+                /*}
+                 else{
+                 document.getElementById("bodyport").innerHTML="没有相关信息";
+                 }*/
+
+            }
+        }
+        function loadtask(currpage) {
+            xmlhttp = GetXmlHttp(xmlhttp);
+            var number = currpage;
+            var str = '';
+            str = 'page=' + number + '&taskid=' + taskid;
+            nowpage = currpage;
+            xmlhttp.open("POST", "/nmaptool/taskdetail/eachtask/", false);
+            xmlhttp.onreadystatechange = portcallback;
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send(str);
+        }
+        function portcallback() {
+
+            if (xmlhttp.readyState != 4) {
 
 
             }
-            else{
+            else {
 
-                if(xmlhttp.status == 200){
+                if (xmlhttp.status == 200) {
 
-                    var a=xmlhttp.responseText;
+                    var a = xmlhttp.responseText;
                     ipshow(a);
                 }
             }
         }
 
-</script>
+    </script>
 
-	<!-- scripts -->
+    <!-- scripts -->
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="/static/nmaptool/js/bootstrap.min.js"></script>

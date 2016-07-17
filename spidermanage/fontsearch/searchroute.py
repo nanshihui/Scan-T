@@ -106,6 +106,7 @@ def detailpage(request):
             response_data['portspagecount']=portpagecount
             response_data['portspage']=page
             response_data['username']=username
+
     try:
 
         return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")

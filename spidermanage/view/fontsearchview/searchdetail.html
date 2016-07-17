@@ -1,134 +1,132 @@
 <!DOCTYPE html>
 
-<html lang="zh-CN"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>搜索详情</title>
-<meta name="description" content="详细内容检索">
-<meta name="keywords" content="">
-<meta name="author" content="sherwel">
-<link href="/static/fontsearch/css/bootstrap.min.css" rel="stylesheet">
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>搜索详情</title>
+    <meta name="description" content="详细内容检索">
+    <meta name="keywords" content="">
+    <meta name="author" content="sherwel">
+    <link href="/static/fontsearch/css/bootstrap.min.css" rel="stylesheet">
 
-<link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
-<!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-<style type="text/css">
-.highlight {
-    background-color: #fff34d;
-    -moz-border-radius: 5px; /* FF1+ */
-    -webkit-border-radius: 5px; /* Saf3-4 */
-    border-radius: 5px; /* Opera 10.5, IE 9, Saf5, Chrome */
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* FF3.5+ */
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Saf3.0+, Chrome */
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Opera 10.5+, IE 9.0 */
-}
+    <link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
+    <!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <style type="text/css">
+        .highlight {
+            background-color: #fff34d;
+            -moz-border-radius: 5px; /* FF1+ */
+            -webkit-border-radius: 5px; /* Saf3-4 */
+            border-radius: 5px; /* Opera 10.5, IE 9, Saf5, Chrome */
+            -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* FF3.5+ */
+            -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Saf3.0+, Chrome */
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7); /* Opera 10.5+, IE 9.0 */
+        }
 
-.highlight {
-    padding:1px 4px;
-    margin:0 -4px;
-}
-pre {
-/*white-space: pre-wrap;
-word-wrap: break-word;*/
+        .highlight {
+            padding: 1px 4px;
+            margin: 0 -4px;
+        }
 
-/*white-space: pre-wrap;       
-white-space: -moz-pre-wrap;  
-white-space: -pre-wrap;      
-white-space: -o-pre-wrap;    
-word-wrap: break-word;   */   
+        pre {
+            /*white-space: pre-wrap;
+            word-wrap: break-word;*/
 
+            /*white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;   */
 
-
-}
+        }
     </style>
 
 
+    <script src="/static/fontsearch/js/pace.js"></script>
+    <!--<link href="/static/fontsearch/css/paceblue/pace-theme-minimal.css"  rel="stylesheet" />-->
+    <link href="/static/fontsearch/css/paceblue/pace-theme-flash.css" rel="stylesheet"/>
 
+</head>
+<body class="home-template" ryt11928="1" onload="searchdetail('');">
 
+<header class="site-header jumbotron">
+    {%if username != ''%}
+    <div class="site-nav"><a href="/nmaptool/">{{username}}</a> <span>/</span> <a href="#">关于</a>
+        {%else%}
+        <div class="site-nav"><a href="/nmaptool/login">登陆</a> <span>/</span> <a href="#">关于</a>
+            {% endif %}
 
-     <script src="/static/fontsearch/js/pace.js"></script>
-  <!--<link href="/static/fontsearch/css/paceblue/pace-theme-minimal.css"  rel="stylesheet" />-->
-      <link href="/static/fontsearch/css/paceblue/pace-theme-flash.css"  rel="stylesheet" />
-
-    </head>
-    <body class="home-template" ryt11928="1" onload="searchdetail('');">
-
-    	<header class="site-header jumbotron">
-        {%if username != ''%}
-<div class="site-nav"><a  href="/nmaptool/"  >{{username}}</a> <span>/</span> <a href="#">关于</a>
-{%else%}
-<div class="site-nav"><a  href="/nmaptool/login"  >登陆</a> <span>/</span> <a href="#">关于</a>
-{% endif %}
-    		
-    		</div>
-    		<div class="container">
-    			<div class="row">
-    				<div class="col-xs-12">
-    					<h1>Scan-T</h1>
-                                                            <p>稳定、快速、免费的主机搜索服务<br>
-                                                                <span class="package-amount">共收录了 <strong>大量</strong> 主机指纹</span>
-                                                            </p>
-                                                            <div   role="search"  >
-                                                                <div class="form-group">
-                                                                  <input type="hidden" id="pagenum" name="pagenum" value={{page}}>
-                                                                    <input type="text"  id="searchcontent" class="form-control search clearable" placeholder="搜索组件，例如：MySQL" value={{data}}> 
-                                                                    <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
-                                                                    
-                                                                </div>
-                                                            </div>
-    				</div>
-    			</div>
-    		</div>
-    </div>
-            </div>
-    	</header>
-        <div class="mostused-packages well well-sm text-center hidden-xs hidden-sm"></div>
-        <div class="container protocal-notice">
+        </div>
+        <div class="container">
             <div class="row">
-                <div class="col-xs-12 hidden-xs">
+                <div class="col-xs-12">
+                    <h1>Scan-T</h1>
+                    <p>稳定、快速、免费的主机搜索服务<br>
+                        <span class="package-amount">共收录了 <strong>大量</strong> 主机指纹</span>
+                    </p>
+                    <div role="search">
+                        <div class="form-group">
+                            <input type="hidden" id="pagenum" name="pagenum" value={{page}}>
+                            <input type="text" id="searchcontent" class="form-control search clearable"
+                                   placeholder="搜索组件，例如：MySQL" value={{data}}>
+                            <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
 
-
-
-    	</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    <main >
-<!--   <  main    class="packages-list-container" id="all-packages"> -->
-    	<div class="container">
-    		<div class="list-group packages" id ="resultinfo">
-                                      
-     
-                                        </div>
-                                    </div>
+    </div>
+    </div>
+</header>
+<div class="mostused-packages well well-sm text-center hidden-xs hidden-sm"></div>
+<div class="container protocal-notice">
+    <div class="row">
+        <div class="col-xs-12 hidden-xs">
 
-                                </main>
-                                <div class="container">
-                                     <ul class="pagination pull-right " id="page">
-                                
-                                       </ul>
-                                               <ul class="pagination pull-left " id="pagesize">
-                  
-                                       </ul>
-                                   </div>
+
+        </div>
+    </div>
+</div>
+<main>
+    <!--   <  main    class="packages-list-container" id="all-packages"> -->
+    <div class="container">
+        <div class="list-group packages" id="resultinfo">
+
+
+        </div>
+    </div>
+
+</main>
+<div class="container">
+    <ul class="pagination pull-right " id="page">
+
+    </ul>
+    <ul class="pagination pull-left " id="pagesize">
+
+    </ul>
+</div>
 <footer id="footer" class="footer hidden-print">
     <div class="container">
         <div class="row">
-        <div class="about footer-col col-md-5 col-sm-12" id="about">
-            <h4>关于 Scan-T</h4>
-            <p> Scan-T 是 <a href="https://github.com/nanshihui/toolforspider" target="_blank" >独立开发者</a>支持并维护的开源项目免费 主机扫描服务，致力于成为 Bootstrap、jQuery、Angular 一样优秀的开源项目提供稳定、快速的免费主机扫描服务。Scan-T所收录的主机资源主要来源于
-             <a href="https://github.com/nanshihui/toolforspider" target="_blank" >实时扫描</a> 仓库。</p>
-             <p></p>
-             <p>反馈或建议请发送邮件至：nanshihui@gmail.com</p>
-         </div>
-     </div>
-         </div>
- </footer>
+            <div class="about footer-col col-md-5 col-sm-12" id="about">
+                <h4>关于 Scan-T</h4>
+                <p> Scan-T 是 <a href="https://github.com/nanshihui/toolforspider" target="_blank">独立开发者</a>支持并维护的开源项目免费
+                    主机扫描服务，致力于成为 Bootstrap、jQuery、Angular 一样优秀的开源项目提供稳定、快速的免费主机扫描服务。Scan-T所收录的主机资源主要来源于
+                    <a href="https://github.com/nanshihui/toolforspider" target="_blank">实时扫描</a> 仓库。</p>
+                <p></p>
+                <p>反馈或建议请发送邮件至：nanshihui@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
 <script type="text/javascript">
 
- function show(box) {
-       // var box = document.getElementById("box");
+    function show(box) {
+        // var box = document.getElementById("box");
         var text = box.innerHTML;
         var newBox = document.createElement("div");
         var btn = document.createElement("a");
@@ -153,283 +151,280 @@ word-wrap: break-word;   */
     for (var i = 0; i < divs.length; i++) {
         if (divs[i].className == 'box') show(divs[i]);
     }
-function sendsearch(issearch,num){
+    function sendsearch(issearch, num) {
 
-    content=document.getElementById('searchcontent').value;
-    if (issearch=='2'||content==""){
-        document.getElementById('searchcontent').value="";
-    }
-    else{
-        searchdetail(0);
-    }
-    
-}
-
-var currpage=1;
-var pagesize=0;
-var nowpage=0;
-var taskid=''
-var clinckitem=0;
-var xmlhttp;
-var clinckdata='';
-
-var username="{{username}}"
-function changtext(k,i){
-
-    clinckitem=i;
-    var tempstr='';
-      if(k==1){
-       tempstr=clinckdata.ports[clinckitem].script;
-          document.getElementById("scriptdetail").innerHTML=tempstr;
-      }
-        else{
-             tempstr=clinckdata.ports[clinckitem].head+clinckdata.ports[clinckitem].detail;
-              document.getElementById("scriptdetail").innerHTML=tempstr;
-            }
-}
-  function GetXmlHttp(xmlhttp){
-            if(window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
-            {
-                xmlhttp=new XMLHttpRequest();
-            }
-            else if(window.ActiveXObject) //IE浏览器用activexobject对象创建
-            {
-
-                try{
-                    xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
-                }catch(e){
-                    try{
-                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                    }catch(e){
-
-
-                    }
-                }
-            }
-            return xmlhttp;
+        content = document.getElementById('searchcontent').value;
+        if (issearch == '2' || content == "") {
+            document.getElementById('searchcontent').value = "";
         }
- function searchdetail(currpage) {
-             
-            var number='0'
-            if (currpage==""&&typeof(currpage)!='number'){
-
-            currpage=document.getElementById("pagenum").value;
-            }
-            xmlhttp= GetXmlHttp(xmlhttp);
-             content=document.getElementById("searchcontent").value;
-             number=currpage;
-            var str='';
-            nowpage=currpage;
-
-            str='content='+content+'&page='+number;
-            
-            xmlhttp.open("POST","/search/searchdetail/",true);
-            xmlhttp.onreadystatechange = callback;
-            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-            xmlhttp.send(str);   
-            scrollto(1200);
-            Pace.track()
-
-            
+        else {
+            searchdetail(0);
         }
-        function callback(){
 
-            if(xmlhttp.readyState!=4){
-               
-               
-            }
-            else{
+    }
 
-                if(xmlhttp.status == 200){
+    var currpage = 1;
+    var pagesize = 0;
+    var nowpage = 0;
+    var taskid = ''
+    var clinckitem = 0;
+    var xmlhttp;
+    var clinckdata = '';
 
-                    var a=xmlhttp.responseText;
+    var username = "{{username}}"
+    function changtext(k, i) {
 
-                     searchresult(a);
+        clinckitem = i;
+        var tempstr = '';
+        if (k == 1) {
+            tempstr = clinckdata.ports[clinckitem].script;
+            document.getElementById("scriptdetail").innerHTML = tempstr;
+        }
+        else {
+            tempstr = clinckdata.ports[clinckitem].head + clinckdata.ports[clinckitem].detail;
+            document.getElementById("scriptdetail").innerHTML = tempstr;
+        }
+    }
+    function GetXmlHttp(xmlhttp) {
+        if (window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+        {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) //IE浏览器用activexobject对象创建
+        {
+
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+
+
                 }
             }
         }
- function searchresult(a){
-            var data2=JSON.parse(a);
-            clinckdata=data2;
-                var Active='';
-            
-            if (data2.result=='0'){
-                    document.getElementById("resultinfo").innerHTML="没有相关信息";
-            
-            }
-     else{
-            
-                         
-                         
-  
-                             var datalength=data2.portslength;
-                             var pagesize=data2.portspagecount;
-                             var nowpage=data2.portspage;
-                             var ports=data2.ports;
-                             currpage=Number(nowpage)+1;
-                             var bodyhtml = "";
-                             for (var i =0 ;i<datalength;i++){
-                                              var potocalname='';
-                                              if(ports[i].name==null){
-                                                switch(ports[i].port){
-                                                  case '443':potocalname='https';break;
-                                                  case '21':potocalname='ftp';break;
-                                                  default:potocalname='http';break;
-                                                }
-                                              }
-                                              else{
-                                                 potocalname=ports[i].name;
-                                              }
-                                                 bodyhtml+="<div class=\"package list-group-item\" data-library-name=\"bootstrap\" target=\"_blank\" ><div class=\"row\"><div class=\"col-md-3\">"+
-                                                                    "<a  target=\"_black\" href=\""+potocalname+"://"+ports[i].ip+':'+ports[i].port+"\"<h4 class=\"package-name\">"+(ports[i].ip==null?'':ports[i].ip)+"</h4><p></p></a>"+
-                                                                    "<p><span class=\"subtext\">端口:"+(ports[i].port==null?'':ports[i].port)+"</span></p>"+
-                                                                    "<p><span class=\"subtext\">端口名:"+(ports[i].name==null?'':ports[i].name)+"</span></p>"+
-                                                                    "<p><span class=\"subtext\">端口产品:"+(ports[i].product==null?'':ports[i].product)+"</span></p>"+
-                                                                    "<p><span class=\"subtext\">端口版本:"+(ports[i].version==null?'':ports[i].version)+"</span></p>"+
-                                                                    "<p><span class=\"subtext\">主机位置:"+(ports[i].city==null?'':ports[i].city)+"</span></p>"+
-                                                                    "<p><span class=\"subtext\">更新时间:"+(ports[i].timesearch==null?'':ports[i].timesearch)+"</span></p>"+
+        return xmlhttp;
+    }
+    function searchdetail(currpage) {
 
-                                                                    "</div><div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">概要信息：</p>";
-                                                
-                                                     
-                                                      
-                                                               
-                                                                      if    (data2.username=='admin'){
-                                                                bodyhtml+="<div class=\"box\"><pre>"+(ports[i].script==null&&ports[i].hackinfo==null&&ports[i].disclosure==null?'无':encodeHtml(decodebase64(ports[i].script)+'\nhackinfo:\n '+ports[i].hackinfo+' \n disclosed:\n '+ports[i].disclosure).toString())+"</pre></div></div>"+
-                                                                    "<div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">详细信息：</p>";
-                                       
+        var number = '0'
+        if (currpage == "" && typeof(currpage) != 'number') {
+
+            currpage = document.getElementById("pagenum").value;
+        }
+        xmlhttp = GetXmlHttp(xmlhttp);
+        content = document.getElementById("searchcontent").value;
+        number = currpage;
+        var str = '';
+        nowpage = currpage;
+
+        str = 'content=' + content + '&page=' + number;
+
+        xmlhttp.open("POST", "/search/searchdetail/", true);
+        xmlhttp.onreadystatechange = callback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+        scrollto(1200);
+        Pace.track()
 
 
-                                                         }
-                                                         else{
-                                                                                   bodyhtml+="<pre>"+(ports[i].script==null?'无':encodeHtml(decodebase64(ports[i].script)).toString())+"</pre></div>"+
-                                                                    "<div class=\"col-md-9 \">"+
-                                                                    "<p class=\"package-description\">详细信息：</p>";
-                                                         }
-                                                            bodyhtml+="<div class=\"box\"><pre> "+(ports[i].head==null&&ports[i].detail==null?'无':encodeHtml(ports[i].head+ports[i].detail).toString())+"</pre></div></div></div></div> ";        
-                                                                   
+    }
+    function callback() {
 
-                                           // xmp
-                                            }
+        if (xmlhttp.readyState != 4) {
 
-
-                                                document.getElementById("resultinfo").innerHTML=bodyhtml;
-                                  
-                                                  var ccontent=document.getElementById("searchcontent").value;
-
-                                                  $('body').highlight( ccontent );
-
-
-                                                // var hl = new Highlighter();  
-                                                //                hl.highlight(document.body,ccontent);  
-                                                    var divs = document.getElementsByTagName('div');
-                                                     for (var i = 0; i < divs.length; i++) {
-                                                                       if (divs[i].className == 'box') show(divs[i]);
-                                                               }
-                                                var pagehtml="";
-
-                                                if(pagesize>0){
-                                               
-                                                      if (currpage <=1) {
-                                                          
-                          pagehtml+= "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
-                    
-
-                    
-                                 }else {
-                             
-                         pagehtml+= "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
-                         pagehtml+= "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>"+(currpage-1).toString()+"</a></li>";
-                         pagehtml+= "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>"+currpage.toString()+"</a></li>";
-                     }
-                    if(pagesize-currpage==1){
-                     pagehtml+= "<li ><a onclick='searchdetail(" + (currpage).toString() + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                      pagehtml+= "<li ><a onclick='searchdetail(" + (currpage).toString() + ");' href='javascript:void(0);'>&#8250;</a></li>";
-                     }
-                     else if(pagesize-currpage>=2){
-                     pagehtml+= "<li ><a onclick='searchdetail(" + (currpage ) + ");' href='javascript:void(0);'>"+(currpage+1).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='searchdetail(" + (currpage+1 ) + ");' href='javascript:void(0);'>"+(currpage+2).toString()+"</a></li>";
-                     pagehtml+= "<li ><a onclick='searchdetail(" + (currpage ) + ");' href='javascript:void(0);'>&#8250;</a></li>";
-                     }
-                  
-
-
-                
-            }
-
- document.getElementById("page").innerHTML = pagehtml;
-document.getElementById("pagesize").innerHTML = "共"+pagesize+"页";
-
-
-
-  
-                    }
-
-            scrollto(0);
 
         }
-        document.onkeydown = function(e) {
- //捕捉回车事件
- var ev = (typeof event!= 'undefined') ? window.event : e;
- if(ev.keyCode == 13 && document.activeElement.id == "searchcontent") {
-  searchdetail(0);
- }
-}
+        else {
 
- function decodebase64(base64Str) {
-     var unicode= BASE64.decoder(base64Str);//返回会解码后的unicode码数组。
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+
+                searchresult(a);
+            }
+        }
+    }
+    function searchresult(a) {
+        var data2 = JSON.parse(a);
+        clinckdata = data2;
+        var Active = '';
+
+        if (data2.result == '0') {
+            document.getElementById("resultinfo").innerHTML = "没有相关信息";
+
+        }
+        else {
+
+
+            var datalength = data2.portslength;
+            var pagesize = data2.portspagecount;
+            var nowpage = data2.portspage;
+            var ports = data2.ports;
+            currpage = Number(nowpage) + 1;
+            var bodyhtml = "";
+            for (var i = 0; i < datalength; i++) {
+
+                var potocalname = '';
+                if (ports[i].name == null) {
+                    switch (ports[i].port) {
+                        case '443':
+                            potocalname = 'https';
+                            break;
+                        case '21':
+                            potocalname = 'ftp';
+                            break;
+                        default:
+                            potocalname = 'http';
+                            break;
+                    }
+                }
+                else {
+                    potocalname = ports[i].name;
+                }
+
+                bodyhtml += "<div class=\"package list-group-item\" data-library-name=\"bootstrap\" target=\"_blank\" ><div class=\"row\"><div class=\"col-md-3\">" +
+                        "<a  target=\"_black\" href=\"" + potocalname + "://" + ports[i].ip + ':' + ports[i].port + "\"<h4 class=\"package-name\">" + (ports[i].ip == null ? '' : ports[i].ip) + "</h4><p></p></a>" +
+                        "<p><span class=\"subtext\">端口:" + (ports[i].port == null ? '' : ports[i].port) + "</span></p>" +
+                        "<p><span class=\"subtext\">端口名:" + (ports[i].name == null ? '' : ports[i].name) + "</span></p>" +
+                        "<p><span class=\"subtext\">端口产品:" + (ports[i].product == null ? '' : ports[i].product) + "</span></p>" +
+                        "<p><span class=\"subtext\">端口版本:" + (ports[i].version == null ? '' : ports[i].version) + "</span></p>" +
+                        "<p><span class=\"subtext\">主机位置:" + (ports[i].city == null ? '' : ports[i].city) + "</span></p>" +
+                        "<p><span class=\"subtext\">更新时间:" + (ports[i].timesearch == null ? '' : ports[i].timesearch) + "</span></p>" +
+
+                        "</div><div class=\"col-md-9 \">" +
+                        "<p class=\"package-description\">概要信息：</p>";
+
+                if (data2.username == 'admin') {
+                    bodyhtml += "<div class=\"box\"><pre>" + (ports[i].script == null && ports[i].hackinfo == null && ports[i].disclosure == null ? '无' : encodeHtml(utf8to16(decode64(ports[i].script)) + '\nhackinfo:\n ' + ports[i].hackinfo + ' \n disclosed:\n ' + ports[i].disclosure).toString()) + "</pre></div></div>" +
+                            "<div class=\"col-md-9 \">" +
+                            "<p class=\"package-description\">详细信息：</p>";
+
+
+                }
+                else {
+
+                    bodyhtml += "<div class=\"box\"><pre>" + (ports[i].script == null ? '无' : encodeHtml(utf8to16(decode64(ports[i].script))).toString()) + "</pre></div></div>" +
+                            "<div class=\"col-md-9 \">" +
+                            "<p class=\"package-description\">详细信息：</p>";
+                }
+                bodyhtml += "<div class=\"box\"><pre> " + (ports[i].head == null && ports[i].detail == null ? '无' : encodeHtml(ports[i].head + ports[i].detail).toString()) + "</pre></div></div></div></div> ";
+
+
+                // xmp
+            }
+
+
+            document.getElementById("resultinfo").innerHTML = bodyhtml;
+
+            var ccontent = document.getElementById("searchcontent").value;
+
+            $('body').highlight(ccontent);
+
+
+            // var hl = new Highlighter();
+            //                hl.highlight(document.body,ccontent);
+            var divs = document.getElementsByTagName('div');
+            for (var i = 0; i < divs.length; i++) {
+                if (divs[i].className == 'box') show(divs[i]);
+            }
+            var pagehtml = "";
+
+            if (pagesize > 0) {
+
+                if (currpage <= 1) {
+
+                    pagehtml += "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+
+
+                } else {
+
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&#8249;</a></li>";
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
+                    pagehtml += "<li class=\"active\"><a onclick='searchdetail(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
+                }
+                if (pagesize - currpage == 1) {
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage).toString() + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage).toString() + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                }
+                else if (pagesize - currpage >= 2) {
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage ) + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage + 1 ) + ");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
+                    pagehtml += "<li ><a onclick='searchdetail(" + (currpage ) + ");' href='javascript:void(0);'>&#8250;</a></li>";
+                }
+
+
+            }
+
+            document.getElementById("page").innerHTML = pagehtml;
+            document.getElementById("pagesize").innerHTML = "共" + pagesize + "页";
+
+
+        }
+
+        scrollto(0);
+
+    }
+    document.onkeydown = function (e) {
+        //捕捉回车事件
+        var ev = (typeof event != 'undefined') ? window.event : e;
+        if (ev.keyCode == 13 && document.activeElement.id == "searchcontent") {
+            searchdetail(0);
+        }
+    }
+
+    function decodebase64(base64Str) {
+        var unicode = BASE64.decoder(base64Str);//返回会解码后的unicode码数组。
 
 //可由下面的代码编码为string
 
-var str = '';
-for(var i = 0 , len =  unicode.length ; i < len ;++i){
-      str += String.fromCharCode(unicode[i]);
-}
+        var str = '';
+        for (var i = 0, len = unicode.length; i < len; ++i) {
+            str += String.fromCharCode(unicode[i]);
+        }
 
-     return str;
- }
-
-
- encodeHtml = function(s){
-      return (typeof s != "string") ? s :
-          s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
-                    function($0){
-                        var c = $0.charCodeAt(0), r = ["&#"];
-                        c = (c == 0x20) ? 0xA0 : c;
-                        r.push(c); r.push(";");
-                        return r.join("");
-                    });
-  };
-
-
-
-      function scrollBodyTopTo(pos) {
-        $("html,body").animate({scrollTop:pos});
+        return str;
     }
-    function scrollto(y)
-    {
+
+
+    encodeHtml = function (s) {
+        return (typeof s != "string") ? s :
+                s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
+                        function ($0) {
+                            var c = $0.charCodeAt(0), r = ["&#"];
+                            c = (c == 0x20) ? 0xA0 : c;
+                            r.push(c);
+                            r.push(";");
+                            return r.join("");
+                        });
+    };
+
+
+    function scrollBodyTopTo(pos) {
+        $("html,body").animate({scrollTop: pos});
+    }
+    function scrollto(y) {
 
 
 
         // $('html,body').animate({scrollTop:$('#intro').offset().top},800);
-       $('html,body').animate({scrollTop:0}, y);
+        $('html,body').animate({scrollTop: 0}, y);
     }
 
 </script>
-       
 
 
-    	<script src="/static/fontsearch/js/jquery.min.js"></script>
-        <script src="/static/fontsearch/js/highlight.js"></script>
-         <script src="/static/fontsearch/js/jbase64.js"></script>
-    	<script src="/static/fontsearch/js/bootstrap.min.js"></script>
-    	 <script src="/static/fontsearch/js/geopattern.min.js"></script>
-    	 <script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
-    	 <script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
-         <script src="/static/fontsearch/js/jquery.scrollTo.js"></script>
-    	 <script src="/static/fontsearch/js/site.min.js"></script>
-             <script src="/static/fontsearch/js/h.js" type="text/javascript"></script>
+<script src="/static/fontsearch/js/jquery.min.js"></script>
+<script src="/static/fontsearch/js/base64.js"></script>
+<script src="/static/fontsearch/js/highlight.js"></script>
+<script src="/static/fontsearch/js/jbase64.js"></script>
+<script src="/static/fontsearch/js/bootstrap.min.js"></script>
+<script src="/static/fontsearch/js/geopattern.min.js"></script>
+<script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
+<script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
+<script src="/static/fontsearch/js/jquery.scrollTo.js"></script>
+<script src="/static/fontsearch/js/site.min.js"></script>
+<script src="/static/fontsearch/js/h.js" type="text/javascript"></script>
 </body>
 </html>
