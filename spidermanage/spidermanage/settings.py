@@ -18,6 +18,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../view').replace('\\','/'),
+
 )
 
 # Quick-start development settings - unsuitable for production

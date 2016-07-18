@@ -15,5 +15,6 @@ class Config(object):
 	usertable='user_table'
 	tasktable='taskdata'
 	iptable='ip_maindata'
+	taskstable = 'tasksdata'
 	
 		

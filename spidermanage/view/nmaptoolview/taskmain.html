@@ -1,0 +1,390 @@
+{% extends 'nmaptoolview/base/base.html' %}
+
+
+{% block bodyinit %}
+<body onload="loadtask(0);">
+{% endblock %}
+
+
+{% block content %}
+
+       <div class="table-products section">
+            <div class="row head">
+                <div class="col-md-12">
+                    <h4>任务信息
+                        <small>概要</small>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row filter-block">
+                <div class="col-md-8 col-md-offset-5">
+                    <div class="ui-select">
+                        <select>
+                            <option>未启动</option>
+                            <option>进行中</option>
+                            <option>已完成</option>
+                            <option>暂停</option>
+                        </select>
+                    </div>
+                    <input type="text" class="search">
+                    <a id="modal-19990" class="btn-flat new-product" data-toggle="modal" href="#modal-container-19990"
+                       role="button">+ 新增任务</a>
+
+                    <div id="modal-container-19990" class="modal  fade" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                    </button>
+                                    <h5 class="modal-title">新增任务</h5>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+
+
+                                        <input type="label" style="border:0px;" class="form-control" value="任务名"/>
+                                        <input type="text" class="form-control" id="jobname"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描地址"/>
+                                        <!--<input type="text" class="form-control" id="jobaddress"/>-->
+                                        <textarea name="jobaddress" id="jobaddress" class="form-control" placeholder="多IP请以逗号隔开,IP段请以-线表示" ></textarea>
+
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描端口"/>
+                                        <!--<input type="text" class="form-control" id="jobport"/>-->
+                                        <textarea name="jobport" id="jobport" class="form-control" placeholder='多端口请以逗号隔开'></textarea>
+
+
+
+                                        <input type="label" style="border:0px;" class="form-control" value="优先级"/>
+                                        <input type="text" class="form-control" id="priority" value="1"/>
+                                        <input type="label" style="border:0px;" class="form-control" value="扫描概要"/>
+                                        <input type="text" class="form-control" id="abstract" value="无"/>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" onclick="createdata()">创建</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <table class="table table-hover" id="tableId">
+                    <thead>
+                    <tr>
+                        <th class="col-md-3">
+                            <input type="checkbox">
+                            任务名
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>
+                            目标地址
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>端口号
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>状态
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="head">
+
+
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination" id="page">
+
+            </ul>
+        </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+<script>
+    var xmlhttp;
+    var message = ''
+    var currpage = 1;
+    var nextpagehtml;
+    var pagesize = 0;
+    var nowpage = 0;
+    var jobs = null;
+    //创建XMLHttpRequest对象
+    function GetXmlHttp(xmlhttp) {
+        if (window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+        {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) //IE浏览器用activexobject对象创建
+        {
+
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+
+
+                }
+            }
+        }
+        return xmlhttp;
+    }
+
+    function loadtask(currpage) {
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var number = currpage;
+        var str = '';
+        str = 'page=' + number + '&username=' + message;
+        nowpage = currpage;
+        xmlhttp.open("POST", "/nmaptool/tasks/taskquery/", false);
+        xmlhttp.onreadystatechange = callback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function callback() {
+
+        if (xmlhttp.readyState != 4) {
+
+            document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>";
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+
+                infoshow(a);
+            }
+        }
+    }
+    function startjob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobstart/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function pausejob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobpause/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+
+    function destroyjob(taskid) {
+        localjobid = jobs[taskid].jobid;
+        xmlhttp = GetXmlHttp(xmlhttp);
+        var str = '';
+        str = 'taskid=' + localjobid;
+        xmlhttp.open("POST", "/nmaptool/jobdestroy/", false);
+        xmlhttp.onreadystatechange = jobcallback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+    function jobcallback() {
+
+        if (xmlhttp.readyState != 4) {
+
+
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+                var data2 = JSON.parse(a);
+
+                if (data2.result == '1') {
+
+                    window.location.reload();
+                }
+                else {
+                    alert('操作失败');
+                }
+
+            }
+        }
+    }
+    function infoshow(a) {
+
+
+        var data2 = JSON.parse(a);
+        var result = data2.result;
+        var datalength = data2.length;
+        var pagesize = data2.pagecount;
+        var nowpage = data2.page
+        jobs = data2.jobs;
+        currpage = Number(nowpage) + 1;
+        var bodyhtml = "";
+
+
+        if (result != '0') {
+
+
+            for (var i = 0; i < datalength; i++) {
+                var labelstatus = ''
+                var Active = '';
+                statuss = jobs[i].taskstatus;
+
+                switch (statuss) {
+                    case '1':
+                        Active = '未启动';
+                        labelstatus = 'default';
+                        break;
+                    case '2':
+                        Active = '正在排队';
+                        labelstatus = 'info';
+                        break;
+                    case '3':
+                        Active = '正在执行';
+                        labelstatus = 'primary';
+                        break;
+                    case '4':
+                        Active = '挂起';
+                        labelstatus = 'warning';
+                        break;
+                    case '5':
+                        Active = '已完成';
+                        labelstatus = 'success';
+                        break;
+                    case '6':
+                        Active = '已终止';
+                        labelstatus = 'danger';
+                        break;
+                    default:
+                        Active = '未知';
+                        labelstatus = 'danger';
+                        break;
+                }
+
+
+                var temport = ''
+                if (jobs[i].tasksport == '') {
+                    temport = '全部可用端口';
+                }
+                else
+                    temport = jobs[i].tasksport;
+                bodyhtml += "<tr>" +
+                        "<td><input type=\"checkbox\">" +
+                        "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>" +
+                        "<a href=\"/nmaptool/groupitem?groupid=" + jobs[i].tasksid + "\">" + jobs[i].tasksname + "</a></td>" +
+                        "<td class=\"description\">" + jobs[i].taskaddress + "</td>" +
+                        "<td class=\"description\">" + temport + "</td>" +
+                        "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span><ul class=\"actions\">" +
+
+                        "<li onclick='startjob(" + i + ");'><i class=\"table-start\" ></i></li>" +
+                        "<li onclick='pausejob(" + i + ");'><i class=\"table-pause\"></i></li>" +
+                        "<li  onclick='destroyjob(" + i + ");'><i class=\"table-edit\"></i></li>" +
+                        "<li><i class=\"table-settings\"></i></li>" +
+                        "<li class=\"last\"><i class=\"table-delete\"></i></li>" +
+                        "</ul>" +
+                        "</td>" +
+                        "</tr>";
+
+            }
+            document.getElementById("head").innerHTML = bodyhtml;
+        }
+        var pagehtml = "";
+
+        if (pagesize > 0) {
+
+
+            if (currpage <= 1) {
+
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+
+
+            } else {
+
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&laquo;</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
+            }
+            if (pagesize - currpage == 1) {
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&raquo;</a></li>";
+            }
+            else if (pagesize - currpage >= 2) {
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage + 1 ) + ");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&raquo;</a></li>";
+            }
+
+
+        }
+
+        document.getElementById("page").innerHTML = pagehtml;
+
+    }
+
+
+    function createdata() {
+
+
+        var jobname = document.getElementById("jobname").value;
+        var jobaddress = document.getElementById("jobaddress").value;
+        var jobport = document.getElementById("jobport").value;
+        var priority = document.getElementById("priority").value;
+        var abstract = document.getElementById("abstract").value;
+
+        xmlhttp = GetXmlHttp(xmlhttp);
+
+        xmlhttp.open("POST", "/nmaptool/jobadd/", true);
+        xmlhttp.onreadystatechange = createcallback;
+        var str = 'jobname=' + jobname + '&jobaddress=' + jobaddress + '&jobport=' + jobport + '&priority=' + priority + '&abstract=' + abstract;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+
+    }
+    function createcallback() {
+
+        if (xmlhttp.readyState != 4) {
+
+            // document.getElementById("head").innerHTML = "<font color='red'>数据加载中...</font>"  ;
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+                var data2 = JSON.parse(a);
+
+                if (data2.result == '1') {
+
+                    window.location.reload();
+                }
+                else {
+                    alert('添加失败');
+                }
+
+            }
+        }
+    }
+</script>
+
+{% endblock %}

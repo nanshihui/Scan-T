@@ -38,7 +38,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body onload="loadtask(0);">
+<body onload="loadtask(0,'{{groupid}}');">
 <!-- navbar -->
 <header class="navbar navbar-inverse" role="banner">
     <div class="navbar-header">
@@ -202,7 +202,7 @@
         <div class="table-products section">
             <div class="row head">
                 <div class="col-md-12">
-                    <h4>任务信息
+                    <h4>子任务
                         <small>概要</small>
                     </h4>
                 </div>
@@ -346,11 +346,12 @@
         return xmlhttp;
     }
 
-    function loadtask(currpage) {
+    function loadtask(currpage,groupid) {
+
         xmlhttp = GetXmlHttp(xmlhttp);
         var number = currpage;
         var str = '';
-        str = 'page=' + number + '&username=' + message;
+        str = 'page=' + number + '&username=' + message+'&groupid=' +groupid;
         nowpage = currpage;
         xmlhttp.open("POST", "/nmaptool/jobshow/", false);
         xmlhttp.onreadystatechange = callback;
@@ -496,9 +497,9 @@
 
                         "<li onclick='startjob(" + i + ");'><i class=\"table-start\" ></i></li>" +
                         "<li onclick='pausejob(" + i + ");'><i class=\"table-pause\"></i></li>" +
-                        "<li><i class=\"table-edit\"></i></li>" +
+                        "<li onclick='destroyjob(" + i + ");'><i class=\"table-edit\"></i></li>" +
                         "<li><i class=\"table-settings\"></i></li>" +
-                        "<li class=\"last\" onclick='destroyjob(" + i + ");'><i class=\"table-delete\"></i></li>" +
+                        "<li class=\"last\" ><i class=\"table-delete\"></i></li>" +
                         "</ul>" +
                         "</td>" +
                         "</tr>";
@@ -513,23 +514,23 @@
 
             if (currpage <= 1) {
 
-                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>1</a></li>";
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>1</a></li>";
 
 
             } else {
 
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>&laquo;</a></li>";
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
-                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>&laquo;</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage - 2).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>" + (currpage - 1).toString() + "</a></li>";
+                pagehtml += "<li class=\"active\"><a onclick='loadtask(" + (currpage - 1).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>" + currpage.toString() + "</a></li>";
             }
             if (pagesize - currpage == 1) {
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ");' href='javascript:void(0);'>&raquo;</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage).toString() + ",\"{{groupid}}\");' href='javascript:void(0);'>&raquo;</a></li>";
             }
             else if (pagesize - currpage >= 2) {
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage + 1 ) + ");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
-                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ");' href='javascript:void(0);'>&raquo;</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ",\"{{groupid}}\");' href='javascript:void(0);'>" + (currpage + 1).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage + 1 ) + ",\"{{groupid}}\");' href='javascript:void(0);'>" + (currpage + 2).toString() + "</a></li>";
+                pagehtml += "<li ><a onclick='loadtask(" + (currpage ) + ",\"{{groupid}}\");' href='javascript:void(0);'>&raquo;</a></li>";
             }
 
 

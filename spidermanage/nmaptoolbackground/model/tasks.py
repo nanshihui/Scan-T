@@ -2,75 +2,76 @@
 #coding:utf-8
 import uuid
 from spidertool import webtool
-class Job(object):
-    def __init__(self,jobname='',jobaddress='',priority='1',starttime='',username='',jobport='',jobstatus='1',jobid='',result='',endtime='',createtime='',argument='',forcesearch='',isjob='1',groupsid=''):
+class Tasks(object):
+    def __init__(self,tasksname='',taskaddress='',priority='1',starttime='',username='',tasksport='',taskstatus='1',tasksid='',result='',endtime='',createtime='',argument='',forcesearch='',isjob='1',num='',completenum=''):
         '''
         Constructor
         '''
-#         jobstatus=1 //未启动
-#         jobstatus=2 //排队中
-#         jobstatus=3 //正在进行
-#         jobstatus=4 //挂起
-#         jobstatus=5 //已完成
-#         jobstatus=6 //已终止
-        self.jobname=jobname
-        self.jobaddress=jobaddress
+#         taskstatus=1 //未启动
+#         taskstatus=2 //排队中
+#         taskstatus=3 //正在进行
+#         taskstatus=4 //挂起
+#         taskstatus=5 //已完成
+#         taskstatus=6 //已终止
+        self.tasksname=tasksname
+        self.taskaddress=taskaddress
         self.priority=priority
-        self.groupsid=groupsid
         self.starttime=starttime
         self.username=username
+        self.completenum=completenum
+        self.num=num
         self.isjob=isjob
         if forcesearch!='':
             self.forcesearch=forcesearch
-            
+
         else:
             self.forcesearch='0'
         if createtime!='':
             self.createtime=createtime
         else:
             self.createtime=webtool.getlocaltime()
-        if jobid!='':
-            self.jobid=jobid
+        if tasksid!='':
+            self.tasksid=tasksid
         else:
-            self.jobid=uuid.uuid1()
-        self.jobport=jobport
-        self.jobstatus=jobstatus
+            self.tasksid=uuid.uuid1()
+        self.tasksport=tasksport
+        self.taskstatus=taskstatus
         self.result=result
         self.endtime=endtime
         self.argument=argument
+
     def setPriority(self,priority):
         self.priority=priority
     def setArgument(self,argument):
         self.argument=argument
-        
+
     def setResult(self,result):
         self.result=result
-    def setJobstatus(self,jobstatus):
-        self.jobstatus=jobstatus
+    def settaskstatus(self,taskstatus):
+        self.taskstatus=taskstatus
     def getForcesearch(self):
         return self.forcesearch
     def getUsername(self):
         return self.username
-    def getJobname(self):
-        return self.jobname
-    def getJobaddress(self):
-        return self.jobaddress
-    def getJobid(self):
-        return self.jobid
+    def getTasksname(self):
+        return self.tasksname
+    def getTaskaddress(self):
+        return self.taskaddress
+    def getTasksid(self):
+        return self.tasksid
     def getResult(self):
         return self.result
     def getPort(self):
-        return self.jobport
+        return self.tasksport
     def getPriority(self):
-        return self.priority 
+        return self.priority
     def getisJob(self):
-        return self.isjob 
+        return self.isjob
     def getStatus(self):
-        return self.jobstatus
+        return self.taskstatus
     def getStarttime(self):
         return self.starttime
     def getCreatetime(self):
         return self.createtime
     def getArgument(self):
         return self.argument
-    

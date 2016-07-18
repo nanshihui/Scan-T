@@ -5,12 +5,13 @@ from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 import datetime
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
-from django.views import generic
-from spidertool import webtool
-from model.user import User
-from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
 
+from django.views import generic
+
+from model.user import User
+from control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
+from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
+from spidertool import webtool
 import httplib
 import json
 
@@ -108,8 +109,16 @@ def ipmain(request):
 def indexpage(request):
     islogin = request.COOKIES.get('islogin',False)
     username = request.COOKIES.get('username','')
+
     if islogin:
-        return render_to_response('nmaptoolview/mainpage.html',{'username':username})
+        return render_to_response('nmaptoolview/taskmain.html',{'username':username})
+    return render_to_response('nmaptoolview/login.html', {'data':''})
+def groupitem(request):
+    islogin = request.COOKIES.get('islogin',False)
+    username = request.COOKIES.get('username','')
+    groupid= request.GET.get('groupid','')
+    if islogin:
+        return render_to_response('nmaptoolview/mainpage.html',{'username':username,'groupid':groupid})
     return render_to_response('nmaptoolview/login.html', {'data':''})
 def chartshow(request):
     response= render_to_response('nmaptoolview/chartshow.html', {'data':''})
@@ -150,7 +159,7 @@ def login(request):
 
         result,username,role,power= usercontrol.validuser(username,password)
         if result:
-            response = render_to_response('nmaptoolview/mainpage.html', {'data':'用户名和密码成功','username':username})  
+            response = render_to_response('nmaptoolview/taskmain.html', {'data':'用户名和密码成功','username':username})
             loginuser=User(result,username,password,role,power)
 #将username写入浏览器cookie,失效时间为3600
 
@@ -170,19 +179,24 @@ def jobshow(request):
     islogin = request.COOKIES.get('islogin',False)
     username=request.POST.get('username','')
     page=request.POST.get('page','0')
+    groupid = request.POST.get('groupid', '')
+
     response_data = {}  
     response_data['result'] = '0' 
     response_data['page']=page
     if islogin:
         response_data['result'] = '1' 
-        jobs,count,pagecount=jobcontrol.jobshow(username=username,page=page)
+        jobs,count,pagecount=jobcontrol.jobshow(username=username,page=page,groupid=groupid)
         response_data['length']=count
         response_data['jobs']=jobs
         response_data['pagecount']=pagecount
-        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
     else:
-        
-        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")  
+
+        return HttpResponse(json.dumps(response_data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
+
+
+
 #a function to add the job
 def jobadd(request):
     islogin = request.COOKIES.get('islogin',False)

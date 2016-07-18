@@ -1,98 +1,91 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import SQLTool ,config
-from ..model import job
+from ..model import tasks
 
 
 limitpage=15
 
 
 localconfig=config.Config()
-def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0',groupid=''):
+def taskshow(taskname='',tasktatus='',username='',taskid='',taskport='',result='',page='0'):
     validresult=False
     request_params=[]
     values_params=[]
-    if groupid!='':
-        request_params.append('groupsid')
-        values_params.append(SQLTool.formatstring(groupid))
-    if jobname!='':
-        request_params.append('taskname')
-        values_params.append(SQLTool.formatstring(jobname))
-    if jobstatus!='':
-        request_params.append('taskstatus')
-        values_params.append(SQLTool.formatstring(jobstatus))
+    if taskname!='':
+        request_params.append('tasksname')
+        values_params.append(SQLTool.formatstring(taskname))
+    if tasktatus!='':
+        request_params.append('status')
+        values_params.append(SQLTool.formatstring(tasktatus))
     if username!='':
         request_params.append('username')
         values_params.append(SQLTool.formatstring(username))
     if taskid!='':
-        request_params.append('taskid')
+        request_params.append('tasksid')
         values_params.append(SQLTool.formatstring(taskid))
-    if jobport!='':
+    if taskport!='':
         request_params.append('taskport')
-        values_params.append(SQLTool.formatstring(jobport))
-    if result!='':
-        request_params.append('result')
-        values_params.append(SQLTool.formatstring(result))
+        values_params.append(SQLTool.formatstring(taskport))
+
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
-    table=localconfig.tasktable
+    table=localconfig.taskstable
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params)
     if count>0:
         count= int(result[0]['count(*)'])
     if count == 0:
         pagecount = 0;
     elif count %limitpage> 0:
-#         pagecount = math.ceil(count / limitpage)
-        pagecount=int((count+limitpage-1)/limitpage) 
+
+        pagecount=int((count+limitpage-1)/limitpage)
 
 
     else:
         pagecount = count / limitpage
 
-#     print pagecount
     if pagecount>0:
-    
+
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
-        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','taskid','taskname','taskprior','taskstatus','starttime','taskaddress','taskport','result','endtime','createtime','forcesearch','groupsid'], request_params, values_params,limit,order='createtime desc')
-    
+        result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['username','tasksid','tasksname','status','starttime','tasksaddress','taskport','endtime','createtime','num','completenum'], request_params, values_params,limit,order='createtime desc')
+
         DBhelp.closedb()
         jobs=[]
         if count>0:
             validresult=True
             for temp in result :
-                ajob=job.Job(username=temp['username'],jobid=temp['taskid'],jobname=temp['taskname'],priority=temp['taskprior'],jobstatus=temp['taskstatus'],starttime=temp['starttime'],jobaddress=temp['taskaddress'],jobport=temp['taskport'],result=temp['result'],endtime=temp['endtime'],createtime=temp['createtime'],forcesearch=temp['forcesearch'],groupsid=temp['groupsid'])
+                ajob=tasks.Tasks(username=temp['username'],tasksid=temp['tasksid'],tasksname=temp['tasksname'],taskstatus=temp['status'],starttime=temp['starttime'],taskaddress=temp['tasksaddress'],tasksport=temp['taskport'],endtime=temp['endtime'],createtime=temp['createtime'],num=temp['num'],completenum=temp['completenum'])
 
-#                 ajob=job.Job(username=temp[0],jobid=temp[1],jobname=temp[2],priority=temp[3],jobstatus=temp[4],starttime=temp[5],jobaddress=temp[6],jobport=temp[7],result=temp[8],endtime=temp[9],createtime=temp[10],forcesearch=temp[11])
+
                 jobs.append(ajob)
         return jobs,count,pagecount
     return [],0,pagecount
-##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
-def loadjob(request,username=''):
-    jobname=request.POST.get('jobname','')
-    jobaddress=request.POST.get('jobaddress','')
-    jobport=request.POST.get('jobport','')
+
+
+def loadtask(request,username=''):
+    tasksname=request.POST.get('jobname','')
+    taskaddress=request.POST.get('jobaddress','')
+    tasksport=request.POST.get('jobport','')
     priority=request.POST.get('priority','')
     abstract=request.POST.get('abstract','')
     forcesearch=request.POST.get('forcesearch','0')
     tempjob=None
-    if jobaddress=='' or jobname=='':
+    if taskaddress=='' or tasksname=='':
         return tempjob,False
-    tempjob=job.Job(jobname=jobname,jobaddress=jobaddress,priority=priority,username=username,jobport=jobport,forcesearch=forcesearch)
-    
+    tempjob=tasks.Tasks(tasksname=tasksname,taskaddress=taskaddress,username=username,tasksport=tasksport,forcesearch=forcesearch)
+
     return tempjob,True
-def jobadd(job):
+def taskadd(job):
     jobname=job.getJobname()
     jobaddress=job.getJobaddress()
     jobport=job.getPort()
-    priority=job.getPriority()
+
     jobstatus=job.getStatus()
     username=job.getUsername()
     starttime=job.getStarttime()
     createtime=job.getCreatetime()
     taskid=job.getJobid()
-    result=job.getResult()
-    forcesearch=job.getForcesearch()
-    print 'forcesearch is' +forcesearch
+
     request_params=[]
     values_params=[]
     if createtime!='':
@@ -104,9 +97,7 @@ def jobadd(job):
     if jobaddress!='':
         request_params.append('taskaddress')
         values_params.append(jobaddress)
-    if priority!='':
-        request_params.append('taskprior')
-        values_params.append(priority)
+
     if jobname!='':
         request_params.append('taskname')
         values_params.append(jobname)
@@ -122,12 +113,8 @@ def jobadd(job):
     if jobport!='':
         request_params.append('taskport')
         values_params.append(jobport)
-    if result!='':
-        request_params.append('result')
-        values_params.append(result)
-    if forcesearch!='':
-        request_params.append('forcesearch')
-        values_params.append(forcesearch)        
+
+
     table=localconfig.tasktable
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
@@ -137,9 +124,7 @@ def jobadd(job):
     DBhelp.closedb()
 
     return tempresult
-def jobgetwork():
-    
-    pass
+
 def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
 
 
@@ -186,6 +171,13 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
 
     return tempresult
 
-    
-    
-    
+
+
+
+
+
+
+##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
+if __name__ == "__main__":
+    tasks, count, pagecount = taskshow(username='admin', page='0')
+    print tasks, count, pagecount

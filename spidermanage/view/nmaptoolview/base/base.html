@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}后台管理系统{% endblock %}</title>
+
+    {% include 'nmaptoolview/base/headtheme.html' %}
+    {% block headcss %}
+    {% endblock %}
+
+</head>
+{% block bodyinit %}
+<body>
+{% endblock %}
+
+{% include 'nmaptoolview/base/navbar.html' %}
+
+<div id="sidebar-nav">
+    <ul id="dashboard-menu">
+        {% block siderbar %}
+        {% include 'nmaptoolview/base/siderbar/mainsiderbar.html' %}
+
+        {% include 'nmaptoolview/base/siderbar/usersiderbar.html' %}
+        {% include 'nmaptoolview/base/siderbar/chartsiderbar.html' %}
+
+        {% include 'nmaptoolview/base/siderbar/myinfosiderbar.html' %}
+        {% include 'nmaptoolview/base/siderbar/othersiderbar.html' %}
+        {% endblock %}
+    </ul>
+</div>
+
+<div class="content">
+    <div id="pad-wrapper">
+        {% block content %}
+        这里是正文
+        {% endblock %}
+
+    </div>
+</div>
+{% block script %}
+
+{% endblock %}
+
+{% include 'nmaptoolview/base/bottom.html' %}
+</body>
+</html>

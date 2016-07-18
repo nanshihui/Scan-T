@@ -3,15 +3,17 @@
 from django.conf.urls import url
 
 from . import nmaproute as route
-
+from django.conf.urls import include
 urlpatterns = [
     url(r'^$', route.indexpage, name='login'),
     url(r'^login/$', route.login, name='login'),
     url(r'^logout/$', route.logout, name='logout'),
     url(r'^sigin/$', route.sigin, name='sigin'),
     url(r'^userinfo/$', route.userinfo, name='userinfo'),
-    
+
+
     url(r'^mainpage/$', route.indexpage, name='index'),
+    url(r'^groupitem/$', route.groupitem, name='groupitem'),
     url(r'^taskdetail/$',route.taskdetail,name='taskdetail'),
     url(r'^taskdetail/eachtask/$',route.ipmain,name='ipmain'),
     
@@ -29,5 +31,7 @@ urlpatterns = [
     url(r'^uploadportinfo/$',route.upload_port_info,name='uploadportinfo'),
 
     url(r'^systeminfo/$', route.systeminfo, name='uploadportinfo'),
-    
+
+    url(r'^tasks/', include('nmaptoolbackground.tasks.urls',namespace='tasks')),
+  
 ]
