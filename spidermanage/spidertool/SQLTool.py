@@ -276,8 +276,8 @@ class DBmanager:
 					sql=sql+request_params[request_params_length-1]+' = '+equal_params[request_params_length-1]+'  '
 				
 				sql+=extra
+				self.logger and self.logger.info('数据库操作%s', str(sql))
 
-# 				print sql
 				count=None
 				try:
 					count=self.__cur.execute(sql)

@@ -213,6 +213,7 @@ class ThreadTool:
 # 				break
 			req = self.q_request.get()
 			with self.lock:				#要保证该操作的原子性，进入critical area
+
 				self.running=self.running+1
 
 			threadname=multiprocessing.current_process().name

@@ -85,15 +85,18 @@
                             <input type="checkbox">
                             任务名
                         </th>
-                        <th class="col-md-3">
+                        <th class="col-md-2">
                             <span class="line"></span>
                             目标地址
                         </th>
-                        <th class="col-md-3">
+                        <th class="col-md-2">
                             <span class="line"></span>端口号
                         </th>
                         <th class="col-md-3">
                             <span class="line"></span>状态
+                        </th>
+                        <th class="col-md-3">
+                            <span class="line"></span>操作
                         </th>
                     </tr>
                     </thead>
@@ -176,32 +179,32 @@
         }
     }
     function startjob(taskid) {
-        localjobid = jobs[taskid].jobid;
+        localjobid = jobs[taskid].tasksid;
         xmlhttp = GetXmlHttp(xmlhttp);
         var str = '';
         str = 'taskid=' + localjobid;
-        xmlhttp.open("POST", "/nmaptool/jobstart/", false);
+        xmlhttp.open("POST", "/nmaptool/tasks/taskstart/", false);
         xmlhttp.onreadystatechange = jobcallback;
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(str);
     }
     function pausejob(taskid) {
-        localjobid = jobs[taskid].jobid;
+        localjobid = jobs[taskid].tasksid;
         xmlhttp = GetXmlHttp(xmlhttp);
         var str = '';
         str = 'taskid=' + localjobid;
-        xmlhttp.open("POST", "/nmaptool/jobpause/", false);
+        xmlhttp.open("POST", "/nmaptool/tasks/taskpause/", false);
         xmlhttp.onreadystatechange = jobcallback;
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(str);
     }
 
     function destroyjob(taskid) {
-        localjobid = jobs[taskid].jobid;
+        localjobid = jobs[taskid].tasksid;
         xmlhttp = GetXmlHttp(xmlhttp);
         var str = '';
         str = 'taskid=' + localjobid;
-        xmlhttp.open("POST", "/nmaptool/jobdestroy/", false);
+        xmlhttp.open("POST", "/nmaptool/tasks/taskdestroy/", false);
         xmlhttp.onreadystatechange = jobcallback;
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(str);
@@ -250,35 +253,59 @@
                 var labelstatus = ''
                 var Active = '';
                 statuss = jobs[i].taskstatus;
-
+                statusshow=''
+                percentage=0;
+                percentage=(parseFloat(jobs[i].completenum)/parseFloat(jobs[i].num)*100).toFixed(2);
                 switch (statuss) {
                     case '1':
                         Active = '未启动';
                         labelstatus = 'default';
+                        statusshow="<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
                         break;
                     case '2':
                         Active = '正在排队';
                         labelstatus = 'info';
+                        statusshow= "<td><div class=\"progress progress-striped active\">"+
+                        "<div class=\"progress-bar progress-bar-default\" role=\"progressbar\""+
+                        "aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\""+
+                        "style=\"width: "+percentage+"%;\"><span >"+percentage+"%</span> </div> </div></td>";
                         break;
                     case '3':
                         Active = '正在执行';
                         labelstatus = 'primary';
+                        if (percentage==0){
+                            statusshow="<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
+                        }
+                        else{
+                            statusshow= "<td><div class=\"progress progress-striped active\">"+
+                        "<div class=\"progress-bar progress-bar-default\" role=\"progressbar\""+
+                        "aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\""+
+                        "style=\"width: "+percentage+"%;\"><span >"+percentage+"%</span> </div> </div></td>";
+                        }
+
                         break;
                     case '4':
                         Active = '挂起';
                         labelstatus = 'warning';
+                        statusshow= "<td><div class=\"progress progress-striped active\">"+
+                        "<div class=\"progress-bar progress-bar-warning\" role=\"progressbar\""+
+                        "aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\""+
+                        "style=\"width: "+percentage+"%;\"><span >"+percentage+"%</span> </div> </div></td>";
                         break;
                     case '5':
                         Active = '已完成';
                         labelstatus = 'success';
+                        statusshow= "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
                         break;
                     case '6':
                         Active = '已终止';
                         labelstatus = 'danger';
+                        statusshow= "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
                         break;
                     default:
                         Active = '未知';
                         labelstatus = 'danger';
+                        statusshow= "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span>";
                         break;
                 }
 
@@ -294,8 +321,9 @@
                         "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>" +
                         "<a href=\"/nmaptool/groupitem?groupid=" + jobs[i].tasksid + "\">" + jobs[i].tasksname + "</a></td>" +
                         "<td class=\"description\">" + jobs[i].taskaddress + "</td>" +
-                        "<td class=\"description\">" + temport + "</td>" +
-                        "<td><span class=\"label label-" + labelstatus + "\">" + Active + "</span><ul class=\"actions\">" +
+                        "<td class=\"description\">" + temport + "</td>" + statusshow+
+
+                        "<td><ul class=\"actions\">" +
 
                         "<li onclick='startjob(" + i + ");'><i class=\"table-start\" ></i></li>" +
                         "<li onclick='pausejob(" + i + ");'><i class=\"table-pause\"></i></li>" +
@@ -354,7 +382,7 @@
 
         xmlhttp = GetXmlHttp(xmlhttp);
 
-        xmlhttp.open("POST", "/nmaptool/jobadd/", true);
+        xmlhttp.open("POST", "/nmaptool/tasks/taskadd/", true);
         xmlhttp.onreadystatechange = createcallback;
         var str = 'jobname=' + jobname + '&jobaddress=' + jobaddress + '&jobport=' + jobport + '&priority=' + priority + '&abstract=' + abstract;
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

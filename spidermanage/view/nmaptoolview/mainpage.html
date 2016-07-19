@@ -26,13 +26,13 @@
     <!-- this page specific styles -->
     <link rel="stylesheet" href="/static/nmaptool/css/compiled/index.css" type="text/css" media="screen"/>
 
-    <!-- open sans font -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-          rel='stylesheet' type='text/css'>
+    <!--&lt;!&ndash; open sans font &ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'-->
+          <!--rel='stylesheet' type='text/css'>-->
 
-    <!-- lato font -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic'
-          rel='stylesheet' type='text/css'>
+    <!--&lt;!&ndash; lato font &ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic'-->
+          <!--rel='stylesheet' type='text/css'>-->
 
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -270,11 +270,11 @@
                             <input type="checkbox">
                             任务名
                         </th>
-                        <th class="col-md-3">
+                        <th class="col-md-2">
                             <span class="line"></span>
                             目标地址
                         </th>
-                        <th class="col-md-3">
+                        <th class="col-md-2">
                             <span class="line"></span>信息概要
                         </th>
                         <th class="col-md-3">
@@ -489,7 +489,7 @@
                     temport = jobs[i].jobport;
                 bodyhtml += "<tr>" +
                         "<td><input type=\"checkbox\">" +
-                        "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>" +
+//                        "<div class=\"img\"><img src=\"/static/nmaptool/img/owl.png\"></div>" +
                         "<a href=\"/nmaptool/taskdetail?jobid=" + jobs[i].jobid + "\">" + jobs[i].jobname + "</a></td>" +
                         "<td class=\"description\">" + jobs[i].jobaddress + "</td>" +
                         "<td class=\"description\">" + temport + "</td>" +

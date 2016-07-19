@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
-from spidertool import SQLTool ,config
-from ..model import tasks
+from spidertool import SQLTool ,config,iptask
+from ..model import tasks,job
 
 
 limitpage=15
@@ -35,7 +35,7 @@ def taskshow(taskname='',tasktatus='',username='',taskid='',taskport='',result='
     if count>0:
         count= int(result[0]['count(*)'])
     if count == 0:
-        pagecount = 0;
+        pagecount = 0
     elif count %limitpage> 0:
 
         pagecount=int((count+limitpage-1)/limitpage)
@@ -76,15 +76,15 @@ def loadtask(request,username=''):
 
     return tempjob,True
 def taskadd(job):
-    jobname=job.getJobname()
-    jobaddress=job.getJobaddress()
+    jobname=job.getTasksname()
+    jobaddress=job.getTaskaddress()
     jobport=job.getPort()
 
     jobstatus=job.getStatus()
     username=job.getUsername()
     starttime=job.getStarttime()
     createtime=job.getCreatetime()
-    taskid=job.getJobid()
+    taskid=job.getTasksid()
 
     request_params=[]
     values_params=[]
@@ -95,27 +95,27 @@ def taskadd(job):
         request_params.append('starttime')
         values_params.append(starttime)
     if jobaddress!='':
-        request_params.append('taskaddress')
+        request_params.append('tasksaddress')
         values_params.append(jobaddress)
 
     if jobname!='':
-        request_params.append('taskname')
+        request_params.append('tasksname')
         values_params.append(jobname)
     if jobstatus!='':
-        request_params.append('taskstatus')
+        request_params.append('status')
         values_params.append(jobstatus)
     if username!='':
         request_params.append('username')
         values_params.append(username)
     if taskid!='':
-        request_params.append('taskid')
+        request_params.append('tasksid')
         values_params.append(taskid)
     if jobport!='':
         request_params.append('taskport')
         values_params.append(jobport)
 
 
-    table=localconfig.tasktable
+    table=localconfig.taskstable
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
@@ -124,14 +124,48 @@ def taskadd(job):
     DBhelp.closedb()
 
     return tempresult
+def createjob(job):
 
-def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
+    jobaddress = job.getTaskaddress()
+    jobport = job.getPort()
+
+
+    username = job.getUsername()
+    status=job.getStatus()
+    createtime = job.getCreatetime()
+    taskid = job.getTasksid()
+    info={}
+    info['taskid']=taskid
+    info['taskport'] = jobport
+    info['isjob'] = '1'
+    info['username'] = username
+    info['command'] = 'create'
+    info['status'] = status
+    identifyip(jobaddress,info)
+
+
+
+
+
+
+
+
+
+
+
+def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',username='',finishtime='',num='',completenum=''):
 
 
     request_params=[]
     values_params=[]
     wset_params=[]
     wand_params=[]
+    if num!='':
+        request_params.append('num')
+        values_params.append(SQLTool.formatstring(num))
+    if completenum!='':
+        request_params.append('completenum')
+        values_params.append(SQLTool.formatstring(completenum))
     if starttime!='':
         request_params.append('starttime')
         values_params.append(SQLTool.formatstring(starttime))
@@ -139,30 +173,28 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
         request_params.append('endtime')
         values_params.append(SQLTool.formatstring(finishtime))
     if jobaddress!='':
-        request_params.append('taskaddress')
+        request_params.append('tasksaddress')
         values_params.append(jobaddress)
     if priority!='':
         request_params.append('taskprior')
         values_params.append(priority)
     if jobname!='':
-        request_params.append('taskname')
+        request_params.append('tasksname')
         values_params.append(jobname)
     if jobstatus!='':
-        request_params.append('taskstatus')
+        request_params.append('status')
         values_params.append(jobstatus)
     if jobport!='':
         request_params.append('taskport')
         values_params.append(jobport)
-    if result!='':
-        request_params.append('result')
-        values_params.append(result)
+
     if username!='':
         wset_params.append('username')
         wand_params.append(SQLTool.formatstring(username))
     if taskid!='':
-        wset_params.append('taskid')
+        wset_params.append('tasksid')
         wand_params.append(SQLTool.formatstring(taskid))
-    table=localconfig.tasktable
+    table=localconfig.taskstable
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
@@ -175,9 +207,32 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
 
 
 
+def identifyip(msg,dic):
+    listitem = iptask.getObject()
+    ary=set()
+    msg=msg.split(',')
+    import re
+    regix="(\d+\.\d+\.\d+\.\d+)\-(\d+\.\d+\.\d+\.\d+)"
+    for i in msg:
+        m1 = re.search(regix, i)
+        if m1:
+            iprange=m1.group().split('-')
+            startip=iprange[0]
+            stopip = iprange[1]
+            listitem.add_work([(startip, stopip, dic)])
+
+        else:
+            regix = "(\d+\.\d+\.\d+\.\d+)"
+            m1 = re.search(regix, i)
+            ary.add(m1.group())
+    for i in ary:
+        listitem.add_work([(i, i, dic)])
+
+
+
+
 
 
 ##count为返回结果行数，col为返回结果列数,count,pagecount都为int型
 if __name__ == "__main__":
-    tasks, count, pagecount = taskshow(username='admin', page='0')
-    print tasks, count, pagecount
+    identifyip('172.20.13.11')

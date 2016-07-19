@@ -6,6 +6,24 @@ import re
 from subprocess import Popen, PIPE
 import os
 import debugdetail as Debug
+
+
+
+def identifyip(msg):
+    ary=set()
+    msgary=msg.split(',')
+    import re
+    regix="(\d+\.\d+\.\d+\.\d+)\-(\d+\.\d+\.\d+\.\d+)"
+    for i in msgary:
+        m1 = re.search(regix, i)
+        if m1:
+            ary|= set(m1.group().split('-'))
+        else:
+            regix = "(\d+\.\d+\.\d+\.\d+)"
+            m1 = re.search(regix, i)
+            ary.add(m1.group())
+    return ary
+print identifyip("123.0.23.12-2.2.2.2,2.2.2.2")
 def aa():
 	print 'already in port'
 class bb:

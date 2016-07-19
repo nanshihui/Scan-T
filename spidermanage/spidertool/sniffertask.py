@@ -1,11 +1,11 @@
 #!/usr/bin/python
 #coding:utf-8
 from ThreadTool import ThreadTool
-import datetime
+import datetime,config
 import time
 import connectpool
 from TaskTool import TaskTool
-import  sniffertool
+import  sniffertool,Sqldatatask,Sqldata
 import webtool
 from logger import initLog
 from nmaptoolbackground.control import jobcontrol  
@@ -21,9 +21,9 @@ class snifferTask(TaskTool):
     def __init__(self,isThread=1):
         TaskTool.__init__(self,isThread)
         self.logger = initLog('logs/sniffertask.log', 2, True,'sniffertask')
-
+        self.sqlTool = Sqldatatask.getObject()
         self.sniffer= sniffertool.SniffrtTool(logger=self.logger)
-
+        self.config=config.Config
     def task(self,req,threadname):
         self.logger and self.logger.info('%sNMAP 扫描执行任务中%s', threadname,str(datetime.datetime.now()))
 
@@ -40,6 +40,29 @@ class snifferTask(TaskTool):
 
         if isjob=='1':
             tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
+
+            setvalue = " (select count(*) from taskdata where  taskstatus=5 and groupsid= (select groupsid from taskdata where taskid='"+jobid+"'))"
+            dic = {
+                "table": [self.config.taskstable],
+                "select_params": ['completenum'],
+                "set_params": [setvalue],
+                "request_params": [],
+                "equal_params": []
+            }
+            updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
+            updatedata = []
+            updatedata.append(updateitem)
+            statusdic={
+                "table": [self.config.taskstable],
+                "select_params": ['status'],
+                "set_params": ['5'],
+                "request_params": ['num'],
+                "equal_params": ['completenum']
+            }
+            statusitem = Sqldata.SqlData('updatetableinfo_byparams', statusdic)
+            updatedata.append(statusitem)
+            self.sqlTool.add_work(updatedata)
+
         return ans
     
 if __name__ == "__main__":   

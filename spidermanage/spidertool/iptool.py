@@ -46,5 +46,5 @@ class IPTool():
             return ip_list
 if __name__ == '__main__':
     a=IPTool()
-    list=a.getIplist('219.235.6.52','219.235.6.59')
+    list=a.getIplist('219.235.6.52','219.235.6.53')
     print list

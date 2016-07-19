@@ -73,4 +73,6 @@ class Job(object):
         return self.createtime
     def getArgument(self):
         return self.argument
+    def getGroupsid(self):
+        return  self.groupsid
     

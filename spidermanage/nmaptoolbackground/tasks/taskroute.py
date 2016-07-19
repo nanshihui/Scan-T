@@ -10,7 +10,7 @@ from django.views import generic
 
 import json
 from ..model.user import User
-from ..control import usercontrol,taskscontrol,ipcontrol,portcontrol,taskcontrol
+from ..control import usercontrol,taskscontrol,ipcontrol,portcontrol,jobcontrol,taskcontrol
 
 from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
 from spidertool import webtool
@@ -58,9 +58,57 @@ def taskadd(request):
                             content_type="application/json")
 
     result = taskscontrol.taskadd(job)
+    temp=   taskscontrol.createjob(job)
     #     print result
     if result:
         print '操作成功'
         response_data['result'] = '1'
     return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
                         content_type="application/json")
+
+
+def taskstart(request):
+
+    data=updatejob(request,state='3')
+
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
+
+def taskpause(request):
+    data= updatejob(request,state='4')
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
+
+def taskdestroy(request):
+    data=updatejob(request,state='6')
+    return HttpResponse(json.dumps(data,skipkeys=True,default=webtool.object2dict), content_type="application/json")
+def updatejob(request,state=''):
+    tasktotally = taskcontrol.getObject()
+    if request.method=='POST':
+        islogin = request.COOKIES.get('islogin',False)
+        jobid= request.POST.get('taskid','')
+        username = request.COOKIES.get('username','')
+        role = request.COOKIES.get('role','1')
+        response_data = {}
+        response_data['result'] = '0'
+        if state=='3':
+            tempresult = taskscontrol.jobupdate(jobstatus=state, username=username, taskid=jobid,completenum='0')
+        else:
+
+            if role=='1':
+                tempresult=taskscontrol.jobupdate(jobstatus=state,username=username,taskid=jobid)
+#             print 'this is user'
+            else:
+                tempresult=taskscontrol.jobupdate(jobstatus=state,taskid=jobid)
+        if tempresult==True:
+
+            jobs,count,pagecount=jobcontrol.jobshow(groupid=jobid)
+            if count>0:
+
+
+                if state == '3':
+                    jobcontrol.jobupdate(jobstatus='2', groupid=jobid)
+                    tasktotally.add_work(jobs)
+                else:
+
+                    jobcontrol.jobupdate(jobstatus=state, groupid=jobid)
+            response_data['result'] = '1'
+        return response_data

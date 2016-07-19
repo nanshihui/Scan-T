@@ -91,10 +91,14 @@ def jobadd(job):
     createtime=job.getCreatetime()
     taskid=job.getJobid()
     result=job.getResult()
+    groupsid=job.getGroupsid()
     forcesearch=job.getForcesearch()
     print 'forcesearch is' +forcesearch
     request_params=[]
     values_params=[]
+    if groupsid!='':
+        request_params.append('groupsid')
+        values_params.append(groupsid)
     if createtime!='':
         request_params.append('createtime')
         values_params.append(createtime)
@@ -140,7 +144,7 @@ def jobadd(job):
 def jobgetwork():
     
     pass
-def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime=''):
+def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatus='',starttime='',result='',username='',finishtime='',groupid=''):
 
 
     request_params=[]
@@ -177,7 +181,11 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
     if taskid!='':
         wset_params.append('taskid')
         wand_params.append(SQLTool.formatstring(taskid))
+    if groupid!='':
+        wset_params.append('groupsid')
+        wand_params.append(SQLTool.formatstring(groupid))
     table=localconfig.tasktable
+
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
 
