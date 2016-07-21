@@ -143,9 +143,22 @@ def createjob(job):
     info['status'] = status
     identifyip(jobaddress,info)
 
+def startjob(job):
+    jobaddress = job.getTaskaddress()
+    jobport = job.getPort()
 
-
-
+    username = job.getUsername()
+    status = job.getStatus()
+    createtime = job.getCreatetime()
+    taskid = job.getTasksid()
+    info = {}
+    info['taskid'] = taskid
+    info['taskport'] = jobport
+    info['isjob'] = '1'
+    info['username'] = username
+    info['command'] = 'work'
+    info['status'] = status
+    identifyip(jobaddress, info)
 
 
 

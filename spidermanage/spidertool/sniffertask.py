@@ -29,25 +29,26 @@ class snifferTask(TaskTool):
 
 
         jobid=req.getJobid()
+        jobid=str(jobid)
         hosts=req.getJobaddress();
         ports=req.getPort()
         arguments=req.getArgument()
         isjob=req.getisJob()
         if isjob=='1':
-            tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=jobid,starttime=webtool.getlocaltime())
+            tempresult=jobcontrol.jobupdate(jobstatus='3',taskid=str(jobid),starttime=webtool.getlocaltime())
         ans = self.sniffer.scanaddress([hosts], [str(ports)], arguments)
         self.logger and self.logger.info('%sNMAP 扫描任务结束%s', threadname,str(datetime.datetime.now()))
 
         if isjob=='1':
-            tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=jobid,finishtime=webtool.getlocaltime())
+            tempresult=jobcontrol.jobupdate(jobstatus='5',taskid=str(jobid),finishtime=webtool.getlocaltime())
 
             setvalue = " (select count(*) from taskdata where  taskstatus=5 and groupsid= (select groupsid from taskdata where taskid='"+jobid+"'))"
             dic = {
                 "table": [self.config.taskstable],
                 "select_params": ['completenum'],
                 "set_params": [setvalue],
-                "request_params": [],
-                "equal_params": []
+                "request_params": ['tasksid'],
+                "equal_params": ['(select groupsid  from taskdata where taskid=\''+jobid+'\')']
             }
             updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
             updatedata = []
@@ -62,7 +63,7 @@ class snifferTask(TaskTool):
             statusitem = Sqldata.SqlData('updatetableinfo_byparams', statusdic)
             updatedata.append(statusitem)
             self.sqlTool.add_work(updatedata)
-
+        ans=''
         return ans
     
 if __name__ == "__main__":   

@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 from TaskTool import TaskTool
 from iptool import IPTool
-from nmaptoolbackground.control import taskcontrol
+from nmaptoolbackground.control import taskcontrol,jobcontrol
 from nmaptoolbackground.model import job
 import getLocationTool
 import time,datetime
@@ -63,9 +63,12 @@ class IPTool(TaskTool,IPTool):
                 if isjob == '0':
                     ajob = job.Job(jobaddress=str(ip), jobport='', forcesearch='0', isjob='0')
                 else:
-
-                    ajob = job.Job(jobname=taskid, jobaddress=str(ip), username=username, groupsid=taskid,
+                    if command=='create':
+                        ajob = job.Job(jobname=taskid, jobaddress=str(ip), username=username, groupsid=taskid,
                                    jobport=taskport, isjob='1')
+                    else:
+                        jobitems, count, pagecount= jobcontrol.jobshow(jobname=taskid,username=username,groupid=taskid,jobaddress=str(ip))
+                        ajob = jobitems[0]
 
 
 
@@ -94,18 +97,18 @@ class IPTool(TaskTool,IPTool):
 
 
 
-                    updatedata = []
-                    dic = {
-                        "table": [self.config.tasktable],
-                        "select_params": ['taskstatus'],
-                        "set_params": [status],
-                        "request_params": ['groupsid'],
-                        "equal_params": [taskid]
-                    }
-                    updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
-                    updatedata.append(updateitem)
-                    self.sqlTool.add_work(updatedata)
-                    if status=='2' or isjob=='0':
+                    # updatedata = []
+                    # dic = {
+                    #     "table": [self.config.tasktable],
+                    #     "select_params": ['taskstatus'],
+                    #     "set_params": [status],
+                    #     "request_params": ['groupsid'],
+                    #     "equal_params": [taskid]
+                    # }
+                    # updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
+                    # updatedata.append(updateitem)
+                    # self.sqlTool.add_work(updatedata)
+                    if status=='3' or isjob=='0':
                         if len(jobs)==10 or x==ipsize-1:
 
 
@@ -123,8 +126,8 @@ class IPTool(TaskTool,IPTool):
                 "table": [self.config.taskstable],
                 "select_params": ['num'],
                 "set_params": [setvalue],
-                "request_params": [],
-                "equal_params": []
+                "request_params": ['tasksid'],
+                "equal_params": ['\''+str(taskid)+'\'']
             }
             updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
             updatedata = []

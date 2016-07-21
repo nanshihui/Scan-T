@@ -12,7 +12,7 @@ import json
 from ..model.user import User
 from ..control import usercontrol,taskscontrol,ipcontrol,portcontrol,jobcontrol,taskcontrol
 
-from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
+# from spidertool import  connectpool,Sqldatatask,Sqldata,sniffertask
 from spidertool import webtool
 
 
@@ -99,16 +99,31 @@ def updatejob(request,state=''):
             else:
                 tempresult=taskscontrol.jobupdate(jobstatus=state,taskid=jobid)
         if tempresult==True:
+            # page=0
+            # pagecount=1
+            # while pagecount>page :
+            #
+            #     jobs,count,pagecount=jobcontrol.jobshow(groupid=jobid,page=str(page))
+            #
+            #     pagecount=int(pagecount)
+            #     print '页数为:'+str(pagecount)
+            #     if count>0:
 
-            jobs,count,pagecount=jobcontrol.jobshow(groupid=jobid)
+            tasks, count, pagecount = taskscontrol.taskshow(username=username, page='0',taskid=jobid)
             if count>0:
-
-
+                task=tasks[0]
                 if state == '3':
                     jobcontrol.jobupdate(jobstatus='2', groupid=jobid)
-                    tasktotally.add_work(jobs)
+                    taskscontrol.startjob(task)
+
+
+                    # tasktotally.add_work(jobs)
                 else:
 
                     jobcontrol.jobupdate(jobstatus=state, groupid=jobid)
+
+                # page=page+1
+
             response_data['result'] = '1'
+
         return response_data

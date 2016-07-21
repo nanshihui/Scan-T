@@ -8,7 +8,7 @@ limitpage=15
 
 
 localconfig=config.Config()
-def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0',groupid=''):
+def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',page='0',groupid='',jobaddress=''):
     validresult=False
     request_params=[]
     values_params=[]
@@ -30,9 +30,12 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     if jobport!='':
         request_params.append('taskport')
         values_params.append(SQLTool.formatstring(jobport))
-    if result!='':
-        request_params.append('result')
-        values_params.append(SQLTool.formatstring(result))
+    if jobport!='':
+        request_params.append('taskport')
+        values_params.append(SQLTool.formatstring(jobport))
+    if jobaddress!='':
+        request_params.append('taskaddress')
+        values_params.append(SQLTool.formatstring(jobaddress))
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
     table=localconfig.tasktable
@@ -183,7 +186,7 @@ def jobupdate(taskid='',jobport='',jobaddress='',jobname='',priority='',jobstatu
         wand_params.append(SQLTool.formatstring(taskid))
     if groupid!='':
         wset_params.append('groupsid')
-        wand_params.append(SQLTool.formatstring(groupid))
+        wand_params.append(SQLTool.formatstring(str(groupid)))
     table=localconfig.tasktable
 
     DBhelp=SQLTool.DBmanager()
