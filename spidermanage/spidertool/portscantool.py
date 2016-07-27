@@ -8,7 +8,7 @@ import os
 import SQLTool
 import config
 import socket
-from detection import port_identify
+
 portway = {'sip':'INVITE  world \r\n\r\n','2':'8080','3':'443','4':'22','5':'23'}  
 class Portscantool:
     def __init__(self):
@@ -24,6 +24,7 @@ class Portscantool:
         reply=''
         self.socketclient=None
         try:
+            from detection import port_identify
             head,ans,keywords,hackinfo=port_identify.port_deal(ip=ip,port=port,name=name,productname=productname,head=head,context=context,nmapscript=nmapscript)
             if ans==None:
                 self.socketclient=  socket.socket(socket.AF_INET, socket.SOCK_STREAM)

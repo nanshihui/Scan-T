@@ -39,7 +39,7 @@ class PortscanTask(TaskTool):
         ans=None
         hackinfo=''
         keywords=''
-
+        webkey=''
         if (req[0]=='http' or req[0]=='https') or (req[0] in ['tcpwrapped','None'] and port in ['80','8080','7001']):
 
             if ip[0:4]=='http':
@@ -56,6 +56,9 @@ class PortscanTask(TaskTool):
 
 
             head,ans = self.connectpool.getConnect(address)
+            import webutil
+            webinfo=webutil.getwebinfo(ans)
+            webkey=webinfo['keywords']
             try:
                 from detection import page_identify
 
@@ -76,11 +79,11 @@ class PortscanTask(TaskTool):
         hackinfomsg=SQLTool.escapewordby(hackinfo)
         keywords=SQLTool.escapewordby(keywords)
         import Sqldata
-        insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords))
+        insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords,webkey))
                                          
-        extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\''
+        extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\',webkeywords=\''+webkey+'\''
         sqldatawprk=[]
-        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords'],"insert_values":insertdata,"extra":extra}
+        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords','webkeywords'],"insert_values":insertdata,"extra":extra}
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)
@@ -98,8 +101,8 @@ class PortscanTask(TaskTool):
         return ans
 
 if __name__ == "__main__":
-    links = [('http','218.28.144.77','80','open','weblogic','weblogic')]
-    
+    links = [('http','www.ytu.edu.cn','80','open','weblogic','weblogic')]
+
     f = PortscanTask()
 
     f.add_work(links)

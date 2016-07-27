@@ -42,9 +42,9 @@ class IPTool():
             for x in xrange(int(res[2])+1):
                 startipnum = self.ip2num(startip)
                 startipnum = startipnum + x
+
                 ip_list.append(self.num2ip(startipnum))
             return ip_list
 if __name__ == '__main__':
     a=IPTool()
-    list=a.getIplist('219.235.6.52','219.235.6.53')
-    print list
+    a.getIplist('219.1.1.1','219.255.255.255')

@@ -237,7 +237,10 @@ def identifyip(msg,dic):
         else:
             regix = "(\d+\.\d+\.\d+\.\d+)"
             m1 = re.search(regix, i)
-            ary.add(m1.group())
+            if m1:
+                ary.add(m1.group())
+            # else:
+            #     ary.add(i)
     for i in ary:
         listitem.add_work([(i, i, dic)])
 

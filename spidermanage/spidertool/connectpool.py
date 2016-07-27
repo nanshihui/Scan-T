@@ -5,6 +5,7 @@ import connecttool
 import Queue
 import gc
 from logger import initLog
+
 connectpoolinstance=None
 def getObject():
 	global connectpoolinstance
@@ -33,6 +34,8 @@ class ConnectPool:
 # 		gc.enable() 
 # 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
 		head,page=self.connectTool.getHTML(URL,way,params,times)
+
+
 # 		po=gc.collect()
 # 		print po
 		self.__connect_pool.get()

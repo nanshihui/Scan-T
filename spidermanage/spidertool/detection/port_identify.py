@@ -1,8 +1,11 @@
 #!/usr/bin/python
 #coding:utf-8
-import component_func,port_func
-from plugins import port_template
-from vuldect import pocsearchtask
+try:
+    import component_func,port_func
+    from plugins import port_template
+    from vuldect import pocsearchtask
+except Exception,e:
+    print e
 def port_deal(ip='',port='',name='',productname='',head=None,context=None,nmapscript=None):
     head=None
     ans=None
