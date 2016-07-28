@@ -113,6 +113,8 @@ def search(page='0',dic=None,content=None):
 
     limitpage=15
     validresult=False
+    orderlabel=0
+    orderarray = []
     if content is not None:
         q=Q("multi_match", query=content, fields=['ip', 'name','product',
                 'script' ,'detail' ,'head'  ,'hackinfo','keywords' ,'disclosure'  ])
@@ -120,6 +122,8 @@ def search(page='0',dic=None,content=None):
     else:
         searcharray=[]
         keys=dic.keys()
+        orderlabel=0
+
         for key in keys:
             if key=='name':
                 searcharray.append(Q('term', name=dic[key]))
@@ -146,10 +150,20 @@ def search(page='0',dic=None,content=None):
             if key=='detail':
                 searcharray.append(Q('match', detail=dic[key]))                
             if key=='disclosure':
-                searcharray.append(Q('match', disclosure=dic[key]))              
+                searcharray.append(Q('match', disclosure=dic[key]))
+            if key=='order':
+                orderarray.append(dic[key])
+                orderlabel=1
+
                 
         q=Q('bool', must=searcharray)
-    s = Search(index='datap',doc_type='snifferdata').query(q)
+
+    if orderlabel==0:
+        s = Search(index='datap', doc_type='snifferdata').query(q)
+    else:
+        s=Search(index='datap', doc_type='snifferdata').query(q).sort(orderarray[0])
+
+
 
 
 
