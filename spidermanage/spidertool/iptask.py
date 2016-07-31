@@ -78,8 +78,12 @@ class IPTool(TaskTool,IPTool):
                             ajob.getJobaddress(),ajob.getPort(),ajob.getCreatetime(),ajob.getForcesearch(),ajob.getGroupsid()
                             ))
 
-
-                    if len(jobs) == 10 or x == ipsize - 1:
+                    while True:
+                        if self.sqlTool.get_length()>500:
+                            time.sleep(30)
+                        else:
+                            break
+                    if len(insertdata) == 10 or x == ipsize - 1:
                         sqldatawprk = []
                         dic = {"table": self.config.tasktable,
                                "select_params": ['username', 'taskid', 'taskname', 'taskprior', 'taskstatus',
@@ -92,9 +96,14 @@ class IPTool(TaskTool,IPTool):
                         insertdata=[]
                         pass
                 elif command=='work':
+                    tasktotally=taskcontrol.getObject()
                     self.getlocationtool.add_work([str(ip)])
                     jobs.append(ajob)
-
+                    while True:
+                        if tasktotally.get_length()>50:
+                            time.sleep(60*5)
+                        else:
+                            break
 
 
                     # updatedata = []
@@ -112,7 +121,7 @@ class IPTool(TaskTool,IPTool):
                         if len(jobs)==10 or x==ipsize-1:
 
 
-                            tasktotally=taskcontrol.getObject()
+                            
                  
                             tasktotally.add_work(jobs)
 
