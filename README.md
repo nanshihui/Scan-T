@@ -7,7 +7,8 @@
 Screenshots
 ----
 
-![Screenshot](http://nanshihui.github.io/public/rsync1.png)
+![Screenshot](http://nanshihui.github.io/public/pc.png)
+
 * Simple introduction:[Screenshot Preview](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/)
 
 Require
