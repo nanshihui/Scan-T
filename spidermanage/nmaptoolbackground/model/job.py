@@ -28,7 +28,7 @@ class Job(object):
         if createtime!='':
             self.createtime=createtime
         else:
-            self.createtime=webtool.getlocaltime()
+            self.createtime=webtool.getmicrosecondtime()
         if jobid!='':
             self.jobid=jobid
         else:

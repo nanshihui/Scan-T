@@ -123,7 +123,7 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w,a=p.getHTML('http://www.cctv.com')
+	w,a=p.getHTML('http://218.106.114.213:7070')
 
  	print a
 	

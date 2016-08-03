@@ -40,6 +40,7 @@ class PortscanTask(TaskTool):
         hackinfo=''
         keywords=''
         webkey=''
+        webtitle=''
         if (req[0]=='http' or req[0]=='https') or (req[0] in ['tcpwrapped','None'] and port in ['80','8080','7001']):
 
             if ip[0:4]=='http':
@@ -59,6 +60,7 @@ class PortscanTask(TaskTool):
             import webutil
             webinfo=webutil.getwebinfo(ans)
             webkey=webinfo['keywords']
+            webtitle=webinfo['title']
             try:
                 from detection import page_identify
 
@@ -79,11 +81,11 @@ class PortscanTask(TaskTool):
         hackinfomsg=SQLTool.escapewordby(hackinfo)
         keywords=SQLTool.escapewordby(keywords)
         import Sqldata
-        insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords,webkey))
+        insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords,webkey,webtitle))
                                          
-        extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\',webkeywords=\''+webkey+'\''
+        extra=' on duplicate key update  detail=\''+msg+'\' ,head=\''+str(head)+'\', timesearch=\''+localtime+'\',hackinfo=\''+hackinfomsg+'\',keywords=\''+str(keywords)+'\',webkeywords=\''+webkey+'\',webtitle=\''+webtitle+'\''
         sqldatawprk=[]
-        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords','webkeywords'],"insert_values":insertdata,"extra":extra}
+        dic={"table":self.config.porttable,"select_params":['ip','port','timesearch','detail','head','portnumber','hackinfo','keywords','webkeywords','webtitle'],"insert_values":insertdata,"extra":extra}
         tempwprk=Sqldata.SqlData('inserttableinfo_byparams',dic)
         sqldatawprk.append(tempwprk)
         self.sqlTool.add_work(sqldatawprk)

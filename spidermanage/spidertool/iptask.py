@@ -35,8 +35,28 @@ class IPTool(TaskTool,IPTool):
             username=req[2].get('username','')
             command=req[2].get('command','')
             status = req[2].get('status','')
+            if command=='create':
+                jobs, count, pagecount=jobcontrol.jobshow(groupid=taskid)
+                if count>0:
+                    ip=jobs[0].getJobaddress()
+                    print '当前数据库读到最后一次的任务是:'+ip
+                    if self.iprange(ip, stopip)<0 or ip==stopip:
+                        print '该任务之前已经创建无需重复创建'
 
-            self.getIplist(startip, stopip,taskid,taskport,isjob,username,command,status)
+                    else:
+                        startipnum = self.ip2num(ip)
+                        startipnum = startipnum + 1
+                        ip = self.num2ip(startipnum)
+                        self.getIplist(ip, stopip, taskid, taskport, isjob, username, command, status)
+
+                else:
+                    self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
+
+
+                pass
+            elif command=='work':
+                self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
+
 
         ans=''
         print threadname+'执行任务中'+str(datetime.datetime.now())

@@ -63,7 +63,7 @@ class snifferTask(TaskTool):
             statusitem = Sqldata.SqlData('updatetableinfo_byparams', statusdic)
             updatedata.append(statusitem)
             self.sqlTool.add_work(updatedata)
-        ans=''
+        # ans=''
         return ans
     
 if __name__ == "__main__":   

@@ -44,7 +44,11 @@ def dict2object(d):
         inst = d
     return inst
 def getlocaltime():
+
 	return str(time.strftime("%Y-%m-%d %X", time.localtime()))
+def getmicrosecondtime():
+	import datetime
+	return str(datetime.datetime.now())
 def isip(ip):
  	if re.match('\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', ip) != None:
 #   		print 'IP!'

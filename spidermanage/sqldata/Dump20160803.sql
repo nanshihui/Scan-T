@@ -299,10 +299,11 @@ CREATE TABLE `snifferdata` (
   `keywords` text,
   `disclosure` text,
   `webkeywords` text,
+  `webtitle` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index2` (`ip`,`port`),
   FULLTEXT KEY `cnFullIndex` (`version`,`product`,`head`,`detail`,`script`,`hackinfo`,`disclosure`,`keywords`) /*!50100 WITH PARSER `mysqlcft` */ 
-) ENGINE=MyISAM AUTO_INCREMENT=12303065 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12889846 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,6 +369,78 @@ CREATE TABLE `tasksdata` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `testdata`
+--
+
+DROP TABLE IF EXISTS `testdata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `testdata` (
+  `ip` varchar(45) DEFAULT NULL,
+  `port` int(11) DEFAULT NULL,
+  `timesearch` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `product` varchar(45) DEFAULT NULL,
+  `version` varchar(45) DEFAULT NULL,
+  `script` text,
+  `detail` text,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` text,
+  `portnumber` varchar(8) DEFAULT NULL,
+  `hackinfo` text,
+  `keywords` text,
+  `disclosure` text,
+  `label` text,
+  `contentlength` text,
+  `headlabel` text,
+  `place` varchar(45) DEFAULT NULL,
+  `front` text,
+  `component` text,
+  `language` text,
+  `webapp` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index2` (`ip`,`port`)
+) ENGINE=InnoDB AUTO_INCREMENT=11269712 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `traindata`
+--
+
+DROP TABLE IF EXISTS `traindata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `traindata` (
+  `ip` varchar(45) DEFAULT NULL,
+  `port` int(11) DEFAULT NULL,
+  `timesearch` varchar(45) DEFAULT NULL,
+  `state` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `product` varchar(45) DEFAULT NULL,
+  `version` varchar(45) DEFAULT NULL,
+  `script` text,
+  `detail` text,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `head` text,
+  `portnumber` varchar(8) DEFAULT NULL,
+  `hackinfo` text,
+  `keywords` text,
+  `disclosure` text,
+  `label` text,
+  `contentlength` text,
+  `headlabel` text,
+  `place` varchar(45) DEFAULT NULL,
+  `front` text,
+  `component` text,
+  `language` text,
+  `webapp` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index2` (`ip`,`port`)
+) ENGINE=InnoDB AUTO_INCREMENT=100001 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `user_table`
 --
 
@@ -392,4 +465,4 @@ CREATE TABLE `user_table` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-27 15:48:10
+-- Dump completed on 2016-08-03 17:14:06

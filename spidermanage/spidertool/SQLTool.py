@@ -12,6 +12,13 @@ reload(sys);
 sys.setdefaultencoding('utf8');
 DBhelp=None
 SQLPOOL=None
+DBlog=None
+def getloghandle():
+	global DBlog
+	if DBlog is None:
+		DBlog=initLog('logs/sqltool.log', 2, True,'sqltool')
+	return DBlog
+
 def getObject():
 	global DBhelp
 	if DBhelp is None:
@@ -42,16 +49,20 @@ class DBmanager:
 		self.__cachemin=temp.cachemin
 		self.__conn=None
 		self.__cur=None
-		self.logger = initLog('logs/sqltool.log', 2, True,'sqltool')
+		self.logger = getloghandle()
+
 
 	def getConnect(self):
 		global SQLPOOL
 		if SQLPOOL is None:
+
 			SQLPOOL = PooledDB(creator=MySQLdb ,mincached=self.__cachemin , maxcached=0 ,maxshared=0,maxconnections=0,blocking=True,maxusage=0,
 									host=self.__host , port=self.__port , user=self.__user , passwd=self.__passwd,
 									db=self.__db,use_unicode=False,charset=self.__charset
  									,cursorclass=DictCursor
 									)
+			print type(SQLPOOL)
+
 		return SQLPOOL.connection()
 	def connectdb(self):
 		try:
@@ -393,12 +404,12 @@ def escapewordby(word):
 		content = str(MySQLdb.escape_string(str(decodestr(word))))
 		return content
 def getproperty(dic,property):
-    return decodestring(str(dic.get(property,'')))
+	return decodestring(str(dic.get(property,'')))
 def encodestring(msg):
-    if str:
-        return decodestr(msg).encode('string_escape')
-    else:
-        return '' 
+	if str:
+		return decodestr(msg).encode('string_escape')
+	else:
+		return '' 
 
 
 
@@ -416,14 +427,14 @@ def decodestr(msg):
 	except Exception, e:
 		return str(msg)
 def getdecodeproperty(dic,property):
-    return decodestring(str(dic.get(property,'')))
+	return decodestring(str(dic.get(property,'')))
 def decodestring(msg):
-    if str:
+	if str:
 
-        return decodestr(msg.decode('string_escape').decode('string_escape'))
+		return decodestr(msg.decode('string_escape').decode('string_escape'))
 
-    else:
-        return ''
+	else:
+		return ''
 if __name__ == "__main__":
 	SQLtool=DBmanager()
 	SQLtool.connectdb()
@@ -436,9 +447,9 @@ if __name__ == "__main__":
 # 	insertdata.append(('111.111.111.1','1','2014-08-08 11:11:11','str(ans)','str(ans)','2014-08-08 11:11:11'))
 #		 self.sqlTool.inserttableinfo_byparams(self.config.porttable,['ip','port','timesearch','detail' ],insertdata)
 # 	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,updatevalue=['detail','timesearch'])
-	insertdata.append(('110.110.110.110','1',localtime,'open'))
-	extra=' on duplicate key update  detail=\'open\' , timesearch=\''+localtime+'\''
-	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,extra)
+# 	insertdata.append(('110.110.110.110','1',localtime,'open'))
+# 	extra=' on duplicate key update  detail=\'open\' , timesearch=\''+localtime+'\''
+# 	SQLtool.inserttableinfo_byparams(config.Config.porttable,['ip','port','timesearch','detail'],insertdata,extra)
 	SQLtool.closedb()
 	
 	

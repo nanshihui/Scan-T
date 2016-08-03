@@ -9,6 +9,7 @@ limitpage=15
 
 localconfig=config.Config()
 def taskshow(taskname='',tasktatus='',username='',taskid='',taskport='',result='',page='0'):
+
     validresult=False
     request_params=[]
     values_params=[]
@@ -30,7 +31,9 @@ def taskshow(taskname='',tasktatus='',username='',taskid='',taskport='',result='
 
     DBhelp=SQLTool.DBmanager()
     DBhelp.connectdb()
+
     table=localconfig.taskstable
+
     result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['count(*)'], request_params, values_params)
     if count>0:
         count= int(result[0]['count(*)'])
@@ -232,6 +235,8 @@ def identifyip(msg,dic):
             iprange=m1.group().split('-')
             startip=iprange[0]
             stopip = iprange[1]
+
+
             listitem.add_work([(startip, stopip, dic)])
 
         else:

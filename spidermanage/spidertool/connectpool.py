@@ -34,6 +34,14 @@ class ConnectPool:
 # 		gc.enable() 
 # 		gc.set_debug(gc.DEBUG_STATS|gc.DEBUG_LEAK|gc.DEBUG_COLLECTABLE | gc.DEBUG_UNCOLLECTABLE | gc.DEBUG_INSTANCES | gc.DEBUG_OBJECTS)
 		head,page=self.connectTool.getHTML(URL,way,params,times)
+		i=1
+		while i<3:
+			if 'cookie/flashcookie.swf' in page:
+				head, page = self.connectTool.getHTML(URL, way, params, times)
+				print '页面被劫持,重新访问'
+			else:
+				break
+
 
 
 # 		po=gc.collect()
