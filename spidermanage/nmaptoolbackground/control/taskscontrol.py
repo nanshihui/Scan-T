@@ -137,6 +137,7 @@ def createjob(job):
     status=job.getStatus()
     createtime = job.getCreatetime()
     taskid = job.getTasksid()
+    mode=job.getMode()
     info={}
     info['taskid']=taskid
     info['taskport'] = jobport
@@ -144,12 +145,13 @@ def createjob(job):
     info['username'] = username
     info['command'] = 'create'
     info['status'] = status
+    info['mode']=mode
     identifyip(jobaddress,info)
 
 def startjob(job):
     jobaddress = job.getTaskaddress()
     jobport = job.getPort()
-
+    mode = job.getMode()
     username = job.getUsername()
     status = job.getStatus()
     createtime = job.getCreatetime()
@@ -161,6 +163,7 @@ def startjob(job):
     info['username'] = username
     info['command'] = 'work'
     info['status'] = status
+    info['mode'] = mode
     identifyip(jobaddress, info)
 
 

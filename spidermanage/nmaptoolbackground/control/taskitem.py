@@ -41,7 +41,17 @@ def recovertask():
 
 
     if count>0:
-        print '检测到宕机任务,重新创建任务'
+        print '寻找未启动的任务'
         for item in tasks:
+            item.setMode(0)
             temp = taskscontrol.createjob(item)
 
+
+    tasks, count, pagecount=taskscontrol.taskshow(tasktatus='3')
+    if count>0:
+        print '寻找正在执行的任务'
+
+
+        for item in tasks:
+            item.setMode(0)
+            taskscontrol.startjob(item)

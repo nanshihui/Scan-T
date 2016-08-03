@@ -162,3 +162,4 @@ def asd1():
 
 ff={}
 print type(ff)==dict
+print None<0

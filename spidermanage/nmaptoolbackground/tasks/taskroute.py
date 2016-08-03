@@ -58,6 +58,7 @@ def taskadd(request):
                             content_type="application/json")
 
     result = taskscontrol.taskadd(job)
+
     temp=   taskscontrol.createjob(job)
     #     print result
     if result:
@@ -91,6 +92,9 @@ def updatejob(request,state=''):
         response_data['result'] = '0'
         if state=='3':
             tempresult = taskscontrol.jobupdate(jobstatus=state, username=username, taskid=jobid,completenum='0')
+        # elif  state=='4':
+        #     pass
+
         else:
 
             if role=='1':

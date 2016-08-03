@@ -13,6 +13,8 @@ class Tasks(object):
 #         taskstatus=4 //挂起
 #         taskstatus=5 //已完成
 #         taskstatus=6 //已终止
+#         mode=1//正常状态
+#         mode=0//异常状态
         self.tasksname=tasksname
         self.taskaddress=taskaddress
         self.priority=priority
@@ -21,6 +23,7 @@ class Tasks(object):
         self.completenum=completenum
         self.num=num
         self.isjob=isjob
+        self.mode=1
         if forcesearch!='':
             self.forcesearch=forcesearch
 
@@ -39,7 +42,11 @@ class Tasks(object):
         self.result=result
         self.endtime=endtime
         self.argument=argument
+    def setMode(self,mode):
+        self.mode=mode
+    def getMode(self):
 
+        return self.mode
     def setPriority(self,priority):
         self.priority=priority
     def setArgument(self,argument):
