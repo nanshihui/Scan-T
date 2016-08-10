@@ -2,7 +2,7 @@
 # -*- coding:utf-8 -*-
 from TaskTool import TaskTool
 from iptool import IPTool
-from nmaptoolbackground.control import taskcontrol,jobcontrol
+from nmaptoolbackground.control import taskcontrol,jobcontrol,portcontrol
 from nmaptoolbackground.model import job
 import getLocationTool
 import time,datetime
@@ -35,7 +35,7 @@ class IPTool(TaskTool,IPTool):
             username=req[2].get('username','')
             command=req[2].get('command','')
             status = req[2].get('status','')
-            mode=req[2].get('mode','')
+            mode=req[2].get('mode','2')
             if command=='create':
                 if mode==1:
                     self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
@@ -63,7 +63,7 @@ class IPTool(TaskTool,IPTool):
             elif command=='work':
                 if mode == 1:
                     self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
-                else:
+                elif mode ==0:
 
 
 
@@ -85,9 +85,17 @@ class IPTool(TaskTool,IPTool):
                             self.getIplist(ip, stopip, taskid, taskport, isjob, username, command, status)
 
                     else:
+
                         self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
 
-                pass
+                else:
+                    portarray, count, pagecount=portcontrol.portshow(order='timesearch desc')
+                    if count>0:
+                        ip = portarray[0].getIP()
+                        print '当前数据库读到最后一次ip:' + ip
+                        startip=ip
+                    print 'start task from %s to %s' %(startip,stopip)
+                    self.getIplist(startip, stopip, taskid, taskport, isjob, username, command, status)
 
 
         ans=''
@@ -121,11 +129,12 @@ class IPTool(TaskTool,IPTool):
                     else:
                         jobitems, count, pagecount= jobcontrol.jobshow(jobname=taskid,username=username,groupid=taskid,jobaddress=str(ip))
                         ajob = jobitems[0]
+                        print ajob.getJobid()
 
 
 
                 if command=='create':
-                    
+
                     insertdata.append((username, ajob.getJobid(), ajob.getJobname(), ajob.getPriority(), ajob.getStatus(),
                             ajob.getJobaddress(),ajob.getPort(),ajob.getCreatetime(),ajob.getForcesearch(),ajob.getGroupsid()
                             ))
@@ -181,19 +190,19 @@ class IPTool(TaskTool,IPTool):
                             jobs=[]
                         else:
                             pass
-
-            setvalue="(select count(*) from taskdata where groupsid='"+str(taskid)+"')"
-            dic = {
+            if isjob=='1':
+                setvalue="(select count(*) from taskdata where groupsid='"+str(taskid)+"')"
+                dic = {
                 "table": [self.config.taskstable],
                 "select_params": ['num'],
                 "set_params": [setvalue],
                 "request_params": ['tasksid'],
                 "equal_params": ['\''+str(taskid)+'\'']
             }
-            updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
-            updatedata = []
-            updatedata.append(updateitem)
-            self.sqlTool.add_work(updatedata)
+                updateitem = Sqldata.SqlData('updatetableinfo_byparams', dic)
+                updatedata = []
+                updatedata.append(updateitem)
+                self.sqlTool.add_work(updatedata)
                     
 if __name__ == '__main__':
     for i in xrange(3):

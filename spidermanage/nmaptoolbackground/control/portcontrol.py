@@ -104,7 +104,7 @@ def portabstractshow(ip='',port='',timesearch='',state='',name='',product='',ver
         print str(count)+'          '+str(pagecount)
         return portarray,count,pagecount
     return [],0,pagecount
-def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city=''):
+def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',page='0',extra='',command='and',head='',city='',order='port'):
     validresult=False
     request_params=[]
     values_params=[]
@@ -174,7 +174,7 @@ def portshow(ip='',port='',timesearch='',state='',name='',product='',version='',
     
         limit='    limit  '+str(int(page)*limitpage)+','+str(limitpage)
         try:
-            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head','hackinfo'], request_params, values_params,limit,order='port',extra=extra,command=command)
+            result,content,count,col=DBhelp.searchtableinfo_byparams([table], ['ip','port','timesearch','state','name','product','version','script','detail','head','hackinfo'], request_params, values_params,limit,order=order,extra=extra,command=command)
         except Exception,e:
             print str(e)+'portcontrol 69'
             if DBhelp is not None:

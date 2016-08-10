@@ -55,3 +55,13 @@ def recovertask():
         for item in tasks:
             item.setMode(0)
             taskscontrol.startjob(item)
+def normaltask():
+    info = {}
+
+
+    info['isjob'] = '0'
+    info['command'] = 'work'
+    listitem=iptask.getObject()
+    listitem.add_work([('1.1.1.1','254.254.254.254',info)])
+
+    pass

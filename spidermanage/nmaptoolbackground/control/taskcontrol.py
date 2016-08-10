@@ -51,6 +51,7 @@ def scheduleinit():
     global mainschedule
     mainschedule=schedule.schedulecontrol()
     mainschedule.addschedule(event=taskitem.recovertask,type='date')  # 异常宕机恢复
+    # mainschedule.addschedule(event=taskitem.normaltask,type='date')  # 后台异步任务
 
 #     mainschedule.addschedule(taskitem.listiptask,'0-7','*/21','13','0',id='listiptask')#自定义扫描段任务器
     mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/5','0',id='nmap')#nmap定时任务器
