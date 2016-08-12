@@ -6,8 +6,12 @@
 
 Screenshots
 ----
+* searching struts vulnerability 
 
 ![Screenshot](http://nanshihui.github.io/public/pc.png)
+
+* struts vulnerability distribution
+
 ![Screenshot](http://nanshihui.github.io/public/locate.png)
 
 
