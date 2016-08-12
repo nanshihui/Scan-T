@@ -8,7 +8,7 @@ from django.template.context import RequestContext
 from nmaptoolbackground.control import usercontrol,jobcontrol,ipcontrol,portcontrol,taskcontrol
 from django.views import generic
 from spidertool import webtool
-
+from fontsearch.control import mapcontrol
 import json
 
 
@@ -21,6 +21,9 @@ def mainpage(request):
     page=request.GET.get('page','0')
     username = request.COOKIES.get('username','')
     return render_to_response('fontsearchview/searchdetail.html', {'data':content,'page':page,'username':username})
+def mapsearchmain(request):
+    username = request.COOKIES.get('username', '')
+    return render_to_response('fontsearchview/mapsearchmain.html',{'username':username})
 def detailpage(request):
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
@@ -119,5 +122,56 @@ def detailpage(request):
         #             content_type="application/json")
 
     
+def mapsearch(request):
+    content = request.POST.get('content', '')
+    username = request.COOKIES.get('username', '')
+    response_data = {}
+    response_data['result'] = '0'
+    jsoncontent = None
+    ports = None
+    import json
+    try:
+        jsonmsg = '{' + content + '}'
+        jsoncontent = json.loads(jsonmsg)
+    except Exception, e:
+        print e
+        pass
 
-  
+    if jsoncontent is None or jsoncontent =={}:
+
+        print '去数据库检索'
+        ports,portcount,resultsize=mapcontrol.mapshow(searchcontent=content, isdic=0)
+        print '检索完毕'
+        response_data['result'] = '1'
+
+        response_data['ports'] = ports
+        response_data['portslength'] = portcount
+        response_data['resultsize'] = resultsize
+
+        response_data['username'] = username
+    else:
+        action = jsoncontent.keys()
+
+        if len(content) == 0:
+            return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
+                                    content_type="application/json")
+        ports, portcount, portpagecount = getattr(mapcontrol, 'mapshow', 'mapshow')(**jsoncontent)
+
+        response_data['result'] = '1'
+        response_data['ports'] = ports
+        response_data['portslength'] = portcount
+        response_data['resultsize'] = portpagecount
+
+        response_data['username'] = username
+
+    try:
+
+        return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
+                            content_type="application/json")
+    except Exception, e:
+        print e
+        return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict, encoding='latin-1'),
+                            content_type="application/json")
+
+
+

@@ -37,7 +37,7 @@
                     </p>
                     <div role="search">
                         <div class="form-group">
-                            <input type="hidden" id="pagenum" name="pagenum" value={{page}}>
+                            <input type="hidden" id="pagenum" name="pagenum" >
                             <input type="text" id="searchcontent" class="form-control search clearable"
                                    placeholder="搜索组件，例如：MySQL" value={{data}}>
                             <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
@@ -52,14 +52,14 @@
 </header>
 
 <div class="mostused-packages well well-sm text-center hidden-xs hidden-sm"></div>
-<div class="container protocal-notice">
-    <div class="row">
-        <div class="col-xs-12 hidden-xs">
+<!--<div class="container protocal-notice">-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12 hidden-xs">-->
 
 
-        </div>
-    </div>
-</div>
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 <main>
     <!--   <  main    class="packages-list-container" id="all-packages"> -->
 
@@ -103,7 +103,7 @@
             document.getElementById('searchcontent').value = "";
         }
         else {
-            searchdetail(0);
+            loaddata();
         }
 
     }
@@ -145,12 +145,15 @@
 
         var str = '';
 
+        content = document.getElementById("searchcontent").value;
 
-        xmlhttp.open("POST", "/testdata/", false);
+
+        str = 'content=' + content ;
+        xmlhttp.open("POST", "/search/mapsearch/", true);
         xmlhttp.onreadystatechange = callback;
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(str);
-         Pace.track();
+        Pace.track();
     }
     function callback() {
 
@@ -165,24 +168,26 @@
                 var a = xmlhttp.responseText;
                 var result=JSON.parse(a);
 
-                data=result.cp;
-
-                getdata(data);
+                data=result.ports;
+                var resultsize=result.resultsize
+                myChart = echarts.init(dom);
+                getdata(data,resultsize);
             }
         }
     }
-    function getdata(data) {
+    function getdata(data,size) {
+        i=size/40;
         option = {
 //            backgroundColor: '#404a59',
-            backgroundColor: '#ffffff',
+            backgroundColor: '#404a59',
             title: {
                 text: '受影响主机分布图',
                 subtext: 'data from Scan-T',
                 sublink: 'https://github.com/nanshihui',
                 left: 'center',
                 textStyle: {
-//                    color: '#fff'
-                     color: '#0099CC'
+                    color: '#fff'
+//                     color: '#0099CC'
                 }
             },
             tooltip: {
@@ -215,6 +220,19 @@
                     }
                 }
             },
+            visualMap: {
+            type: 'continuous',
+            min: 0,
+            max: size,
+            text:['High','Low'],
+                textStyle: {
+                    color: '#fff'
+//                     color: '#0099CC'
+                },
+            realtime: false,
+            calculable : true,
+            color: ['orangered','yellow','lightskyblue']
+            },
             series: [
                 {
                     name: '主机',
@@ -222,7 +240,7 @@
                     coordinateSystem: 'geo',
                     data: convertData(data),
                     symbolSize: function (val) {
-                        return val[2] / 10;
+                        return val[2] / i;
                     },
                     label: {
                         normal: {
@@ -248,7 +266,7 @@
                         return b.value - a.value;
                     }).slice(0, 6)),
                     symbolSize: function (val) {
-                        return val[2] / 10;
+                        return val[2] / i;
                     },
                     showEffectOn: 'render',
                     rippleEffect: {
@@ -674,7 +692,13 @@
         return res;
     };
 
-
+    document.onkeydown = function (e) {
+        //捕捉回车事件
+        var ev = (typeof event != 'undefined') ? window.event : e;
+        if (ev.keyCode == 13 && document.activeElement.id == "searchcontent") {
+            loaddata(0);
+        }
+    }
 </script>
 
 <script src="/static/fontsearch/js/jquery.min.js"></script>

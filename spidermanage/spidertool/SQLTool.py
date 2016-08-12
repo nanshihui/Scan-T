@@ -105,10 +105,43 @@ class DBmanager:
 			return True
 		else:
 			return False
-	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[],limit='',order='',extra='',command='and'):
+	def  searchtableinfo_byparams(self,table,select_params=[],request_params=[],equal_params=[],limit='',order='',extra='',command='and',usesql=0):
 		if len(request_params)!=len(equal_params):
 			print 'request_params,equals_params长度不相等'
 			return (0,0,0,0)
+		if usesql==1:
+			sql=table
+			try:
+				if self.__cur is not None:
+					count = self.__cur.execute(sql)
+				else:
+					self.connectdb()
+					count = self.__cur.execute(sql)
+			except MySQLdb.Error, e:
+				try:
+					if self.isdisconnect(e):
+						self.connectdb()
+						count = self.__cur.execute(sql)
+					else:
+
+						self.logger and self.logger.error('数据库错误%s', str(e))
+
+						return (0, 0, 0, 0)
+				except Exception, e:
+					return (0, 0, 0, 0)
+			if count > 0:
+				result = self.__cur.fetchall()
+				content = self.__cur.description
+
+				col = None
+				if content is not None:
+					col = len(content)
+				return result, content, count, col
+
+
+			else:
+				print '没有相关信息'
+				return (0, 0, 0, 0)
 		elif  self.__isconnect==1:
 
 			try:

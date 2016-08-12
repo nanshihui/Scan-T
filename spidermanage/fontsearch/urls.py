@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^$', route.indexpage, name='search'),
     url(r'^searchmain/$', route.mainpage, name='searchmain'),
     url(r'^searchdetail/$', route.detailpage, name='searchdetail'),
+    url(r'^mapsearch/$', route.mapsearch, name='mapsearch'),
+    url(r'^mapsearchmain/$', route.mapsearchmain, name='mapsearchmain'),
 
     
     

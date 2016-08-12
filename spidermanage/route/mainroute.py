@@ -19,12 +19,16 @@ def testdata(request):
     item={}
 
     item['name']='北京市'
-    item['value'] = 119
+    item['value'] = '119'
     ary.append(item)
     item = {}
 
     item['name'] = '上海市'
-    item['value'] = 120
+    item['value'] = '120'
+    ary.append(item)
+    item = {}
+    item['name'] = '市'
+    item['value'] = '120'
     ary.append(item)
     response_data['cp']=ary
 
