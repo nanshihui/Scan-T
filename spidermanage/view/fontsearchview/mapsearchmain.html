@@ -196,7 +196,7 @@
             legend: {
                 orient: 'vertical',
                 y: 'bottom',
-                x: 'right',
+                x: '90%',
                 data: ['主机'],
                 textStyle: {
                     color: '#fff'
@@ -240,7 +240,15 @@
                     coordinateSystem: 'geo',
                     data: convertData(data),
                     symbolSize: function (val) {
-                        return val[2] / i;
+
+
+
+                        var item=val[2]/size;
+
+                        var number=(Math.exp(item-1))*i;
+                        console.log(item,number,val[2],val[2]/number);
+                        return val[2]/number+1;
+//                        return val[2]/i;
                     },
                     label: {
                         normal: {
@@ -266,7 +274,12 @@
                         return b.value - a.value;
                     }).slice(0, 6)),
                     symbolSize: function (val) {
-                        return val[2] / i;
+
+                        var item=val[2]/size;
+
+                        var number=(Math.exp(item-1))*i;
+                        console.log(item,number,val[2],val[2]/number);
+                        return val[2]/number+1;
                     },
                     showEffectOn: 'render',
                     rippleEffect: {
@@ -699,6 +712,61 @@
             loaddata(0);
         }
     }
+
+    function add(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) + mul(b, e)) / e;
+}
+
+function sub(a, b) {
+    var c, d, e;
+    try {
+        c = a.toString().split(".")[1].length;
+    } catch (f) {
+        c = 0;
+    }
+    try {
+        d = b.toString().split(".")[1].length;
+    } catch (f) {
+        d = 0;
+    }
+    return e = Math.pow(10, Math.max(c, d)), (mul(a, e) - mul(b, e)) / e;
+}
+
+function mul(a, b) {
+    var c = 0,
+        d = a.toString(),
+        e = b.toString();
+    try {
+        c += d.split(".")[1].length;
+    } catch (f) {}
+    try {
+        c += e.split(".")[1].length;
+    } catch (f) {}
+    return Number(d.replace(".", "")) * Number(e.replace(".", "")) / Math.pow(10, c);
+}
+
+function div(a, b) {
+    var c, d, e = 0,
+        f = 0;
+    try {
+        e = a.toString().split(".")[1].length;
+    } catch (g) {}
+    try {
+        f = b.toString().split(".")[1].length;
+    } catch (g) {}
+    return c = Number(a.toString().replace(".", "")), d = Number(b.toString().replace(".", "")), mul(c / d, Math.pow(10, f - e));
+}
 </script>
 
 <script src="/static/fontsearch/js/jquery.min.js"></script>
