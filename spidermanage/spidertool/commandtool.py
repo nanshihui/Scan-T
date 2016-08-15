@@ -3,7 +3,7 @@ import platform
 import subprocess  
 import signal  
 import time  
-  
+import datetime
 class TimeoutError(Exception):  
     pass  
   
@@ -14,7 +14,7 @@ def command(cmd, timeout=60):
     """  
     is_linux = platform.system() == 'Linux'  
       
-    p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, shell=True, preexec_fn=os.setsid if is_linux else None)  
+    p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE, close_fds=True,shell=True, preexec_fn=os.setsid if is_linux else None)
     if timeout==0:
         return p.stdout.read()
     t_beginning = time.time()  
@@ -31,10 +31,35 @@ def command(cmd, timeout=60):
             raise TimeoutError(cmd, timeout)  
         time.sleep(0.1)  
     return p.stdout.read()
-  
+
+
+def timeout_command(command, timeout=60):
+    start = datetime.datetime.now()
+    process = subprocess.Popen(command, bufsize=10000, stdout=subprocess.PIPE, close_fds=True)
+    while process.poll() is None:
+        time.sleep(0.1)
+        now = datetime.datetime.now()
+        if (now - start).seconds > timeout:
+            try:
+                process.terminate()
+            except Exception, e:
+                return None
+        return None
+    out = process.communicate()[0]
+    if process.stdin:
+        process.stdin.close()
+    if process.stdout:
+        process.stdout.close()
+    if process.stderr:
+        process.stderr.close()
+    try:
+        process.kill()
+    except OSError:
+        pass
+    return out
 if __name__ == '__main__':  
     try:  
-        result = command('ping www.site-digger.com', timeout=10)  
+        result = timeout_command('ping www.site-digger.com', timeout=10)
     except TimeoutError:  
         print 'Run command timeout.'  
     else:  
