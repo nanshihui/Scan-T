@@ -163,3 +163,6 @@ def asd1():
 ff={}
 print type(ff)==dict
 print None<0
+dic={}
+dic['a']=1
+print type( dic.__str__())

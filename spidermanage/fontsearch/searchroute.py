@@ -25,6 +25,7 @@ def mapsearchmain(request):
     username = request.COOKIES.get('username', '')
     return render_to_response('fontsearchview/mapsearchmain.html',{'username':username})
 def detailpage(request):
+
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
     username = request.COOKIES.get('username','')
@@ -61,9 +62,9 @@ def detailpage(request):
                 except Exception,e:
                     print e
             print '检索完毕'
-            response_data['result'] = '1' 
-    
-    
+            response_data['result'] = '1'
+
+            response_data['keywords'] = content.split()
             response_data['ports']=ports
             response_data['portslength']=portcount
             response_data['portspagecount']=portpagecount
@@ -83,7 +84,8 @@ def detailpage(request):
             else:
         
                 ports,portcount,portpagecount=getattr(portcontrol, 'portabstractshow','portabstractshow')(**jsoncontent)
-            response_data['result'] = '1' 
+            response_data['result'] = '1'
+            response_data['keywords'] = jsoncontent.values()
             response_data['ports']=ports
             response_data['portslength']=portcount
             response_data['portspagecount']=portpagecount
@@ -103,7 +105,8 @@ def detailpage(request):
                 print e
                 ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
 
-            response_data['result'] = '1' 
+            response_data['result'] = '1'
+            response_data['keywords'] = jsoncontent.values()
             response_data['ports']=ports
             response_data['portslength']=portcount
             response_data['portspagecount']=portpagecount
@@ -123,6 +126,7 @@ def detailpage(request):
 
     
 def mapsearch(request):
+    from spidertool import redistool,webtool
     content = request.POST.get('content', '')
     username = request.COOKIES.get('username', '')
     response_data = {}
@@ -138,15 +142,29 @@ def mapsearch(request):
         pass
 
     if jsoncontent is None or jsoncontent =={}:
+        redisresult=redistool.get(content)
+        if redisresult:
+            print '从redids取的数据'
+            response_data['result'] = '1'
 
-        print '去数据库检索'
-        ports,portcount,resultsize=mapcontrol.mapshow(searchcontent=content, isdic=0)
-        print '检索完毕'
-        response_data['result'] = '1'
+            response_data['ports'] = redisresult['ports']
+            response_data['portslength'] = redisresult['portslength']
+            response_data['resultsize'] = redisresult['resultsize']
 
-        response_data['ports'] = ports
-        response_data['portslength'] = portcount
-        response_data['resultsize'] = resultsize
+
+        else:
+            ports,portcount,resultsize=mapcontrol.mapshow(searchcontent=content, isdic=0)
+            redisdic={}
+            redisdic['ports'] = ports
+            redisdic['portslength'] = portcount
+            redisdic['resultsize'] = resultsize
+            redistool.set(content,redisdic)
+
+            response_data['result'] = '1'
+
+            response_data['ports'] = ports
+            response_data['portslength'] = portcount
+            response_data['resultsize'] = resultsize
 
         response_data['username'] = username
     else:
@@ -155,12 +173,25 @@ def mapsearch(request):
         if len(content) == 0:
             return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
                                     content_type="application/json")
-        ports, portcount, portpagecount = getattr(mapcontrol, 'mapshow', 'mapshow')(**jsoncontent)
+        redisresult = redistool.get(webtool.md5(str(jsoncontent.__str__)))
+        if redisresult:
+            print '从redids取的数据'
+            response_data['result'] = '1'
 
-        response_data['result'] = '1'
-        response_data['ports'] = ports
-        response_data['portslength'] = portcount
-        response_data['resultsize'] = portpagecount
+            response_data['ports'] = redisresult['ports']
+            response_data['portslength'] = redisresult['portslength']
+            response_data['resultsize'] = redisresult['resultsize']
+        else:
+            ports, portcount, portpagecount = getattr(mapcontrol, 'mapshow', 'mapshow')(**jsoncontent)
+            redisdic = {}
+            redisdic['ports'] = ports
+            redisdic['portslength'] = portcount
+            redisdic['resultsize'] = portpagecount
+            redistool.set(webtool.md5(str(jsoncontent.__str__)), redisdic)
+            response_data['result'] = '1'
+            response_data['ports'] = ports
+            response_data['portslength'] = portcount
+            response_data['resultsize'] = portpagecount
 
         response_data['username'] = username
 

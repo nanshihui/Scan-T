@@ -23,7 +23,9 @@ class snifferdata(DocType):
     head= String(analyzer='ik')
     hackinfo= String(analyzer='ik')
     keywords= String(analyzer='ik')
-    disclosure= String(analyzer='ik') 
+    disclosure= String(analyzer='ik')
+    webtitle = String(analyzer='ik')
+    webkeywords = String(analyzer='ik')
     class Meta:
         index = 'datap'
 

@@ -18,8 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include, url
 import route.mainroute as route
+from django.views.generic import RedirectView
 urlpatterns = [
-
+    url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
     url(r'^nmaptool/', include('nmaptoolbackground.urls',namespace='nmaptool')),
     url(r'^admin/', admin.site.urls),
     url(r'^status',route.indexpage,name='status'),

@@ -324,8 +324,11 @@
             document.getElementById("resultinfo").innerHTML = bodyhtml;
 
             var ccontent = document.getElementById("searchcontent").value;
+            var keywords = data2.keywords;
+            for(var j=0;j<keywords.length;j++){
+                  $('body').highlight(keywords[j]);
+            }
 
-            $('body').highlight(ccontent);
 
 
             // var hl = new Highlighter();

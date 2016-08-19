@@ -151,6 +151,10 @@ def search(page='0',dic=None,content=None):
                 searcharray.append(Q('match', detail=dic[key]))                
             if key=='disclosure':
                 searcharray.append(Q('match', disclosure=dic[key]))
+            if key == 'webtitle':
+                searcharray.append(Q('match', webtitle=dic[key]))
+            if key == 'webkeywords':
+                searcharray.append(Q('match', webkeywords=dic[key]))
             if key=='order':
                 orderarray.append(dic[key])
                 orderlabel=1
