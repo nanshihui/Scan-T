@@ -4,6 +4,7 @@ try:
     import component_func,port_func
     from plugins import port_template
     from vuldect import pocsearchtask
+    from httpdect.webdection import getgeoipinfo
 except Exception,e:
     print e
 def port_deal(ip='',port='',name='',productname='',head=None,context=None,nmapscript=None):
@@ -17,7 +18,20 @@ def port_deal(ip='',port='',name='',productname='',head=None,context=None,nmapsc
     else:
         temp=pocsearchtask.getObject()
         temp.add_work([(head,context,ip,port,productname,keywords,nmapscript,name)])
-    return head,ans,keywords,hackinfo
+
+    keyword={}
+    keyword['ip']=[ip]
+    from spidertool import redistool
+    redisresult=redistool.get(ip)
+    if redisresult:
+        print '从redids读取位置信息'
+        keyword=redisresult
+    else:
+        keyword=getgeoipinfo.getGeoipinfo(keyword)
+        redistool.set(ip, keyword)
+        print '从redids写入位置信息'
+    keyword['keywords'] = keywords
+    return head,ans,keyword,hackinfo
 
 
 def getFunc(name,port,productname):

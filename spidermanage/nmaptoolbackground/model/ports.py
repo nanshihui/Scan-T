@@ -2,8 +2,9 @@
 #coding:utf-8
 
 from spidertool import webtool
+from location import Location
 class Port(object):
-    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo='',disclosure=''):
+    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo='',disclosure='',keywords=None):
         '''
         Constructor
         '''
@@ -24,6 +25,21 @@ class Port(object):
         self.city=city
         self.hackinfo=hackinfo
         self.disclosure=disclosure
+        self.keywords=keywords
+        if self.keywords is None:
+            self.keywords=Location(ip=str(self.ip)).getData()
+        else:
+            try:
+
+                data=eval(keywords)
+                self.keywords=data
+                if self.keywords.get('geoip',None) is None:
+                    self.keywords = Location(ip=str(self.ip)).getData()
+            except Exception,e:
+
+                self.keywords = Location(ip=str(self.ip)).getData()
+            # print self.keywords
+            # print self.keywords['geoip']['country']
     def getIP(self):
         return self.ip
     def getPort(self):

@@ -79,7 +79,7 @@ class PortscanTask(TaskTool):
         head=SQLTool.escapewordby('{'+head+'}')
         msg=SQLTool.escapewordby('{'+temp+'}')
         hackinfomsg=SQLTool.escapewordby(hackinfo)
-        keywords=SQLTool.escapewordby(keywords)
+        keywords=SQLTool.escapewordby(str(keywords))
         import Sqldata
         insertdata.append((ip,port,localtime,msg,str(head),str(port),hackinfomsg,keywords,webkey,webtitle))
                                          

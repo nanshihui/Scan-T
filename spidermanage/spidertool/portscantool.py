@@ -18,7 +18,7 @@ class Portscantool:
 
         self.socketclient=None
     def do_scan(self,head=None,context=None,ip=None,port=None,name=None,productname=None,nmapscript=None):
-        keywords=name
+        keywords={}
         hackinfo=''
         ans = None
         reply=''

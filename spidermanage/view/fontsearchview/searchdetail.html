@@ -285,25 +285,25 @@
                 }
 
                 bodyhtml += "<div class=\"package list-group-item\" data-library-name=\"bootstrap\" target=\"_blank\" ><div class=\"row\"><div class=\"col-md-3\">" +
-                        "<p><a  target=\"_black\" title=\"查看该主机\" href=\"/search/searchmain/?page=0&searchcontent=%22ip%22:%22"+(ports[i].ip == null ? '' : ports[i].ip) + "%22"+ "\"<h4 class=\"package-name\">" + (ports[i].ip == null ? '' : ports[i].ip) + "</h4></a>&nbsp;&nbsp;"+
+                        "<p><a  target=\"_black\" title=\"查看该主机\" href=\"/search/searchmain/?page=0&searchcontent=%22ip%22:%22" + (ports[i].ip == null ? '' : ports[i].ip) + "%22" + "\"<h4 class=\"package-name\">" + (ports[i].ip == null ? '' : ports[i].ip) + "</h4></a>&nbsp;&nbsp;" +
                         "<a  target=\"_black\" href=\"" + potocalname + "://" + ports[i].ip + ':' + ports[i].port +
-                         "\" title=\"访问该网页\"><i class=\"fa fa-external-link\"></i></a>"+
+                        "\" title=\"访问该网页\"><i class=\"fa fa-external-link\"></i></a>" +
                         "</p>" +
                         "<p><span class=\"subtext\">端口:" + (ports[i].port == null ? '' : ports[i].port) + "</span></p>" +
                         "<p><span class=\"subtext\">端口名:" + (ports[i].name == null ? '' : ports[i].name) + "</span></p>" +
                         "<p><span class=\"subtext\">端口产品:" + (ports[i].product == null ? '' : ports[i].product) + "</span></p>" +
                         "<p><span class=\"subtext\">端口版本:" + (ports[i].version == null ? '' : ports[i].version) + "</span></p>" +
-                        "<p><span id=\""+ports[i].ip+"\" class=\"subtext\">主机位置:" + (ports[i].city == null ? '' : ports[i].city) + "</span></p>" +
+                        "<p><span id=\"" + ports[i].ip + "\" class=\"subtext\">主机位置:  "  + "</span><img id=\"flag\" src=\"/static/fontsearch/flag/"+ports[i].keywords['geoip']['country']['code']+"@2x.png\" width=\"10%\" height=\"2%\" /><span> </span><span>"+ (ports[i].city == null || ports[i].city =='' ? ports[i].keywords['geoip']['country']['name'] : ports[i].city)+"</span> <span>"+ports[i].keywords['geoip']['city']['name']+"</span></p>" +
                         "<p><span class=\"subtext\">更新时间:" + (ports[i].timesearch == null ? '' : ports[i].timesearch) + "</span></p>" +
 
 
-                         "</div><div class=\"col-md-9 \">" +
+                        "</div><div class=\"col-md-9 \">" +
                         "<p class=\"package-description\">概要信息：</p>";
 
                 if (data2.username == 'admin') {
                     bodyhtml += "<div class=\"box\"><pre>" + (ports[i].script == null && ports[i].hackinfo == null && ports[i].disclosure == null ? '无' : encodeHtml(utf8to16(decode64(ports[i].script)) + '\nhackinfo:\n ' + ports[i].hackinfo + ' \n disclosed:\n ' + ports[i].disclosure).toString()) + "</pre></div>" +
 
-                               // "<div class=\"col-md-9 \">" +
+                            // "<div class=\"col-md-9 \">" +
                             "<p class=\"package-description\">详细信息：</p>";
 
 
@@ -325,10 +325,18 @@
 
             var ccontent = document.getElementById("searchcontent").value;
             var keywords = data2.keywords;
-            for(var j=0;j<keywords.length;j++){
-                  $('body').highlight(keywords[j]);
-            }
+            for (var j = 0; j < keywords.length; j++) {
 
+                var arr = keywords[j].split(" ");
+
+
+                for (i = 0; i < arr.length; i++) {
+                    if(arr[i]!='')
+                    $('body').highlight(arr[i]);
+                }
+
+
+            }
 
 
             // var hl = new Highlighter();
