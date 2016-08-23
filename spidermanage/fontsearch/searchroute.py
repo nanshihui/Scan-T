@@ -11,7 +11,7 @@ from spidertool import webtool
 from fontsearch.control import mapcontrol
 import json
 
-
+timeout=60*20
                 
 def indexpage(request):
     username = request.COOKIES.get('username','')
@@ -25,7 +25,7 @@ def mapsearchmain(request):
     username = request.COOKIES.get('username', '')
     return render_to_response('fontsearchview/mapsearchmain.html',{'username':username})
 def detailpage(request):
-
+    from spidertool import redistool, webtool
     content=request.POST.get('content','')
     page=request.POST.get('page','0')
     username = request.COOKIES.get('username','')
@@ -48,10 +48,58 @@ def detailpage(request):
 #         extra='    or   script  like \'%'+content+'%\' or detail  like \'%'+content+'%\'  or timesearch like ' +'\'%'+content+'%\' or head like \'%' +content+'%\') and  snifferdata.ip=ip_maindata.ip '
 #         ports,portcount,portpagecount=portcontrol.portabstractshow(ip=content,port=content,timesearch=content,state=content,name=content,product=content,version=content,page=page,extra=extra,command='or')
             try:
-                import sys
-                sys.path.append("..")
-                from elasticsearchmanage import elastictool
-                ports,portcount,portpagecount=elastictool.search(page=page,dic=None,content=content)
+
+                item=webtool.md5('sch_'+str(content)+'page'+str(page))
+
+                redisresult = redistool.get(str(item))
+
+                if redisresult :
+                    print '从redids取的数据'
+                    try:
+                        response_data['result'] = '1'
+
+                        response_data['ports'] = redisresult['ports']
+                        response_data['portslength'] = redisresult['portslength']
+
+                        response_data['portspagecount'] = redisresult['portspagecount']
+                        response_data['portspage'] = redisresult['portspage']
+                    except Exception,e:
+                        import sys
+                        sys.path.append("..")
+                        from elasticsearchmanage import elastictool
+                        ports, portcount, portpagecount = elastictool.search(page=page, dic=None, content=content)
+
+                        redisdic = {}
+                        redisdic['ports'] = ports
+                        redisdic['portslength'] = portcount
+                        redisdic['portspagecount'] = portpagecount
+                        redisdic['portspage'] = page
+                        redistool.set(item, redisdic)
+                        redistool.expire(item, timeout)
+                        response_data['ports'] = ports
+                        response_data['portslength'] = portcount
+                        response_data['portspagecount'] = portpagecount
+                        response_data['portspage'] = page
+
+
+                else:
+                    import sys
+                    sys.path.append("..")
+                    from elasticsearchmanage import elastictool
+                    ports,portcount,portpagecount=elastictool.search(page=page,dic=None,content=content)
+
+                    redisdic = {}
+                    redisdic['ports'] = ports
+                    redisdic['portslength'] = portcount
+                    redisdic['portspagecount'] = portpagecount
+                    redisdic['portspage'] = page
+                    redistool.set(item, redisdic)
+                    redistool.expire(item, timeout)
+                    response_data['ports'] = ports
+                    response_data['portslength'] = portcount
+                    response_data['portspagecount'] = portpagecount
+                    response_data['portspage'] = page
+
 #             extra='     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords) against(\''+content+'\' in Boolean mode)  '
 
 #             ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
@@ -59,16 +107,17 @@ def detailpage(request):
                 print e
                 try:
                     ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+                    response_data['ports'] = ports
+                    response_data['portslength'] = portcount
+                    response_data['portspagecount'] = portpagecount
+                    response_data['portspage'] = page
                 except Exception,e:
                     print e
             print '检索完毕'
             response_data['result'] = '1'
 
             response_data['keywords'] = content.split()
-            response_data['ports']=ports
-            response_data['portslength']=portcount
-            response_data['portspagecount']=portpagecount
-            response_data['portspage']=page
+
             response_data['username']=username
     else:
         action=jsoncontent.keys()
@@ -97,20 +146,74 @@ def detailpage(request):
  
             print '进入elasticsearch 具体关键词匹配'
             try:
-                import sys
-                sys.path.append("..")
-                from elasticsearchmanage import elastictool
-                ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
+                item =str(webtool.md5('sch_' + str(jsoncontent) + '_page' + str(page)))
+                print item
+                print 'sch_' + str(jsoncontent) + '_page' + str(page)
+                redisresult = redistool.get(item)
+                print type(redisresult),'result'
+                if redisresult:
+                    print '从redids取的数据'
+                    try:
+                        response_data['result'] = '1'
+
+                        response_data['ports'] = redisresult['ports']
+                        response_data['portslength'] = redisresult['portslength']
+
+                        response_data['portspagecount'] = redisresult['portspagecount']
+                        response_data['portspage'] = redisresult['portspage']
+                    except Exception,e:
+                        import sys
+                        sys.path.append("..")
+                        from elasticsearchmanage import elastictool
+                        ports, portcount, portpagecount = elastictool.search(page=page, dic=jsoncontent, content=None)
+
+                        response_data['ports'] = ports
+                        response_data['portslength'] = portcount
+                        response_data['portspagecount'] = portpagecount
+                        response_data['portspage'] = page
+
+                        redisdic = {}
+                        redisdic['ports'] = ports
+                        redisdic['portslength'] = portcount
+                        redisdic['portspagecount'] = portpagecount
+                        redisdic['portspage'] = page
+                        redistool.set(item, redisdic)
+                        redistool.expire(item, timeout)
+
+
+                else:
+                    import sys
+                    sys.path.append("..")
+                    from elasticsearchmanage import elastictool
+                    ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
+
+
+                    response_data['ports'] = ports
+                    response_data['portslength'] = portcount
+                    response_data['portspagecount'] = portpagecount
+                    response_data['portspage'] = page
+
+
+                    redisdic = {}
+                    redisdic['ports'] = ports
+                    redisdic['portslength'] = portcount
+                    redisdic['portspagecount'] = portpagecount
+                    redisdic['portspage'] = page
+                    redistool.set(item, redisdic)
+                    redistool.expire(item, timeout)
+                    print '存入redis'
+
             except Exception,e:
                 print e
                 ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+                response_data['ports']=ports
+                response_data['portslength']=portcount
+                response_data['portspagecount']=portpagecount
+                response_data['portspage']=page
 
             response_data['result'] = '1'
             response_data['keywords'] = jsoncontent.values()
-            response_data['ports']=ports
-            response_data['portslength']=portcount
-            response_data['portspagecount']=portpagecount
-            response_data['portspage']=page
+
             response_data['username']=username
 
     try:
@@ -145,6 +248,7 @@ def mapsearch(request):
         redisresult=redistool.get(content)
         if redisresult:
             print '从redids取的数据'
+
             response_data['result'] = '1'
 
             response_data['ports'] = redisresult['ports']
@@ -173,6 +277,7 @@ def mapsearch(request):
         if len(content) == 0:
             return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
                                     content_type="application/json")
+
         redisresult = redistool.get(webtool.md5(str(jsoncontent.__str__)))
         if redisresult:
             print '从redids取的数据'

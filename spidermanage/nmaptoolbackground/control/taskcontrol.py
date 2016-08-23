@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #coding:utf-8
+# -*- encoding: utf-8 -*-
 from spidertool import sniffertask,scapytask
 import schedule
 from datetime import datetime
