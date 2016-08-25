@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>搜索详情</title>
+    <meta name="description" content="详细内容检索">
+    <meta name="keywords" content="">
+    <meta name="author" content="sherwel">
+    <link href="/static/fontsearch/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/fontsearch/css/basemap.css">
+    <link rel="stylesheet" href="/static/fontsearch/css/mappage.css">
+    <link href="/static/fontsearch/css/site.min.css" rel="stylesheet">
+    <!-- <link href="/static/fontsearch/css/font-awesome.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="/static/fontsearch/js/pace.js"></script>
+    <!--<link href="/static/fontsearch/css/paceblue/pace-theme-minimal.css"  rel="stylesheet" />-->
+    <link href="/static/fontsearch/css/paceblue/pace-theme-flash.css" rel="stylesheet"/>
+
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.css' rel='stylesheet'/>
+
+</head>
+<body class="home-template" onload="getinfo('');">
+<header class="site-header jumbotron">
+    {%if username != ''%}
+    <div class="site-nav"><a href="/nmaptool/">{{username}}</a> <span>/</span> <a href="#">关于</a>
+        {%else%}
+        <div class="site-nav"><a href="/nmaptool/login">登陆</a> <span>/</span> <a href="#">关于</a>
+            {% endif %}
+
+        </div>
+        <!--<div class="container">-->
+        <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+
+        <!--<p>主机详细信息<br>-->
+
+        <!--</p>-->
+
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+
+</header>
+
+<div class="mostused-packages well well-sm text-center hidden-xs hidden-sm"></div>
+
+
+<main>
+    <!--<main    class="packages-list-container" id="all-packages">-->
+
+
+    <div class="container">
+        <div class="list-group packages">
+
+
+            <iframe id="detailmap" height="300" style="width:100%;" allowfullscreen="true" frameborder=”no” border=”0″
+                    marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”>
+
+
+            </iframe>
+
+
+            <div class="host">
+                <div class="row-fluid">
+                    <div class="col-md-6" id="ipinfo">
+
+                    </div>
+                    <div class="col-md-6" id="portinfo">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</main>
+
+<footer id="footer" class="footer hidden-print">
+    <div class="container">
+        <div class="row">
+            <div class="about footer-col col-md-5 col-sm-12" id="about" style="text-align: left;">
+                <h4>关于 Scan-T</h4>
+                <p> Scan-T 是 <a href="https://github.com/nanshihui/toolforspider" target="_blank">独立开发者</a>支持并维护的开源项目免费
+                    主机扫描服务，致力于成为 Bootstrap、jQuery、Angular 一样优秀的开源项目提供稳定、快速的免费主机扫描服务。Scan-T所收录的主机资源主要来源于
+                    <a href="https://github.com/nanshihui/toolforspider" target="_blank">实时扫描</a> 仓库。</p>
+                <p></p>
+                <p>反馈或建议请发送邮件至：nanshihui@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="/static/fontsearch/js/jquery.min.js"></script>
+<script src="/static/fontsearch/js/bootstrap.min.js"></script>
+<script src="/static/fontsearch/js/geopattern.min.js"></script>
+<script src="/static/fontsearch/js/ZeroClipboard.min.js"></script>
+<script src="/static/fontsearch/js/localforage.nopromises.min.js"></script>
+<script src="/static/fontsearch/js/jquery.scrollTo.js"></script>
+<script src="/static/fontsearch/js/site.min.js"></script>
+<script src="/static/fontsearch/js/h.js" type="text/javascript"></script>
+<script>
+     var xmlhttp;
+     var xmlhttpport;
+     function GetXmlHttp(xmlhttp) {
+        if (window.XMLHttpRequest) //非IE浏览器，用xmlhttprequest对象创建
+        {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) //IE浏览器用activexobject对象创建
+        {
+
+            try {
+                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e) {
+                try {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e) {
+
+
+                }
+            }
+        }
+        return xmlhttp;
+    }
+    function getinfo(){
+        getport();
+        var ip="{{ip}}";
+        xmlhttp = GetXmlHttp(xmlhttp);
+        str = 'ip=' + ip ;
+
+        xmlhttp.open("POST", "/search/ipinfo/", true);
+        xmlhttp.onreadystatechange = callback;
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttp.send(str);
+    }
+  function callback() {
+
+        if (xmlhttp.readyState != 4) {
+
+
+        }
+        else {
+
+            if (xmlhttp.status == 200) {
+
+                var a = xmlhttp.responseText;
+
+                showipinfo(a);
+            }
+        }
+    }
+     function showipinfo(result) {
+
+
+         var data2 = JSON.parse(result);
+
+
+
+         if (data2.result == '0') {
+             document.getElementById("ipinfo").innerHTML = "没有相关信息";
+
+         }
+         else {
+
+
+             var datalength = data2.ipcount;
+             var pagesize = data2.ippagecount;
+
+             var ports = data2.ips;
+             var bodyhtml = "";
+                bodyhtml+=  "<div class=\"page-header\"> <h2><i class=\"fa fa-globe\"></i>"+ports[0].ip+""+
+                            "<small style=\"padding-left:10px;\"> </small>"+
+                            "</h2> </div> <table class=\"table\"> <tbody>"+
+                            "<tr> <td>City</td> <th>"+ports[0].county+' '+ports[0].city+' '+ports[0].region+"</th></tr>"+
+                             "<tr><td>Country</td>  <th>"+ports[0].country+"</th></tr>"+
+                             "<tr><td>System</td> <th>"+(ports[0].osfamily == null ? '' :ports[0].osfamily)+(ports[0].osgen == null ? '' :ports[0].osgen)+"</th></tr>"+
+                             "<tr><td>ISP</td> <th>"+ports[0].isp+"</th></tr>"+
+                             "<tr><td>Last Update</td><th>"+ports[0].updatetime+"</th></tr>"+
+                             "<tr> <td>Hostnames</td><th>"+ports[0].hostname+"</th></tr>"+
+                             "</tbody></table>"
+
+             document.getElementById("ipinfo").innerHTML = bodyhtml;
+
+            var latitude=ports[0].location['geoip']['location']['latitude'];
+            var longitude=ports[0].location['geoip']['location']['longitude'];
+            window.frames["detailmap"].src = '/search/map/?latitude='+latitude+'&longitude='+longitude;
+
+
+         }
+     }
+    function getport(){
+
+        xmlhttpport = GetXmlHttp(xmlhttpport);
+
+        var ip="{{ip}}";
+        content = "\"ip\":\""+ip+'\"';
+        var str = '';
+
+
+        str = 'content=' + content
+
+        xmlhttpport.open("POST", "/search/searchdetail/", true);
+        xmlhttpport.onreadystatechange = portcallback;
+        xmlhttpport.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xmlhttpport.send(str);
+
+    }
+  function portcallback() {
+
+        if (xmlhttpport.readyState != 4) {
+
+
+        }
+        else {
+
+            if (xmlhttpport.status == 200) {
+
+                var a = xmlhttpport.responseText;
+
+                showportinfo(a);
+
+            }
+        }
+    }
+
+
+
+
+
+
+function showportinfo(result) {
+        var data2 = JSON.parse(result);
+
+
+
+         if (data2.result == '0') {
+             document.getElementById("portinfo").innerHTML = "没有相关信息";
+
+         }
+         else {
+             var porthtml="";
+             var servicehtml="";
+             servicehtml="</ul><div style=\"clear:both\"></div><div class=\"page-header\"> <h2><i class=\"fa fa-th-list\"></i>Services</h2></div> <ul class=\"services\">"
+             porthtml="<div class=\"page-header\"><h2><i class=\"fa fa-th-large\"></i>Ports</h2> </div> <ul class=\"ports\">";
+
+            var datalength = data2.portslength;
+            var pagesize = data2.portspagecount;
+            var ports = data2.ports;
+
+            var bodyhtml = "";
+            for (var i = 0; i < datalength; i++) {
+
+                var potocalname = '';
+                if (ports[i].name == null) {
+                    switch (ports[i].port) {
+                        case '443':
+                            potocalname = 'https';
+                            break;
+                        case '21':
+                            potocalname = 'ftp';
+                            break;
+                        default:
+                            potocalname = 'http';
+                            break;
+                    }
+                }
+                else {
+                    potocalname = ports[i].name;
+                }
+                porthtml+="<li><a href=\"#"+ports[i].port+"\">"+ports[i].port+"</a> </li>";
+                servicehtml+="<li class=\"service service-long\"><a name=\""+ports[i].port+"\"></a><div class=\"service-details\">"+
+                                    "<div class=\"port\">"+ports[i].port+"</div>"+
+                                    "<div class=\"protocol\">"+potocalname+"</div>"+
+                                    "<div class=\"state\">"+ports[i].product+"</div>";
+                if(potocalname=='http'||potocalname=='https'||potocalname=='ftp'){
+
+                    servicehtml+= "<a href=\"" + potocalname + "://" + ports[i].ip + ':' + ports[i].port+"\" target=\"_blank\" class=\"link\"><i class=\"fa fa-mail-forward\">&nbsp; </i></a> ";
+
+
+                }
+                     servicehtml+= "</div><div class=\"service-main\"><pre>"+(ports[i].head == null  ? '无' : encodeHtml(ports[i].head ).toString()) +
+"</pre><div class=\"clear\"></div> </div> </li> ";
+
+
+
+                // xmp
+            }
+servicehtml+="</ul>";
+
+            document.getElementById("portinfo").innerHTML = porthtml+servicehtml;
+
+
+         }
+}
+
+        encodeHtml = function (s) {
+        return (typeof s != "string") ? s :
+                s.replace(/"|&|'|<|>|[\x00-\x20]|[\x7F-\xFF]|[\u0100-\u2700]/g,
+                        function ($0) {
+                            var c = $0.charCodeAt(0), r = ["&#"];
+                            c = (c == 0x20) ? 0xA0 : c;
+                            r.push(c);
+                            r.push(";");
+                            return r.join("");
+                        });
+    };
+</script>
+<script>
+
+</script>
+
+
+</body>
+</html>

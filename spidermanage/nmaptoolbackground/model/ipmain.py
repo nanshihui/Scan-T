@@ -1,8 +1,9 @@
 #!/usr/bin/python
 #coding:utf-8
 from spidertool import webtool
+from location import Location
 class Ip(object):
-    def __init__(self,ip='',vendor='',osfamily='',osgen='',accurate='',state='',hostname='unknow',updatetime='',city=''):
+    def __init__(self,ip='',vendor='',osfamily='',osgen='',accurate='',state='',hostname='unknow',updatetime='',city='',isp='',county='',country='',region='',location=None):
         '''
         Constructor
         '''
@@ -20,6 +21,24 @@ class Ip(object):
         self.state=state
         self.hostname=hostname
         self.city=city
+        self.isp=isp
+        self.county=county
+        self.country=country
+        self.region=region
+
+        self.location = location
+        if self.location is None:
+            self.location = Location(ip=str(self.ip)).getData()
+        else:
+            try:
+
+                data = eval(location)
+                self.location = data
+                if self.location.get('geoip', None) is None:
+                    self.location = Location(ip=str(self.ip)).getData()
+            except Exception, e:
+
+                self.location = Location(ip=str(self.ip)).getData()
     def setIP(self,ip):
         self.ip=ip
 

@@ -109,6 +109,7 @@ def replaceinserttableinfo_byparams(table,select_params,insert_values,primarykey
     inserttableinfo_byparams(table,select_params,insert_values,primarykey=primarykey)
 # inserttableinfo_byparams('snifferdata', ['ip','port','product'], [('1','2','http')],primarykey=2)
 
+
 def search(page='0',dic=None,content=None):
 
     limitpage=15

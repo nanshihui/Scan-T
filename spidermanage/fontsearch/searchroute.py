@@ -89,6 +89,7 @@ def detailpage(request):
                     ports,portcount,portpagecount=elastictool.search(page=page,dic=None,content=content)
 
                     redisdic = {}
+
                     redisdic['ports'] = ports
                     redisdic['portslength'] = portcount
                     redisdic['portspagecount'] = portpagecount
@@ -310,4 +311,39 @@ def mapsearch(request):
                             content_type="application/json")
 
 
+def detailmapview(request):
 
+
+    username = request.COOKIES.get('username', '')
+    ip = request.GET.get('ip', '')
+    return render_to_response('fontsearchview/detailmapview.html', {'data': '', 'username': username,'ip':ip})
+def map(request):
+
+
+    username = request.COOKIES.get('username', '')
+    latitude=request.GET.get('latitude',0)
+    longitude=request.GET.get('longitude',0)
+    return render_to_response('fontsearchview/map.html', {'data': '', 'username': username,'latitude':latitude,'longitude':longitude})
+def ipinfo(request):
+    ip=request.POST.get('ip','127.0.0.1')
+    response_data={}
+    response_data['result'] = '0'
+    data={}
+    data['ip']=ip
+
+    try:
+        import sys
+        sys.path.append("..")
+        from elasticsearchmanage import ipestool
+        ips, ipcount, ippagecount = ipestool.ipsearch(dic=data)
+        response_data['result'] = '1'
+
+        response_data['ips'] = ips
+        response_data['iplength'] = ipcount
+        response_data['ippagecount'] = ippagecount
+
+
+    except:
+        pass
+    return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
+                        content_type="application/json")

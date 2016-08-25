@@ -289,11 +289,11 @@
                         "<a  target=\"_black\" href=\"" + potocalname + "://" + ports[i].ip + ':' + ports[i].port +
                         "\" title=\"访问该网页\"><i class=\"fa fa-external-link\"></i></a>" +
                         "</p>" +
-                        "<p><span class=\"subtext\">端口:" + (ports[i].port == null ? '' : ports[i].port) + "</span></p>" +
+                        "<p><span class=\"subtext\">端口:</span><a  target=\"_black\" title=\"查看同类端口分布\" href=\"/search/searchmain/?page=0&searchcontent=%22port%22:%22"  + (ports[i].port == null ? '' : ports[i].port) + "%22" + "\"<h4 class=\"package-name\">" + (ports[i].port == null ? '' : ports[i].port) + "</a></p>" +
                         "<p><span class=\"subtext\">端口名:" + (ports[i].name == null ? '' : ports[i].name) + "</span></p>" +
                         "<p><span class=\"subtext\">端口产品:" + (ports[i].product == null ? '' : ports[i].product) + "</span></p>" +
                         "<p><span class=\"subtext\">端口版本:" + (ports[i].version == null ? '' : ports[i].version) + "</span></p>" +
-                        "<p><span id=\"" + ports[i].ip + "\" class=\"subtext\">主机位置:  "  + "</span><img id=\"flag\" src=\"/static/fontsearch/flag/"+ports[i].keywords['geoip']['country']['code']+"@2x.png\" width=\"10%\" height=\"2%\" /><span> </span><span>"+ (ports[i].city == null || ports[i].city =='' ? ports[i].keywords['geoip']['country']['name'] : ports[i].city)+"</span> <span>"+ports[i].keywords['geoip']['city']['name']+"</span></p>" +
+                        "<p><span id=\"" + ports[i].ip + "\" class=\"subtext\">主机位置:  "  + "</span><img id=\"flag\" src=\"/static/fontsearch/flag/"+ports[i].keywords['geoip']['country']['code']+"@2x.png\" width=\"10%\" height=\"2%\" /><span> </span><a href=\""+"/search/detailmapview/?ip="+ports[i].ip+"\" target=\"_blank\" ><span>"+ (ports[i].city == null || ports[i].city =='' ? ports[i].keywords['geoip']['country']['name'] : ports[i].city)+"</span> <span>"+ports[i].keywords['geoip']['city']['name']+" "+"</span><span><i class=\"fa fa-external-link-square\"></i></span></a> </p>" +
                         "<p><span class=\"subtext\">更新时间:" + (ports[i].timesearch == null ? '' : ports[i].timesearch) + "</span></p>" +
 
 

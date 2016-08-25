@@ -123,9 +123,9 @@ class ConnectTool:
 
 if __name__ == "__main__":		
 	p=ConnectTool()
-	w,a=p.getHTML('http://218.106.114.213:7070')
+	w,a=p.getHTML('http://211.162.202.130:700')
 
- 	print a
+ 	print w,a
 	
 	
 	

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<script>
+    var latitude=Number("{{latitude}}");
+var longitude=Number("{{longitude}}");
+//        var latitude=29.8782;
+//var longitude=121.5495;
+//alert(latitude);
+//    alert(longitude);
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hlcndlbCIsImEiOiJjaXM5bnc0NG8wMDA1MnptenRjaThjMnJ1In0.KH4aUaVvJiITKrjdIabvSw';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/satellite-streets-v9', //stylesheet location
+    center: [longitude,latitude], // starting position
+    zoom: 11 // starting zoom
+});
+
+map.on('load', function () {
+    map.addSource("points", {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [longitude,latitude]
+                },
+
+
+            }]
+        }
+    });
+
+    map.addLayer({
+        "id": "points",
+
+        "source": "points",
+
+
+        "type": "circle",
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "#007cbf"
+        }
+    });
+});
+</script>
+
+</body>
+</html>
