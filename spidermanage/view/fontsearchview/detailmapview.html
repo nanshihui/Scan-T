@@ -152,6 +152,7 @@
                 var a = xmlhttp.responseText;
 
                 showipinfo(a);
+
             }
         }
     }
@@ -167,19 +168,22 @@
 
          }
          else {
-
+             var ports = data2.ips;
 
              var datalength = data2.ipcount;
              var pagesize = data2.ippagecount;
 
-             var ports = data2.ips;
+             var country=(ports[0].country==0?ports[0].location['geoip']['country']['name']:ports[0].country);
+             var city=(ports[0].city==0?ports[0].location['geoip']['city']['name']:ports[0].city);
+
+
              var bodyhtml = "";
                 bodyhtml+=  "<div class=\"page-header\"> <h2><i class=\"fa fa-globe\"></i>"+ports[0].ip+""+
                             "<small style=\"padding-left:10px;\"> </small>"+
                             "</h2> </div> <table class=\"table\"> <tbody>"+
-                            "<tr> <td>City</td> <th>"+ports[0].county+' '+ports[0].city+' '+ports[0].region+"</th></tr>"+
-                             "<tr><td>Country</td>  <th>"+ports[0].country+"</th></tr>"+
-                             "<tr><td>System</td> <th>"+(ports[0].osfamily == null ? '' :ports[0].osfamily)+(ports[0].osgen == null ? '' :ports[0].osgen)+"</th></tr>"+
+                            "<tr> <td>City</td> <th>"+(ports[0].county==0?'':ports[0].county)+' '+city+' '+(ports[0].region==0?'':ports[0].region)+"</th></tr>"+
+                             "<tr><td>Country</td>  <th>"+country+"</th></tr>"+
+                             "<tr><td>System</td> <th>"+(ports[0].osfamily == null ? '' :ports[0].osfamily)+' '+(ports[0].osgen == null ? '' :ports[0].osgen)+"</th></tr>"+
                              "<tr><td>ISP</td> <th>"+ports[0].isp+"</th></tr>"+
                              "<tr><td>Last Update</td><th>"+ports[0].updatetime+"</th></tr>"+
                              "<tr> <td>Hostnames</td><th>"+ports[0].hostname+"</th></tr>"+

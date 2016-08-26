@@ -80,16 +80,19 @@ def ipsearch(page='0',dic=None,content=None):
         count=len(response)
         print '返回的实际数量为%d' % count
         from elastictool import getproperty
+
         if count>0:
             for temp in response :
-                dic=temp.to_dict()
-                aip=ipmain.Ip(ip=getproperty(dic,'ip'),vendor=getproperty(dic,'vendor'),osfamily=getproperty(dic,'osfamily'),osgen=getproperty(dic,'osgen'),accurate=getproperty(dic,'accurate'),state=getproperty(dic,'state'),hostname=getproperty(dic,'hostname'),updatetime=getproperty(dic,'updatetime'),city=getproperty(dic,'city'),isp=getproperty(dic,'isp'),county=getproperty(dic,'county'),country=getproperty(dic,'country'),region=getproperty(dic,'region'))
+                dicc=temp.to_dict()
 
+                aip=ipmain.Ip(ip=getproperty(dicc,'ip'),vendor=getproperty(dicc,'vendor'),osfamily=getproperty(dicc,'osfamily'),osgen=getproperty(dicc,'osgen'),accurate=getproperty(dicc,'accurate'),state=getproperty(dicc,'state'),hostname=getproperty(dicc,'hostname'),updatetime=getproperty(dicc,'updatetime'),city=getproperty(dicc,'city'),isp=getproperty(dicc,'isp'),county=getproperty(dicc,'county'),country=getproperty(dicc,'country'),region=getproperty(dicc,'region'))
 
 
 
                 portarray.append(aip)
-
+        else:
+            pass
+            portarray.append(ipmain.Ip(ip=dic['ip']))
         return portarray,count,pagecount
 
 

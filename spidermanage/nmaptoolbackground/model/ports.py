@@ -4,7 +4,7 @@
 from spidertool import webtool
 from location import Location
 class Port(object):
-    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo='',disclosure='',keywords=None):
+    def __init__(self,ip='',port='',timesearch='',state='',name='',product='',version='',script='',detail='',head='',city='',hackinfo='',disclosure='',keywords=None,webtitle='',webkeywords=''):
         '''
         Constructor
         '''
@@ -26,6 +26,9 @@ class Port(object):
         self.hackinfo=hackinfo
         self.disclosure=disclosure
         self.keywords=keywords
+        self.webkeywords = webkeywords
+        self.webtitle = webtitle
+
         if self.keywords is None:
             self.keywords=Location(ip=str(self.ip)).getData()
         else:

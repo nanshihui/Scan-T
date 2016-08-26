@@ -345,5 +345,11 @@ def ipinfo(request):
 
     except:
         pass
-    return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
+    try:
+        return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict),
                         content_type="application/json")
+    except Exception,e:
+
+        print e
+        return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict, encoding='latin-1'),
+                            content_type="application/json")
