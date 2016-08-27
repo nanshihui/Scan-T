@@ -215,7 +215,7 @@ def search(page='0',dic=None,content=None):
         if count>0:
             for temp in response :
                 dic=temp.to_dict()
-                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(getproperty(dic,'script')),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'),keywords=getproperty(dic,'keywords'),webtitle=getproperty(dic,'webtitle'),webkeywords=getproperty(dic,'webkeywords'))
+                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(getproperty(dic,'script')),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'),keywords=getproperty(dic,'keywords'),webtitle=base64.b64encode(getproperty(dic,'webtitle')),webkeywords=getproperty(dic,'webkeywords'))
 
                 # ip=getproperty(dic,'ip')
                 # port=getproperty(dic,'port')
