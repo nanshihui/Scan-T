@@ -314,7 +314,7 @@
 
                console.log(titleweb+'------'+titleweb.charCodeAt(0)+'------title'+titleweb.charCodeAt(1)+'----'+cutitem(titleweb)+'--------------'+ports[i].ip);
 
-                if((potocalname!='http'&&potocalname!='https')||(titleweb.charCodeAt()==0||cutitem(titleweb)==''||titleweb == ' ' || titleweb ==''||titleweb==null)){
+                if((potocalname!='http'&&potocalname!='https'&&potocalname!='tcpwrapped'&&potocalname!='None')||(titleweb.charCodeAt()==0||cutitem(titleweb)==''||titleweb == ' ' || titleweb ==''||titleweb==null)){
                     bodyhtml += "<a  target=\"_black\" href=\"" + potocalname + "://" + ports[i].ip + ':' + ports[i].port +
                         "\" title=\"访问该网页\"><i class=\"fa fa-external-link\"></i></a></p>" ;
 

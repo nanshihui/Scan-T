@@ -38,15 +38,18 @@ def decodestr(msg):
 def getproperty(dic,property):
     return decodestring(str(dic.get(property,' ')))
 def decodestring(msg):
-
-    if str:
+    item=msg
+    if str==type(msg):
         try:
-
-            return decodestr(msg.decode('string_escape').decode('string_escape'))
+            try:
+                item=msg.decode('string_escape').decode('string_escape')
+            except Exception,e:
+                item=msg.decode('string_escape')
+                print e,47
+            
         except Exception,e:
             print e,42
-
-
+        return decodestr(item)
 
 
     else:
@@ -215,7 +218,7 @@ def search(page='0',dic=None,content=None):
         if count>0:
             for temp in response :
                 dic=temp.to_dict()
-                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(getproperty(dic,'script')),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'),keywords=getproperty(dic,'keywords'),webtitle=base64.b64encode(getproperty(dic,'webtitle')),webkeywords=getproperty(dic,'webkeywords'))
+                aport=ports.Port(ip=getproperty(dic,'ip'),port=getproperty(dic,'port'),timesearch=getproperty(dic,'timesearch'),state=getproperty(dic,'state'),name=getproperty(dic,'name'),product=getproperty(dic,'product'),version=getproperty(dic,'version'),script=base64.b64encode(str(getproperty(dic,'script'))),detail=getproperty(dic,'detail'),head=getproperty(dic,'head'),city='',hackinfo=getproperty(dic,'hackinfo'),disclosure=getproperty(dic,'disclosure'),keywords=getproperty(dic,'keywords'),webtitle=base64.b64encode(str(getproperty(dic,'webtitle'))),webkeywords=getproperty(dic,'webkeywords'))
 
                 # ip=getproperty(dic,'ip')
                 # port=getproperty(dic,'port')

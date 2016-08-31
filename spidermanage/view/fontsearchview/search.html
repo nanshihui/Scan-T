@@ -62,16 +62,19 @@
                                             <div class="container"> -->
                                 <div class="row">
                                     <div class="col-xs-11">
-
-                                        <form action="/search/searchmain/" method="GET" role="search" lpformnum="1"
-                                              _lpchecked="1">
-                                            <div class="form-group">
-                                                <input type="hidden" id="page" name="page" value='0'>
-                                                <input type="text" id="searchcontent" name="searchcontent"
+                                            <input type="text" id="content" name="content"
                                                        class="form-control search clearable"
                                                        onkeydown="if(event.keyCode==13){sendsearch(1,1);}"
                                                        placeholder="搜索组件，例如：MySQL">
                                                 <i class="fa fa-search" onclick="sendsearch(2,1);"></i>
+
+                                        <form action="/search/searchmain/" method="GET" role="search" lpformnum="1"
+                                              _lpchecked="1" id="formid">
+
+                                            <div class="form-group">
+                                                <input type="hidden" id="page" name="page" value='0'>
+                                                <input type="hidden" id="searchcontent" name="searchcontent"  >
+                                   
 
                                             </div>
                                         </form>
@@ -136,15 +139,20 @@
 
         function sendsearch(issearch, num) {
 
-            content = document.getElementById('searchcontent').value;
+            content =document.getElementById('content').value;
             if (issearch == '2' || content == "") {
-                document.getElementById('searchcontent').value = "";
+                document.getElementById('content').value = "";
             }
             // else
-            // alert(content);
+
+            document.getElementById('searchcontent').value=content;
+
+          
+            document.getElementById("formid").submit();
         }
 
 
     </script>
+    <script src="/static/fontsearch/js/base64.js"></script>
 </body>
 </html>

@@ -91,9 +91,10 @@ def iterobj(dic,func):
             dic[i]=iterobj(dic[i],func)
         return dic
     elif type(dic)==tuple:
-        for i in xrange(len(dic)):
-            print dic[i]
-            dic[i] = iterobj(dic[i],func)
+        listitem=list(dic)
+        for i in xrange(len(listitem)):
+            listitem[i] = iterobj(listitem[i],func)
+        dic=tuple(listitem)
         return dic
     elif type(dic)==dict:
         for i in dic.keys():

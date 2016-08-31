@@ -18,8 +18,10 @@ def indexpage(request):
     return render_to_response('fontsearchview/search.html', {'data':'','username':username})
 def mainpage(request):
     content=request.GET.get('searchcontent','')
+
     page=request.GET.get('page','0')
     username = request.COOKIES.get('username','')
+    content=content.replace(' ','%20')
     return render_to_response('fontsearchview/searchdetail.html', {'data':content,'page':page,'username':username})
 def mapsearchmain(request):
     username = request.COOKIES.get('username', '')
@@ -27,6 +29,7 @@ def mapsearchmain(request):
 def detailpage(request):
     from spidertool import redistool, webtool
     content=request.POST.get('content','')
+    print content
     page=request.POST.get('page','0')
     username = request.COOKIES.get('username','')
     response_data = {}  
@@ -149,9 +152,7 @@ def detailpage(request):
             try:
                 item =str(webtool.md5('sch_' + str(jsoncontent) + '_page' + str(page)))
                 print item
-                print 'sch_' + str(jsoncontent) + '_page' + str(page)
                 redisresult = redistool.get(item)
-                print type(redisresult),'result'
                 if redisresult:
                     print '从redids取的数据'
                     try:
@@ -187,7 +188,7 @@ def detailpage(request):
                     sys.path.append("..")
                     from elasticsearchmanage import elastictool
                     ports,portcount,portpagecount=elastictool.search(page=page,dic=jsoncontent,content=None)
-
+                    print '设置返回值'
 
                     response_data['ports'] = ports
                     response_data['portslength'] = portcount
@@ -200,17 +201,18 @@ def detailpage(request):
                     redisdic['portslength'] = portcount
                     redisdic['portspagecount'] = portpagecount
                     redisdic['portspage'] = page
+                    print '准备存入redis'
                     redistool.set(item, redisdic)
                     redistool.expire(item, timeout)
                     print '存入redis'
 
             except Exception,e:
-                print e
-                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
-                response_data['ports']=ports
-                response_data['portslength']=portcount
-                response_data['portspagecount']=portpagecount
-                response_data['portspage']=page
+                print e,206
+                # ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+                # response_data['ports']=ports
+                # response_data['portslength']=portcount
+                # response_data['portspagecount']=portpagecount
+                # response_data['portspage']=page
 
             response_data['result'] = '1'
             response_data['keywords'] = jsoncontent.values()
