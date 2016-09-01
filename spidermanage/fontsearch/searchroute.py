@@ -208,11 +208,11 @@ def detailpage(request):
 
             except Exception,e:
                 print e,206
-                # ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
-                # response_data['ports']=ports
-                # response_data['portslength']=portcount
-                # response_data['portspagecount']=portpagecount
-                # response_data['portspage']=page
+                ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
+                response_data['ports']=ports
+                response_data['portslength']=portcount
+                response_data['portspagecount']=portpagecount
+                response_data['portspage']=page
 
             response_data['result'] = '1'
             response_data['keywords'] = jsoncontent.values()
