@@ -6,11 +6,11 @@
 
 Project Framework
 ----
-nginx,django,uwsgi
+　　nginx,django,uwsgi
 
 Search Framework
 ----
-elasticsearch,redis
+　　elasticsearch,redis
 
 Screenshots
 ----
