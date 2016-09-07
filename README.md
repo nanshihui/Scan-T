@@ -4,6 +4,14 @@
 
 　　Scan-T is an open source penetration testing tool that automates the process of detecting and collecting the hosts flaws and port fingerprinting. It comes with a powerful detection engine, many nice features for the ultimate penetration tester .
 
+Project Framework
+----
+nginx,django,uwsgi
+
+Search Framework
+----
+elasticsearch,redis
+
 Screenshots
 ----
 * searching struts vulnerability 
