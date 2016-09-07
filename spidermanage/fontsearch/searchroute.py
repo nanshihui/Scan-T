@@ -355,3 +355,4 @@ def ipinfo(request):
         print e
         return HttpResponse(json.dumps(response_data, skipkeys=True, default=webtool.object2dict, encoding='latin-1'),
                             content_type="application/json")
+

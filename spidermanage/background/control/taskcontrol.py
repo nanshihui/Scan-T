@@ -23,7 +23,7 @@ def scheduleinit():
     global mainschedule
     mainschedule=schedule.schedulecontrol()
     # mainschedule.addschedule(taskitem.listiptask,'0-7','*/21','13','0',id='listiptask')#自定义扫描段任务器
-    mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/5','0',id='nmap')#nmap定时任务器
+    mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/10','0',id='nmap')#nmap定时任务器
 #     mainschedule.addschedule(taskitem.zmaptask,'0-7','0-23','*/8','0',id='zmap')#zmap定时任务器
     # mainschedule.addschedule(event=taskitem.text,type='date')#一次性任务器
     # mainschedule.addschedule(event=tempw.dowork,type='date')
