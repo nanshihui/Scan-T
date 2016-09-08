@@ -17,6 +17,10 @@ import json
 
 # Create your views here.
 #a function to change the state of job
+def page_not_found(request):
+    return render_to_response('404.html')
+def page_error(request):
+    return render_to_response('500.html')
 def userinfo(request):
     
     return render_to_response('nmaptoolview/userinfo.html', {'data':''})

@@ -16,10 +16,10 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../view').replace('\\','/'),
+# TEMPLATE_DIRS = (
+#     os.path.join(os.path.dirname(__file__), '../view').replace('\\','/'),
 
-)
+# )
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -31,7 +31,7 @@ SECRET_KEY = 'gv#at(m24cx^yeko=my37m(iw6%4%wv!e-8e_4=+u%%*id+2ny'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+APPEND_SLASH = True
 
 # Application definition
 
@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
@@ -132,7 +133,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 #STATIC_URL = '/static/'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+STATIC_ROOT = '/var/www/collected_static'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "common_static"),
     '/root/github/Scan-T/spidermanage/common_static',

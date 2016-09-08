@@ -1,1 +1,1 @@
-sudo /etc/init.d/nginx start
+cd ../spidermanage && sudo python manage.py collectstatic&&sudo service nginx start

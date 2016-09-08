@@ -48,6 +48,7 @@
     <script src="/static/fontsearch/js/pace.js"></script>
     <!--<link href="/static/fontsearch/css/paceblue/pace-theme-minimal.css"  rel="stylesheet" />-->
     <link href="/static/fontsearch/css/paceblue/pace-theme-flash.css" rel="stylesheet"/>
+<!-- <script data-pace-options='{ "ajax": false }' src='pace.js'></script> -->
 
 </head>
 <body class="home-template" ryt11928="1" onload="searchdetail('');">
@@ -226,7 +227,8 @@
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xmlhttp.send(str);
         scrollto(1200);
-        Pace.track()
+        // Pace.start();
+        Pace.track();
 
 
     }
