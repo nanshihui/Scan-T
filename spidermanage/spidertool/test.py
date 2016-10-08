@@ -12,18 +12,26 @@ import debugdetail as Debug
 def identifyip(msg):
     ary=set()
     msgary=msg.split(',')
+    print msgary,16
     import re
     regix="(\d+\.\d+\.\d+\.\d+)\-(\d+\.\d+\.\d+\.\d+)"
+
     for i in msgary:
+        print i,20
         m1 = re.search(regix, i)
+        print 'm1',i,m1,22
         if m1:
-            ary|= set(m1.group().split('-'))
+            t=m1.group().split('-')
+            print t
+            ary|= set(t)
         else:
             regix = "(\d+\.\d+\.\d+\.\d+)"
-            m1 = re.search(regix, i)
-            ary.add(m1.group())
+            m2 = re.search(regix, i)
+            if m2:
+                ary.add(m2.group())
+		del m1
     return ary
-print identifyip("123.0.23.12-2.2.2.2,2.2.2.2")
+print identifyip("145.23.45.2-145.23.45.3,www.baidu.com,56.32.12.32")
 def aa():
 	print 'already in port'
 class bb:

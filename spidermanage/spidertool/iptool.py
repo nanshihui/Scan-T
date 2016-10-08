@@ -46,5 +46,7 @@ class IPTool():
                 ip_list.append(self.num2ip(startipnum))
             return ip_list
 if __name__ == '__main__':
+
     a=IPTool()
-    a.getIplist('219.1.1.1','219.255.255.255')
+    # print a.iprange('www.baidu.com','www.baidu.com')
+    # a.getIplist('219.1.1.1','219.255.255.255')

@@ -60,7 +60,7 @@ def taskadd(request):
     result = taskscontrol.taskadd(job)
 
     temp=   taskscontrol.createjob(job)
-    #     print result
+
     if result:
         print '操作成功'
         response_data['result'] = '1'

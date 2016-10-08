@@ -234,21 +234,24 @@ def identifyip(msg,dic):
     regix="(\d+\.\d+\.\d+\.\d+)\-(\d+\.\d+\.\d+\.\d+)"
     for i in msg:
         m1 = re.search(regix, i)
+        print m1,i,'this is 237'
         if m1:
             iprange=m1.group().split('-')
+            print iprange,i
             startip=iprange[0]
+
             stopip = iprange[1]
 
 
             listitem.add_work([(startip, stopip, dic)])
 
         else:
-            regix = "(\d+\.\d+\.\d+\.\d+)"
-            m1 = re.search(regix, i)
-            if m1:
-                ary.add(m1.group())
-            # else:
-            #     ary.add(i)
+            regixx = "(\d+\.\d+\.\d+\.\d+)"
+            m2 = re.search(regixx, i)
+            if m2:
+                ary.add(m2.group())
+            else:
+                ary.add(i)
     for i in ary:
         listitem.add_work([(i, i, dic)])
 

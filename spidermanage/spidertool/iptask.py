@@ -104,9 +104,13 @@ class IPTool(TaskTool,IPTool):
 
     def getIplist(self,startip,endip,taskid,taskport,isjob,username,command,status):
         ip_list = []
-
+        isdomain=0
         res = ()
-        res = self.iprange(startip,endip)
+        try:
+            res = self.iprange(startip,endip)
+        except:
+            isdomain=1
+            res =(0,0,0)
         if res < 0:
             print 'endip must be bigger than startone'
             return 
@@ -115,9 +119,12 @@ class IPTool(TaskTool,IPTool):
             ipsize=int(res[2])+1
             insertdata = []
             for x in xrange(ipsize):
-                startipnum = self.ip2num(startip)
-                startipnum = startipnum + x
-                ip=self.num2ip(startipnum)
+                if isdomain:
+                    ip=startip
+                else:
+                    startipnum = self.ip2num(startip)
+                    startipnum = startipnum + x
+                    ip=self.num2ip(startipnum)
 
 
                 if isjob == '0':

@@ -61,7 +61,7 @@ class GetLocationTask(TaskTool):
         
 
         insertdata.append((ip,country,country_id,area,area_id,region,region_id,city,city_id,county,county_id,isp,isp_id,localtime))
-                                         
+
         extra=' on duplicate key update  updatetime='+SQLTool.formatstring(localtime)+',country='+SQLTool.formatstring(country)+', country_id='+SQLTool.formatstring(country_id)+',area='+SQLTool.formatstring(area)+', area_id='+SQLTool.formatstring(area_id)+',region='+SQLTool.formatstring(region)+', region_id='+SQLTool.formatstring(region_id)+',city='+SQLTool.formatstring(city)+', city_id='+SQLTool.formatstring(city_id)+',county='+SQLTool.formatstring(county)+', county_id='+SQLTool.formatstring(county_id)+',isp='+SQLTool.formatstring(isp)+', isp_id='+SQLTool.formatstring(isp_id)
 
         sqldatawprk=[]

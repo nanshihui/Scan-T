@@ -130,7 +130,9 @@ class SniffrtTool(object):
 #                 self.sqlTool.replaceinserttableinfo_byparams(table=self.config.iptable,select_params= ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],insert_values= [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)])         
                     sqldatawprk=[]
                     dic={"table":self.config.iptable,"select_params": ['ip','vendor','osfamily','osgen','accurate','updatetime','hostname','state'],"insert_values": [(temphosts,tempvendor,temposfamily,temposgen,tempaccuracy,localtime,temphostname,tempstate)]}
+
                     tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+
                     sqldatawprk.append(tempwprk)
                     self.sqlTool.add_work(sqldatawprk)               
                 except Exception,e:
@@ -153,6 +155,7 @@ class SniffrtTool(object):
                         sqldatawprk=[]
                         dic={"table":self.config.porttable,"select_params": ['ip','port','timesearch','state','name','product','version','script','portnumber'],"insert_values": [(temphosts,tempport,localtime,tempportstate,tempportname,tempproduct,tempportversion,tempscript,str(tempport))]}
                         tempwprk=Sqldata.SqlData('replaceinserttableinfo_byparams',dic)
+
                         sqldatawprk.append(tempwprk)
                         self.sqlTool.add_work(sqldatawprk)
                         self.portscan.add_work([(tempportname,temphosts,tempport,tempportstate,tempproduct,tempscript)])
@@ -257,7 +260,7 @@ if __name__ == "__main__":
 
     temp=SniffrtTool()
 #     hosts=['www.cctv.com','localhost','www.baidu.com']'www.cctv.com' www.vip.com
-    hosts=['121.43.104.188']
+    hosts=['www.baidu.com']
     temp.scanaddress(hosts,ports=['80'],arguments='')
 
 
