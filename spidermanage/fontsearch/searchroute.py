@@ -108,7 +108,7 @@ def detailpage(request):
             except Exception,e:
                 print e
                 try:
-                    extra = '     where     match(version,product,head,script,hackinfo,disclosure,keywords,name,webkeywords,webtitle,webencode) against(\'' + content + '\' in Boolean mode) '
+                    extra = '     where     match(version,product,head,detail,script,hackinfo,disclosure,keywords,name,webkeywords,webtitle) against(\'' + content + '\' in Boolean mode) '
                     ports,portcount,portpagecount=portcontrol.portabstractshow(page=page,extra=extra,command='or')
                     # ports, portcount, portpagecount = getattr(portcontrol, 'portabstractshow', 'portabstractshow')(**jsoncontent)
                     response_data['ports'] = ports

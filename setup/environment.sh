@@ -9,7 +9,7 @@ apt-get install -y redis-server zmap libffi-dev libssl-dev python-pip libmysqlcl
 apt-get install -y wget unzip
 
 apt-get install mysql-server
-apt-get isntall mysql-client
+apt-get install mysql-client
 apt-get install libmysqlclient-dev
 
 apt-get -y install python-dev
@@ -19,7 +19,7 @@ apt-get install python-mysqldb
 pip install BeautifulSoup==3.2.1
 pip install beautifulsoup4==4.4.1
 pip install Django==1.9
-pip install python-nmap==0.5.0.post1
+pip install python-nmap==0.5.0
 pip install DBUtils==1.1
 pip install paramiko==1.16.0
 pip install ruamel.ordereddict==0.4.9
@@ -31,6 +31,7 @@ pip install dozer
 pip install faulthandler
 pip install apscheduler
 pip install gevent
+pip install redis
 
 
 
@@ -58,12 +59,16 @@ mysql_plugin_file='/usr/lib/mysql/plugin/mysqlcft.so'
 
 
 
-
+service mysql start
 
 ####cp SO file to mysql plugin root path 
 result=$(cp $mysqlcftpath $mysql_plugin_file)
 #echo $result
 initpluginsql='Install plugin mysqlcft soname "mysqlcft.so"'
+
+
+
+
 
 
 ####init SO file
