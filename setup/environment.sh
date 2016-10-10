@@ -68,7 +68,8 @@ initpluginsql='Install plugin mysqlcft soname "mysqlcft.so"'
 
 
 
-
+help="input your mysql password"
+echo $help
 
 
 ####init SO file
@@ -77,13 +78,15 @@ result=$(mysql -uroot  -s -e "${initpluginsql}")
 create_sql="create database datap;"
 result=$(mysql -uroot  -s -e "${create_sql}")
 
-
+help="input your mysql password"
+echo $help
 
 ####init database
 init_sql="source $(pwd)/../spidermanage/sqldata/Dump20160803.sql"
 result=$(mysql -uroot -p datap -s -e "${init_sql}")
 
-
+help="input your mysql password"
+echo $help
 
 ####add user to database
 adduser='insert into user_table values("admin",3,3,"admin")'

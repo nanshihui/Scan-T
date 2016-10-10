@@ -30,8 +30,9 @@ class Zmaptool:
 # returnmsg =subprocess.call(["ls", "-l"],shell=True)
     def do_scan(self,port='80',num='10',needdetail='0'):
         path=os.getcwd()
+        locate=os.path.split(os.path.realpath(__file__))[0]
 #         p= Popen(" ./zmap -B  4M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True,cwd=path+'/zmap-2.1.0/src')
-        cmd=" zmap -w /root/github/Scan-T/spidermanage/spidertool/iparea.json  -B  1M -p "+port+" -N "+num+"   -q -O json"
+        cmd=" zmap -w "+locate+"/iparea.json  -B  1M -p "+port+" -N "+num+"   -q -O json"
         # p= Popen(" zmap -w /root/github/Scan-T/spidermanage/spidertool/iparea.json -B  1M -p "+port+" -N "+num+"   -q -O json", stdout=PIPE, shell=True)
 
         import commandtool

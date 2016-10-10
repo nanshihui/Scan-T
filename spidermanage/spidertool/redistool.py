@@ -33,7 +33,7 @@ def expire(key,expiration):
 def get(key):
     if redisinstance is None:
         return None
-
+    prev_topicList=None
     try:
         prev_topicList_redis = redisinstance.get(key)
         prev_topicList = prev_topicList_redis
