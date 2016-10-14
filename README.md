@@ -43,6 +43,8 @@ Installation
 you can download Scan-T by cloning the [Git](https://github.com/nanshihui/Scan-T) repository:
 
     git clone https://github.com/nanshihui/Scan-T.git
+    
+Install introduction: [here](https://github.com/nanshihui/Scan-T/wiki/Install-introduction)
 
 Scan-T works out of the box with [Python](http://www.python.org/download/) version **2.6.x** and **2.7.x** on any platform.
 
