@@ -10,3 +10,5 @@ scapy==2.3.2
 scapy-http==1.7
 objgraph==2.0.1
 pycrypto==2.6.1
+chardet
+DBUtils

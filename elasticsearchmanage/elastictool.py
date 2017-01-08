@@ -13,6 +13,7 @@ from logger import initLog
 import chardet
 logger = initLog('logs/elastic.log', 2, True)
 # Define a default Elasticsearch client
+
 connections.create_connection(hosts=['localhost'])
 import base64
 def decodestr(msg):

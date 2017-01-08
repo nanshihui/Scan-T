@@ -379,8 +379,8 @@ class DBmanager:
 				if ulen>0:
 					sql+='  on duplicate key update  '
 					for o in range(0, ulen-1):
-						sql=sql+updatevalue[o]+' =  %s '+'  ,'	
-					sql=sql+updatevalue[ulen-1]+'  =%s ' 
+						sql=sql+updatevalue[o]+' =  values('+updatevalue[o]+')  ,'
+					sql=sql+updatevalue[ulen-1]+'  =values('+updatevalue[ulen-1]+') '
 				sql+=extra
 # 				print sql
 				

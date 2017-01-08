@@ -2,10 +2,9 @@
 #coding:utf-8
 from ThreadTool import ThreadTool
 import datetime
-import time
-import connectpool
+
 class TaskTool:
-	def __init__(self,isThread=1,deamon=True,needfinishqueue=0,log=None):
+	def __init__(self,isThread=1,deamon=False,needfinishqueue=0,log=None):
 		self.threadtool=ThreadTool(isThread,deamon=deamon,needfinishqueue=needfinishqueue)
 		self.threadtool.add_task(self.task)
 		self.log=log
@@ -22,8 +21,9 @@ class TaskTool:
 	def get_work(self):
 		return self.threadtool.get_work()
 	def task(self,req,threadname):
-		print threadname+'执行任务中'+str(datetime.datetime.now())
-		ans =threadname+'任务结束'+str(datetime.datetime.now()) 
+		print threadname,'执行任务中'+str(datetime.datetime.now())
+		print '收到数据：%s' % req
+		ans =''
 		return ans
 	def start_task(self):
 		self.threadtool.start()
@@ -32,10 +32,16 @@ class TaskTool:
 
 			return self.threadtool.pop()
 		else:
-			return 
+			return None
 	def has_work_left(self):
 		return self.threadtool.taskleft()
 	def get_length(self):
 		return self.threadtool.getqueue_size()
 	def get_current_task_num(self):
 		return self.threadtool.get_running_size()
+if __name__=='__main__':
+	import time
+	t=TaskTool(2)
+	t.add_work([1,2,3,4,5])
+	t.add_work([6,7,8,9,10])
+	t.add_work([16, 17, 18, 19, 110])

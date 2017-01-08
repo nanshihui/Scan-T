@@ -32,6 +32,7 @@ pip install faulthandler
 pip install apscheduler
 pip install gevent
 pip install redis
+pip install chardet
 
 
 

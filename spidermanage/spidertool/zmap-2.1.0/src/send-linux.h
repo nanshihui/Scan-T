@@ -28,11 +28,7 @@ int send_run_init(sock_t s)
 	// get source interface index
 	struct ifreq if_idx;
 	memset(&if_idx, 0, sizeof(struct ifreq));
-	if (strlen(zconf.iface) >= IFNAMSIZ) {
-		log_error("send", "device interface name (%s) too long\n",
-				zconf.iface);
-		return EXIT_FAILURE;
-	}
+
 	strncpy(if_idx.ifr_name, zconf.iface, IFNAMSIZ-1);
 	if (ioctl(sock, SIOCGIFINDEX, &if_idx) < 0) {
 		perror("SIOCGIFINDEX");

@@ -1,21 +1,26 @@
 #!/usr/bin/python
 #coding:utf-8
 
+
+
+
 import threading
 from threading import Thread,Lock
+
+
 from Queue import Queue
 import time
-import random
 from threading import stack_size
 import datetime
 import multiprocessing
 
-import gevent
-import gevent.monkey
-# gevent.monkey.patch_socket()
+
+once=None
+
+
 stack_size(32768*16)
 class ThreadTool:
-	def __init__(self,isThread=1,needfinishqueue=0,deamon=True):
+	def __init__(self,isThread=1,needfinishqueue=0,deamon=False):
 		self.isThread=isThread
 		self.idletask={}
 		self.Threads=[]
@@ -42,7 +47,11 @@ class ThreadTool:
 			from gevent.queue import JoinableQueue as geventqueue
 			from gevent.lock import Semaphore
 
-
+			from gevent import monkey
+			global once
+			if once is None:
+				monkey.patch_all()
+				once=1
 			self.lock = Semaphore()
 			self.q_request = geventqueue()
 			if self.needfinishqueue > 0:
@@ -98,7 +107,7 @@ class ThreadTool:
 				with self.lock:	
 					self.alivenum+=1
 		else:
-
+			import gevent
 			for i in range(sizenumber):
 				t = gevent.spawn(self.getgeventTask)
 				print '协程' + str(i + 1) + '  正在启动'
@@ -137,26 +146,21 @@ class ThreadTool:
 				with self.lock:	
 					print str(threadnownum)+'活着的线程数'
 					self.Threads = filter(lambda x:x.isAlive() !=False,self.Threads)
-				print str(len(self.Threads))+'清理后活着的进程数'
+				print str(len(self.Threads))+'清理后活着的线程数'
 			else:
 				threadnownum=self.threads_num
 		elif self.isThread==0:
 			tempnumb=0
+			time.sleep(1)
 			with self.lock:
-				tempnumb=self.alivenum
+				if len(self.Threads) == 0:
+					threadnownum = 0
+				else:
+					self.Threads = filter(lambda x: x.is_alive() != False, self.Threads)
+					tempnumb= len(self.Threads)
 			if tempnumb<self.threads_num:
-				for item in self.Threads:
+				threadnownum=tempnumb
 
-					if item.is_alive():
-
-						threadnownum=threadnownum+1	
-
-
-				with self.lock:	
-					print str(threadnownum)+'活着的进程数'
-					self.Threads = filter(lambda x:x.is_alive()!=False,self.Threads)
-
-				print str(len(self.Threads))+'清理后活着的进程数'
 			else:
 				threadnownum=self.threads_num
 			
@@ -164,24 +168,27 @@ class ThreadTool:
 		if self.isThread==1:
 			for i in range(sizenumber):
 				t=Thread(target=self.getTask)
-				t.Daemon=self.deamon
+				t.setDaemon(self.deamon)
+				with self.lock:
+					self.alivenum+=1
 				t.start()
 				self.Threads.append(t)
-				with self.lock:	
-					self.alivenum+=1
+
 
 		elif self.isThread==0:
 			for i in range(sizenumber):
 				t=multiprocessing.Process(target=self.getTaskProcess)
-				t.Daemon=self.deamon
+				t.daemon=self.deamon
+				with self.lock:
+					self.alivenum+=1
 				t.start()
 				self.Threads.append(t)
-				with self.lock:	
-					self.alivenum+=1
-		else:
 
+
+
+		else:
+			import gevent
 			for i in range(self.threads_num):
-				print 'alive num', self.alivenum, self.threads_num
 				if self.alivenum <self.threads_num:
 					t = gevent.spawn(self.getgeventTask)
 					print '协程' + str(self.alivenum) + '  正在启动'
@@ -199,20 +206,25 @@ class ThreadTool:
 		return job(req,threadname)
 
 	def getTaskProcess(self):
+		req=None
 		while True:
-# 			if self.taskleft()>0:
-# 				try:
-# 					req = self.q_request.get(block=True,timeout=10000)
-# 				except:
-# 					continue
-# 			else:
-# 				threadname=multiprocessing.current_process().name
-# 				print threadname+'关闭'
-# 				with self.lock:	
-# 					self.alivenum-=1
-# 				break
-			req = self.q_request.get()
-			with self.lock:				#要保证该操作的原子性，进入critical area
+			if self.taskleft()>0:
+				try:
+					req = self.q_request.get(block=True,timeout=1000)
+				except:
+					continue
+			else:
+				try:
+					req = self.q_request.get(block=True,timeout=60*60)
+					threadname = multiprocessing.current_process().name
+				except Exception,e:
+					with self.lock:
+						self.alivenum-=1
+					print threadname+'关闭'
+					break
+
+
+			with self.lock:
 
 				self.running=self.running+1
 
@@ -221,36 +233,36 @@ class ThreadTool:
 			print '进程'+threadname+'发起请求: '
 
 			ans=self.do_job(self.job,req,threadname)
-#			ans = self.connectpool.getConnect(req)
 
-# 			self.lock.release()
 			if self.needfinishqueue>0:
 				self.q_finish.put((req,ans))
-#			self.lock.acquire()
 			with self.lock:
 				self.running= self.running-1
 			threadname=multiprocessing.current_process().name
 
 			print '进程'+threadname+'完成请求'
-#			self.lock.release()
 
-			#self.q_request.task_done()
+
 
 	def getTask(self):
 		while True:
-			# if self.taskleft()>0:
-			# 	try:
-			# 		req = self.q_request.get(block=True,timeout=10000)
-			# 	except:
-			# 		continue
-			# else:
-			# 	threadname=threading.currentThread().getName()
-			# 	with self.lock:
-			# 		self.alivenum-=1
-			# 	print threadname+'关闭'
-			# 	break
-			req = self.q_request.get()
-			
+			if self.taskleft()>0:
+				try:
+					req = self.q_request.get(block=True,timeout=1000)
+				except:
+					continue
+			else:
+				try:
+					req = self.q_request.get(block=True,timeout=60*60)
+					threadname=threading.currentThread().getName()
+				except:
+
+					with self.lock:
+						self.alivenum-=1
+					print threadname+'关闭'
+					break
+
+
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
 
@@ -260,34 +272,29 @@ class ThreadTool:
 			print '线程'+threadname+'发起请求: '
 
 			ans=self.do_job(self.job,req,threadname)
-#			ans = self.connectpool.getConnect(req)
 
-# 			self.lock.release()
 			if self.needfinishqueue>0:
 				self.q_finish.put((req,ans))
-#			self.lock.acquire()
 			with self.lock:
 				self.running-= 1
 			threadname=threading.currentThread().getName()
 
 			print '线程'+threadname+'完成请求'
-#			self.lock.release()
 			self.q_request.task_done()
 	def getgeventTask(self):
+		import gevent
 		while True:
-			# if self.taskleft()>0:
-			# 	try:
-			# 		req = self.q_request.get(block=True,timeout=10000)
-			# 	except:
-			# 		continue
-			# else:
-			# 	threadname=threading.currentThread().getName()
-			# 	with self.lock:
-			# 		self.alivenum-=1
-			# 	print threadname+'关闭'
-			# 	break
-
-			req = self.q_request.get()
+			if self.taskleft()>0:
+				try:
+					req = self.q_request.get(block=True,timeout=10000)
+				except:
+					continue
+			else:
+				threadname=threading.currentThread().getName()
+				with self.lock:
+					self.alivenum-=1
+				print threadname+'关闭'
+				break
 
 			with self.lock:				#要保证该操作的原子性，进入critical area
 				self.running=self.running+1
@@ -298,18 +305,14 @@ class ThreadTool:
 			print threadname,'协程发起请求: '
 
 			ans=self.do_job(self.job,req,threadname)
-#			ans = self.connectpool.getConnect(req)
 
-# 			self.lock.release()
 			if self.needfinishqueue>0:
 				self.q_finish.put((req,ans))
-#			self.lock.acquire()
 			with self.lock:
 				self.running-= 1
 			threadname = gevent.getcurrent()
 
 			print threadname, '协程发起请求: '
-#			self.lock.release()
 			self.q_request.task_done()
 
 def taskitem(req,threadname):
@@ -318,33 +321,6 @@ def taskitem(req,threadname):
 	time.sleep(3)
 	return threadname,'任务结束'+str(datetime.datetime.now())
 
-#TODO 启用一个变量直接判断当前线程数量，而不是每次手动的去判断，减少时间,判断活着的数量在第一次时不要清除线程相关操作
 if __name__ == "__main__":
-	links = [ 'http://www.bunz.edu.com','http://www.baidu.com','http://www.hao123.cx','http://www.cctv.cx','http://www.vip.cx']
-	f = ThreadTool(2)
-	f.set_Thread_size(3)
-	f.add_task(taskitem)
-	# f.start()
-# 	for url in links:
-#      	
-# 		f.push(url)
-	f.push(links)
-	f.push(links)
-
-	f.push(links)
-	f.push(links)
-	f.push(links)
-	f.push(links)
-
-# 	f.start()
-	timea=1
-
-	time.sleep(20)
-	f.push(links)
-	f.push(links)
-	f.push(links)
-
-	f.push(links)
-	# while True:
-	# 	pass
-
+	t=ThreadTool()
+	t.push()

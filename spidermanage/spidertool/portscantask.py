@@ -16,7 +16,7 @@ def getObject():
         portscantskinstance=PortscanTask(1)
     return portscantskinstance
 class PortscanTask(TaskTool):
-    def __init__(self,isThread=1,deamon=True):
+    def __init__(self,isThread=1,deamon=False):
         TaskTool.__init__(self,isThread,deamon=deamon)
         import Sqldatatask
         self.logger = initLog('logs/portScantask.log', 2, True,'portscantask')
