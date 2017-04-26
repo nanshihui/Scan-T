@@ -1,6 +1,6 @@
 # Scan-T
 
-[![Build Status](http://nanshihui.github.io/public/status.svg)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) [![Python 2.6|2.7](http://nanshihui.github.io/public/python.svg)](https://www.python.org/) [![License](http://nanshihui.github.io/public/license.svg)](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) 
+[![Build Status](https://nanshihui.github.io/public/status.svg)](https://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) [![Python 2.7](https://nanshihui.github.io/public/python.svg)](https://www.python.org/) [![License](https://nanshihui.github.io/public/license.svg)](https://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/) 
 
 　　Scan-T is an open source penetration testing tool that automates the process of detecting and collecting the hosts flaws and port fingerprinting. It comes with a powerful detection engine, many nice features for the ultimate penetration tester .
 
@@ -16,21 +16,22 @@ Screenshots
 ----
 * searching struts vulnerability 
 
-![Screenshot](http://nanshihui.github.io/public/struts.png)
+![Screenshot](https://nanshihui.github.io/public/struts.png)
 
 </br>
 
 * struts vulnerability distribution
 
-![Screenshot](http://nanshihui.github.io/public/locate.png)
+![Screenshot](https://nanshihui.github.io/public/locate.png)
 
 </br>
+
 * the location of computer
 
-![Screenshot](http://nanshihui.github.io/public/mapshow.png)
+![Screenshot](https://nanshihui.github.io/public/mapshow.png)
 
 
-* Simple introduction:[Screenshot Preview](http://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/)
+* Simple introduction:[Screenshot Preview](https://nanshihui.github.io/2016/01/21/ToolForSpider%E7%AE%80%E4%BB%8B/)
 
 Require
 ----
@@ -46,7 +47,7 @@ you can download Scan-T by cloning the [Git](https://github.com/nanshihui/Scan-T
     
 Install introduction: [here](https://github.com/nanshihui/Scan-T/wiki/Install-introduction)
 
-Scan-T works out of the box with [Python](http://www.python.org/download/) version **2.6.x** and **2.7.x** on any platform.
+Scan-T works out of the box with [Python](http://www.python.org/download/) version  **2.7.x** on any platform.
 
 Usage
 ----

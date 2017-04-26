@@ -178,7 +178,6 @@ int send_run(sock_t st, shard_t *s)
 	// Allocate a buffer to hold the outgoing packet
 	char buf[MAX_PACKET_SIZE];
 	memset(buf, 0, MAX_PACKET_SIZE);
-
 	// OS specific per-thread init
 	if (send_run_init(st)) {
 		return -1;
