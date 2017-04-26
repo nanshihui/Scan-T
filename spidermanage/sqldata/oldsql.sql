@@ -302,7 +302,7 @@ CREATE TABLE `snifferdata` (
   `webtitle` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index2` (`ip`,`port`),
-  FULLTEXT  `cnFullIndex` (`version`,`product`,`head`,`detail`,`script`,`hackinfo`,`disclosure`,`keywords`,`name`,`webkeywords`,`webtitle`)
+  FULLTEXT KEY `cnFullIndex` (`version`,`product`,`head`,`detail`,`script`,`hackinfo`,`disclosure`,`keywords`) /*!50100 WITH PARSER `mysqlcft` */ 
 ) ENGINE=MyISAM AUTO_INCREMENT=12889846 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

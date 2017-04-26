@@ -55,7 +55,7 @@ def scheduleinit():
     # mainschedule.addschedule(event=taskitem.normaltask,type='date')  # 后台异步任务
 
 #     mainschedule.addschedule(taskitem.listiptask,'0-7','*/21','13','0',id='listiptask')#自定义扫描段任务器
-    mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/5','0',id='nmap')#nmap定时任务器
+#     mainschedule.addschedule(taskitem.tick,'0-7','0-23','*/5','0',id='nmap')#nmap定时任务器
 #     mainschedule.addschedule(taskitem.ticknormal,'0-7','0-23','*/14','0',id='zmap')#zmap定时任务器
 #     mainschedule.addschedule(taskitem.gchelp,'0-7','0-23','0','0',id='gc')#gc collect   
 

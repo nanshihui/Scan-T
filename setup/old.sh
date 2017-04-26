@@ -2,8 +2,6 @@
 #####haven't finished yet. Do not use it!!!!
 help="haven't finished yet. Do not use it!!!!"
 echo $help
-username="root"
-password="123456"
 
 apt-get install -y nmap
 apt-get install -y libjson-c-dev libjson-c2  libjson0 libjson0-dev
@@ -50,27 +48,62 @@ pip install chardet
 
 
 
-# ####init SO file
-# result=$(mysql -u${username} -p${password}  -s -e "${initpluginsql}")
+
+
+
+####download SO file
+wget https://nanshihui.github.io/public/mysqlcft.so
+mysqlcftpath=$(pwd)'/mysqlcft.so'
+#mysqldestfile=
+command_sql='show processlist;'
+mysql_plugin_file='/usr/lib/mysql/plugin/mysqlcft.so'
+
+
+
+service mysql start
+
+####cp SO file to mysql plugin root path 
+result=$(cp $mysqlcftpath $mysql_plugin_file)
+#echo $result
+initpluginsql='Install plugin mysqlcft soname "mysqlcft.so"'
+
+
+
+help="input your mysql password"
+echo $help
+
+
+####init SO file
+result=$(mysql -uroot  -s -e "${initpluginsql}")
 #create database
 create_sql="create database datap;"
-result=$(mysql -u${username} -p${password}  -s -e "${create_sql}")
+result=$(mysql -uroot  -s -e "${create_sql}")
 
-
+help="input your mysql password"
+echo $help
 
 ####init database
 init_sql="source $(pwd)/../spidermanage/sqldata/Dump20160803.sql"
-result=$(mysql -u${username} -p${password} -Ddatap -s -e "${init_sql}")
+result=$(mysql -uroot -p datap -s -e "${init_sql}")
 
-
+help="input your mysql password"
+echo $help
 
 ####add user to database
 adduser='insert into user_table values("admin",3,3,"admin")'
-result=$(mysql -u${username} -p${password} -Ddatap -s -e "${adduser}")
+result=$(mysql -uroot -p datap -s -e "${adduser}")
 
 
 $(cd ../spidermanage&&mkdir logs)
+#echo $result
 
+
+#echo $result
+#echo $mysqlcftpath
+#for val in $result
+#do
+#   echo $val
+#done
 
 
 
