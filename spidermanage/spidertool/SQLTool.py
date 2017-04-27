@@ -387,7 +387,6 @@ class DBmanager:
 				
 				returnmeg=None
 				try:
-					print sql,insert_values
 					returnmeg=self.__cur.executemany(sql,insert_values)
 				except MySQLdb.Error,e:
 					try:
