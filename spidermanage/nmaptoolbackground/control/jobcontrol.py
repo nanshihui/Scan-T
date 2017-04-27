@@ -30,9 +30,7 @@ def jobshow(jobname='',jobstatus='',username='',taskid='',jobport='',result='',p
     if jobport!='':
         request_params.append('taskport')
         values_params.append(SQLTool.formatstring(jobport))
-    if jobport!='':
-        request_params.append('taskport')
-        values_params.append(SQLTool.formatstring(jobport))
+
     if jobaddress!='':
         request_params.append('taskaddress')
         values_params.append(SQLTool.formatstring(jobaddress))

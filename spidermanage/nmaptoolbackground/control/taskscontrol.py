@@ -113,9 +113,9 @@ def taskadd(job):
     if taskid!='':
         request_params.append('tasksid')
         values_params.append(taskid)
-    if jobport!='':
-        request_params.append('taskport')
-        values_params.append(jobport)
+
+    request_params.append('taskport')
+    values_params.append(jobport)
 
 
     table=localconfig.taskstable

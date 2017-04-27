@@ -291,7 +291,7 @@ CREATE TABLE `snifferdata` (
   `product` varchar(45) DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
   `script` text,
-  `detail` text,
+  `detail` LONGTEXT,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `head` text,
   `portnumber` varchar(8) DEFAULT NULL,
