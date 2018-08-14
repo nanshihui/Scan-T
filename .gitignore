@@ -35,14 +35,7 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 webdection/
-middileware/
-component/
-httpdect/
-plugins/
-vuldect/
 thirdparty/
-router/
-basemodel/
 htmlcov/
 .tox/
 .coverage
